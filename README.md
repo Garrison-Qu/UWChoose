@@ -11,14 +11,8 @@
 - **Major Requirement Tracker**  
   Tracks completed and remaining courses for a chosen mathematics major.
 
-- **Term Planner**  
-  Organizes courses across future terms while validating prerequisite order.
+- **Term Planner Check**  
+  Check whether courses across future terms and validates prerequisite order.
 
-- **Course Dependency Graph**  
-  Visualizes course relationships through an interactive prerequisite map.
-
-- **Anti-Requisite Detection**  
-  Prevents invalid course selections caused by overlapping course credit.
-
-- **Smart Path Finder**  
-  Calculates the shortest academic path toward a desired course or degree goal.
+- **Class Info glance**  
+  Each class has a super link to introduction page.
