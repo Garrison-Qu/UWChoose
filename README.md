@@ -12,7 +12,7 @@
   Tracks completed and remaining courses for a chosen mathematics major.
 
 - **Term Planner Check**  
-  Check whether courses across future terms and validates prerequisite order.
+  Check whether your courses satisfy the prerequisites.
 
 - **Class Info glance**  
-  Each class has a super link to introduction page.
+  Each class has a superlink to introduction page.
