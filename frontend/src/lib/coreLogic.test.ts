@@ -2,9 +2,10 @@ import { describe, expect, it } from 'vitest'
 import { courses } from '../data/courses'
 import { getCourseAvailability } from './courseAvailability'
 import { buildFastestPathToCourse, buildPathExplanationToCourse } from './pathPlanner'
+import { getPlannedTermWarnings } from './plannerWarnings'
 import { getBlockedReasons, satisfiesPrerequisite } from './prerequisites'
 import { getEffectiveCompletedCourses } from './studentRecords'
-import { sortPlannedTerms } from './terms'
+import { getDerivedTermStatus, sortPlannedTerms } from './terms'
 import type { CompletedCourse, PlannedTerm } from '../types/student'
 
 function course(code: string) {
@@ -47,40 +48,75 @@ describe('course code and prerequisite logic', () => {
     expect(availability.canTake).toBe(false)
     expect(availability.reasons[0]).toContain('already in your completed')
   })
+
+  it('allows a course when a prerequisite override exists', () => {
+    const availability = getCourseAvailability(course('CO367'), [], ['co 367'])
+
+    expect(availability.canTake).toBe(true)
+    expect(availability.hasPrerequisiteOverride).toBe(true)
+    expect(availability.reasons).toEqual([])
+  })
+
+  it('does not let a prerequisite override bypass antirequisite credit conflicts', () => {
+    const availability = getCourseAvailability(course('MATH137'), [{ courseCode: 'MATH147' }], [
+      'MATH137',
+    ])
+
+    expect(availability.canTake).toBe(false)
+    expect(availability.reasons).toContain('Credit is already covered by antirequisite MATH 147.')
+  })
 })
 
 describe('student records and terms', () => {
+  const currentTerm = { term: 'Winter', year: 2027 } as const
   const plannedTerms: PlannedTerm[] = [
     {
       id: 'future',
-      term: 'Winter',
+      term: 'Spring',
       year: 2027,
-      status: 'future',
       courseCodes: ['CO250'],
     },
     {
       id: 'finished',
       term: 'Fall',
       year: 2026,
-      status: 'finished',
       courseCodes: ['MATH147'],
     },
   ]
 
-  it('does not count finished planner terms as completed', () => {
-    const effectiveCompletedCourses = getEffectiveCompletedCourses([])
+  it('counts planner terms before the current term as completed', () => {
+    const effectiveCompletedCourses = getEffectiveCompletedCourses([], plannedTerms, currentTerm)
 
-    expect(effectiveCompletedCourses.map((item) => item.courseCode)).not.toContain('MATH147')
+    expect(effectiveCompletedCourses.map((item) => item.courseCode)).toContain('MATH147')
   })
 
-  it('does not count future planner terms as completed yet', () => {
-    const effectiveCompletedCourses = getEffectiveCompletedCourses([])
+  it('does not count current or future planner terms as completed yet', () => {
+    const effectiveCompletedCourses = getEffectiveCompletedCourses([], plannedTerms, currentTerm)
 
     expect(effectiveCompletedCourses.map((item) => item.courseCode)).not.toContain('CO250')
   })
 
+  it('derives term status from the current date term', () => {
+    expect(getDerivedTermStatus(plannedTerms[0], currentTerm)).toBe('future')
+    expect(getDerivedTermStatus(plannedTerms[1], currentTerm)).toBe('finished')
+  })
+
   it('sorts terms in academic time order', () => {
     expect(sortPlannedTerms(plannedTerms).map((item) => item.id)).toEqual(['finished', 'future'])
+  })
+
+  it('suppresses planner prerequisite warnings with a course override', () => {
+    const plannedTerm: PlannedTerm = {
+      id: 'co367',
+      term: 'Spring',
+      year: 2027,
+      courseCodes: ['CO367'],
+    }
+    const warnings = getPlannedTermWarnings(plannedTerm, [plannedTerm], [], courses, ['CO367'])
+
+    expect(warnings.courseWarnings[0].warnings).not.toContain(
+      'Missing prerequisite before this term: Need one of CO 250, or CO 255, or CO 352.',
+    )
   })
 })
 

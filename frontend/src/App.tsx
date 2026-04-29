@@ -3,7 +3,6 @@ import { AppLayout } from './components/AppLayout'
 import { CompletedCoursesPage } from './pages/CompletedCoursesPage'
 import { CourseDetailPage } from './pages/CourseDetailPage'
 import { CoursesPage } from './pages/CoursesPage'
-import { EligibleCoursesPage } from './pages/EligibleCoursesPage'
 import { HomePage } from './pages/HomePage'
 import { PlannerPage } from './pages/PlannerPage'
 import { ProgramsPage } from './pages/ProgramsPage'
@@ -16,7 +15,6 @@ function App() {
         <Route path="courses" element={<CoursesPage />} />
         <Route path="courses/:code" element={<CourseDetailPage />} />
         <Route path="completed" element={<CompletedCoursesPage />} />
-        <Route path="eligible" element={<EligibleCoursesPage />} />
         <Route path="programs" element={<ProgramsPage />} />
         <Route path="planner" element={<PlannerPage />} />
       </Route>

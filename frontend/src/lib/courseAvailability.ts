@@ -6,6 +6,7 @@ import type { CompletedCourse } from '../types/student'
 export type CourseAvailability = {
   canTake: boolean
   reasons: string[]
+  hasPrerequisiteOverride: boolean
 }
 
 function hasCompleted(courseCode: string, completedCourses: CompletedCourse[]): boolean {
@@ -36,14 +37,24 @@ export function getCreditConflictReasons(
 export function getCourseAvailability(
   course: Course,
   completedCourses: CompletedCourse[],
+  prerequisiteOverrides: string[] = [],
 ): CourseAvailability {
+  const hasPrerequisiteOverride =
+    Boolean(course.prerequisite) && prerequisiteOverrides.map(normalizeCourseCode).includes(course.code)
+  const creditConflictReasons = getCreditConflictReasons(course, completedCourses)
+  const prerequisiteReasons = hasPrerequisiteOverride
+    ? []
+    : getBlockedReasons(course, completedCourses)
   const reasons = [
-    ...getCreditConflictReasons(course, completedCourses),
-    ...getBlockedReasons(course, completedCourses),
+    ...creditConflictReasons,
+    ...prerequisiteReasons,
   ]
 
   return {
-    canTake: reasons.length === 0 && satisfiesPrerequisite(course.prerequisite, completedCourses),
+    canTake:
+      creditConflictReasons.length === 0 &&
+      (hasPrerequisiteOverride || satisfiesPrerequisite(course.prerequisite, completedCourses)),
+    hasPrerequisiteOverride,
     reasons,
   }
 }

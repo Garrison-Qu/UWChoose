@@ -18,3 +18,11 @@ export type CurrentTerm = {
   term: 'Fall' | 'Winter' | 'Spring'
   year: number
 }
+
+export type StudentPlanBackup = {
+  completedCourses: CompletedCourse[]
+  plannedTerms: PlannedTerm[]
+  prerequisiteOverrides: string[]
+  selectedProgramId?: string
+  currentTerm: CurrentTerm
+}

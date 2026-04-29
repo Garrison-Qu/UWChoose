@@ -2,6 +2,7 @@ import type { CurrentTerm, PlannedTerm } from '../types/student'
 import type { Term } from '../types/course'
 
 export const terms = ['Fall', 'Winter', 'Spring'] as const
+export type DerivedTermStatus = 'finished' | 'future'
 
 const termOrder: Record<Term, number> = { Winter: 0, Spring: 1, Fall: 2 }
 
@@ -20,6 +21,20 @@ export function sortPlannedTerms(plannedTerms: PlannedTerm[]): PlannedTerm[] {
   return [...plannedTerms].sort(compareAcademicTerms)
 }
 
+export function getDerivedTermStatus(
+  plannedTerm: Pick<PlannedTerm, 'term' | 'year'>,
+  currentTerm: CurrentTerm,
+): DerivedTermStatus {
+  return compareAcademicTerms(plannedTerm, currentTerm) < 0 ? 'finished' : 'future'
+}
+
+export function isFinishedByDate(
+  plannedTerm: Pick<PlannedTerm, 'term' | 'year'>,
+  currentTerm: CurrentTerm,
+): boolean {
+  return getDerivedTermStatus(plannedTerm, currentTerm) === 'finished'
+}
+
 export function getNextAcademicTerm(currentTerm: CurrentTerm): CurrentTerm {
   if (currentTerm.term === 'Winter') {
     return { term: 'Spring', year: currentTerm.year }
@@ -34,6 +49,20 @@ export function getNextAcademicTerm(currentTerm: CurrentTerm): CurrentTerm {
 
 export function formatAcademicTerm(term: CurrentTerm): string {
   return `${term.term} ${term.year}`
+}
+
+export function getCurrentAcademicTerm(date = new Date()): CurrentTerm {
+  const month = date.getMonth() + 1
+
+  if (month >= 1 && month <= 4) {
+    return { term: 'Winter', year: date.getFullYear() }
+  }
+
+  if (month >= 5 && month <= 8) {
+    return { term: 'Spring', year: date.getFullYear() }
+  }
+
+  return { term: 'Fall', year: date.getFullYear() }
 }
 
 export function findNextOfferedTerm(

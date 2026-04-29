@@ -2,7 +2,15 @@ import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import { normalizeCourseCode } from '../lib/courseCodes'
 import { studentStorageKey } from '../lib/storage'
-import type { CompletedCourse, CurrentTerm, PlannedTerm, PlannedTermStatus } from '../types/student'
+import { getCurrentAcademicTerm } from '../lib/terms'
+import type {
+  CompletedCourse,
+  CurrentTerm,
+  PlannedTerm,
+  StudentPlanBackup,
+} from '../types/student'
+
+const defaultCurrentTerm = getCurrentAcademicTerm()
 
 function parseTermTaken(termTaken: string | undefined, fallback: CurrentTerm): CurrentTerm {
   const match = termTaken?.trim().match(/^(Fall|Winter|Spring)\s+(\d{4})$/i)
@@ -39,7 +47,6 @@ function addCompletedCourseToPlanner(
 
       return {
         ...plannedTerm,
-        status: 'finished',
         courseCodes: plannedTerm.courseCodes.includes(normalizedCode)
           ? plannedTerm.courseCodes
           : [...plannedTerm.courseCodes, normalizedCode],
@@ -53,7 +60,6 @@ function addCompletedCourseToPlanner(
       id: `completed-${completedTerm.term}-${completedTerm.year}`,
       term: completedTerm.term,
       year: completedTerm.year,
-      status: 'finished',
       courseCodes: [normalizedCode],
     },
   ]
@@ -63,25 +69,31 @@ type StudentState = {
   completedCourses: CompletedCourse[]
   selectedProgramId?: string
   plannedTerms: PlannedTerm[]
+  prerequisiteOverrides: string[]
   currentTerm: CurrentTerm
   addCompletedCourse: (course: CompletedCourse) => void
   removeCompletedCourse: (courseCode: string) => void
   updateCompletedCourse: (courseCode: string, updates: Partial<CompletedCourse>) => void
+  addPrerequisiteOverride: (courseCode: string) => void
+  removePrerequisiteOverride: (courseCode: string) => void
+  togglePrerequisiteOverride: (courseCode: string) => void
   setSelectedProgram: (programId: string) => void
-  setCurrentTerm: (term: CurrentTerm) => void
   addPlannedTerm: (term: PlannedTerm) => void
   removePlannedTerm: (termId: string) => void
-  updatePlannedTermStatus: (termId: string, status: PlannedTermStatus) => void
   addCourseToPlannedTerm: (termId: string, courseCode: string) => void
   removeCourseFromPlannedTerm: (termId: string, courseCode: string) => void
+  exportPlan: () => StudentPlanBackup
+  importPlan: (plan: StudentPlanBackup) => void
+  resetPlan: () => void
 }
 
 export const useStudentStore = create<StudentState>()(
   persist(
-    (set) => ({
-      completedCourses: [],
-      plannedTerms: [],
-      currentTerm: { term: 'Fall', year: 2026 },
+    (set, get) => ({
+      completedCourses: [] as CompletedCourse[],
+      plannedTerms: [] as PlannedTerm[],
+      prerequisiteOverrides: [] as string[],
+      currentTerm: defaultCurrentTerm,
 
       addCompletedCourse: (course) =>
         set((state) => {
@@ -134,32 +146,70 @@ export const useStudentStore = create<StudentState>()(
           ),
         })),
 
+      addPrerequisiteOverride: (courseCode) =>
+        set((state) => {
+          const normalizedCode = normalizeCourseCode(courseCode)
+
+          if (state.prerequisiteOverrides.includes(normalizedCode)) {
+            return state
+          }
+
+          return {
+            prerequisiteOverrides: [...state.prerequisiteOverrides, normalizedCode],
+          }
+        }),
+
+      removePrerequisiteOverride: (courseCode) =>
+        set((state) => ({
+          prerequisiteOverrides: state.prerequisiteOverrides.filter(
+            (overrideCode) => overrideCode !== normalizeCourseCode(courseCode),
+          ),
+        })),
+
+      togglePrerequisiteOverride: (courseCode) =>
+        set((state) => {
+          const normalizedCode = normalizeCourseCode(courseCode)
+
+          if (state.prerequisiteOverrides.includes(normalizedCode)) {
+            return {
+              prerequisiteOverrides: state.prerequisiteOverrides.filter(
+                (overrideCode) => overrideCode !== normalizedCode,
+              ),
+            }
+          }
+
+          return {
+            prerequisiteOverrides: [...state.prerequisiteOverrides, normalizedCode],
+          }
+        }),
+
       setSelectedProgram: (programId) => set({ selectedProgramId: programId }),
 
-      setCurrentTerm: (term) => set({ currentTerm: term }),
-
       addPlannedTerm: (term) =>
-        set((state) => ({
-          plannedTerms: [
-            ...state.plannedTerms,
-            {
-              ...term,
-              status: term.status ?? 'future',
-              courseCodes: term.courseCodes.map(normalizeCourseCode),
-            },
-          ],
-        })),
+        set((state) => {
+          const existingTerm = state.plannedTerms.some(
+            (plannedTerm) => plannedTerm.term === term.term && plannedTerm.year === term.year,
+          )
+
+          if (existingTerm) {
+            return state
+          }
+
+          return {
+            plannedTerms: [
+              ...state.plannedTerms,
+              {
+                ...term,
+                status: term.status ?? 'future',
+                courseCodes: term.courseCodes.map(normalizeCourseCode),
+              },
+            ],
+          }
+        }),
 
       removePlannedTerm: (termId) =>
         set((state) => ({
           plannedTerms: state.plannedTerms.filter((plannedTerm) => plannedTerm.id !== termId),
-        })),
-
-      updatePlannedTermStatus: (termId, status) =>
-        set((state) => ({
-          plannedTerms: state.plannedTerms.map((plannedTerm) =>
-            plannedTerm.id === termId ? { ...plannedTerm, status } : plannedTerm,
-          ),
         })),
 
       addCourseToPlannedTerm: (termId, courseCode) =>
@@ -196,10 +246,58 @@ export const useStudentStore = create<StudentState>()(
               : plannedTerm,
           ),
         })),
+
+      exportPlan: (): StudentPlanBackup => {
+        const state = get()
+
+        return {
+          completedCourses: state.completedCourses,
+          plannedTerms: state.plannedTerms,
+          prerequisiteOverrides: state.prerequisiteOverrides,
+          selectedProgramId: state.selectedProgramId,
+          currentTerm: state.currentTerm,
+        }
+      },
+
+      importPlan: (plan) =>
+        set({
+          completedCourses: plan.completedCourses.map((course) => ({
+            ...course,
+            courseCode: normalizeCourseCode(course.courseCode),
+          })),
+          plannedTerms: plan.plannedTerms.map((term) => ({
+            ...term,
+            status: term.status ?? 'future',
+            courseCodes: term.courseCodes.map(normalizeCourseCode),
+          })),
+          prerequisiteOverrides: plan.prerequisiteOverrides.map(normalizeCourseCode),
+          selectedProgramId: plan.selectedProgramId,
+          currentTerm: getCurrentAcademicTerm(),
+        }),
+
+      resetPlan: () =>
+        set({
+          completedCourses: [],
+          plannedTerms: [],
+          prerequisiteOverrides: [],
+          selectedProgramId: undefined,
+          currentTerm: { ...defaultCurrentTerm },
+        }),
     }),
     {
       name: studentStorageKey,
       storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({
+        completedCourses: state.completedCourses,
+        plannedTerms: state.plannedTerms,
+        prerequisiteOverrides: state.prerequisiteOverrides,
+        selectedProgramId: state.selectedProgramId,
+      }),
+      merge: (persistedState, currentState) => ({
+        ...currentState,
+        ...(persistedState as Partial<StudentState>),
+        currentTerm: getCurrentAcademicTerm(),
+      }),
     },
   ),
 )

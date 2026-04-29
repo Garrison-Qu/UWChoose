@@ -7,7 +7,6 @@ const navItems = [
   { to: '/completed', label: 'Completed' },
   { to: '/planner', label: 'Planner' },
   { to: '/programs', label: 'Programs' },
-  { to: '/eligible', label: 'Eligible' },
 ]
 
 export function AppLayout() {

@@ -62,9 +62,11 @@ export function getPlannedTermWarnings(
   plannedTerms: PlannedTerm[],
   completedCourses: CompletedCourse[],
   courses: Course[],
+  prerequisiteOverrides: string[] = [],
 ): PlannedTermWarnings {
   const completedBefore = completedBeforeTerm(plannedTerm, plannedTerms, completedCourses)
   const allPlannedCodes = plannedTerms.flatMap((term) => term.courseCodes.map(normalizeCourseCode))
+  const overrideCodes = prerequisiteOverrides.map(normalizeCourseCode)
 
   const courseWarnings = plannedTerm.courseCodes.map((courseCode) => {
     const normalizedCode = normalizeCourseCode(courseCode)
@@ -92,7 +94,9 @@ export function getPlannedTermWarnings(
 
     getCreditConflictReasons(course, completedBefore).forEach((reason) => warnings.push(reason))
 
-    if (!satisfiesPrerequisite(course.prerequisite, completedBefore)) {
+    const hasPrerequisiteOverride = overrideCodes.includes(normalizedCode)
+
+    if (!hasPrerequisiteOverride && !satisfiesPrerequisite(course.prerequisite, completedBefore)) {
       getBlockedReasons(course, completedBefore).forEach((reason) =>
         warnings.push(`Missing prerequisite before this term: ${reason}`),
       )
@@ -106,13 +110,15 @@ export function getPlannedTermWarnings(
       warnings.push('Duplicate course in another planned term.')
     }
 
-    collectRequirementCourseCodes(course.prerequisite).forEach((requirementCode) => {
-      const requirementTerm = findPlannedTermForCourse(requirementCode, plannedTerms)
+    if (!hasPrerequisiteOverride) {
+      collectRequirementCourseCodes(course.prerequisite).forEach((requirementCode) => {
+        const requirementTerm = findPlannedTermForCourse(requirementCode, plannedTerms)
 
-      if (requirementTerm && compareAcademicTerms(requirementTerm, plannedTerm) > 0) {
-        warnings.push(`Course is planned before prerequisite ${requirementCode}.`)
-      }
-    })
+        if (requirementTerm && compareAcademicTerms(requirementTerm, plannedTerm) > 0) {
+          warnings.push(`Course is planned before prerequisite ${requirementCode}.`)
+        }
+      })
+    }
 
     return { courseCode: normalizedCode, warnings: [...new Set(warnings)] }
   })

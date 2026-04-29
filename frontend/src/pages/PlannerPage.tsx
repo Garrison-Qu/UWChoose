@@ -1,10 +1,19 @@
 import { useMemo, useState } from 'react'
 import { Badge } from '../components/Badge'
+import { PlanBackupPanel } from '../components/PlanBackupPanel'
 import { courses } from '../data/courses'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
 import { getPlannedTermWarnings } from '../lib/plannerWarnings'
 import { satisfiesPrerequisite } from '../lib/prerequisites'
-import { compareAcademicTerms, sortPlannedTerms, terms } from '../lib/terms'
+import { getEffectiveCompletedCourses } from '../lib/studentRecords'
+import {
+  compareAcademicTerms,
+  formatAcademicTerm,
+  getDerivedTermStatus,
+  isFinishedByDate,
+  sortPlannedTerms,
+  terms,
+} from '../lib/terms'
 import { useStudentStore } from '../stores/useStudentStore'
 import type { CompletedCourse, PlannedTerm } from '../types/student'
 
@@ -24,19 +33,24 @@ function getCompletedBeforeTerm(
 export function PlannerPage() {
   const completedCourses = useStudentStore((state) => state.completedCourses)
   const plannedTerms = useStudentStore((state) => state.plannedTerms)
+  const prerequisiteOverrides = useStudentStore((state) => state.prerequisiteOverrides)
   const currentTerm = useStudentStore((state) => state.currentTerm)
-  const setCurrentTerm = useStudentStore((state) => state.setCurrentTerm)
   const addPlannedTerm = useStudentStore((state) => state.addPlannedTerm)
   const removePlannedTerm = useStudentStore((state) => state.removePlannedTerm)
-  const updatePlannedTermStatus = useStudentStore((state) => state.updatePlannedTermStatus)
   const addCourseToPlannedTerm = useStudentStore((state) => state.addCourseToPlannedTerm)
   const removeCourseFromPlannedTerm = useStudentStore((state) => state.removeCourseFromPlannedTerm)
+  const togglePrerequisiteOverride = useStudentStore((state) => state.togglePrerequisiteOverride)
   const [term, setTerm] = useState<(typeof terms)[number]>('Fall')
   const [year, setYear] = useState('2026')
+  const [termMessage, setTermMessage] = useState<string>()
   const [courseInputs, setCourseInputs] = useState<Record<string, string>>({})
   const sortedTerms = useMemo(() => sortPlannedTerms(plannedTerms), [plannedTerms])
   const allPlannedCodes = plannedTerms.flatMap((plannedTerm) => plannedTerm.courseCodes)
-  const completedCodes = completedCourses.map((course) => normalizeCourseCode(course.courseCode))
+  const completedCodes = getEffectiveCompletedCourses(
+    completedCourses,
+    plannedTerms,
+    currentTerm,
+  ).map((course) => normalizeCourseCode(course.courseCode))
 
   return (
     <div className="space-y-6">
@@ -50,39 +64,41 @@ export function PlannerPage() {
       <section className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[1fr_auto_auto]">
         <div>
           <h2 className="font-semibold">Current term</h2>
-          <p className="mt-1 text-sm text-slate-600">Used as the starting point for path planning.</p>
+          <p className="mt-1 text-sm text-slate-600">
+            Detected from today&apos;s date for path planning.
+          </p>
         </div>
-        <select
-          className="h-11 rounded-xl border border-slate-300 px-3"
-          value={currentTerm.term}
-          onChange={(event) =>
-            setCurrentTerm({ ...currentTerm, term: event.target.value as (typeof terms)[number] })
-          }
-        >
-          {terms.map((item) => (
-            <option key={item}>{item}</option>
-          ))}
-        </select>
-        <input
-          className="h-11 rounded-xl border border-slate-300 px-3"
-          min="2024"
-          type="number"
-          value={currentTerm.year}
-          onChange={(event) => setCurrentTerm({ ...currentTerm, year: Number(event.target.value) })}
-        />
+        <div className="self-center rounded-xl bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700 sm:col-span-2">
+          {formatAcademicTerm(currentTerm)}
+        </div>
       </section>
 
       <form
         className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[160px_160px_auto]"
         onSubmit={(event) => {
           event.preventDefault()
+          const duplicateTerm = plannedTerms.some(
+            (plannedTerm) => plannedTerm.term === term && plannedTerm.year === Number(year),
+          )
+
+          if (duplicateTerm) {
+            setTermMessage(`${term} ${year} is already in your planner.`)
+            return
+          }
+
           addPlannedTerm({
             id: crypto.randomUUID(),
             term,
             year: Number(year),
             courseCodes: [],
-            status: 'future',
           })
+          setTermMessage(
+            `${term} ${year} added as ${
+              getDerivedTermStatus({ term, year: Number(year) }, currentTerm) === 'finished'
+                ? 'finished'
+                : 'planned'
+            }.`,
+          )
         }}
       >
         <select
@@ -104,6 +120,7 @@ export function PlannerPage() {
         <button className="h-11 rounded-xl bg-slate-200 px-5 font-semibold text-slate-950 hover:bg-slate-300">
           Add term
         </button>
+        {termMessage ? <p className="text-sm text-slate-600 sm:col-span-3">{termMessage}</p> : null}
       </form>
 
       <div className="grid gap-4">
@@ -113,6 +130,7 @@ export function PlannerPage() {
           </div>
         ) : (
           sortedTerms.map((plannedTerm) => {
+            const isFinished = isFinishedByDate(plannedTerm, currentTerm)
             const completedBeforeTerm = getCompletedBeforeTerm(
               plannedTerm,
               sortedTerms,
@@ -123,6 +141,7 @@ export function PlannerPage() {
               sortedTerms,
               completedCourses,
               courses,
+              prerequisiteOverrides,
             )
 
             return (
@@ -136,9 +155,9 @@ export function PlannerPage() {
                       {plannedTerm.term} {plannedTerm.year}
                     </h2>
                     <p className="mt-1 text-sm text-slate-600">
-                      {plannedTerm.status === 'finished'
-                        ? 'Finished term: courses count as taken.'
-                        : 'Future term: courses are only planned.'}
+                      {isFinished
+                        ? 'Finished by date: courses count as taken.'
+                        : 'Current or future term: courses are planned.'}
                     </p>
                     <div className="mt-2">
                       {termWarnings.warningCount > 0 ? (
@@ -152,28 +171,9 @@ export function PlannerPage() {
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <button
-                      className={`rounded-xl px-3 py-2 text-sm font-medium ${
-                        plannedTerm.status === 'finished'
-                          ? 'bg-slate-200 text-slate-950'
-                          : 'border border-slate-300 text-slate-700'
-                      }`}
-                      type="button"
-                      onClick={() => updatePlannedTermStatus(plannedTerm.id, 'finished')}
-                    >
-                      Finished
-                    </button>
-                    <button
-                      className={`rounded-xl px-3 py-2 text-sm font-medium ${
-                        plannedTerm.status !== 'finished'
-                          ? 'bg-slate-200 text-slate-950'
-                          : 'border border-slate-300 text-slate-700'
-                      }`}
-                      type="button"
-                      onClick={() => updatePlannedTermStatus(plannedTerm.id, 'future')}
-                    >
-                      Future
-                    </button>
+                    <Badge variant={isFinished ? 'completed' : 'planned'}>
+                      {isFinished ? 'Finished' : 'Planned'}
+                    </Badge>
                     <button
                       className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium"
                       type="button"
@@ -221,9 +221,18 @@ export function PlannerPage() {
                     plannedTerm.courseCodes.map((courseCode) => {
                       const course = courses.find((item) => item.code === normalizeCourseCode(courseCode))
                       const isCompleted = completedCodes.includes(normalizeCourseCode(courseCode))
-                      const prerequisitesSatisfied = course
+                      const hasPrerequisiteOverride = prerequisiteOverrides
+                        .map(normalizeCourseCode)
+                        .includes(normalizeCourseCode(courseCode))
+                      const prerequisitesSatisfiedWithoutOverride = course
                         ? satisfiesPrerequisite(course.prerequisite, completedBeforeTerm)
                         : false
+                      const prerequisitesSatisfied = course
+                        ? hasPrerequisiteOverride || prerequisitesSatisfiedWithoutOverride
+                        : false
+                      const canOverridePrerequisite =
+                        Boolean(course?.prerequisite) &&
+                        (!prerequisitesSatisfiedWithoutOverride || hasPrerequisiteOverride)
                       const offeredInTerm = course?.termsOffered?.includes(plannedTerm.term) ?? false
                       const antirequisiteConflict =
                         course?.antirequisites?.some((antirequisite) => {
@@ -260,6 +269,8 @@ export function PlannerPage() {
                           <div className="mt-3 flex flex-wrap gap-2">
                             {isCompleted ? (
                               <Badge variant="completed">Completed</Badge>
+                            ) : hasPrerequisiteOverride ? (
+                              <Badge variant="override">Prereq override</Badge>
                             ) : (
                               <Badge variant={prerequisitesSatisfied ? 'eligible' : 'blocked'}>
                                 {prerequisitesSatisfied ? 'Prereqs satisfied' : 'Prereqs blocked'}
@@ -272,6 +283,19 @@ export function PlannerPage() {
                               <Badge variant="blocked">Antirequisite conflict</Badge>
                             ) : null}
                           </div>
+                          {canOverridePrerequisite ? (
+                            <button
+                              className={
+                                hasPrerequisiteOverride
+                                  ? 'mt-3 rounded-xl border border-fuchsia-200 bg-fuchsia-50 px-3 py-2 text-sm font-semibold text-fuchsia-700 hover:bg-fuchsia-100'
+                                  : 'mt-3 rounded-xl border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100'
+                              }
+                              type="button"
+                              onClick={() => togglePrerequisiteOverride(courseCode)}
+                            >
+                              {hasPrerequisiteOverride ? 'Remove course override' : 'Course override'}
+                            </button>
+                          ) : null}
                           {termWarnings.courseWarnings.find(
                             (warning) => warning.courseCode === normalizeCourseCode(courseCode),
                           )?.warnings.length ? (
@@ -294,6 +318,8 @@ export function PlannerPage() {
           })
         )}
       </div>
+
+      <PlanBackupPanel />
     </div>
   )
 }

@@ -14,11 +14,17 @@ export function CourseDetailPage() {
   const { code } = useParams()
   const [showPath, setShowPath] = useState(false)
   const completedCourses = useStudentStore((state) => state.completedCourses)
+  const plannedTerms = useStudentStore((state) => state.plannedTerms)
+  const prerequisiteOverrides = useStudentStore((state) => state.prerequisiteOverrides)
   const currentTerm = useStudentStore((state) => state.currentTerm)
   const addCompletedCourse = useStudentStore((state) => state.addCompletedCourse)
   const removeCompletedCourse = useStudentStore((state) => state.removeCompletedCourse)
   const course = courses.find((item) => item.code === normalizeCourseCode(code ?? ''))
-  const effectiveCompletedCourses = getEffectiveCompletedCourses(completedCourses)
+  const effectiveCompletedCourses = getEffectiveCompletedCourses(
+    completedCourses,
+    plannedTerms,
+    currentTerm,
+  )
 
   if (!course) {
     return (
@@ -31,7 +37,7 @@ export function CourseDetailPage() {
     )
   }
 
-  const availability = getCourseAvailability(course, effectiveCompletedCourses)
+  const availability = getCourseAvailability(course, effectiveCompletedCourses, prerequisiteOverrides)
   const pathExplanation = buildPathExplanationToCourse(
     course,
     courses,
@@ -39,9 +45,15 @@ export function CourseDetailPage() {
     currentTerm,
   )
   const hasPrerequisiteReason = availability.reasons.some((reason) => reason.startsWith('Need '))
-  const isCompleted = completedCourses.some(
+  const isDirectlyCompleted = completedCourses.some(
     (completedCourse) => normalizeCourseCode(completedCourse.courseCode) === course.code,
   )
+  const isCompleted = effectiveCompletedCourses.some(
+    (completedCourse) => normalizeCourseCode(completedCourse.courseCode) === course.code,
+  )
+  const hasPrerequisiteOverride = prerequisiteOverrides
+    .map(normalizeCourseCode)
+    .includes(course.code)
 
   return (
     <div className="space-y-6">
@@ -59,9 +71,12 @@ export function CourseDetailPage() {
             <Badge>{course.subject}</Badge>
             <Badge>{course.level}-level</Badge>
             {isCompleted ? <Badge variant="completed">Completed</Badge> : null}
-            <Badge variant={availability.canTake ? 'eligible' : 'blocked'}>
-              {availability.canTake ? 'Available' : 'Blocked'}
-            </Badge>
+            {hasPrerequisiteOverride ? <Badge variant="override">Override</Badge> : null}
+            {!isCompleted ? (
+              <Badge variant={availability.canTake ? 'eligible' : 'blocked'}>
+                {availability.canTake ? 'Available' : 'Blocked'}
+              </Badge>
+            ) : null}
           </div>
         </div>
 
@@ -69,16 +84,16 @@ export function CourseDetailPage() {
           <p className="mt-5 max-w-3xl leading-7 text-slate-600">{course.description}</p>
         ) : null}
 
-        <div className="mt-6">
+        <div className="mt-6 flex flex-wrap gap-2">
           <button
             className={
-              isCompleted
+              isDirectlyCompleted
                 ? 'rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50'
                 : 'rounded-xl bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-slate-300'
             }
             type="button"
             onClick={() => {
-              if (isCompleted) {
+              if (isDirectlyCompleted) {
                 removeCompletedCourse(course.code)
                 return
               }
@@ -86,12 +101,13 @@ export function CourseDetailPage() {
               addCompletedCourse({ courseCode: course.code })
             }}
           >
-            {isCompleted ? 'Remove from completed' : 'Add to completed'}
+            {isDirectlyCompleted ? 'Remove from completed' : 'Add to completed'}
           </button>
+
         </div>
       </section>
 
-      {!availability.canTake ? (
+      {!isCompleted && !availability.canTake ? (
         <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
