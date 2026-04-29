@@ -16,6 +16,7 @@ export function CourseDetailPage() {
   const completedCourses = useStudentStore((state) => state.completedCourses)
   const currentTerm = useStudentStore((state) => state.currentTerm)
   const addCompletedCourse = useStudentStore((state) => state.addCompletedCourse)
+  const removeCompletedCourse = useStudentStore((state) => state.removeCompletedCourse)
   const course = courses.find((item) => item.code === normalizeCourseCode(code ?? ''))
   const effectiveCompletedCourses = getEffectiveCompletedCourses(completedCourses)
 
@@ -70,12 +71,22 @@ export function CourseDetailPage() {
 
         <div className="mt-6">
           <button
-            className="rounded-xl bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
+            className={
+              isCompleted
+                ? 'rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50'
+                : 'rounded-xl bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-slate-300'
+            }
             type="button"
-            disabled={isCompleted}
-            onClick={() => addCompletedCourse({ courseCode: course.code })}
+            onClick={() => {
+              if (isCompleted) {
+                removeCompletedCourse(course.code)
+                return
+              }
+
+              addCompletedCourse({ courseCode: course.code })
+            }}
           >
-            {isCompleted ? 'Already completed' : 'Add to completed'}
+            {isCompleted ? 'Remove from completed' : 'Add to completed'}
           </button>
         </div>
       </section>
