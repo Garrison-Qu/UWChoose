@@ -16,15 +16,15 @@ function App() {
 
       <main>
         <section className="hero" aria-labelledby="page-title">
-          <h1 id="page-title">Find Waterloo course reviews</h1>
-          <p>Search courses by code, subject, or keyword. Compare ratings before choosing your term.</p>
+          <h1 id="page-title">Explore your path at UW</h1>
+          <p>Discover courses, plan your schedule, and find your way to graduation.</p>
 
           <form className="search-form" role="search">
             <label className="visually-hidden" htmlFor="course-search">Search courses</label>
             <input
               id="course-search"
               type="search"
-              placeholder="Search CS 246, MATH 239, elective..."
+              placeholder="Search by subject, course code, or keyword"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
             />
