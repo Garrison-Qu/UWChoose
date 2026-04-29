@@ -1,4 +1,5 @@
-import { formatCourseCode } from '../lib/courseCodes'
+import { Link } from 'react-router-dom'
+import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
 import type { Prerequisite } from '../types/course'
 
 type PrerequisiteTreeProps = {
@@ -18,7 +19,16 @@ function requirementLabel(prerequisite: Prerequisite): string {
 
 function TreeNode({ prerequisite }: { prerequisite: Prerequisite }) {
   if (prerequisite.type === 'course') {
-    return <li>{requirementLabel(prerequisite)}</li>
+    return (
+      <li>
+        <Link
+          className="font-medium text-emerald-700 hover:text-emerald-800"
+          to={`/courses/${normalizeCourseCode(prerequisite.courseCode)}`}
+        >
+          {requirementLabel(prerequisite)}
+        </Link>
+      </li>
+    )
   }
 
   return (

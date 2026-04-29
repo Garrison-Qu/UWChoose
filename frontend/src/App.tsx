@@ -4,7 +4,6 @@ import { CompletedCoursesPage } from './pages/CompletedCoursesPage'
 import { CourseDetailPage } from './pages/CourseDetailPage'
 import { CoursesPage } from './pages/CoursesPage'
 import { EligibleCoursesPage } from './pages/EligibleCoursesPage'
-import { GraphPage } from './pages/GraphPage'
 import { HomePage } from './pages/HomePage'
 import { PlannerPage } from './pages/PlannerPage'
 import { ProgramsPage } from './pages/ProgramsPage'
@@ -20,7 +19,6 @@ function App() {
         <Route path="eligible" element={<EligibleCoursesPage />} />
         <Route path="programs" element={<ProgramsPage />} />
         <Route path="planner" element={<PlannerPage />} />
-        <Route path="graph" element={<GraphPage />} />
       </Route>
     </Routes>
   )

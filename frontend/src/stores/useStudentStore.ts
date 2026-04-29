@@ -2,18 +2,21 @@ import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import { normalizeCourseCode } from '../lib/courseCodes'
 import { studentStorageKey } from '../lib/storage'
-import type { CompletedCourse, PlannedTerm } from '../types/student'
+import type { CompletedCourse, CurrentTerm, PlannedTerm, PlannedTermStatus } from '../types/student'
 
 type StudentState = {
   completedCourses: CompletedCourse[]
   selectedProgramId?: string
   plannedTerms: PlannedTerm[]
+  currentTerm: CurrentTerm
   addCompletedCourse: (course: CompletedCourse) => void
   removeCompletedCourse: (courseCode: string) => void
   updateCompletedCourse: (courseCode: string, updates: Partial<CompletedCourse>) => void
   setSelectedProgram: (programId: string) => void
+  setCurrentTerm: (term: CurrentTerm) => void
   addPlannedTerm: (term: PlannedTerm) => void
   removePlannedTerm: (termId: string) => void
+  updatePlannedTermStatus: (termId: string, status: PlannedTermStatus) => void
   addCourseToPlannedTerm: (termId: string, courseCode: string) => void
   removeCourseFromPlannedTerm: (termId: string, courseCode: string) => void
 }
@@ -23,6 +26,7 @@ export const useStudentStore = create<StudentState>()(
     (set) => ({
       completedCourses: [],
       plannedTerms: [],
+      currentTerm: { term: 'Fall', year: 2026 },
 
       addCompletedCourse: (course) =>
         set((state) => {
@@ -68,12 +72,30 @@ export const useStudentStore = create<StudentState>()(
 
       setSelectedProgram: (programId) => set({ selectedProgramId: programId }),
 
+      setCurrentTerm: (term) => set({ currentTerm: term }),
+
       addPlannedTerm: (term) =>
-        set((state) => ({ plannedTerms: [...state.plannedTerms, term] })),
+        set((state) => ({
+          plannedTerms: [
+            ...state.plannedTerms,
+            {
+              ...term,
+              status: term.status ?? 'future',
+              courseCodes: term.courseCodes.map(normalizeCourseCode),
+            },
+          ],
+        })),
 
       removePlannedTerm: (termId) =>
         set((state) => ({
           plannedTerms: state.plannedTerms.filter((plannedTerm) => plannedTerm.id !== termId),
+        })),
+
+      updatePlannedTermStatus: (termId, status) =>
+        set((state) => ({
+          plannedTerms: state.plannedTerms.map((plannedTerm) =>
+            plannedTerm.id === termId ? { ...plannedTerm, status } : plannedTerm,
+          ),
         })),
 
       addCourseToPlannedTerm: (termId, courseCode) =>

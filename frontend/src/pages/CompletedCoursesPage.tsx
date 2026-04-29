@@ -16,7 +16,9 @@ export function CompletedCoursesPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Completed courses</h1>
-        <p className="mt-2 text-slate-600">Saved locally in your browser with Zustand persistence.</p>
+        <p className="mt-2 text-slate-600">
+          Manual records are saved locally. Planner terms marked finished also count as taken.
+        </p>
       </div>
 
       <form
@@ -59,7 +61,9 @@ export function CompletedCoursesPage() {
           value={termTaken}
           onChange={(event) => setTermTaken(event.target.value)}
         />
-        <button className="h-11 rounded-xl bg-slate-950 px-5 font-semibold text-white">Add</button>
+        <button className="h-11 rounded-xl bg-slate-200 px-5 font-semibold text-slate-950 hover:bg-slate-300">
+          Add
+        </button>
       </form>
 
       <div className="space-y-3">

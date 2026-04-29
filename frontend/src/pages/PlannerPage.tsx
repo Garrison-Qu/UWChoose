@@ -3,19 +3,10 @@ import { Badge } from '../components/Badge'
 import { courses } from '../data/courses'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
 import { satisfiesPrerequisite } from '../lib/prerequisites'
+import { getEffectiveCompletedCourses } from '../lib/studentRecords'
+import { compareAcademicTerms, sortPlannedTerms, terms } from '../lib/terms'
 import { useStudentStore } from '../stores/useStudentStore'
 import type { CompletedCourse, PlannedTerm } from '../types/student'
-
-const termOrder = { Winter: 0, Spring: 1, Fall: 2 }
-const terms = ['Fall', 'Winter', 'Spring'] as const
-
-function compareTerms(left: PlannedTerm, right: PlannedTerm): number {
-  if (left.year !== right.year) {
-    return left.year - right.year
-  }
-
-  return termOrder[left.term] - termOrder[right.term]
-}
 
 function getCompletedBeforeTerm(
   targetTerm: PlannedTerm,
@@ -23,7 +14,7 @@ function getCompletedBeforeTerm(
   completedCourses: CompletedCourse[],
 ): CompletedCourse[] {
   const earlierPlannedCourses = plannedTerms
-    .filter((plannedTerm) => compareTerms(plannedTerm, targetTerm) < 0)
+    .filter((plannedTerm) => compareAcademicTerms(plannedTerm, targetTerm) < 0)
     .flatMap((plannedTerm) => plannedTerm.courseCodes)
     .map((courseCode) => ({ courseCode }))
 
@@ -33,25 +24,54 @@ function getCompletedBeforeTerm(
 export function PlannerPage() {
   const completedCourses = useStudentStore((state) => state.completedCourses)
   const plannedTerms = useStudentStore((state) => state.plannedTerms)
+  const currentTerm = useStudentStore((state) => state.currentTerm)
+  const setCurrentTerm = useStudentStore((state) => state.setCurrentTerm)
   const addPlannedTerm = useStudentStore((state) => state.addPlannedTerm)
   const removePlannedTerm = useStudentStore((state) => state.removePlannedTerm)
+  const updatePlannedTermStatus = useStudentStore((state) => state.updatePlannedTermStatus)
   const addCourseToPlannedTerm = useStudentStore((state) => state.addCourseToPlannedTerm)
   const removeCourseFromPlannedTerm = useStudentStore((state) => state.removeCourseFromPlannedTerm)
   const [term, setTerm] = useState<(typeof terms)[number]>('Fall')
   const [year, setYear] = useState('2026')
   const [courseInputs, setCourseInputs] = useState<Record<string, string>>({})
-  const sortedTerms = useMemo(() => [...plannedTerms].sort(compareTerms), [plannedTerms])
+  const sortedTerms = useMemo(() => sortPlannedTerms(plannedTerms), [plannedTerms])
   const allPlannedCodes = plannedTerms.flatMap((plannedTerm) => plannedTerm.courseCodes)
-  const completedCodes = completedCourses.map((course) => normalizeCourseCode(course.courseCode))
+  const effectiveCompletedCourses = getEffectiveCompletedCourses(completedCourses, plannedTerms)
+  const completedCodes = effectiveCompletedCourses.map((course) => normalizeCourseCode(course.courseCode))
 
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Term planner</h1>
         <p className="mt-2 text-slate-600">
-          Create future terms and run basic prerequisite, offering, and antirequisite checks.
+          Create finished and future terms. Finished terms automatically count as taken courses.
         </p>
       </div>
+
+      <section className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[1fr_auto_auto]">
+        <div>
+          <h2 className="font-semibold">Current term</h2>
+          <p className="mt-1 text-sm text-slate-600">Used as the starting point for path planning.</p>
+        </div>
+        <select
+          className="h-11 rounded-xl border border-slate-300 px-3"
+          value={currentTerm.term}
+          onChange={(event) =>
+            setCurrentTerm({ ...currentTerm, term: event.target.value as (typeof terms)[number] })
+          }
+        >
+          {terms.map((item) => (
+            <option key={item}>{item}</option>
+          ))}
+        </select>
+        <input
+          className="h-11 rounded-xl border border-slate-300 px-3"
+          min="2024"
+          type="number"
+          value={currentTerm.year}
+          onChange={(event) => setCurrentTerm({ ...currentTerm, year: Number(event.target.value) })}
+        />
+      </section>
 
       <form
         className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[160px_160px_auto]"
@@ -62,6 +82,7 @@ export function PlannerPage() {
             term,
             year: Number(year),
             courseCodes: [],
+            status: 'future',
           })
         }}
       >
@@ -81,7 +102,7 @@ export function PlannerPage() {
           value={year}
           onChange={(event) => setYear(event.target.value)}
         />
-        <button className="h-11 rounded-xl bg-slate-950 px-5 font-semibold text-white">
+        <button className="h-11 rounded-xl bg-slate-200 px-5 font-semibold text-slate-950 hover:bg-slate-300">
           Add term
         </button>
       </form>
@@ -105,16 +126,47 @@ export function PlannerPage() {
                 key={plannedTerm.id}
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <h2 className="text-xl font-semibold">
-                    {plannedTerm.term} {plannedTerm.year}
-                  </h2>
-                  <button
-                    className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium"
-                    type="button"
-                    onClick={() => removePlannedTerm(plannedTerm.id)}
-                  >
-                    Remove term
-                  </button>
+                  <div>
+                    <h2 className="text-xl font-semibold">
+                      {plannedTerm.term} {plannedTerm.year}
+                    </h2>
+                    <p className="mt-1 text-sm text-slate-600">
+                      {plannedTerm.status === 'finished'
+                        ? 'Finished term: courses count as taken.'
+                        : 'Future term: courses are only planned.'}
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      className={`rounded-xl px-3 py-2 text-sm font-medium ${
+                        plannedTerm.status === 'finished'
+                          ? 'bg-slate-200 text-slate-950'
+                          : 'border border-slate-300 text-slate-700'
+                      }`}
+                      type="button"
+                      onClick={() => updatePlannedTermStatus(plannedTerm.id, 'finished')}
+                    >
+                      Finished
+                    </button>
+                    <button
+                      className={`rounded-xl px-3 py-2 text-sm font-medium ${
+                        plannedTerm.status !== 'finished'
+                          ? 'bg-slate-200 text-slate-950'
+                          : 'border border-slate-300 text-slate-700'
+                      }`}
+                      type="button"
+                      onClick={() => updatePlannedTermStatus(plannedTerm.id, 'future')}
+                    >
+                      Future
+                    </button>
+                    <button
+                      className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium"
+                      type="button"
+                      onClick={() => removePlannedTerm(plannedTerm.id)}
+                    >
+                      Remove term
+                    </button>
+                  </div>
                 </div>
 
                 <form
@@ -142,7 +194,7 @@ export function PlannerPage() {
                       }))
                     }
                   />
-                  <button className="h-11 rounded-xl bg-slate-950 px-5 font-semibold text-white">
+                  <button className="h-11 rounded-xl bg-slate-200 px-5 font-semibold text-slate-950 hover:bg-slate-300">
                     Add course
                   </button>
                 </form>

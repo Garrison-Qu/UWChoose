@@ -7,7 +7,6 @@ const homeLinks = [
   { to: '/eligible', title: 'Eligible Courses', description: 'See what you can take next and what is blocked.' },
   { to: '/programs', title: 'Major Progress', description: 'Track sample Math program requirements.' },
   { to: '/planner', title: 'Term Planner', description: 'Sketch future terms and check basic conflicts.' },
-  { to: '/graph', title: 'Prerequisite Graph', description: 'Read prerequisite trees before graph visualization is added.' },
 ]
 
 export function HomePage() {
@@ -39,7 +38,7 @@ export function HomePage() {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
           />
-          <button className="h-12 rounded-xl bg-slate-950 px-6 font-semibold text-white hover:bg-slate-800">
+          <button className="h-12 rounded-xl bg-slate-200 px-6 font-semibold text-slate-950 hover:bg-slate-300">
             Search
           </button>
         </form>

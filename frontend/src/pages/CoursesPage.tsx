@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { CourseCard } from '../components/CourseCard'
 import { courses } from '../data/courses'
-import { formatCourseCode } from '../lib/courseCodes'
+import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
 
 const subjects = ['All', ...Array.from(new Set(courses.map((course) => course.subject))).sort()]
 const levels = ['All', '100', '200', '300', '400']
@@ -14,12 +14,13 @@ export function CoursesPage() {
   const [level, setLevel] = useState('All')
 
   const filteredCourses = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase().replace(/\s+/g, '')
+    const normalizedQuery = normalizeCourseCode(query)
 
     return courses.filter((course) => {
-      const courseText = `${course.code} ${formatCourseCode(course.code)} ${course.name}`.toLowerCase()
-      const compactText = courseText.replace(/\s+/g, '')
-      const matchesQuery = normalizedQuery === '' || compactText.includes(normalizedQuery)
+      const courseText = normalizeCourseCode(
+        `${course.code} ${formatCourseCode(course.code)} ${course.name}`,
+      )
+      const matchesQuery = normalizedQuery === '' || courseText.includes(normalizedQuery)
       const matchesSubject = subject === 'All' || course.subject === subject
       const matchesLevel = level === 'All' || course.level === Number(level)
 

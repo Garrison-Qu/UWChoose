@@ -53,6 +53,7 @@ export const courses: Course[] = [
     subject: 'MATH',
     level: 100,
     description: 'Limits, continuity, differentiation, and applications for honours mathematics students.',
+    antirequisites: ['MATH147'],
     termsOffered: ['Fall', 'Winter'],
   },
   {
@@ -69,6 +70,7 @@ export const courses: Course[] = [
         { type: 'course', courseCode: 'MATH147' },
       ],
     },
+    antirequisites: ['MATH148'],
     termsOffered: ['Winter', 'Spring'],
   },
   {
@@ -129,6 +131,7 @@ export const courses: Course[] = [
         { type: 'course', courseCode: 'MATH146' },
       ],
     },
+    antirequisites: ['CO255'],
     termsOffered: ['Fall', 'Winter'],
   },
   {

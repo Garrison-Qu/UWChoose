@@ -2,20 +2,25 @@ import { Badge } from '../components/Badge'
 import { programs } from '../data/programs'
 import { formatCourseCode } from '../lib/courseCodes'
 import { getProgramProgress } from '../lib/programs'
+import { getEffectiveCompletedCourses } from '../lib/studentRecords'
 import { useStudentStore } from '../stores/useStudentStore'
 
 export function ProgramsPage() {
   const completedCourses = useStudentStore((state) => state.completedCourses)
+  const plannedTerms = useStudentStore((state) => state.plannedTerms)
   const selectedProgramId = useStudentStore((state) => state.selectedProgramId)
   const setSelectedProgram = useStudentStore((state) => state.setSelectedProgram)
   const activeProgram = programs.find((program) => program.id === selectedProgramId) ?? programs[0]
-  const progress = getProgramProgress(activeProgram, completedCourses)
+  const effectiveCompletedCourses = getEffectiveCompletedCourses(completedCourses, plannedTerms)
+  const progress = getProgramProgress(activeProgram, effectiveCompletedCourses)
 
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Major progress</h1>
-        <p className="mt-2 text-slate-600">A small sample program tracker for the MVP.</p>
+        <p className="mt-2 text-slate-600">
+          Counts manually completed courses and planner terms marked finished.
+        </p>
       </div>
 
       <select
