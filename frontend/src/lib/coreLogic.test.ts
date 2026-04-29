@@ -67,14 +67,14 @@ describe('student records and terms', () => {
     },
   ]
 
-  it('counts finished planner terms as completed', () => {
-    const effectiveCompletedCourses = getEffectiveCompletedCourses([], plannedTerms)
+  it('does not count finished planner terms as completed', () => {
+    const effectiveCompletedCourses = getEffectiveCompletedCourses([])
 
-    expect(effectiveCompletedCourses.map((item) => item.courseCode)).toContain('MATH147')
+    expect(effectiveCompletedCourses.map((item) => item.courseCode)).not.toContain('MATH147')
   })
 
   it('does not count future planner terms as completed yet', () => {
-    const effectiveCompletedCourses = getEffectiveCompletedCourses([], plannedTerms)
+    const effectiveCompletedCourses = getEffectiveCompletedCourses([])
 
     expect(effectiveCompletedCourses.map((item) => item.courseCode)).not.toContain('CO250')
   })

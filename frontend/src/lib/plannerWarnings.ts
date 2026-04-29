@@ -71,12 +71,19 @@ export function getPlannedTermWarnings(
     const course = findCourse(normalizedCode, courses)
     const duplicateCount = allPlannedCodes.filter((plannedCode) => plannedCode === normalizedCode).length
     const warnings: string[] = []
+    const isCompleted = completedCourses.some(
+      (completedCourse) => normalizeCourseCode(completedCourse.courseCode) === normalizedCode,
+    )
 
     if (!course) {
       return {
         courseCode: normalizedCode,
         warnings: ['Course is not in the local catalog.'],
       }
+    }
+
+    if (isCompleted) {
+      return { courseCode: normalizedCode, warnings: [] }
     }
 
     if (completedBefore.some((completedCourse) => normalizeCourseCode(completedCourse.courseCode) === normalizedCode)) {

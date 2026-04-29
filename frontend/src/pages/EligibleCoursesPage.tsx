@@ -6,17 +6,14 @@ import { courses } from '../data/courses'
 import { getCourseAvailability } from '../lib/courseAvailability'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
 import { buildPathExplanationToCourse } from '../lib/pathPlanner'
-import { getEffectiveCompletedCourses } from '../lib/studentRecords'
 import { useStudentStore } from '../stores/useStudentStore'
 
 export function EligibleCoursesPage() {
   const [pathCourseCode, setPathCourseCode] = useState<string>()
   const completedCourses = useStudentStore((state) => state.completedCourses)
-  const plannedTerms = useStudentStore((state) => state.plannedTerms)
   const currentTerm = useStudentStore((state) => state.currentTerm)
-  const effectiveCompletedCourses = getEffectiveCompletedCourses(completedCourses, plannedTerms)
   const availabilityByCode = new Map(
-    courses.map((course) => [course.code, getCourseAvailability(course, effectiveCompletedCourses)]),
+    courses.map((course) => [course.code, getCourseAvailability(course, completedCourses)]),
   )
   const eligibleCourses = courses.filter((course) => availabilityByCode.get(course.code)?.canTake)
   const unavailableCourses = courses.filter((course) => !availabilityByCode.get(course.code)?.canTake)
@@ -26,7 +23,7 @@ export function EligibleCoursesPage() {
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Eligibility</h1>
         <p className="mt-2 text-slate-600">
-          Based on manual completed courses plus planner terms marked finished.
+          Based on your completed course record.
         </p>
       </div>
 
@@ -58,7 +55,7 @@ export function EligibleCoursesPage() {
             const pathExplanation = buildPathExplanationToCourse(
               course,
               courses,
-              effectiveCompletedCourses,
+              completedCourses,
               currentTerm,
             )
             const showPath = pathCourseCode === course.code

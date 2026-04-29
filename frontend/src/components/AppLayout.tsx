@@ -4,9 +4,9 @@ import logo from '../assets/uwchoose_logo.png'
 const navItems = [
   { to: '/', label: 'Home' },
   { to: '/courses', label: 'Courses' },
-  { to: '/programs', label: 'Programs' },
   { to: '/completed', label: 'Completed' },
   { to: '/planner', label: 'Planner' },
+  { to: '/programs', label: 'Programs' },
   { to: '/eligible', label: 'Eligible' },
 ]
 
@@ -29,9 +29,9 @@ export function AppLayout() {
             {navItems.map((item) => (
               <NavLink
                 className={({ isActive }) =>
-                  `rounded-full px-3 py-2 text-sm font-medium whitespace-nowrap ${
+                  `rounded-full px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
                     isActive
-                      ? 'bg-slate-200 text-slate-950'
+                      ? 'nav-link-active bg-slate-950'
                       : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950'
                   }`
                 }
@@ -39,7 +39,7 @@ export function AppLayout() {
                 key={item.to}
                 to={item.to}
               >
-                {item.label}
+                <span>{item.label}</span>
               </NavLink>
             ))}
           </nav>

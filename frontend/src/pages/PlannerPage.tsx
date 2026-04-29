@@ -4,7 +4,6 @@ import { courses } from '../data/courses'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
 import { getPlannedTermWarnings } from '../lib/plannerWarnings'
 import { satisfiesPrerequisite } from '../lib/prerequisites'
-import { getEffectiveCompletedCourses } from '../lib/studentRecords'
 import { compareAcademicTerms, sortPlannedTerms, terms } from '../lib/terms'
 import { useStudentStore } from '../stores/useStudentStore'
 import type { CompletedCourse, PlannedTerm } from '../types/student'
@@ -37,15 +36,14 @@ export function PlannerPage() {
   const [courseInputs, setCourseInputs] = useState<Record<string, string>>({})
   const sortedTerms = useMemo(() => sortPlannedTerms(plannedTerms), [plannedTerms])
   const allPlannedCodes = plannedTerms.flatMap((plannedTerm) => plannedTerm.courseCodes)
-  const effectiveCompletedCourses = getEffectiveCompletedCourses(completedCourses, plannedTerms)
-  const completedCodes = effectiveCompletedCourses.map((course) => normalizeCourseCode(course.courseCode))
+  const completedCodes = completedCourses.map((course) => normalizeCourseCode(course.courseCode))
 
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Term planner</h1>
         <p className="mt-2 text-slate-600">
-          Create finished and future terms. Finished terms automatically count as taken courses.
+          Plan future terms and review completed courses mirrored from your completed record.
         </p>
       </div>
 
@@ -222,6 +220,7 @@ export function PlannerPage() {
                   ) : (
                     plannedTerm.courseCodes.map((courseCode) => {
                       const course = courses.find((item) => item.code === normalizeCourseCode(courseCode))
+                      const isCompleted = completedCodes.includes(normalizeCourseCode(courseCode))
                       const prerequisitesSatisfied = course
                         ? satisfiesPrerequisite(course.prerequisite, completedBeforeTerm)
                         : false
@@ -259,9 +258,13 @@ export function PlannerPage() {
                             </button>
                           </div>
                           <div className="mt-3 flex flex-wrap gap-2">
-                            <Badge variant={prerequisitesSatisfied ? 'eligible' : 'blocked'}>
-                              {prerequisitesSatisfied ? 'Prereqs satisfied' : 'Prereqs blocked'}
-                            </Badge>
+                            {isCompleted ? (
+                              <Badge variant="completed">Completed</Badge>
+                            ) : (
+                              <Badge variant={prerequisitesSatisfied ? 'eligible' : 'blocked'}>
+                                {prerequisitesSatisfied ? 'Prereqs satisfied' : 'Prereqs blocked'}
+                              </Badge>
+                            )}
                             <Badge variant={offeredInTerm ? 'term' : 'blocked'}>
                               {offeredInTerm ? `Offered ${plannedTerm.term}` : 'Not usually offered'}
                             </Badge>

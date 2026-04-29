@@ -17,7 +17,7 @@ export function CompletedCoursesPage() {
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Completed courses</h1>
         <p className="mt-2 text-slate-600">
-          Manual records are saved locally. Planner terms marked finished also count as taken.
+          Completed courses are saved locally and mirrored into the planner automatically.
         </p>
       </div>
 
