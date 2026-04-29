@@ -8,8 +8,8 @@ export function HomePage() {
   return (
     <div>
       <section className="mx-auto max-w-3xl py-16 text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-slate-950 sm:text-6xl">UWChoose</h1>
-        <p className="mt-4 text-lg text-slate-600">Plan Waterloo Math courses smarter.</p>
+        <h1 className="text-4xl font-bold tracking-tight text-slate-950 sm:text-6xl">Explore your path at UW</h1>
+        <p className="mt-4 text-lg text-slate-600">Discover courses, plan your schedule, and find your way to graduation.</p>
 
         <form
           className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-[1fr_auto]"
@@ -25,7 +25,7 @@ export function HomePage() {
           <input
             className="h-12 rounded-xl border border-slate-300 bg-white px-4 text-slate-950 outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100"
             id="home-course-search"
-            placeholder="Search CO 367, real analysis, STAT..."
+            placeholder="Search by subject, course code, or keyword"
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
