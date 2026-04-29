@@ -37,13 +37,6 @@ main {
   flex: 0 0 auto;
 }
 
-.nav-links {
-  display: flex;
-  gap: 22px;
-  color: #58615b;
-  font-size: 0.94rem;
-}
-
 .text-button {
   border: 0;
   background: transparent;
@@ -103,47 +96,6 @@ main {
   font-weight: 700;
 }
 
-.two-column {
-  margin-top: 22px;
-}
-
-.two-column {
-  display: grid;
-  grid-template-columns: 1.4fr 0.9fr;
-  gap: 18px;
-  padding-bottom: 56px;
-}
-
-.panel {
-  border: 1px solid #d9dfda;
-  border-radius: 8px;
-  padding: 20px;
-  background: #ffffff;
-}
-
-.panel h2 {
-  margin: 0;
-  font-size: 1.1rem;
-}
-
-.panel p {
-  margin: 10px 0 0;
-  color: #59625b;
-  line-height: 1.6;
-}
-
-.review-list {
-  display: grid;
-  gap: 16px;
-  margin: 16px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.review-list p {
-  margin-top: 5px;
-}
-
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -151,12 +103,6 @@ main {
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
-}
-
-@media (max-width: 860px) {
-  .two-column {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 620px) {
@@ -168,10 +114,6 @@ main {
   .site-header {
     height: auto;
     padding: 18px 0;
-  }
-
-  .nav-links {
-    display: none;
   }
 
   .hero {
