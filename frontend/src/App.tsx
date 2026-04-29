@@ -1,38 +1,28 @@
-import { useState } from 'react'
-import logo from './assets/uwchoose_logo.png'
-import './App.css'
+import { Route, Routes } from 'react-router-dom'
+import { AppLayout } from './components/AppLayout'
+import { CompletedCoursesPage } from './pages/CompletedCoursesPage'
+import { CourseDetailPage } from './pages/CourseDetailPage'
+import { CoursesPage } from './pages/CoursesPage'
+import { EligibleCoursesPage } from './pages/EligibleCoursesPage'
+import { GraphPage } from './pages/GraphPage'
+import { HomePage } from './pages/HomePage'
+import { PlannerPage } from './pages/PlannerPage'
+import { ProgramsPage } from './pages/ProgramsPage'
 
 function App() {
-  const [query, setQuery] = useState('')
-
   return (
-    <div className="app-shell">
-      <header className="site-header">
-        <a className="brand" href="/" aria-label="UWChoose home">
-          <img src={logo} alt="" />
-        </a>
-        <button className="text-button" type="button">Sign in</button>
-      </header>
-
-      <main>
-        <section className="hero" aria-labelledby="page-title">
-          <h1 id="page-title">Explore your path at UW</h1>
-          <p>Discover courses, plan your schedule, and find your way to graduation.</p>
-
-          <form className="search-form" role="search">
-            <label className="visually-hidden" htmlFor="course-search">Search courses</label>
-            <input
-              id="course-search"
-              type="search"
-              placeholder="Search by subject, course code, or keyword"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-            />
-            <button type="submit" onClick={(event) => event.preventDefault()}>Search</button>
-          </form>
-        </section>
-      </main>
-    </div>
+    <Routes>
+      <Route element={<AppLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="courses" element={<CoursesPage />} />
+        <Route path="courses/:code" element={<CourseDetailPage />} />
+        <Route path="completed" element={<CompletedCoursesPage />} />
+        <Route path="eligible" element={<EligibleCoursesPage />} />
+        <Route path="programs" element={<ProgramsPage />} />
+        <Route path="planner" element={<PlannerPage />} />
+        <Route path="graph" element={<GraphPage />} />
+      </Route>
+    </Routes>
   )
 }
 
