@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Badge } from '../components/Badge'
 import { courses } from '../data/courses'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
+import { getPlannedTermWarnings } from '../lib/plannerWarnings'
 import { satisfiesPrerequisite } from '../lib/prerequisites'
 import { getEffectiveCompletedCourses } from '../lib/studentRecords'
 import { compareAcademicTerms, sortPlannedTerms, terms } from '../lib/terms'
@@ -119,6 +120,12 @@ export function PlannerPage() {
               sortedTerms,
               completedCourses,
             )
+            const termWarnings = getPlannedTermWarnings(
+              plannedTerm,
+              sortedTerms,
+              completedCourses,
+              courses,
+            )
 
             return (
               <section
@@ -135,6 +142,16 @@ export function PlannerPage() {
                         ? 'Finished term: courses count as taken.'
                         : 'Future term: courses are only planned.'}
                     </p>
+                    <div className="mt-2">
+                      {termWarnings.warningCount > 0 ? (
+                        <Badge variant="blocked">
+                          {termWarnings.warningCount} warning
+                          {termWarnings.warningCount === 1 ? '' : 's'}
+                        </Badge>
+                      ) : (
+                        <Badge variant="eligible">Valid</Badge>
+                      )}
+                    </div>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     <button
@@ -252,6 +269,18 @@ export function PlannerPage() {
                               <Badge variant="blocked">Antirequisite conflict</Badge>
                             ) : null}
                           </div>
+                          {termWarnings.courseWarnings.find(
+                            (warning) => warning.courseCode === normalizeCourseCode(courseCode),
+                          )?.warnings.length ? (
+                            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-rose-700">
+                              {termWarnings.courseWarnings
+                                .find(
+                                  (warning) =>
+                                    warning.courseCode === normalizeCourseCode(courseCode),
+                                )
+                                ?.warnings.map((warning) => <li key={warning}>{warning}</li>)}
+                            </ul>
+                          ) : null}
                         </div>
                       )
                     })

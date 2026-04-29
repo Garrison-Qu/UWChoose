@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CourseCard } from '../components/CourseCard'
+import { PathToTake } from '../components/PathToTake'
 import { courses } from '../data/courses'
 import { getCourseAvailability } from '../lib/courseAvailability'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
-import { buildFastestPathToCourse } from '../lib/pathPlanner'
+import { buildPathExplanationToCourse } from '../lib/pathPlanner'
 import { getEffectiveCompletedCourses } from '../lib/studentRecords'
 import { useStudentStore } from '../stores/useStudentStore'
 
@@ -46,10 +47,15 @@ export function EligibleCoursesPage() {
 
       <section className="space-y-4">
         <h2 className="text-xl font-semibold">Blocked or already covered</h2>
-        <div className="grid gap-4 md:grid-cols-2">
-          {unavailableCourses.map((course) => {
+        {unavailableCourses.length === 0 ? (
+          <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-6 text-slate-600">
+            No blocked or already-covered courses found.
+          </div>
+        ) : (
+          <div className="grid gap-4 md:grid-cols-2">
+            {unavailableCourses.map((course) => {
             const availability = availabilityByCode.get(course.code)
-            const pathPlan = buildFastestPathToCourse(
+            const pathExplanation = buildPathExplanationToCourse(
               course,
               courses,
               effectiveCompletedCourses,
@@ -93,35 +99,15 @@ export function EligibleCoursesPage() {
                 </button>
               ) : null}
               {showPath ? (
-                <div className="mt-4 rounded-xl bg-slate-50 p-4">
-                  {pathPlan.length === 0 ? (
-                    <p className="text-sm text-slate-600">No extra course path is needed.</p>
-                  ) : (
-                    <ol className="space-y-3">
-                      {pathPlan.map((step) => (
-                        <li key={step.termLabel}>
-                          <strong>{step.termLabel}</strong>
-                          <div className="mt-2 flex flex-wrap gap-2">
-                            {step.courseCodes.map((courseCode) => (
-                              <Link
-                                className="rounded-full bg-white px-3 py-1 text-sm font-medium text-emerald-700 ring-1 ring-slate-200 hover:text-emerald-800"
-                                key={courseCode}
-                                to={`/courses/${courseCode}`}
-                              >
-                                {formatCourseCode(courseCode)}
-                              </Link>
-                            ))}
-                          </div>
-                        </li>
-                      ))}
-                    </ol>
-                  )}
+                <div className="mt-4">
+                  <PathToTake explanation={pathExplanation} />
                 </div>
               ) : null}
             </div>
             )
-          })}
-        </div>
+            })}
+          </div>
+        )}
       </section>
     </div>
   )

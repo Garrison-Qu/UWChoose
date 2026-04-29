@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Badge } from '../components/Badge'
+import { PathToTake } from '../components/PathToTake'
 import { PrerequisiteTree } from '../components/PrerequisiteTree'
 import { courses } from '../data/courses'
 import { getCourseAvailability } from '../lib/courseAvailability'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
-import { buildFastestPathToCourse } from '../lib/pathPlanner'
+import { buildPathExplanationToCourse } from '../lib/pathPlanner'
 import { getEffectiveCompletedCourses } from '../lib/studentRecords'
 import { useStudentStore } from '../stores/useStudentStore'
 
@@ -30,7 +31,12 @@ export function CourseDetailPage() {
   }
 
   const availability = getCourseAvailability(course, effectiveCompletedCourses)
-  const pathPlan = buildFastestPathToCourse(course, courses, effectiveCompletedCourses, currentTerm)
+  const pathExplanation = buildPathExplanationToCourse(
+    course,
+    courses,
+    effectiveCompletedCourses,
+    currentTerm,
+  )
   const hasPrerequisiteReason = availability.reasons.some((reason) => reason.startsWith('Need '))
 
   return (
@@ -82,29 +88,8 @@ export function CourseDetailPage() {
           </div>
 
           {showPath ? (
-            <div className="mt-5 rounded-xl bg-slate-50 p-4">
-              {pathPlan.length === 0 ? (
-                <p className="text-sm text-slate-600">No extra course path is needed.</p>
-              ) : (
-                <ol className="space-y-3">
-                  {pathPlan.map((step) => (
-                    <li key={step.termLabel}>
-                      <strong>{step.termLabel}</strong>
-                      <div className="mt-2 flex flex-wrap gap-2">
-                        {step.courseCodes.map((courseCode) => (
-                          <Link
-                            className="rounded-full bg-white px-3 py-1 text-sm font-medium text-emerald-700 ring-1 ring-slate-200 hover:text-emerald-800"
-                            key={courseCode}
-                            to={`/courses/${courseCode}`}
-                          >
-                            {formatCourseCode(courseCode)}
-                          </Link>
-                        ))}
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              )}
+            <div className="mt-5">
+              <PathToTake explanation={pathExplanation} />
             </div>
           ) : null}
         </section>

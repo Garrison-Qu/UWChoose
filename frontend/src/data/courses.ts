@@ -24,11 +24,21 @@ export const co367Prerequisite = {
 
 export const courses: Course[] = [
   {
+    code: 'MATH128',
+    name: 'Calculus 2 for the Sciences',
+    subject: 'MATH',
+    level: 100,
+    description: 'A second calculus course used here because it appears in some Math prerequisites.',
+    antirequisites: ['MATH138', 'MATH148'],
+    termsOffered: ['Winter', 'Spring'],
+  },
+  {
     code: 'MATH135',
     name: 'Algebra for Honours Mathematics',
     subject: 'MATH',
     level: 100,
     description: 'An introduction to mathematical proof, logic, sets, relations, and algebraic structures.',
+    antirequisites: ['MATH145'],
     termsOffered: ['Fall', 'Winter'],
   },
   {
@@ -45,6 +55,7 @@ export const courses: Course[] = [
         { type: 'course', courseCode: 'MATH145' },
       ],
     },
+    antirequisites: ['MATH146'],
     termsOffered: ['Fall', 'Winter', 'Spring'],
   },
   {
@@ -70,7 +81,7 @@ export const courses: Course[] = [
         { type: 'course', courseCode: 'MATH147' },
       ],
     },
-    antirequisites: ['MATH148'],
+    antirequisites: ['MATH128', 'MATH148'],
     termsOffered: ['Winter', 'Spring'],
   },
   {
@@ -81,6 +92,26 @@ export const courses: Course[] = [
     description: 'Advanced version of first calculus with greater emphasis on proof and theory.',
     antirequisites: ['MATH137'],
     termsOffered: ['Fall'],
+  },
+  {
+    code: 'MATH145',
+    name: 'Algebra Advanced Level',
+    subject: 'MATH',
+    level: 100,
+    description: 'Advanced algebra for first-year honours mathematics students.',
+    antirequisites: ['MATH135'],
+    termsOffered: ['Fall'],
+  },
+  {
+    code: 'MATH146',
+    name: 'Linear Algebra 1 Advanced Level',
+    subject: 'MATH',
+    level: 100,
+    description: 'Advanced linear algebra for honours mathematics students.',
+    prerequisiteRawText: 'MATH 145.',
+    prerequisite: { type: 'course', courseCode: 'MATH145' },
+    antirequisites: ['MATH136'],
+    termsOffered: ['Winter'],
   },
   {
     code: 'MATH148',
@@ -99,6 +130,7 @@ export const courses: Course[] = [
     subject: 'CS',
     level: 100,
     description: 'Functional programming and program design using systematic data-driven methods.',
+    antirequisites: ['CS145'],
     termsOffered: ['Fall', 'Winter', 'Spring'],
   },
   {
@@ -116,6 +148,15 @@ export const courses: Course[] = [
       ],
     },
     termsOffered: ['Fall', 'Winter', 'Spring'],
+  },
+  {
+    code: 'CS145',
+    name: 'Designing Functional Programs Advanced Level',
+    subject: 'CS',
+    level: 100,
+    description: 'Advanced first programming course for students with strong prior experience.',
+    antirequisites: ['CS135'],
+    termsOffered: ['Fall'],
   },
   {
     code: 'CO250',

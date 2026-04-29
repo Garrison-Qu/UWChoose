@@ -1,13 +1,39 @@
-import { normalizeCourseCode } from './courseCodes'
+import { formatCourseCode, normalizeCourseCode } from './courseCodes'
+import { getCreditConflictReasons } from './courseAvailability'
 import { findNextOfferedTerm, formatAcademicTerm, getNextAcademicTerm } from './terms'
 import { satisfiesPrerequisite } from './prerequisites'
-import type { Course, Prerequisite } from '../types/course'
+import type { Course, CourseRequirement, Prerequisite } from '../types/course'
 import type { CompletedCourse, CurrentTerm } from '../types/student'
 
 export type PathPlanStep = {
   termLabel: string
   courseCodes: string[]
 }
+
+export type PathRequirementOption = {
+  courseCode: string
+  label: string
+}
+
+export type PathRequirementStep = {
+  title: string
+  options: PathRequirementOption[]
+}
+
+export type PathExplanation =
+  | {
+      status: 'path'
+      title: string
+      steps: PathRequirementStep[]
+      finalCourseCode: string
+      schedule: PathPlanStep[]
+    }
+  | {
+      status: 'already-completed' | 'blocked-by-antirequisite' | 'already-satisfied' | 'no-path'
+      title: string
+      reasons: string[]
+      schedule: PathPlanStep[]
+    }
 
 function hasCompleted(courseCode: string, completedCourses: CompletedCourse[]): boolean {
   const normalizedCode = normalizeCourseCode(courseCode)
@@ -46,6 +72,50 @@ function getMissingDirectRequirements(
     .sort((left, right) => left.length - right.length)
 
   return options[0] ?? []
+}
+
+function requirementOption(requirement: CourseRequirement): PathRequirementOption {
+  const minGradeLabel =
+    requirement.minGrade === undefined ? '' : ` with grade at least ${requirement.minGrade}%`
+
+  return {
+    courseCode: normalizeCourseCode(requirement.courseCode),
+    label: `${formatCourseCode(requirement.courseCode)}${minGradeLabel}`,
+  }
+}
+
+function summarizeOptions(prerequisite: Prerequisite): PathRequirementOption[] {
+  if (prerequisite.type === 'course') {
+    return [requirementOption(prerequisite)]
+  }
+
+  return prerequisite.requirements.flatMap(summarizeOptions)
+}
+
+function buildRequirementSteps(
+  prerequisite: Prerequisite | undefined,
+  completedCourses: CompletedCourse[],
+): PathRequirementStep[] {
+  if (!prerequisite || satisfiesPrerequisite(prerequisite, completedCourses)) {
+    return []
+  }
+
+  if (prerequisite.type === 'course') {
+    return [{ title: 'Take:', options: [requirementOption(prerequisite)] }]
+  }
+
+  if (prerequisite.type === 'allOf') {
+    return prerequisite.requirements.flatMap((requirement) =>
+      buildRequirementSteps(requirement, completedCourses),
+    )
+  }
+
+  return [
+    {
+      title: 'Take one of:',
+      options: prerequisite.requirements.flatMap(summarizeOptions),
+    },
+  ]
 }
 
 function buildNeededCourseSequence(
@@ -102,4 +172,60 @@ export function buildFastestPathToCourse(
   })
 
   return steps
+}
+
+export function buildPathExplanationToCourse(
+  targetCourse: Course,
+  courses: Course[],
+  completedCourses: CompletedCourse[],
+  currentTerm: CurrentTerm,
+): PathExplanation {
+  const schedule = buildFastestPathToCourse(targetCourse, courses, completedCourses, currentTerm)
+  const creditConflictReasons = getCreditConflictReasons(targetCourse, completedCourses)
+
+  if (hasCompleted(targetCourse.code, completedCourses)) {
+    return {
+      status: 'already-completed',
+      title: `${formatCourseCode(targetCourse.code)} is already completed.`,
+      reasons: creditConflictReasons,
+      schedule,
+    }
+  }
+
+  if (creditConflictReasons.length > 0) {
+    return {
+      status: 'blocked-by-antirequisite',
+      title: `${formatCourseCode(targetCourse.code)} is blocked by completed credit.`,
+      reasons: creditConflictReasons,
+      schedule,
+    }
+  }
+
+  if (satisfiesPrerequisite(targetCourse.prerequisite, completedCourses)) {
+    return {
+      status: 'already-satisfied',
+      title: `You can take ${formatCourseCode(targetCourse.code)} now.`,
+      reasons: [],
+      schedule,
+    }
+  }
+
+  const steps = buildRequirementSteps(targetCourse.prerequisite, completedCourses)
+
+  if (steps.length === 0) {
+    return {
+      status: 'no-path',
+      title: `No path found for ${formatCourseCode(targetCourse.code)}.`,
+      reasons: ['The prerequisite data may be incomplete.'],
+      schedule,
+    }
+  }
+
+  return {
+    status: 'path',
+    title: `To take ${formatCourseCode(targetCourse.code)}:`,
+    steps,
+    finalCourseCode: targetCourse.code,
+    schedule,
+  }
 }
