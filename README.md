@@ -1,6 +1,6 @@
 # UWChoose
 
-UWChoose is a browser-only course planning app for University of Waterloo Math students. It helps students search courses, understand prerequisites, record completed courses, check course eligibility, track a sample program, and plan future terms before a backend exists.
+UWChoose is a browser-only course planning app for University of Waterloo Math students. It helps students search courses, understand prerequisites, record completed courses through the planner, check course eligibility, track a sample program, and plan future terms before a backend exists.
 
 ## Live Demo
 
@@ -27,11 +27,11 @@ No backend is included yet.
 - Course search by code or name
 - Course detail pages with prerequisite trees
 - Recursive prerequisite evaluator using `allOf` / `anyOf` logic
-- Completed course tracking with localStorage persistence
-- Eligibility view showing available, blocked, and already-covered courses
+- Completed course tracking through planner terms with localStorage persistence
+- Courses page showing available, blocked, planned, completed, overridden, and already-covered courses
 - Blocked reason explanations for missing prerequisites and antirequisites
 - Path-to-take guidance for blocked courses
-- Term planner with current term, future terms, completed tags, prerequisite status, and warnings
+- Term planner with current term, future terms, completed tags, prerequisite overrides, PDF export, prerequisite status, and warnings
 - Program progress tracker for a sample Math program
 - Data validation script for course and program data integrity
 
@@ -115,8 +115,6 @@ Suggested screenshots:
 - Home page with course search
 - Courses page with filters
 - Course detail page showing prerequisites and path-to-take
-- Completed courses page
-- Eligibility page with blocked reasons
 - Planner page with warnings
 - Program progress page
 
@@ -174,7 +172,7 @@ Near-term:
 
 - Expand course data in small validated batches
 - Improve one real-ish program tracker
-- Add import, export, and reset plan actions
+- Improve PDF export and reset plan actions
 - Polish planner warnings and path-to-take output
 - Add more tests for edge cases
 
