@@ -51,6 +51,26 @@ export function formatAcademicTerm(term: CurrentTerm): string {
   return `${term.term} ${term.year}`
 }
 
+export function getRecentAcademicTermOptions(
+  currentTerm: CurrentTerm,
+  yearCount = 5,
+): CurrentTerm[] {
+  const options: CurrentTerm[] = []
+  const reverseTerms: Term[] = ['Fall', 'Spring', 'Winter']
+
+  for (let year = currentTerm.year; year > currentTerm.year - yearCount; year -= 1) {
+    reverseTerms.forEach((term) => {
+      const option = { term, year }
+
+      if (compareAcademicTerms(option, currentTerm) <= 0) {
+        options.push(option)
+      }
+    })
+  }
+
+  return options
+}
+
 export function getCurrentAcademicTerm(date = new Date()): CurrentTerm {
   const month = date.getMonth() + 1
 

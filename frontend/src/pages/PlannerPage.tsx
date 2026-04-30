@@ -74,7 +74,7 @@ export function PlannerPage() {
       </section>
 
       <form
-        className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[160px_160px_auto]"
+        className="no-print grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[160px_160px_auto]"
         onSubmit={(event) => {
           event.preventDefault()
           const duplicateTerm = plannedTerms.some(
@@ -175,7 +175,7 @@ export function PlannerPage() {
                       {isFinished ? 'Finished' : 'Planned'}
                     </Badge>
                     <button
-                      className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium"
+                      className="no-print rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium"
                       type="button"
                       onClick={() => removePlannedTerm(plannedTerm.id)}
                     >
@@ -185,7 +185,7 @@ export function PlannerPage() {
                 </div>
 
                 <form
-                  className="mt-4 grid gap-3 sm:grid-cols-[1fr_auto]"
+                  className="no-print mt-4 grid gap-3 sm:grid-cols-[1fr_auto]"
                   onSubmit={(event) => {
                     event.preventDefault()
                     const input = courseInputs[plannedTerm.id] ?? ''
@@ -257,7 +257,7 @@ export function PlannerPage() {
                               </p>
                             </div>
                             <button
-                              className="text-sm font-medium text-slate-600 hover:text-slate-950"
+                              className="no-print text-sm font-medium text-slate-600 hover:text-slate-950"
                               type="button"
                               onClick={() =>
                                 removeCourseFromPlannedTerm(plannedTerm.id, courseCode)
@@ -287,8 +287,8 @@ export function PlannerPage() {
                             <button
                               className={
                                 hasPrerequisiteOverride
-                                  ? 'mt-3 rounded-xl border border-fuchsia-200 bg-fuchsia-50 px-3 py-2 text-sm font-semibold text-fuchsia-700 hover:bg-fuchsia-100'
-                                  : 'mt-3 rounded-xl border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100'
+                                  ? 'no-print mt-3 rounded-xl border border-fuchsia-200 bg-fuchsia-50 px-3 py-2 text-sm font-semibold text-fuchsia-700 hover:bg-fuchsia-100'
+                                  : 'no-print mt-3 rounded-xl border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100'
                               }
                               type="button"
                               onClick={() => togglePrerequisiteOverride(courseCode)}

@@ -8,6 +8,7 @@ import { getCourseAvailability } from '../lib/courseAvailability'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
 import { buildPathExplanationToCourse } from '../lib/pathPlanner'
 import { getEffectiveCompletedCourses } from '../lib/studentRecords'
+import { formatAcademicTerm, getRecentAcademicTermOptions } from '../lib/terms'
 import { useStudentStore } from '../stores/useStudentStore'
 
 export function CourseDetailPage() {
@@ -19,6 +20,10 @@ export function CourseDetailPage() {
   const currentTerm = useStudentStore((state) => state.currentTerm)
   const addCompletedCourse = useStudentStore((state) => state.addCompletedCourse)
   const removeCompletedCourse = useStudentStore((state) => state.removeCompletedCourse)
+  const recentCompletionTerms = getRecentAcademicTermOptions(currentTerm)
+  const [completionTerm, setCompletionTerm] = useState(
+    formatAcademicTerm(recentCompletionTerms[0] ?? currentTerm),
+  )
   const course = courses.find((item) => item.code === normalizeCourseCode(code ?? ''))
   const effectiveCompletedCourses = getEffectiveCompletedCourses(
     completedCourses,
@@ -85,6 +90,23 @@ export function CourseDetailPage() {
         ) : null}
 
         <div className="mt-6 flex flex-wrap gap-2">
+          {!isDirectlyCompleted ? (
+            <select
+              className="h-10 rounded-xl border border-slate-300 bg-white px-3 text-sm"
+              value={completionTerm}
+              onChange={(event) => setCompletionTerm(event.target.value)}
+            >
+              {recentCompletionTerms.map((termOption) => {
+                const value = formatAcademicTerm(termOption)
+
+                return (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                )
+              })}
+            </select>
+          ) : null}
           <button
             className={
               isDirectlyCompleted
@@ -98,7 +120,7 @@ export function CourseDetailPage() {
                 return
               }
 
-              addCompletedCourse({ courseCode: course.code })
+              addCompletedCourse({ courseCode: course.code, termTaken: completionTerm })
             }}
           >
             {isDirectlyCompleted ? 'Remove from completed' : 'Add to completed'}

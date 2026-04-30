@@ -43,3 +43,13 @@ a {
 .nav-link-active span {
   color: #ffffff !important;
 }
+
+@media print {
+  body {
+    background: #ffffff;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

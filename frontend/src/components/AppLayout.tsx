@@ -4,7 +4,6 @@ import logo from '../assets/uwchoose_logo.png'
 const navItems = [
   { to: '/', label: 'Home' },
   { to: '/courses', label: 'Courses' },
-  { to: '/completed', label: 'Completed' },
   { to: '/planner', label: 'Planner' },
   { to: '/programs', label: 'Programs' },
 ]
@@ -12,7 +11,7 @@ const navItems = [
 export function AppLayout() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-950">
-      <header className="border-b border-slate-200 bg-white">
+      <header className="no-print border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-4">
             <NavLink to="/" className="flex items-center gap-3" aria-label="UWChoose home">

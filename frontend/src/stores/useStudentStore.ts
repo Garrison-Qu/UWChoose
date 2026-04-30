@@ -65,6 +65,33 @@ function addCompletedCourseToPlanner(
   ]
 }
 
+function removeCompletedCourseFromPlanner(
+  plannedTerms: PlannedTerm[],
+  course: CompletedCourse,
+  fallbackTerm: CurrentTerm,
+): PlannedTerm[] {
+  const normalizedCode = normalizeCourseCode(course.courseCode)
+  const completedTerm = parseTermTaken(course.termTaken, fallbackTerm)
+
+  return plannedTerms
+    .map((plannedTerm) => {
+      if (plannedTerm.term !== completedTerm.term || plannedTerm.year !== completedTerm.year) {
+        return plannedTerm
+      }
+
+      return {
+        ...plannedTerm,
+        courseCodes: plannedTerm.courseCodes.filter(
+          (courseCode) => normalizeCourseCode(courseCode) !== normalizedCode,
+        ),
+      }
+    })
+    .filter(
+      (plannedTerm) =>
+        plannedTerm.courseCodes.length > 0 || !plannedTerm.id.startsWith('completed-'),
+    )
+}
+
 type StudentState = {
   completedCourses: CompletedCourse[]
   selectedProgramId?: string
@@ -126,12 +153,25 @@ export const useStudentStore = create<StudentState>()(
         }),
 
       removeCompletedCourse: (courseCode) =>
-        set((state) => ({
-          completedCourses: state.completedCourses.filter(
-            (completedCourse) =>
-              normalizeCourseCode(completedCourse.courseCode) !== normalizeCourseCode(courseCode),
-          ),
-        })),
+        set((state) => {
+          const normalizedCode = normalizeCourseCode(courseCode)
+          const completedCourse = state.completedCourses.find(
+            (course) => normalizeCourseCode(course.courseCode) === normalizedCode,
+          )
+
+          return {
+            completedCourses: state.completedCourses.filter(
+              (course) => normalizeCourseCode(course.courseCode) !== normalizedCode,
+            ),
+            plannedTerms: completedCourse
+              ? removeCompletedCourseFromPlanner(
+                  state.plannedTerms,
+                  completedCourse,
+                  state.currentTerm,
+                )
+              : state.plannedTerms,
+          }
+        }),
 
       updateCompletedCourse: (courseCode, updates) =>
         set((state) => ({
