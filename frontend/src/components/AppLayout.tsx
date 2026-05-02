@@ -4,6 +4,7 @@ import logo from '../assets/uwchoose_logo.png'
 const navItems = [
   { to: '/', label: 'Home' },
   { to: '/courses', label: 'Courses' },
+  { to: '/graph', label: 'Graph' },
   { to: '/planner', label: 'Planner' },
   { to: '/programs', label: 'Programs' },
 ]

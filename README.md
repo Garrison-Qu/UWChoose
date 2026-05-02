@@ -33,6 +33,7 @@ No backend is included yet.
 - Path-to-take guidance for blocked courses
 - Term planner with current term, future terms, completed tags, prerequisite overrides, PDF export, prerequisite status, and warnings
 - Program progress tracker for a sample Math program
+- Interactive prerequisite graph with full catalog, focused course, prerequisite, and unlocked-course views
 - Data validation script for course and program data integrity
 
 ## Run Locally
@@ -115,6 +116,7 @@ Suggested screenshots:
 - Home page with course search
 - Courses page with filters
 - Course detail page showing prerequisites and path-to-take
+- Prerequisite graph page
 - Planner page with warnings
 - Program progress page
 
@@ -185,4 +187,3 @@ Later:
 - Google login
 - Cloud sync
 - Admin course editing
-- Cytoscape.js prerequisite graph visualization

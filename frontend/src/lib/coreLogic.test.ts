@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import { courses } from '../data/courses'
+import {
+  buildCourseGraph,
+  getDirectPrerequisiteCourseCodes,
+  getRecursiveDependentCodes,
+  getRecursivePrerequisiteCodes,
+} from './courseGraph'
 import { getCourseAvailability } from './courseAvailability'
 import { buildFastestPathToCourse, buildPathExplanationToCourse } from './pathPlanner'
 import { getPlannedTermWarnings } from './plannerWarnings'
@@ -147,5 +153,49 @@ describe('path planning', () => {
     })
 
     expect(scheduledPath.flatMap((step) => step.courseCodes)).toContain('CO367')
+  })
+})
+
+describe('course graph', () => {
+  it('extracts direct prerequisite course codes from nested prerequisite groups', () => {
+    expect(getDirectPrerequisiteCourseCodes(course('CO367').prerequisite)).toEqual([
+      'CO250',
+      'CO255',
+      'CO352',
+      'MATH128',
+      'MATH138',
+      'MATH148',
+    ])
+  })
+
+  it('builds graph edges from prerequisites to dependent courses', () => {
+    const graph = buildCourseGraph(courses)
+
+    expect(graph.edges).toContainEqual({
+      id: 'CO250-CO367',
+      source: 'CO250',
+      target: 'CO367',
+    })
+    expect(graph.edges).toContainEqual({
+      id: 'MATH138-CO367',
+      source: 'MATH138',
+      target: 'CO367',
+    })
+  })
+
+  it('finds recursive prerequisite courses for a selected course', () => {
+    const prerequisiteCodes = getRecursivePrerequisiteCodes('PMATH450', courses)
+
+    expect(prerequisiteCodes).toContain('PMATH351')
+    expect(prerequisiteCodes).toContain('MATH138')
+    expect(prerequisiteCodes).toContain('MATH137')
+  })
+
+  it('finds recursive dependent courses unlocked by a selected course', () => {
+    const dependentCodes = getRecursiveDependentCodes('MATH138', courses)
+
+    expect(dependentCodes).toContain('PMATH351')
+    expect(dependentCodes).toContain('PMATH450')
+    expect(dependentCodes).toContain('STAT331')
   })
 })
