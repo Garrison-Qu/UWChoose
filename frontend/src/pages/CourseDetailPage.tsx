@@ -161,7 +161,17 @@ export function CourseDetailPage() {
 
       <section className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h2 className="text-lg font-semibold">Requires</h2>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 className="text-lg font-semibold">Requires</h2>
+            {course.prerequisite ? (
+              <Link
+                className="rounded-xl bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-slate-300"
+                to={`/graph?course=${course.code}`}
+              >
+                View graph
+              </Link>
+            ) : null}
+          </div>
           <div className="mt-4">
             <PrerequisiteTree prerequisite={course.prerequisite} />
           </div>

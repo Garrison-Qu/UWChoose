@@ -8,7 +8,6 @@ export const co367Prerequisite = {
       requirements: [
         { type: 'course', courseCode: 'CO250' },
         { type: 'course', courseCode: 'CO255' },
-        { type: 'course', courseCode: 'CO352' },
       ],
     },
     {
@@ -283,28 +282,12 @@ export const courses: Course[] = [
     termsOffered: ['Fall'],
   },
   {
-    code: 'CO352',
-    name: 'Comp Theory of Networks',
-    subject: 'CO',
-    level: 300,
-    description: 'Network optimization, flows, matching, and combinatorial algorithms.',
-    prerequisiteRawText: 'CO 250 or CO 255.',
-    prerequisite: {
-      type: 'anyOf',
-      requirements: [
-        { type: 'course', courseCode: 'CO250' },
-        { type: 'course', courseCode: 'CO255' },
-      ],
-    },
-    termsOffered: ['Winter'],
-  },
-  {
     code: 'CO367',
     name: 'Nonlinear Optimization',
     subject: 'CO',
     level: 300,
     description: 'Theory and algorithms for nonlinear optimization.',
-    prerequisiteRawText: '(CO 250 or CO 255 or CO 352) and (MATH 128 with at least 70%, or MATH 138, or MATH 148).',
+    prerequisiteRawText: '(CO 250 or CO 255) and (MATH 128 with at least 70%, or MATH 138, or MATH 148).',
     prerequisite: co367Prerequisite,
     termsOffered: ['Fall'],
   },

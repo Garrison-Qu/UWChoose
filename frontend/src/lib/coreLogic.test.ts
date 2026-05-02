@@ -2,6 +2,9 @@ import { describe, expect, it } from 'vitest'
 import { courses } from '../data/courses'
 import {
   buildCourseGraph,
+  buildCourseFlowGraph,
+  buildLocalCourseFlowGraph,
+  buildPrerequisitePathGraph,
   getDirectPrerequisiteCourseCodes,
   getRecursiveDependentCodes,
   getRecursivePrerequisiteCodes,
@@ -35,7 +38,7 @@ describe('course code and prerequisite logic', () => {
   it('blocks CO367 when the CO prerequisite group is missing', () => {
     const reasons = getBlockedReasons(course('CO367'), [{ courseCode: 'MATH138' }])
 
-    expect(reasons).toContain('Need one of CO 250, or CO 255, or CO 352.')
+    expect(reasons).toContain('Need one of CO 250, or CO 255.')
   })
 
   it('allows CO367 when CO250 and MATH138 are completed', () => {
@@ -140,7 +143,6 @@ describe('path planning', () => {
       expect(explanation.steps[0].options.map((option) => option.courseCode)).toEqual([
         'CO250',
         'CO255',
-        'CO352',
       ])
       expect(explanation.finalCourseCode).toBe('CO367')
     }
@@ -161,7 +163,6 @@ describe('course graph', () => {
     expect(getDirectPrerequisiteCourseCodes(course('CO367').prerequisite)).toEqual([
       'CO250',
       'CO255',
-      'CO352',
       'MATH128',
       'MATH138',
       'MATH148',
@@ -181,6 +182,52 @@ describe('course graph', () => {
       source: 'MATH138',
       target: 'CO367',
     })
+  })
+
+  it('builds a focused prerequisite path graph for a target course', () => {
+    const graph = buildPrerequisitePathGraph('PMATH450', courses)
+    const graphCodes = graph.nodes.map((node) => node.code)
+
+    expect(graphCodes).toContain('PMATH450')
+    expect(graphCodes).toContain('PMATH351')
+    expect(graphCodes).toContain('MATH138')
+    expect(graphCodes).not.toContain('PMATH451')
+  })
+
+  it('builds a focused course flow graph with prerequisites and proceeding courses', () => {
+    const graph = buildCourseFlowGraph('PMATH351', courses)
+    const graphCodes = graph.nodes.map((node) => node.code)
+
+    expect(graphCodes).toContain('MATH138')
+    expect(graphCodes).toContain('PMATH351')
+    expect(graphCodes).toContain('PMATH450')
+    expect(graphCodes).toContain('PMATH451')
+    expect(graphCodes).not.toContain('PMATH347')
+  })
+
+  it('builds a local course flow graph with prerequisite depth 2 and direct proceeding courses', () => {
+    const graph = buildLocalCourseFlowGraph('MATH138', courses)
+    const graphCodes = graph.nodes.map((node) => node.code)
+
+    expect(graphCodes).toContain('MATH137')
+    expect(graphCodes).toContain('MATH138')
+    expect(graphCodes).toContain('PMATH351')
+    expect(graphCodes).toContain('STAT230')
+    expect(graphCodes).not.toContain('PMATH450')
+    expect(graphCodes).not.toContain('STAT231')
+    expect(graphCodes).not.toContain('STAT331')
+    expect(graphCodes).not.toContain('MATH135')
+  })
+
+  it('does not show CO351 as leading to CO367 in the local graph', () => {
+    const graph = buildLocalCourseFlowGraph('CO351', courses)
+
+    expect(graph.edges).not.toContainEqual({
+      id: 'CO351-CO367',
+      source: 'CO351',
+      target: 'CO367',
+    })
+    expect(graph.nodes.map((node) => node.code)).not.toContain('CO367')
   })
 
   it('finds recursive prerequisite courses for a selected course', () => {

@@ -43,7 +43,7 @@ export const programs: Program[] = [
         id: 'math-electives',
         name: 'Upper-year math electives',
         type: 'chooseN',
-        courses: ['PMATH365', 'CO330', 'CO342', 'CO351', 'CO352', 'CO367', 'CO370', 'CO380'],
+        courses: ['PMATH365', 'CO330', 'CO342', 'CO351', 'CO367', 'CO370', 'CO380'],
         requiredCount: 2,
       },
     ],

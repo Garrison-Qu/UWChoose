@@ -127,3 +127,75 @@ export function filterCourseGraph(graph: CourseGraph, visibleCourseCodes: string
     ),
   }
 }
+
+export function buildPrerequisitePathGraph(
+  targetCourseCode: string,
+  courses: Course[],
+): CourseGraph {
+  const normalizedTargetCode = normalizeCourseCode(targetCourseCode)
+  const fullGraph = buildCourseGraph(courses)
+  const visibleCourseCodes = [
+    ...getRecursivePrerequisiteCodes(normalizedTargetCode, courses),
+    normalizedTargetCode,
+  ]
+
+  return filterCourseGraph(fullGraph, visibleCourseCodes)
+}
+
+export function buildCourseFlowGraph(targetCourseCode: string, courses: Course[]): CourseGraph {
+  const normalizedTargetCode = normalizeCourseCode(targetCourseCode)
+  const fullGraph = buildCourseGraph(courses)
+  const visibleCourseCodes = [
+    ...getRecursivePrerequisiteCodes(normalizedTargetCode, courses),
+    normalizedTargetCode,
+    ...getRecursiveDependentCodes(normalizedTargetCode, courses),
+  ]
+
+  return filterCourseGraph(fullGraph, visibleCourseCodes)
+}
+
+export function buildLocalCourseFlowGraph(targetCourseCode: string, courses: Course[]): CourseGraph {
+  const normalizedTargetCode = normalizeCourseCode(targetCourseCode)
+  const fullGraph = buildCourseGraph(courses)
+  const oneStepPrerequisites = fullGraph.edges
+    .filter((edge) => edge.target === normalizedTargetCode)
+    .map((edge) => edge.source)
+  const twoStepPrerequisites = fullGraph.edges
+    .filter((edge) => oneStepPrerequisites.includes(edge.target))
+    .map((edge) => edge.source)
+  const directDependents = fullGraph.edges
+    .filter((edge) => edge.source === normalizedTargetCode)
+    .map((edge) => edge.target)
+  const visibleCourseCodes = [
+    ...twoStepPrerequisites,
+    ...oneStepPrerequisites,
+    normalizedTargetCode,
+    ...directDependents,
+  ]
+  const visibleCodes = new Set(visibleCourseCodes.map(normalizeCourseCode))
+  const allowedEdgeIds = new Set([
+    ...fullGraph.edges
+      .filter(
+        (edge) =>
+          twoStepPrerequisites.includes(edge.source) && oneStepPrerequisites.includes(edge.target),
+      )
+      .map((edge) => edge.id),
+    ...fullGraph.edges
+      .filter(
+        (edge) =>
+          oneStepPrerequisites.includes(edge.source) && edge.target === normalizedTargetCode,
+      )
+      .map((edge) => edge.id),
+    ...fullGraph.edges
+      .filter(
+        (edge) =>
+          edge.source === normalizedTargetCode && directDependents.includes(edge.target),
+      )
+      .map((edge) => edge.id),
+  ])
+
+  return {
+    nodes: fullGraph.nodes.filter((node) => visibleCodes.has(node.code)),
+    edges: fullGraph.edges.filter((edge) => allowedEdgeIds.has(edge.id)),
+  }
+}

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Badge } from '../components/Badge'
 import { programs } from '../data/programs'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
@@ -137,15 +138,16 @@ export function ProgramsPage() {
                   className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2"
                   key={courseCode}
                 >
-                  <span
+                  <Link
                     className={
                       completedCodes.has(courseCode)
-                        ? 'font-medium text-slate-400 line-through'
-                        : 'font-medium text-slate-900'
+                        ? 'font-medium text-slate-400 underline-offset-4 line-through hover:text-slate-600 hover:underline'
+                        : 'font-medium text-slate-900 underline-offset-4 hover:text-emerald-700 hover:underline'
                     }
+                    to={`/courses/${courseCode}`}
                   >
                     {formatCourseCode(courseCode)}
-                  </span>
+                  </Link>
                   {completedCodes.has(courseCode) ? (
                     <Badge variant="completed">Completed</Badge>
                   ) : plannedCodes.has(courseCode) ? (
