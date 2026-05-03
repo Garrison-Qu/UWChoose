@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: uwchoose-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm ci
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: PLAN_STORE_PATH
+        value: /var/data/plans.json
+      - key: CORS_ORIGINS
+        value: https://your-uwchoose-frontend.vercel.app
+    disk:
+      name: uwchoose-plan-data
+      mountPath: /var/data
+      sizeGB: 1
+
