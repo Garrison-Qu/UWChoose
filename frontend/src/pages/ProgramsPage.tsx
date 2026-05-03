@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Badge } from '../components/Badge'
-import { programs } from '../data/programs'
+import { useCatalog } from '../lib/catalogContext'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
 import { getProgramProgress } from '../lib/programs'
 import { getEffectiveCompletedCourses } from '../lib/studentRecords'
@@ -8,13 +8,13 @@ import { isFinishedByDate } from '../lib/terms'
 import { useStudentStore } from '../stores/useStudentStore'
 
 export function ProgramsPage() {
+  const { programs } = useCatalog()
   const completedCourses = useStudentStore((state) => state.completedCourses)
   const plannedTerms = useStudentStore((state) => state.plannedTerms)
   const currentTerm = useStudentStore((state) => state.currentTerm)
   const selectedProgramId = useStudentStore((state) => state.selectedProgramId)
   const setSelectedProgram = useStudentStore((state) => state.setSelectedProgram)
   const activeProgram = programs.find((program) => program.id === selectedProgramId) ?? programs[0]
-  const progress = getProgramProgress(activeProgram, completedCourses, plannedTerms, currentTerm)
   const effectiveCompletedCourses = getEffectiveCompletedCourses(
     completedCourses,
     plannedTerms,
@@ -28,6 +28,24 @@ export function ProgramsPage() {
       .filter((term) => !isFinishedByDate(term, currentTerm))
       .flatMap((term) => term.courseCodes.map(normalizeCourseCode)),
   )
+
+  if (!activeProgram) {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Major progress</h1>
+          <p className="mt-2 text-slate-600">
+            Use this as a checklist. Completed courses are crossed off; planned courses count toward projected progress.
+          </p>
+        </div>
+        <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-6 text-slate-600">
+          No programs are available in the catalog.
+        </div>
+      </div>
+    )
+  }
+
+  const progress = getProgramProgress(activeProgram, completedCourses, plannedTerms, currentTerm)
 
   return (
     <div className="space-y-6">

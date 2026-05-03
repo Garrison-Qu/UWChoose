@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import logo from '../assets/uwchoose_logo.png'
+import { useCatalog } from '../lib/catalogContext'
 
 const navItems = [
   { to: '/', label: 'Home' },
@@ -10,6 +11,8 @@ const navItems = [
 ]
 
 export function AppLayout() {
+  const { error, isLoading, source } = useCatalog()
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-950">
       <header className="no-print border-b border-slate-200 bg-white">
@@ -46,6 +49,11 @@ export function AppLayout() {
       </header>
 
       <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+        {source === 'local' && error && !isLoading ? (
+          <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+            Using local catalog because the backend API is unavailable.
+          </div>
+        ) : null}
         <Outlet />
       </main>
     </div>

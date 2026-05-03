@@ -105,6 +105,28 @@ describe('student records and terms', () => {
     expect(effectiveCompletedCourses.map((item) => item.courseCode)).not.toContain('CO250')
   })
 
+  it('does not keep a course completed after it is removed from a finished planner term', () => {
+    const completedCourses: CompletedCourse[] = [{ courseCode: 'MATH147', termTaken: 'Fall 2026' }]
+    const plannedTermsAfterRemoval: PlannedTerm[] = [
+      {
+        id: 'finished',
+        term: 'Fall',
+        year: 2026,
+        courseCodes: [],
+      },
+    ]
+    const completedCoursesAfterRemoval = completedCourses.filter(
+      (completedCourse) => completedCourse.courseCode !== 'MATH147',
+    )
+    const effectiveCompletedCourses = getEffectiveCompletedCourses(
+      completedCoursesAfterRemoval,
+      plannedTermsAfterRemoval,
+      currentTerm,
+    )
+
+    expect(effectiveCompletedCourses.map((item) => item.courseCode)).not.toContain('MATH147')
+  })
+
   it('derives term status from the current date term', () => {
     expect(getDerivedTermStatus(plannedTerms[0], currentTerm)).toBe('future')
     expect(getDerivedTermStatus(plannedTerms[1], currentTerm)).toBe('finished')
@@ -124,7 +146,7 @@ describe('student records and terms', () => {
     const warnings = getPlannedTermWarnings(plannedTerm, [plannedTerm], [], courses, ['CO367'])
 
     expect(warnings.courseWarnings[0].warnings).not.toContain(
-      'Missing prerequisite before this term: Need one of CO 250, or CO 255, or CO 352.',
+      'Missing prerequisite before this term: Need one of CO 250, or CO 255.',
     )
   })
 })

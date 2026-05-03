@@ -92,6 +92,38 @@ function removeCompletedCourseFromPlanner(
     )
 }
 
+function completedCourseMatchesPlannedTerm(
+  completedCourse: CompletedCourse,
+  plannedTerm: PlannedTerm,
+  fallbackTerm: CurrentTerm,
+): boolean {
+  const completedTerm = parseTermTaken(completedCourse.termTaken, fallbackTerm)
+
+  return completedTerm.term === plannedTerm.term && completedTerm.year === plannedTerm.year
+}
+
+function removeCompletedCoursesFromPlannerTerm(
+  completedCourses: CompletedCourse[],
+  plannedTerm: PlannedTerm | undefined,
+  courseCodes: string[],
+  fallbackTerm: CurrentTerm,
+): CompletedCourse[] {
+  if (!plannedTerm) {
+    return completedCourses
+  }
+
+  const removedCourseCodes = new Set(courseCodes.map(normalizeCourseCode))
+
+  return completedCourses.filter((completedCourse) => {
+    const normalizedCode = normalizeCourseCode(completedCourse.courseCode)
+
+    return (
+      !removedCourseCodes.has(normalizedCode) ||
+      !completedCourseMatchesPlannedTerm(completedCourse, plannedTerm, fallbackTerm)
+    )
+  })
+}
+
 type StudentState = {
   completedCourses: CompletedCourse[]
   selectedProgramId?: string
@@ -248,9 +280,19 @@ export const useStudentStore = create<StudentState>()(
         }),
 
       removePlannedTerm: (termId) =>
-        set((state) => ({
-          plannedTerms: state.plannedTerms.filter((plannedTerm) => plannedTerm.id !== termId),
-        })),
+        set((state) => {
+          const removedTerm = state.plannedTerms.find((plannedTerm) => plannedTerm.id === termId)
+
+          return {
+            completedCourses: removeCompletedCoursesFromPlannerTerm(
+              state.completedCourses,
+              removedTerm,
+              removedTerm?.courseCodes ?? [],
+              state.currentTerm,
+            ),
+            plannedTerms: state.plannedTerms.filter((plannedTerm) => plannedTerm.id !== termId),
+          }
+        }),
 
       addCourseToPlannedTerm: (termId, courseCode) =>
         set((state) => ({
@@ -273,19 +315,34 @@ export const useStudentStore = create<StudentState>()(
         })),
 
       removeCourseFromPlannedTerm: (termId, courseCode) =>
-        set((state) => ({
-          plannedTerms: state.plannedTerms.map((plannedTerm) =>
-            plannedTerm.id === termId
-              ? {
-                  ...plannedTerm,
-                  courseCodes: plannedTerm.courseCodes.filter(
-                    (plannedCourseCode) =>
-                      normalizeCourseCode(plannedCourseCode) !== normalizeCourseCode(courseCode),
-                  ),
-                }
-              : plannedTerm,
-          ),
-        })),
+        set((state) => {
+          const removedTerm = state.plannedTerms.find((plannedTerm) => plannedTerm.id === termId)
+
+          return {
+            completedCourses: removeCompletedCoursesFromPlannerTerm(
+              state.completedCourses,
+              removedTerm,
+              [courseCode],
+              state.currentTerm,
+            ),
+            plannedTerms: state.plannedTerms
+              .map((plannedTerm) =>
+                plannedTerm.id === termId
+                  ? {
+                      ...plannedTerm,
+                      courseCodes: plannedTerm.courseCodes.filter(
+                        (plannedCourseCode) =>
+                          normalizeCourseCode(plannedCourseCode) !== normalizeCourseCode(courseCode),
+                      ),
+                    }
+                  : plannedTerm,
+              )
+              .filter(
+                (plannedTerm) =>
+                  plannedTerm.courseCodes.length > 0 || !plannedTerm.id.startsWith('completed-'),
+              ),
+          }
+        }),
 
       exportPlan: (): StudentPlanBackup => {
         const state = get()

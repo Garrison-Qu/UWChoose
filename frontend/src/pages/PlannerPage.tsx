@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Badge } from '../components/Badge'
+import { useCatalog } from '../lib/catalogContext'
 import { PlanBackupPanel } from '../components/PlanBackupPanel'
-import { courses } from '../data/courses'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
 import { getPlannedTermWarnings } from '../lib/plannerWarnings'
 import { satisfiesPrerequisite } from '../lib/prerequisites'
@@ -31,6 +31,7 @@ function getCompletedBeforeTerm(
 }
 
 export function PlannerPage() {
+  const { courses } = useCatalog()
   const completedCourses = useStudentStore((state) => state.completedCourses)
   const plannedTerms = useStudentStore((state) => state.plannedTerms)
   const prerequisiteOverrides = useStudentStore((state) => state.prerequisiteOverrides)
@@ -112,7 +113,8 @@ export function PlannerPage() {
         </select>
         <input
           className="h-11 rounded-xl border border-slate-300 px-3"
-          min="2024"
+          min="2020"
+          max="2035"
           type="number"
           value={year}
           onChange={(event) => setYear(event.target.value)}

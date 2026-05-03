@@ -1,18 +1,18 @@
 import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { useCatalog } from '../lib/catalogContext'
 import { CourseCard } from '../components/CourseCard'
-import { courses } from '../data/courses'
 import { getCourseAvailability } from '../lib/courseAvailability'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
 import { getEffectiveCompletedCourses } from '../lib/studentRecords'
 import { isFinishedByDate } from '../lib/terms'
 import { useStudentStore } from '../stores/useStudentStore'
 
-const subjects = ['All', ...Array.from(new Set(courses.map((course) => course.subject))).sort()]
 const levels = ['All', '100', '200', '300', '400']
 const statuses = ['All', 'Eligible', 'Blocked', 'Covered', 'Completed', 'Planned', 'Override']
 
 export function CoursesPage() {
+  const { courses } = useCatalog()
   const [searchParams] = useSearchParams()
   const [query, setQuery] = useState(searchParams.get('q') ?? '')
   const [subject, setSubject] = useState('All')
@@ -39,6 +39,10 @@ export function CoursesPage() {
       ),
     [currentTerm, plannedTerms],
   )
+  const subjects = useMemo(
+    () => ['All', ...Array.from(new Set(courses.map((course) => course.subject))).sort()],
+    [courses],
+  )
 
   const availabilityByCode = useMemo(
     () =>
@@ -48,7 +52,7 @@ export function CoursesPage() {
           getCourseAvailability(course, effectiveCompletedCourses, prerequisiteOverrides),
         ]),
       ),
-    [effectiveCompletedCourses, prerequisiteOverrides],
+    [courses, effectiveCompletedCourses, prerequisiteOverrides],
   )
 
   const filteredCourses = useMemo(() => {
@@ -79,13 +83,13 @@ export function CoursesPage() {
 
       return matchesQuery && matchesSubject && matchesLevel && matchesStatus
     })
-  }, [availabilityByCode, completedCodes, level, plannedCodes, query, status, subject])
+  }, [availabilityByCode, completedCodes, courses, level, plannedCodes, query, status, subject])
 
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Courses</h1>
-        <p className="mt-2 text-slate-600">Search the local sample course catalog.</p>
+        <p className="mt-2 text-slate-600">Search the course catalog.</p>
       </div>
 
       <div className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:grid-cols-[1fr_auto_auto_auto]">

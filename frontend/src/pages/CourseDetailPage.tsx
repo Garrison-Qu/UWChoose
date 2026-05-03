@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Badge } from '../components/Badge'
+import { useCatalog } from '../lib/catalogContext'
 import { PathToTake } from '../components/PathToTake'
 import { PrerequisiteTree } from '../components/PrerequisiteTree'
-import { courses } from '../data/courses'
 import { getCourseAvailability } from '../lib/courseAvailability'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
 import { buildPathExplanationToCourse } from '../lib/pathPlanner'
@@ -12,6 +12,7 @@ import { formatAcademicTerm, getRecentAcademicTermOptions } from '../lib/terms'
 import { useStudentStore } from '../stores/useStudentStore'
 
 export function CourseDetailPage() {
+  const { courses } = useCatalog()
   const { code } = useParams()
   const [showPath, setShowPath] = useState(false)
   const completedCourses = useStudentStore((state) => state.completedCourses)

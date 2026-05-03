@@ -2,7 +2,7 @@ import cytoscape from 'cytoscape'
 import { useEffect, useMemo, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { Badge } from '../components/Badge'
-import { courses } from '../data/courses'
+import { useCatalog } from '../lib/catalogContext'
 import { buildLocalCourseFlowGraph } from '../lib/courseGraph'
 import { getCourseAvailability } from '../lib/courseAvailability'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
@@ -224,6 +224,7 @@ function getCourseFlowPositions(
 }
 
 export function GraphPage() {
+  const { courses } = useCatalog()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const graphRef = useRef<cytoscape.Core | null>(null)
   const [searchParams, setSearchParams] = useSearchParams()
@@ -251,7 +252,7 @@ export function GraphPage() {
   )
   const pathGraph = useMemo(
     () => buildLocalCourseFlowGraph(selectedCourseCode, courses),
-    [selectedCourseCode],
+    [courses, selectedCourseCode],
   )
   const nodePositions = useMemo(
     () => getCourseFlowPositions(pathGraph, selectedCourseCode),
@@ -275,7 +276,14 @@ export function GraphPage() {
         return [node.code, status]
       }),
     )
-  }, [directlyCompletedCodes, effectiveCompletedCourses, finishedCodes, pathGraph.nodes, prerequisiteOverrides])
+  }, [
+    courses,
+    directlyCompletedCodes,
+    effectiveCompletedCourses,
+    finishedCodes,
+    pathGraph.nodes,
+    prerequisiteOverrides,
+  ])
 
   useEffect(() => {
     if (!containerRef.current) {
