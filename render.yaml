@@ -11,7 +11,7 @@ services:
       - key: PLAN_STORE_PATH
         value: /var/data/plans.json
       - key: CORS_ORIGINS
-        value: https://your-uwchoose-frontend.vercel.app
+        value: https://uwchoose-frontend.onrender.com
     disk:
       name: uwchoose-plan-data
       mountPath: /var/data
