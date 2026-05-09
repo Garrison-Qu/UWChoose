@@ -6,7 +6,7 @@ import {
   getCourses,
   getPrograms,
 } from './catalog.ts'
-import { PlanValidationError, normalizeStudentPlan } from './planValidation.ts'
+import { PlanValidationError, normalizeSavedPlanRequest } from './planValidation.ts'
 import { createFilePlanStore, type PlanStore } from './planStore.ts'
 import { validateCatalog } from './validation.ts'
 
@@ -108,8 +108,8 @@ export function createApp(options: AppOptions = {}) {
 
   app.post('/api/plans', async (request, response) => {
     try {
-      const plan = normalizeStudentPlan(request.body)
-      const savedPlan = await planStore.createPlan(plan)
+      const { plan, profile } = normalizeSavedPlanRequest(request.body)
+      const savedPlan = await planStore.createPlan(plan, profile)
 
       response.status(201).json(savedPlan)
     } catch (error) {
@@ -135,8 +135,8 @@ export function createApp(options: AppOptions = {}) {
 
   app.put('/api/plans/:id', async (request, response) => {
     try {
-      const plan = normalizeStudentPlan(request.body)
-      const savedPlan = await planStore.updatePlan(request.params.id, plan)
+      const { plan, profile } = normalizeSavedPlanRequest(request.body)
+      const savedPlan = await planStore.updatePlan(request.params.id, plan, profile)
 
       if (!savedPlan) {
         response.status(404).json({ error: 'Plan not found.' })

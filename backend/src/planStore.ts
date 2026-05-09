@@ -2,11 +2,12 @@ import { randomUUID } from 'node:crypto'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import type { StudentPlanBackup } from '../../frontend/src/types/student.ts'
+import type { SavedPlanProfile, StudentPlanBackup } from '../../frontend/src/types/student.ts'
 
 export type SavedPlan = {
   id: string
   plan: StudentPlanBackup
+  profile?: SavedPlanProfile
   createdAt: string
   updatedAt: string
 }
@@ -21,9 +22,13 @@ function getDefaultPlanFilePath() {
 }
 
 export type PlanStore = {
-  createPlan: (plan: StudentPlanBackup) => Promise<SavedPlan>
+  createPlan: (plan: StudentPlanBackup, profile?: SavedPlanProfile) => Promise<SavedPlan>
   getPlan: (id: string) => Promise<SavedPlan | undefined>
-  updatePlan: (id: string, plan: StudentPlanBackup) => Promise<SavedPlan | undefined>
+  updatePlan: (
+    id: string,
+    plan: StudentPlanBackup,
+    profile?: SavedPlanProfile,
+  ) => Promise<SavedPlan | undefined>
 }
 
 function createEmptyStoreFile(): PlanStoreFile {
@@ -60,12 +65,13 @@ export function createFilePlanStore(
   filePath = getDefaultPlanFilePath(),
 ): PlanStore {
   return {
-    async createPlan(plan) {
+    async createPlan(plan, profile) {
       const storeFile = await readStoreFile(filePath)
       const now = new Date().toISOString()
       const savedPlan: SavedPlan = {
         id: randomUUID(),
         plan,
+        profile,
         createdAt: now,
         updatedAt: now,
       }
@@ -82,7 +88,7 @@ export function createFilePlanStore(
       return storeFile.plans[id]
     },
 
-    async updatePlan(id, plan) {
+    async updatePlan(id, plan, profile) {
       const storeFile = await readStoreFile(filePath)
       const existingPlan = storeFile.plans[id]
 
@@ -93,6 +99,7 @@ export function createFilePlanStore(
       const savedPlan: SavedPlan = {
         ...existingPlan,
         plan,
+        profile: profile ?? existingPlan.profile,
         updatedAt: new Date().toISOString(),
       }
 

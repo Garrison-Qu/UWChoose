@@ -5,6 +5,7 @@ import { CourseDetailPage } from './pages/CourseDetailPage'
 import { CoursesPage } from './pages/CoursesPage'
 import { HomePage } from './pages/HomePage'
 import { PlannerPage } from './pages/PlannerPage'
+import { ProfilePage } from './pages/ProfilePage'
 import { ProgramsPage } from './pages/ProgramsPage'
 
 const GraphPage = lazy(() => import('./pages/GraphPage').then((module) => ({ default: module.GraphPage })))
@@ -32,6 +33,7 @@ function App() {
         />
         <Route path="programs" element={<ProgramsPage />} />
         <Route path="planner" element={<PlannerPage />} />
+        <Route path="profile" element={<ProfilePage />} />
       </Route>
     </Routes>
   )

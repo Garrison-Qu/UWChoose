@@ -1,11 +1,17 @@
 import { getCatalogApiBaseUrl } from './catalogApi'
-import type { StudentPlanBackup } from '../types/student'
+import type { SavedPlanProfile, StudentPlanBackup } from '../types/student'
 
 export type SavedPlanResponse = {
   id: string
   plan: StudentPlanBackup
+  profile?: SavedPlanProfile
   createdAt: string
   updatedAt: string
+}
+
+type SavePlanRequest = {
+  plan: StudentPlanBackup
+  profile?: SavedPlanProfile
 }
 
 async function parseErrorResponse(response: Response): Promise<string> {
@@ -44,14 +50,17 @@ async function requestPlan(
 
 export function savePlanOnline(
   plan: StudentPlanBackup,
+  profile?: SavedPlanProfile,
   fetcher: typeof fetch = globalThis.fetch,
   baseUrl = getCatalogApiBaseUrl(),
 ): Promise<SavedPlanResponse> {
+  const body: StudentPlanBackup | SavePlanRequest = profile ? { plan, profile } : plan
+
   return requestPlan(
     '/api/plans',
     {
       method: 'POST',
-      body: JSON.stringify(plan),
+      body: JSON.stringify(body),
     },
     fetcher,
     baseUrl,
@@ -69,17 +78,19 @@ export function loadPlanOnline(
 export function updatePlanOnline(
   id: string,
   plan: StudentPlanBackup,
+  profile?: SavedPlanProfile,
   fetcher: typeof fetch = globalThis.fetch,
   baseUrl = getCatalogApiBaseUrl(),
 ): Promise<SavedPlanResponse> {
+  const body: StudentPlanBackup | SavePlanRequest = profile ? { plan, profile } : plan
+
   return requestPlan(
     `/api/plans/${encodeURIComponent(id.trim())}`,
     {
       method: 'PUT',
-      body: JSON.stringify(plan),
+      body: JSON.stringify(body),
     },
     fetcher,
     baseUrl,
   )
 }
-

@@ -52,6 +52,7 @@ For production, set `VITE_API_BASE_URL` to the deployed backend URL, set `CORS_O
 - Path-to-take guidance for blocked courses
 - Term planner with current term, future terms, completed tags, prerequisite overrides, PDF export, prerequisite status, and warnings
 - Program progress tracker for a sample Math program
+- Local profile page with display name, program interest, start term, notes, and linked saved plan
 - Interactive prerequisite graph with a local prerequisite/proceeding-course tree
 - Data validation script for course and program data integrity
 - Backend API for courses, programs, and shareable planner backups
@@ -210,6 +211,7 @@ After both services are deployed:
 - Open the deployed frontend and confirm no local-catalog fallback banner appears.
 - Search courses and open a course detail page.
 - Add a term in the planner and save online.
+- Open Profile, set a display name and program interest, and save the current plan online.
 - Refresh the browser, load the returned share code, and confirm the planner restores.
 - Restart or redeploy the backend and confirm the same share code still loads.
 - Try an unknown Origin against the backend and confirm CORS blocks it.
@@ -273,7 +275,7 @@ The validator checks:
 - Course data is a small manually-written sample, not the full Waterloo calendar.
 - Program requirements are sample data, not official degree audits.
 - No user accounts or cloud sync yet.
-- User data is stored in browser localStorage.
+- User profile and planner state are stored in browser localStorage unless explicitly saved online.
 - Online planner save/load uses unguessable share codes, not accounts or authenticated privacy.
 - Path planning is a heuristic planner, not a full academic advising engine.
 - Course offering terms are simplified.

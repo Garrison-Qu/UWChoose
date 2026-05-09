@@ -168,6 +168,29 @@ describe('shareable plan API', () => {
     assert.equal(response.body.createdAt, response.body.updatedAt)
   })
 
+  it('saves optional profile metadata with a plan', async () => {
+    const { app: planApp } = await createPlanTestApp()
+    const response = await request(planApp).post('/api/plans').send({
+      plan: samplePlan,
+      profile: {
+        displayName: 'Alex',
+        programId: 'pure-math',
+        startTerm: 'Fall',
+        startYear: 2024,
+        notes: 'Interested in analysis.',
+      },
+    })
+
+    assert.equal(response.status, 201)
+    assert.deepEqual(response.body.profile, {
+      displayName: 'Alex',
+      programId: 'pure-math',
+      startTerm: 'Fall',
+      startYear: 2024,
+      notes: 'Interested in analysis.',
+    })
+  })
+
   it('loads a saved plan by share code', async () => {
     const { app: planApp } = await createPlanTestApp()
     const saved = await request(planApp).post('/api/plans').send(samplePlan)
@@ -192,6 +215,28 @@ describe('shareable plan API', () => {
     assert.equal(updated.body.createdAt, saved.body.createdAt)
     assert.equal(updated.body.plan.completedCourses[0].courseCode, 'MATH136')
   })
+
+  it('preserves saved profile metadata when updating a plan without profile metadata', async () => {
+    const { app: planApp } = await createPlanTestApp()
+    const saved = await request(planApp).post('/api/plans').send({
+      plan: samplePlan,
+      profile: {
+        displayName: 'Alex',
+        programId: 'pure-math',
+      },
+    })
+    const updated = await request(planApp).put(`/api/plans/${saved.body.id}`).send({
+      ...samplePlan,
+      plannedTerms: [],
+    })
+
+    assert.equal(updated.status, 200)
+    assert.deepEqual(updated.body.profile, {
+      displayName: 'Alex',
+      programId: 'pure-math',
+    })
+  })
+
 
   it('returns 404 for unknown saved plans', async () => {
     const { app: planApp } = await createPlanTestApp()
@@ -230,6 +275,19 @@ describe('shareable plan API', () => {
     assert.equal(response.status, 400)
     assert.match(response.body.details.join(' '), /NOPE101/)
     assert.match(response.body.details.join(' '), /missing-program/)
+  })
+
+  it('rejects unknown profile program references', async () => {
+    const { app: planApp } = await createPlanTestApp()
+    const response = await request(planApp).post('/api/plans').send({
+      plan: samplePlan,
+      profile: {
+        programId: 'missing-program',
+      },
+    })
+
+    assert.equal(response.status, 400)
+    assert.match(response.body.details.join(' '), /profile\.programId missing-program/)
   })
 
   it('persists plan data through a new store using the same file', async () => {

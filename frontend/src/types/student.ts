@@ -19,6 +19,17 @@ export type CurrentTerm = {
   year: number
 }
 
+export type UserProfile = {
+  displayName?: string
+  linkedPlanId?: string
+  programId?: string
+  startTerm?: 'Fall' | 'Winter' | 'Spring'
+  startYear?: number
+  notes?: string
+}
+
+export type SavedPlanProfile = Omit<UserProfile, 'linkedPlanId'>
+
 export type StudentPlanBackup = {
   completedCourses: CompletedCourse[]
   plannedTerms: PlannedTerm[]

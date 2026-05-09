@@ -8,6 +8,7 @@ import type {
   CurrentTerm,
   PlannedTerm,
   StudentPlanBackup,
+  UserProfile,
 } from '../types/student'
 
 const defaultCurrentTerm = getCurrentAcademicTerm()
@@ -129,6 +130,7 @@ type StudentState = {
   selectedProgramId?: string
   plannedTerms: PlannedTerm[]
   prerequisiteOverrides: string[]
+  userProfile: UserProfile
   currentTerm: CurrentTerm
   addCompletedCourse: (course: CompletedCourse) => void
   removeCompletedCourse: (courseCode: string) => void
@@ -143,6 +145,8 @@ type StudentState = {
   removeCourseFromPlannedTerm: (termId: string, courseCode: string) => void
   exportPlan: () => StudentPlanBackup
   importPlan: (plan: StudentPlanBackup) => void
+  updateUserProfile: (profile: Partial<UserProfile>) => void
+  resetUserProfile: () => void
   resetPlan: () => void
 }
 
@@ -152,6 +156,7 @@ export const useStudentStore = create<StudentState>()(
       completedCourses: [] as CompletedCourse[],
       plannedTerms: [] as PlannedTerm[],
       prerequisiteOverrides: [] as string[],
+      userProfile: {},
       currentTerm: defaultCurrentTerm,
 
       addCompletedCourse: (course) =>
@@ -372,6 +377,16 @@ export const useStudentStore = create<StudentState>()(
           currentTerm: getCurrentAcademicTerm(),
         }),
 
+      updateUserProfile: (profile) =>
+        set((state) => ({
+          userProfile: {
+            ...state.userProfile,
+            ...profile,
+          },
+        })),
+
+      resetUserProfile: () => set({ userProfile: {} }),
+
       resetPlan: () =>
         set({
           completedCourses: [],
@@ -389,6 +404,7 @@ export const useStudentStore = create<StudentState>()(
         plannedTerms: state.plannedTerms,
         prerequisiteOverrides: state.prerequisiteOverrides,
         selectedProgramId: state.selectedProgramId,
+        userProfile: state.userProfile,
       }),
       merge: (persistedState, currentState) => ({
         ...currentState,

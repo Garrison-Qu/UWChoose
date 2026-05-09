@@ -3,11 +3,17 @@ import type {
   CompletedCourse,
   CurrentTerm,
   PlannedTerm,
+  SavedPlanProfile,
   StudentPlanBackup,
 } from '../../frontend/src/types/student.ts'
 
 const validTerms = new Set(['Fall', 'Winter', 'Spring'])
 const validStatuses = new Set(['finished', 'future'])
+
+export type NormalizedSavedPlanRequest = {
+  plan: StudentPlanBackup
+  profile?: SavedPlanProfile
+}
 
 export class PlanValidationError extends Error {
   readonly errors: string[]
@@ -216,5 +222,73 @@ export function normalizeStudentPlan(value: unknown): StudentPlanBackup {
     prerequisiteOverrides,
     selectedProgramId: typeof value.selectedProgramId === 'string' ? value.selectedProgramId : undefined,
     currentTerm,
+  }
+}
+
+function normalizeOptionalString(value: unknown, path: string, errors: string[]) {
+  if (value === undefined) {
+    return undefined
+  }
+
+  if (typeof value !== 'string') {
+    errors.push(`${path} must be a string when provided.`)
+    return undefined
+  }
+
+  const trimmedValue = value.trim()
+
+  return trimmedValue.length > 0 ? trimmedValue : undefined
+}
+
+export function normalizeSavedPlanProfile(value: unknown): SavedPlanProfile | undefined {
+  const errors: string[] = []
+
+  if (value === undefined) {
+    return undefined
+  }
+
+  if (!isObject(value)) {
+    throw new PlanValidationError(['profile must be an object when provided.'])
+  }
+
+  const displayName = normalizeOptionalString(value.displayName, 'profile.displayName', errors)
+  const programId = normalizeOptionalString(value.programId, 'profile.programId', errors)
+  const notes = normalizeOptionalString(value.notes, 'profile.notes', errors)
+
+  if (programId && !findProgramById(programId)) {
+    errors.push(`profile.programId ${programId} does not exist.`)
+  }
+
+  if (value.startTerm !== undefined && (typeof value.startTerm !== 'string' || !validTerms.has(value.startTerm))) {
+    errors.push('profile.startTerm must be Fall, Winter, or Spring when provided.')
+  }
+
+  if (value.startYear !== undefined && (typeof value.startYear !== 'number' || !Number.isInteger(value.startYear))) {
+    errors.push('profile.startYear must be an integer when provided.')
+  }
+
+  if (errors.length > 0) {
+    throw new PlanValidationError(errors)
+  }
+
+  return {
+    displayName,
+    programId,
+    startTerm: validTerms.has(String(value.startTerm)) ? value.startTerm as SavedPlanProfile['startTerm'] : undefined,
+    startYear: typeof value.startYear === 'number' && Number.isInteger(value.startYear) ? value.startYear : undefined,
+    notes,
+  }
+}
+
+export function normalizeSavedPlanRequest(value: unknown): NormalizedSavedPlanRequest {
+  if (isObject(value) && 'plan' in value) {
+    return {
+      plan: normalizeStudentPlan(value.plan),
+      profile: normalizeSavedPlanProfile(value.profile),
+    }
+  }
+
+  return {
+    plan: normalizeStudentPlan(value),
   }
 }

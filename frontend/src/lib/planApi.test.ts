@@ -13,6 +13,10 @@ const plan: StudentPlanBackup = {
 const savedPlan = {
   id: 'share-code',
   plan,
+  profile: {
+    displayName: 'Alex',
+    programId: 'pure-math',
+  },
   createdAt: '2026-01-01T00:00:00.000Z',
   updatedAt: '2026-01-01T00:00:00.000Z',
 }
@@ -28,13 +32,26 @@ function successfulFetch() {
 describe('plan API client', () => {
   it('saves a plan to the backend', async () => {
     const fetcher = successfulFetch()
-    const result = await savePlanOnline(plan, fetcher as unknown as typeof fetch, 'http://api.test')
+    const result = await savePlanOnline(plan, undefined, fetcher as unknown as typeof fetch, 'http://api.test')
 
     expect(result).toEqual(savedPlan)
     expect(fetcher).toHaveBeenCalledWith('http://api.test/api/plans', {
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',
       body: JSON.stringify(plan),
+    })
+  })
+
+  it('saves profile metadata with a plan', async () => {
+    const fetcher = successfulFetch()
+    const profile = { displayName: 'Alex', programId: 'pure-math' }
+    const result = await savePlanOnline(plan, profile, fetcher as unknown as typeof fetch, 'http://api.test')
+
+    expect(result).toEqual(savedPlan)
+    expect(fetcher).toHaveBeenCalledWith('http://api.test/api/plans', {
+      headers: { 'Content-Type': 'application/json' },
+      method: 'POST',
+      body: JSON.stringify({ plan, profile }),
     })
   })
 
@@ -51,7 +68,7 @@ describe('plan API client', () => {
 
   it('updates an existing shared plan', async () => {
     const fetcher = successfulFetch()
-    const result = await updatePlanOnline('share-code', plan, fetcher as unknown as typeof fetch, 'http://api.test')
+    const result = await updatePlanOnline('share-code', plan, undefined, fetcher as unknown as typeof fetch, 'http://api.test')
 
     expect(result).toEqual(savedPlan)
     expect(fetcher).toHaveBeenCalledWith('http://api.test/api/plans/share-code', {
@@ -69,8 +86,7 @@ describe('plan API client', () => {
     }))
 
     await expect(
-      savePlanOnline(plan, fetcher as unknown as typeof fetch, 'http://api.test'),
+      savePlanOnline(plan, undefined, fetcher as unknown as typeof fetch, 'http://api.test'),
     ).rejects.toThrow('Invalid plan. MATH999 does not exist.')
   })
 })
-

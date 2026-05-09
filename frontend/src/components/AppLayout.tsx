@@ -8,6 +8,7 @@ const navItems = [
   { to: '/graph', label: 'Graph' },
   { to: '/planner', label: 'Planner' },
   { to: '/programs', label: 'Programs' },
+  { to: '/profile', label: 'Profile' },
 ]
 
 export function AppLayout() {
