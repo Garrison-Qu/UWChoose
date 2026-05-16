@@ -509,4 +509,28 @@ export const courses: Course[] = [
     },
     termsOffered: ['Winter'],
   },
+  {
+    code: 'ENGL109',
+    name: 'Introduction to Academic Writing',
+    subject: 'ENGL',
+    level: 100,
+    description: 'A communication course option used for degree requirement planning.',
+    termsOffered: ['Fall', 'Winter', 'Spring'],
+  },
+  {
+    code: 'ENGL119',
+    name: 'Communications in Mathematics and Computer Science',
+    subject: 'ENGL',
+    level: 100,
+    description: 'A communication course option used for Math and Computer Science planning.',
+    termsOffered: ['Fall', 'Winter'],
+  },
+  {
+    code: 'SPCOM223',
+    name: 'Public Speaking',
+    subject: 'SPCOM',
+    level: 200,
+    description: 'A communication course option used for degree requirement planning.',
+    termsOffered: ['Fall', 'Winter', 'Spring'],
+  },
 ]

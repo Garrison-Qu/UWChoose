@@ -240,6 +240,74 @@ function normalizeOptionalString(value: unknown, path: string, errors: string[])
   return trimmedValue.length > 0 ? trimmedValue : undefined
 }
 
+function normalizeOptionalStringArray(value: unknown, path: string, errors: string[]) {
+  if (value === undefined) {
+    return undefined
+  }
+
+  if (!Array.isArray(value)) {
+    errors.push(`${path} must be an array when provided.`)
+    return undefined
+  }
+
+  return [...new Set(
+    value.map((item, index) => {
+      if (typeof item !== 'string') {
+        errors.push(`${path}[${index}] must be a string.`)
+        return ''
+      }
+
+      return item.trim()
+    }).filter(Boolean),
+  )]
+}
+
+function normalizeAcademicSelections(value: unknown, errors: string[]) {
+  if (value === undefined) {
+    return undefined
+  }
+
+  if (!isObject(value)) {
+    errors.push('profile.academicSelections must be an object when provided.')
+    return undefined
+  }
+
+  const degreeId = normalizeOptionalString(value.degreeId, 'profile.academicSelections.degreeId', errors)
+  const majorProgramId = normalizeOptionalString(
+    value.majorProgramId,
+    'profile.academicSelections.majorProgramId',
+    errors,
+  )
+  const jointProgramIds = normalizeOptionalStringArray(
+    value.jointProgramIds,
+    'profile.academicSelections.jointProgramIds',
+    errors,
+  )
+  const minorProgramIds = normalizeOptionalStringArray(
+    value.minorProgramIds,
+    'profile.academicSelections.minorProgramIds',
+    errors,
+  )
+  const referencedProgramIds = [
+    majorProgramId,
+    ...(jointProgramIds ?? []),
+    ...(minorProgramIds ?? []),
+  ].filter((programId): programId is string => Boolean(programId))
+
+  referencedProgramIds.forEach((programId) => {
+    if (!findProgramById(programId)) {
+      errors.push(`profile.academicSelections references unknown program ${programId}.`)
+    }
+  })
+
+  return {
+    degreeId,
+    majorProgramId,
+    jointProgramIds,
+    minorProgramIds,
+  }
+}
+
 export function normalizeSavedPlanProfile(value: unknown): SavedPlanProfile | undefined {
   const errors: string[] = []
 
@@ -254,6 +322,7 @@ export function normalizeSavedPlanProfile(value: unknown): SavedPlanProfile | un
   const displayName = normalizeOptionalString(value.displayName, 'profile.displayName', errors)
   const programId = normalizeOptionalString(value.programId, 'profile.programId', errors)
   const notes = normalizeOptionalString(value.notes, 'profile.notes', errors)
+  const academicSelections = normalizeAcademicSelections(value.academicSelections, errors)
 
   if (programId && !findProgramById(programId)) {
     errors.push(`profile.programId ${programId} does not exist.`)
@@ -274,6 +343,7 @@ export function normalizeSavedPlanProfile(value: unknown): SavedPlanProfile | un
   return {
     displayName,
     programId,
+    academicSelections,
     startTerm: validTerms.has(String(value.startTerm)) ? value.startTerm as SavedPlanProfile['startTerm'] : undefined,
     startYear: typeof value.startYear === 'number' && Number.isInteger(value.startYear) ? value.startYear : undefined,
     notes,

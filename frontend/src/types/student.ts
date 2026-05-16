@@ -19,10 +19,18 @@ export type CurrentTerm = {
   year: number
 }
 
+export type AcademicSelections = {
+  degreeId?: string
+  majorProgramId?: string
+  jointProgramIds?: string[]
+  minorProgramIds?: string[]
+}
+
 export type UserProfile = {
   displayName?: string
   linkedPlanId?: string
   programId?: string
+  academicSelections?: AcademicSelections
   startTerm?: 'Fall' | 'Winter' | 'Spring'
   startYear?: number
   notes?: string

@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Badge } from '../components/Badge'
 import { useCatalog } from '../lib/catalogContext'
 import { PlanBackupPanel } from '../components/PlanBackupPanel'
+import { getCourseAvailability } from '../lib/courseAvailability'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
 import { getPlannedTermWarnings } from '../lib/plannerWarnings'
 import { satisfiesPrerequisite } from '../lib/prerequisites'
@@ -226,6 +228,12 @@ export function PlannerPage() {
                       const hasPrerequisiteOverride = prerequisiteOverrides
                         .map(normalizeCourseCode)
                         .includes(normalizeCourseCode(courseCode))
+                      const availabilityForTerm = course
+                        ? getCourseAvailability(course, completedBeforeTerm, prerequisiteOverrides)
+                        : undefined
+                      const isCreditCovered = availabilityForTerm?.reasons.some(
+                        (reason) => reason.includes('already') || reason.includes('antirequisite'),
+                      )
                       const prerequisitesSatisfiedWithoutOverride = course
                         ? satisfiesPrerequisite(course.prerequisite, completedBeforeTerm)
                         : false
@@ -253,7 +261,12 @@ export function PlannerPage() {
                         >
                           <div className="flex flex-wrap items-start justify-between gap-3">
                             <div>
-                              <strong>{formatCourseCode(courseCode)}</strong>
+                              <Link
+                                className="font-semibold text-slate-950 underline-offset-4 hover:text-emerald-700 hover:underline"
+                                to={`/courses/${normalizeCourseCode(courseCode)}`}
+                              >
+                                {formatCourseCode(courseCode)}
+                              </Link>
                               <p className="mt-1 text-sm text-slate-600">
                                 {course?.name ?? 'Course not found in local data.'}
                               </p>
@@ -271,6 +284,8 @@ export function PlannerPage() {
                           <div className="mt-3 flex flex-wrap gap-2">
                             {isCompleted ? (
                               <Badge variant="completed">Completed</Badge>
+                            ) : isCreditCovered ? (
+                              <Badge variant="covered">Credit covered</Badge>
                             ) : hasPrerequisiteOverride ? (
                               <Badge variant="override">Prereq override</Badge>
                             ) : (

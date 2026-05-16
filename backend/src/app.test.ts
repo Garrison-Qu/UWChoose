@@ -1,16 +1,39 @@
 import assert from 'node:assert/strict'
+import { once } from 'node:events'
 import { mkdtemp, readFile } from 'node:fs/promises'
+import type { Server } from 'node:http'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { describe, it } from 'node:test'
+import { after, describe, it } from 'node:test'
 import request from 'supertest'
 import { createApp, getAllowedOriginsFromEnvironment } from './app.ts'
 import { getCourses, getPrograms } from './catalog.ts'
 import { createFilePlanStore } from './planStore.ts'
+import { createFileUserStore } from './userStore.ts'
 import { validateCatalog } from './validation.ts'
 import type { StudentPlanBackup } from '../../frontend/src/types/student.ts'
 
-const app = createApp()
+const testServers: Server[] = []
+
+async function startTestServer(app = createApp()) {
+  const testServer = app.listen(0)
+
+  if (!testServer.address()) {
+    await once(testServer, 'listening')
+  }
+
+  testServers.push(testServer)
+
+  return testServer
+}
+
+const serverPromise = startTestServer()
+
+after(() => {
+  testServers.forEach((testServer) => {
+    testServer.close()
+  })
+})
 
 const samplePlan: StudentPlanBackup = {
   completedCourses: [{ courseCode: 'math 135', grade: 87, termTaken: 'Fall 2024' }],
@@ -35,10 +58,34 @@ async function createPlanTestApp() {
   const directory = await mkdtemp(join(tmpdir(), 'uwchoose-plans-'))
   const filePath = join(directory, 'plans.json')
 
+  const testServer = await startTestServer(createApp({ planStore: createFilePlanStore(filePath) }))
+
   return {
-    app: createApp({ planStore: createFilePlanStore(filePath) }),
+    app: testServer,
     filePath,
   }
+}
+
+async function createAuthTestApp() {
+  const directory = await mkdtemp(join(tmpdir(), 'uwchoose-users-'))
+  const filePath = join(directory, 'users.json')
+
+  const testServer = await startTestServer(createApp({ userStore: createFileUserStore(filePath) }))
+
+  return {
+    app: testServer,
+    filePath,
+  }
+}
+
+function getCookies(response: request.Response) {
+  const header = response.headers['set-cookie']
+
+  if (Array.isArray(header)) {
+    return header
+  }
+
+  return typeof header === 'string' ? [header] : []
 }
 
 describe('catalog validation', () => {
@@ -72,7 +119,7 @@ describe('catalog validation', () => {
 
 describe('read-only API', () => {
   it('returns health metadata', async () => {
-    const response = await request(app).get('/health')
+    const response = await request(await serverPromise).get('/health')
 
     assert.equal(response.status, 200)
     assert.equal(response.body.status, 'ok')
@@ -81,7 +128,7 @@ describe('read-only API', () => {
   })
 
   it('returns the course list', async () => {
-    const response = await request(app).get('/api/courses')
+    const response = await request(await serverPromise).get('/api/courses')
 
     assert.equal(response.status, 200)
     assert.equal(Array.isArray(response.body), true)
@@ -92,7 +139,7 @@ describe('read-only API', () => {
     const cases = ['/api/courses/pmath351', '/api/courses/PMATH351', '/api/courses/PMATH%20351']
 
     for (const path of cases) {
-      const response = await request(app).get(path)
+      const response = await request(await serverPromise).get(path)
 
       assert.equal(response.status, 200)
       assert.equal(response.body.code, 'PMATH351')
@@ -100,15 +147,15 @@ describe('read-only API', () => {
   })
 
   it('returns 404 for a missing course', async () => {
-    const response = await request(app).get('/api/courses/NOPE101')
+    const response = await request(await serverPromise).get('/api/courses/NOPE101')
 
     assert.equal(response.status, 404)
     assert.equal(response.body.error, 'Course not found.')
   })
 
   it('returns programs and program detail', async () => {
-    const list = await request(app).get('/api/programs')
-    const detail = await request(app).get('/api/programs/pure-math')
+    const list = await request(await serverPromise).get('/api/programs')
+    const detail = await request(await serverPromise).get('/api/programs/pure-math')
 
     assert.equal(list.status, 200)
     assert.equal(Array.isArray(list.body), true)
@@ -117,14 +164,14 @@ describe('read-only API', () => {
   })
 
   it('returns 404 for a missing program', async () => {
-    const response = await request(app).get('/api/programs/missing')
+    const response = await request(await serverPromise).get('/api/programs/missing')
 
     assert.equal(response.status, 404)
     assert.equal(response.body.error, 'Program not found.')
   })
 
   it('allows configured CORS origins and rejects unknown origins', async () => {
-    const corsApp = createApp({ allowedOrigins: ['https://uwchoose.example'] })
+    const corsApp = await startTestServer(createApp({ allowedOrigins: ['https://uwchoose.example'] }))
     const allowedResponse = await request(corsApp)
       .get('/health')
       .set('Origin', 'https://uwchoose.example')
@@ -175,6 +222,11 @@ describe('shareable plan API', () => {
       profile: {
         displayName: 'Alex',
         programId: 'pure-math',
+        academicSelections: {
+          degreeId: 'bmath',
+          majorProgramId: 'pure-math',
+          minorProgramIds: ['combinatorics-optimization-minor'],
+        },
         startTerm: 'Fall',
         startYear: 2024,
         notes: 'Interested in analysis.',
@@ -185,6 +237,11 @@ describe('shareable plan API', () => {
     assert.deepEqual(response.body.profile, {
       displayName: 'Alex',
       programId: 'pure-math',
+      academicSelections: {
+        degreeId: 'bmath',
+        majorProgramId: 'pure-math',
+        minorProgramIds: ['combinatorics-optimization-minor'],
+      },
       startTerm: 'Fall',
       startYear: 2024,
       notes: 'Interested in analysis.',
@@ -293,7 +350,7 @@ describe('shareable plan API', () => {
   it('persists plan data through a new store using the same file', async () => {
     const { app: planApp, filePath } = await createPlanTestApp()
     const saved = await request(planApp).post('/api/plans').send(samplePlan)
-    const recreatedApp = createApp({ planStore: createFilePlanStore(filePath) })
+    const recreatedApp = await startTestServer(createApp({ planStore: createFilePlanStore(filePath) }))
     const loaded = await request(recreatedApp).get(`/api/plans/${saved.body.id}`)
 
     assert.equal(loaded.status, 200)
@@ -317,5 +374,77 @@ describe('shareable plan API', () => {
     } finally {
       process.env.PLAN_STORE_PATH = originalPlanStorePath
     }
+  })
+})
+
+describe('account auth API', () => {
+  it('signs up, returns the current user, and signs out', async () => {
+    const { app: authApp } = await createAuthTestApp()
+    const signup = await request(authApp)
+      .post('/api/auth/signup')
+      .send({ email: 'alex@example.com', password: 'password123', displayName: 'Alex' })
+    const cookies = getCookies(signup)
+
+    assert.equal(signup.status, 201)
+    assert.equal(signup.body.user.email, 'alex@example.com')
+    assert.equal(typeof signup.body.user.avatarUrl, 'string')
+
+    const me = await request(authApp).get('/api/auth/me').set('Cookie', cookies)
+
+    assert.equal(me.status, 200)
+    assert.equal(me.body.user.email, 'alex@example.com')
+
+    const signout = await request(authApp).post('/api/auth/signout').set('Cookie', cookies)
+
+    assert.equal(signout.status, 204)
+    assert.equal((await request(authApp).get('/api/auth/me').set('Cookie', cookies)).status, 401)
+  })
+
+  it('signs in and persists account-owned plan data', async () => {
+    const { app: authApp, filePath } = await createAuthTestApp()
+
+    const signup = await request(authApp)
+      .post('/api/auth/signup')
+      .send({ email: 'alex@example.com', password: 'password123', displayName: 'Alex' })
+    const cookies = getCookies(signup)
+
+    const saved = await request(authApp).put('/api/me/plan').set('Cookie', cookies).send({
+      plan: samplePlan,
+      profile: {
+        displayName: 'Alex',
+        programId: 'pure-math',
+        academicSelections: {
+          degreeId: 'bmath',
+          majorProgramId: 'pure-math',
+        },
+      },
+    })
+
+    assert.equal(saved.status, 200)
+    assert.equal(saved.body.plan.completedCourses[0].courseCode, 'MATH135')
+    assert.equal(saved.body.profile.academicSelections.majorProgramId, 'pure-math')
+
+    await request(authApp).post('/api/auth/signout').set('Cookie', cookies)
+
+    const recreatedApp = await startTestServer(createApp({ userStore: createFileUserStore(filePath) }))
+    const signin = await request(recreatedApp)
+      .post('/api/auth/signin')
+      .send({ email: 'alex@example.com', password: 'password123' })
+    const signinCookies = getCookies(signin)
+
+    assert.equal(signin.status, 200)
+
+    const loaded = await request(recreatedApp).get('/api/me/plan').set('Cookie', signinCookies)
+
+    assert.equal(loaded.status, 200)
+    assert.deepEqual(loaded.body.plan, saved.body.plan)
+    assert.deepEqual(loaded.body.profile, saved.body.profile)
+  })
+
+  it('rejects account plan access without a session', async () => {
+    const { app: authApp } = await createAuthTestApp()
+    const response = await request(authApp).get('/api/me/plan')
+
+    assert.equal(response.status, 401)
   })
 })

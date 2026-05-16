@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { Badge } from '../components/Badge'
 import { useCatalog } from '../lib/catalogContext'
-import { buildLocalCourseFlowGraph } from '../lib/courseGraph'
+import { buildPrerequisitePathGraph } from '../lib/courseGraph'
 import { getCourseAvailability } from '../lib/courseAvailability'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
 import { getEffectiveCompletedCourses } from '../lib/studentRecords'
@@ -65,7 +65,7 @@ function getAverageNeighborIndex(
   courseCode: string,
   neighborCodes: string[],
   direction: 'incoming' | 'outgoing',
-  graph: ReturnType<typeof buildLocalCourseFlowGraph>,
+  graph: ReturnType<typeof buildPrerequisitePathGraph>,
 ) {
   const neighborIndexes = new Map(neighborCodes.map((neighborCode, index) => [neighborCode, index]))
   const connectedIndexes = graph.edges
@@ -91,7 +91,7 @@ function sortRankByNeighbors(
   courseCodes: string[],
   neighborCodes: string[] | undefined,
   direction: 'incoming' | 'outgoing',
-  graph: ReturnType<typeof buildLocalCourseFlowGraph>,
+  graph: ReturnType<typeof buildPrerequisitePathGraph>,
 ) {
   if (!neighborCodes) {
     return [...courseCodes].sort()
@@ -121,7 +121,7 @@ function sortRankByNeighbors(
 
 function orderGraphRanks(
   nodesByRank: Map<number, string[]>,
-  graph: ReturnType<typeof buildLocalCourseFlowGraph>,
+  graph: ReturnType<typeof buildPrerequisitePathGraph>,
 ) {
   const orderedRanks = [...nodesByRank.keys()].sort((left, right) => left - right)
   const orderedNodesByRank = new Map<number, string[]>(
@@ -161,7 +161,7 @@ function orderGraphRanks(
 }
 
 function getCourseFlowPositions(
-  graph: ReturnType<typeof buildLocalCourseFlowGraph>,
+  graph: ReturnType<typeof buildPrerequisitePathGraph>,
   targetCourseCode: string,
 ) {
   const ranks = new Map<string, number>([[targetCourseCode, 0]])
@@ -180,23 +180,7 @@ function getCourseFlowPositions(
       })
   }
 
-  function visitDependents(courseCode: string, depth: number) {
-    graph.edges
-      .filter((edge) => edge.source === courseCode)
-      .forEach((edge) => {
-        const currentRank = ranks.get(edge.target)
-
-        if (edge.target === targetCourseCode || (currentRank !== undefined && currentRank >= depth)) {
-          return
-        }
-
-        ranks.set(edge.target, depth)
-        visitDependents(edge.target, depth + 1)
-      })
-  }
-
   visitPrerequisites(targetCourseCode, 1)
-  visitDependents(targetCourseCode, 1)
 
   const nodesByRank = new Map<number, string[]>()
 
@@ -251,7 +235,7 @@ export function GraphPage() {
     [currentTerm, plannedTerms],
   )
   const pathGraph = useMemo(
-    () => buildLocalCourseFlowGraph(selectedCourseCode, courses),
+    () => buildPrerequisitePathGraph(selectedCourseCode, courses),
     [courses, selectedCourseCode],
   )
   const nodePositions = useMemo(
@@ -400,7 +384,7 @@ export function GraphPage() {
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Course graph</h1>
         <p className="mt-2 text-slate-600">
-          Shows prerequisite depth 2 and direct next courses.
+          Shows the prerequisite path from foundational courses up to the target course.
         </p>
       </div>
 

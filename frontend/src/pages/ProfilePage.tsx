@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useCatalog } from '../lib/catalogContext'
+import { degrees } from '../data/programs'
 import { loadPlanOnline, savePlanOnline } from '../lib/planApi'
 import { terms } from '../lib/terms'
 import { useStudentStore } from '../stores/useStudentStore'
@@ -30,15 +31,28 @@ export function ProfilePage() {
   const setSelectedProgram = useStudentStore((state) => state.setSelectedProgram)
   const updateUserProfile = useStudentStore((state) => state.updateUserProfile)
   const resetUserProfile = useStudentStore((state) => state.resetUserProfile)
-  const activeProgramId = userProfile.programId ?? selectedProgramId ?? ''
+  const academicSelections = userProfile.academicSelections ?? {}
+  const activeProgramId = academicSelections.majorProgramId ?? userProfile.programId ?? selectedProgramId ?? ''
   const linkedPlanId = userProfile.linkedPlanId
+  const majorPrograms = programs.filter((program) => program.category !== 'minor')
+  const minorPrograms = programs.filter((program) => program.category === 'minor')
 
   const savedPlanProfile: SavedPlanProfile = {
     displayName: userProfile.displayName,
-    programId: userProfile.programId,
+    programId: activeProgramId || userProfile.programId,
+    academicSelections: userProfile.academicSelections,
     startTerm: userProfile.startTerm,
     startYear: userProfile.startYear,
     notes: userProfile.notes,
+  }
+
+  function updateAcademicSelections(updates: NonNullable<SavedPlanProfile['academicSelections']>) {
+    updateUserProfile({
+      academicSelections: {
+        ...academicSelections,
+        ...updates,
+      },
+    })
   }
 
   async function handleSaveProfilePlan() {
@@ -98,7 +112,7 @@ export function ProfilePage() {
 
       <section className="grid gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:grid-cols-3">
         <div>
-          <p className="text-sm font-medium text-slate-500">Completed courses</p>
+          <p className="text-sm font-medium text-slate-500">Taken courses</p>
           <strong className="mt-1 block text-2xl">{completedCourses.length}</strong>
         </div>
         <div>
@@ -123,14 +137,38 @@ export function ProfilePage() {
           </label>
 
           <label className="text-sm font-medium text-slate-700">
-            Program interest
+            Bachelor degree
+            <select
+              className="mt-1 h-11 w-full rounded-xl border border-slate-300 bg-white px-3"
+              value={academicSelections.degreeId ?? ''}
+              onChange={(event) =>
+                updateAcademicSelections({ degreeId: event.target.value || undefined })
+              }
+            >
+              <option value="">No degree selected</option>
+              {degrees.map((degree) => (
+                <option key={degree.id} value={degree.id}>
+                  {degree.name}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="text-sm font-medium text-slate-700">
+            Major program
             <select
               className="mt-1 h-11 w-full rounded-xl border border-slate-300 bg-white px-3"
               value={activeProgramId}
               onChange={(event) => {
                 const programId = event.target.value || undefined
 
-                updateUserProfile({ programId })
+                updateUserProfile({
+                  programId,
+                  academicSelections: {
+                    ...academicSelections,
+                    majorProgramId: programId,
+                  },
+                })
 
                 if (programId) {
                   setSelectedProgram(programId)
@@ -138,7 +176,49 @@ export function ProfilePage() {
               }}
             >
               <option value="">No program selected</option>
-              {programs.map((program) => (
+              {majorPrograms.map((program) => (
+                <option key={program.id} value={program.id}>
+                  {program.name}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="text-sm font-medium text-slate-700">
+            Joint program
+            <select
+              className="mt-1 h-11 w-full rounded-xl border border-slate-300 bg-white px-3"
+              value={academicSelections.jointProgramIds?.[0] ?? ''}
+              onChange={(event) =>
+                updateAcademicSelections({
+                  jointProgramIds: event.target.value ? [event.target.value] : [],
+                })
+              }
+            >
+              <option value="">No joint selected</option>
+              {majorPrograms
+                .filter((program) => program.id !== activeProgramId)
+                .map((program) => (
+                  <option key={program.id} value={program.id}>
+                    {program.name}
+                  </option>
+                ))}
+            </select>
+          </label>
+
+          <label className="text-sm font-medium text-slate-700">
+            Minor
+            <select
+              className="mt-1 h-11 w-full rounded-xl border border-slate-300 bg-white px-3"
+              value={academicSelections.minorProgramIds?.[0] ?? ''}
+              onChange={(event) =>
+                updateAcademicSelections({
+                  minorProgramIds: event.target.value ? [event.target.value] : [],
+                })
+              }
+            >
+              <option value="">No minor selected</option>
+              {minorPrograms.map((program) => (
                 <option key={program.id} value={program.id}>
                   {program.name}
                 </option>
@@ -243,4 +323,3 @@ export function ProfilePage() {
     </div>
   )
 }
-

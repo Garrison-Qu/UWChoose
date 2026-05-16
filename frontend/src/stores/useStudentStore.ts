@@ -211,17 +211,40 @@ export const useStudentStore = create<StudentState>()(
         }),
 
       updateCompletedCourse: (courseCode, updates) =>
-        set((state) => ({
-          completedCourses: state.completedCourses.map((completedCourse) =>
-            normalizeCourseCode(completedCourse.courseCode) === normalizeCourseCode(courseCode)
-              ? {
-                  ...completedCourse,
-                  ...updates,
-                  courseCode: normalizeCourseCode(updates.courseCode ?? completedCourse.courseCode),
-                }
-              : completedCourse,
-          ),
-        })),
+        set((state) => {
+          const normalizedCode = normalizeCourseCode(courseCode)
+          const existingCourse = state.completedCourses.find(
+            (completedCourse) => normalizeCourseCode(completedCourse.courseCode) === normalizedCode,
+          )
+
+          if (!existingCourse) {
+            return state
+          }
+
+          const nextCourse = {
+            ...existingCourse,
+            ...updates,
+            courseCode: normalizeCourseCode(updates.courseCode ?? existingCourse.courseCode),
+          }
+          const plannerWithoutOldCourse = removeCompletedCourseFromPlanner(
+            state.plannedTerms,
+            existingCourse,
+            state.currentTerm,
+          )
+
+          return {
+            completedCourses: state.completedCourses.map((completedCourse) =>
+              normalizeCourseCode(completedCourse.courseCode) === normalizedCode
+                ? nextCourse
+                : completedCourse,
+            ),
+            plannedTerms: addCompletedCourseToPlanner(
+              plannerWithoutOldCourse,
+              nextCourse,
+              state.currentTerm,
+            ),
+          }
+        }),
 
       addPrerequisiteOverride: (courseCode) =>
         set((state) => {
