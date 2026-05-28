@@ -2,6 +2,24 @@
 
 UWChoose is a course planning app for University of Waterloo Math students. It helps students search courses, understand prerequisites, record completed courses through the planner, check course eligibility, track a sample program, and plan future terms. The frontend still stores student plans in the browser, with optional backend share-code save/load for planner backups.
 
+## Contributions
+
+- **@EricZzzz-sleep**
+  - Designed and implemented key frontend components (UI/UX structure, layout, and user interaction flow)
+  - Contributed to feature development and iterative improvements through code reviews and discussions
+  - Assisted in debugging, refactoring, and improving overall code quality
+
+- **@Garrison_Qu**
+  - Developed core backend logic and main system functionality
+  - Integrated APIs and handled data processing
+  - Led implementation of main application features
+  - Participated in system design decisions and product direction
+
+## Workflow
+- Feature-based development using Git branches
+- Continuous collaboration through pull requests and code reviews
+- Iterative improvements driven by feedback and testing
+
 ## Live Demo
 
 Not deployed yet.
