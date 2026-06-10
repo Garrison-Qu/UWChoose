@@ -22,8 +22,11 @@ export type CurrentTerm = {
 export type AcademicSelections = {
   degreeId?: string
   majorProgramId?: string
+  majorProgramIds?: string[]
   jointProgramIds?: string[]
   minorProgramIds?: string[]
+  specializationProgramIds?: string[]
+  optionProgramIds?: string[]
 }
 
 export type UserProfile = {

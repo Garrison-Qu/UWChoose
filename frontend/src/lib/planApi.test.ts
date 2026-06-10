@@ -6,7 +6,7 @@ const plan: StudentPlanBackup = {
   completedCourses: [{ courseCode: 'MATH135', termTaken: 'Fall 2024' }],
   plannedTerms: [],
   prerequisiteOverrides: [],
-  selectedProgramId: 'pure-math',
+  selectedProgramId: 'pure-mathematics-bachelor-of-mathematics-honours',
   currentTerm: { term: 'Winter', year: 2026 },
 }
 
@@ -15,7 +15,7 @@ const savedPlan = {
   plan,
   profile: {
     displayName: 'Alex',
-    programId: 'pure-math',
+    programId: 'pure-mathematics-bachelor-of-mathematics-honours',
   },
   createdAt: '2026-01-01T00:00:00.000Z',
   updatedAt: '2026-01-01T00:00:00.000Z',
@@ -44,7 +44,7 @@ describe('plan API client', () => {
 
   it('saves profile metadata with a plan', async () => {
     const fetcher = successfulFetch()
-    const profile = { displayName: 'Alex', programId: 'pure-math' }
+    const profile = { displayName: 'Alex', programId: 'pure-mathematics-bachelor-of-mathematics-honours' }
     const result = await savePlanOnline(plan, profile, fetcher as unknown as typeof fetch, 'http://api.test')
 
     expect(result).toEqual(savedPlan)

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { courses } from '../data/courses'
+import { programs } from '../data/programs'
 import {
   buildCourseGraph,
   buildCourseFlowGraph,
@@ -12,6 +13,7 @@ import {
 import { getCourseAvailability } from './courseAvailability'
 import { buildFastestPathToCourse, buildPathExplanationToCourse } from './pathPlanner'
 import { getPlannedTermWarnings } from './plannerWarnings'
+import { getProgramProgress } from './programs'
 import { getBlockedReasons, satisfiesPrerequisite } from './prerequisites'
 import { getEffectiveCompletedCourses } from './studentRecords'
 import { getDerivedTermStatus, sortPlannedTerms } from './terms'
@@ -73,6 +75,47 @@ describe('course code and prerequisite logic', () => {
 
     expect(availability.canTake).toBe(false)
     expect(availability.reasons).toContain('Credit is already covered by antirequisite MATH 147.')
+  })
+})
+
+describe('program catalog logic', () => {
+  it('classifies imported Faculty of Mathematics program types', () => {
+    expect(programs.find((program) => program.id === 'computer-science-bachelor-of-mathematics-honours')?.category).toBe('major')
+    expect(programs.find((program) => program.id === 'computer-science-bachelor-of-mathematics-joint-honours')?.category).toBe('joint')
+    expect(programs.find((program) => program.id === 'computer-science-minor')?.category).toBe('minor')
+    expect(programs.find((program) => program.id === 'bachelor-of-computer-science-degree-requirements')?.category).toBe('degree-requirement')
+    expect(programs.find((program) => program.id === 'business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours')?.category).toBe('double-degree')
+    expect(programs.find((program) => program.category === 'specialization')?.faculty).toBe('Faculty of Mathematics')
+  })
+
+  it('tracks progress for multiple active program types independently', () => {
+    const currentTerm = { term: 'Winter', year: 2027 } as const
+    const completedCourses: CompletedCourse[] = [
+      { courseCode: 'MATH137' },
+      { courseCode: 'MATH138' },
+      { courseCode: 'MATH235' },
+      { courseCode: 'CS136' },
+    ]
+    const selectedPrograms = [
+      'pure-mathematics-bachelor-of-mathematics-honours',
+      'applied-mathematics-minor',
+      'computer-science-minor',
+    ].map((programId) => {
+      const program = programs.find((item) => item.id === programId)
+
+      if (!program) {
+        throw new Error(`Missing test program ${programId}`)
+      }
+
+      return program
+    })
+    const progress = selectedPrograms.map((program) =>
+      getProgramProgress(program, completedCourses, [], currentTerm),
+    )
+
+    expect(progress).toHaveLength(3)
+    expect(progress.every((item) => item.totalRequirementCount > 0)).toBe(true)
+    expect(progress.some((item) => item.completedCourseCount > 0)).toBe(true)
   })
 })
 

@@ -278,6 +278,11 @@ function normalizeAcademicSelections(value: unknown, errors: string[]) {
     'profile.academicSelections.majorProgramId',
     errors,
   )
+  const majorProgramIds = normalizeOptionalStringArray(
+    value.majorProgramIds,
+    'profile.academicSelections.majorProgramIds',
+    errors,
+  )
   const jointProgramIds = normalizeOptionalStringArray(
     value.jointProgramIds,
     'profile.academicSelections.jointProgramIds',
@@ -288,10 +293,23 @@ function normalizeAcademicSelections(value: unknown, errors: string[]) {
     'profile.academicSelections.minorProgramIds',
     errors,
   )
+  const specializationProgramIds = normalizeOptionalStringArray(
+    value.specializationProgramIds,
+    'profile.academicSelections.specializationProgramIds',
+    errors,
+  )
+  const optionProgramIds = normalizeOptionalStringArray(
+    value.optionProgramIds,
+    'profile.academicSelections.optionProgramIds',
+    errors,
+  )
   const referencedProgramIds = [
     majorProgramId,
+    ...(majorProgramIds ?? []),
     ...(jointProgramIds ?? []),
     ...(minorProgramIds ?? []),
+    ...(specializationProgramIds ?? []),
+    ...(optionProgramIds ?? []),
   ].filter((programId): programId is string => Boolean(programId))
 
   referencedProgramIds.forEach((programId) => {
@@ -303,8 +321,11 @@ function normalizeAcademicSelections(value: unknown, errors: string[]) {
   return {
     degreeId,
     majorProgramId,
+    majorProgramIds,
     jointProgramIds,
     minorProgramIds,
+    specializationProgramIds,
+    optionProgramIds,
   }
 }
 

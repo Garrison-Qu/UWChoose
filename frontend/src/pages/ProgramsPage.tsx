@@ -13,6 +13,33 @@ function uniquePrograms(programs: Program[]): Program[] {
   return [...new Map(programs.map((program) => [program.id, program])).values()]
 }
 
+function uniqueIds(ids: Array<string | undefined>): string[] {
+  return [...new Set(ids.filter((id): id is string => Boolean(id)))]
+}
+
+function getSelectedValues(select: HTMLSelectElement): string[] {
+  return [...select.selectedOptions].map((option) => option.value).filter(Boolean)
+}
+
+function getProgramTypeLabel(program: Program): string {
+  switch (program.category) {
+    case 'degree-requirement':
+      return 'Degree requirement'
+    case 'double-degree':
+      return 'Double degree'
+    case 'joint':
+      return 'Joint honours'
+    case 'minor':
+      return 'Minor'
+    case 'option':
+      return 'Option'
+    case 'specialization':
+      return 'Specialization'
+    default:
+      return 'Major'
+  }
+}
+
 export function ProgramsPage() {
   const { programs } = useCatalog()
   const completedCourses = useStudentStore((state) => state.completedCourses)
@@ -23,16 +50,41 @@ export function ProgramsPage() {
   const userProfile = useStudentStore((state) => state.userProfile)
   const updateUserProfile = useStudentStore((state) => state.updateUserProfile)
   const academicSelections = userProfile.academicSelections ?? {}
-  const majorPrograms = programs.filter((program) => program.category !== 'minor')
+  const majorPrograms = programs.filter(
+    (program) => program.category === 'major' || program.category === 'double-degree',
+  )
+  const jointPrograms = programs.filter((program) => program.category === 'joint')
   const minorPrograms = programs.filter((program) => program.category === 'minor')
-  const activeMajorId = academicSelections.majorProgramId ?? userProfile.programId ?? selectedProgramId ?? programs[0]?.id
+  const specializationPrograms = programs.filter((program) => program.category === 'specialization')
+  const optionPrograms = programs.filter((program) => program.category === 'option')
+  const degreeRequirementPrograms = programs.filter(
+    (program) => program.category === 'degree-requirement',
+  )
+  const activeMajorIds = uniqueIds([
+    ...(academicSelections.majorProgramIds ?? []),
+    academicSelections.majorProgramId,
+    userProfile.programId,
+    selectedProgramId,
+  ])
+  const displayedMajorIds = activeMajorIds.length > 0 ? activeMajorIds : uniqueIds([majorPrograms[0]?.id])
   const activePrograms = uniquePrograms(
     [
-      programs.find((program) => program.id === activeMajorId),
+      ...degreeRequirementPrograms.filter((program) =>
+        academicSelections.degreeId
+          ? program.degreeIds?.includes(academicSelections.degreeId)
+          : false,
+      ),
+      ...displayedMajorIds.map((programId) => programs.find((program) => program.id === programId)),
       ...(academicSelections.jointProgramIds ?? []).map((programId) =>
         programs.find((program) => program.id === programId),
       ),
       ...(academicSelections.minorProgramIds ?? []).map((programId) =>
+        programs.find((program) => program.id === programId),
+      ),
+      ...(academicSelections.specializationProgramIds ?? []).map((programId) =>
+        programs.find((program) => program.id === programId),
+      ),
+      ...(academicSelections.optionProgramIds ?? []).map((programId) =>
         programs.find((program) => program.id === programId),
       ),
     ].filter((program): program is Program => Boolean(program)),
@@ -105,28 +157,50 @@ export function ProgramsPage() {
         </label>
 
         <label className="text-sm font-medium text-slate-700">
-          Major program
+          Major and double major programs
           <select
-            className="mt-1 h-11 w-full rounded-xl border border-slate-300 bg-white px-3"
-            value={activeMajorId ?? ''}
+            className="mt-1 min-h-32 w-full rounded-xl border border-slate-300 bg-white px-3 py-2"
+            multiple
+            value={displayedMajorIds}
             onChange={(event) => {
-              const programId = event.target.value || undefined
+              const programIds = getSelectedValues(event.currentTarget)
+              const primaryProgramId = programIds[0]
 
               updateUserProfile({
-                programId,
+                programId: primaryProgramId,
                 academicSelections: {
                   ...academicSelections,
-                  majorProgramId: programId,
+                  majorProgramId: primaryProgramId,
+                  majorProgramIds: programIds,
                 },
               })
 
-              if (programId) {
-                setSelectedProgram(programId)
+              if (primaryProgramId) {
+                setSelectedProgram(primaryProgramId)
               }
             }}
           >
-            <option value="">No program selected</option>
             {majorPrograms.map((program) => (
+              <option key={program.id} value={program.id}>
+                {program.name} ({getProgramTypeLabel(program)})
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label className="text-sm font-medium text-slate-700">
+          Joint honours programs
+          <select
+            className="mt-1 min-h-32 w-full rounded-xl border border-slate-300 bg-white px-3 py-2"
+            multiple
+            value={academicSelections.jointProgramIds ?? []}
+            onChange={(event) =>
+              updateAcademicSelections({
+                jointProgramIds: getSelectedValues(event.currentTarget),
+              })
+            }
+          >
+            {jointPrograms.map((program) => (
               <option key={program.id} value={program.id}>
                 {program.name}
               </option>
@@ -135,40 +209,58 @@ export function ProgramsPage() {
         </label>
 
         <label className="text-sm font-medium text-slate-700">
-          Joint program
+          Minors
           <select
-            className="mt-1 h-11 w-full rounded-xl border border-slate-300 bg-white px-3"
-            value={academicSelections.jointProgramIds?.[0] ?? ''}
+            className="mt-1 min-h-32 w-full rounded-xl border border-slate-300 bg-white px-3 py-2"
+            multiple
+            value={academicSelections.minorProgramIds ?? []}
             onChange={(event) =>
               updateAcademicSelections({
-                jointProgramIds: event.target.value ? [event.target.value] : [],
+                minorProgramIds: getSelectedValues(event.currentTarget),
               })
             }
           >
-            <option value="">No joint selected</option>
-            {majorPrograms
-              .filter((program) => program.id !== activeMajorId)
-              .map((program) => (
-                <option key={program.id} value={program.id}>
-                  {program.name}
-                </option>
-              ))}
+            {minorPrograms.map((program) => (
+              <option key={program.id} value={program.id}>
+                {program.name}
+              </option>
+            ))}
           </select>
         </label>
 
         <label className="text-sm font-medium text-slate-700">
-          Minor
+          Specializations
           <select
-            className="mt-1 h-11 w-full rounded-xl border border-slate-300 bg-white px-3"
-            value={academicSelections.minorProgramIds?.[0] ?? ''}
+            className="mt-1 min-h-32 w-full rounded-xl border border-slate-300 bg-white px-3 py-2"
+            multiple
+            value={academicSelections.specializationProgramIds ?? []}
             onChange={(event) =>
               updateAcademicSelections({
-                minorProgramIds: event.target.value ? [event.target.value] : [],
+                specializationProgramIds: getSelectedValues(event.currentTarget),
               })
             }
           >
-            <option value="">No minor selected</option>
-            {minorPrograms.map((program) => (
+            {specializationPrograms.map((program) => (
+              <option key={program.id} value={program.id}>
+                {program.name}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label className="text-sm font-medium text-slate-700">
+          Options
+          <select
+            className="mt-1 min-h-32 w-full rounded-xl border border-slate-300 bg-white px-3 py-2"
+            multiple
+            value={academicSelections.optionProgramIds ?? []}
+            onChange={(event) =>
+              updateAcademicSelections({
+                optionProgramIds: getSelectedValues(event.currentTarget),
+              })
+            }
+          >
+            {optionPrograms.map((program) => (
               <option key={program.id} value={program.id}>
                 {program.name}
               </option>
@@ -185,7 +277,10 @@ export function ProgramsPage() {
             <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-xl font-semibold">{activeProgram.name}</h2>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h2 className="text-xl font-semibold">{activeProgram.name}</h2>
+                    <Badge>{getProgramTypeLabel(activeProgram)}</Badge>
+                  </div>
                   <p className="mt-1 text-slate-600">
                     {progress.completedRequirementCount} complete groups,{' '}
                     {progress.projectedRequirementCount} projected complete groups

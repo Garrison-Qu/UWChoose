@@ -2,9 +2,25 @@ export type Program = {
   id: string
   name: string
   degreeIds?: string[]
-  category?: 'major' | 'joint' | 'minor' | 'degree-requirement'
+  category?: ProgramCategory
+  code?: string
+  credentialType?: string
+  faculty?: string
+  sourcePid?: string
+  sourceId?: string
+  sourceUrl?: string
+  parentProgramCodes?: string[]
   requirements: ProgramRequirement[]
 }
+
+export type ProgramCategory =
+  | 'major'
+  | 'joint'
+  | 'minor'
+  | 'specialization'
+  | 'option'
+  | 'degree-requirement'
+  | 'double-degree'
 
 export type ProgramRequirement = {
   id: string

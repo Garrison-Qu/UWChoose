@@ -47,7 +47,7 @@ const samplePlan: StudentPlanBackup = {
     },
   ],
   prerequisiteOverrides: ['pmath351'],
-  selectedProgramId: 'pure-math',
+  selectedProgramId: 'pure-mathematics-bachelor-of-mathematics-honours',
   currentTerm: {
     term: 'Winter',
     year: 2026,
@@ -155,12 +155,12 @@ describe('read-only API', () => {
 
   it('returns programs and program detail', async () => {
     const list = await request(await serverPromise).get('/api/programs')
-    const detail = await request(await serverPromise).get('/api/programs/pure-math')
+    const detail = await request(await serverPromise).get('/api/programs/pure-mathematics-bachelor-of-mathematics-honours')
 
     assert.equal(list.status, 200)
     assert.equal(Array.isArray(list.body), true)
     assert.equal(detail.status, 200)
-    assert.equal(detail.body.id, 'pure-math')
+    assert.equal(detail.body.id, 'pure-mathematics-bachelor-of-mathematics-honours')
   })
 
   it('returns 404 for a missing program', async () => {
@@ -221,11 +221,17 @@ describe('shareable plan API', () => {
       plan: samplePlan,
       profile: {
         displayName: 'Alex',
-        programId: 'pure-math',
+        programId: 'pure-mathematics-bachelor-of-mathematics-honours',
         academicSelections: {
           degreeId: 'bmath',
-          majorProgramId: 'pure-math',
-          minorProgramIds: ['combinatorics-optimization-minor'],
+          majorProgramId: 'pure-mathematics-bachelor-of-mathematics-honours',
+          majorProgramIds: [
+            'pure-mathematics-bachelor-of-mathematics-honours',
+            'combinatorics-and-optimization-bachelor-of-mathematics-honours',
+          ],
+          minorProgramIds: ['combinatorics-and-optimization-minor'],
+          specializationProgramIds: ['artificial-intelligence-specialization'],
+          optionProgramIds: ['quantum-information-option'],
         },
         startTerm: 'Fall',
         startYear: 2024,
@@ -236,11 +242,17 @@ describe('shareable plan API', () => {
     assert.equal(response.status, 201)
     assert.deepEqual(response.body.profile, {
       displayName: 'Alex',
-      programId: 'pure-math',
+      programId: 'pure-mathematics-bachelor-of-mathematics-honours',
       academicSelections: {
         degreeId: 'bmath',
-        majorProgramId: 'pure-math',
-        minorProgramIds: ['combinatorics-optimization-minor'],
+        majorProgramId: 'pure-mathematics-bachelor-of-mathematics-honours',
+        majorProgramIds: [
+          'pure-mathematics-bachelor-of-mathematics-honours',
+          'combinatorics-and-optimization-bachelor-of-mathematics-honours',
+        ],
+        minorProgramIds: ['combinatorics-and-optimization-minor'],
+        specializationProgramIds: ['artificial-intelligence-specialization'],
+        optionProgramIds: ['quantum-information-option'],
       },
       startTerm: 'Fall',
       startYear: 2024,
@@ -279,7 +291,7 @@ describe('shareable plan API', () => {
       plan: samplePlan,
       profile: {
         displayName: 'Alex',
-        programId: 'pure-math',
+        programId: 'pure-mathematics-bachelor-of-mathematics-honours',
       },
     })
     const updated = await request(planApp).put(`/api/plans/${saved.body.id}`).send({
@@ -290,7 +302,7 @@ describe('shareable plan API', () => {
     assert.equal(updated.status, 200)
     assert.deepEqual(updated.body.profile, {
       displayName: 'Alex',
-      programId: 'pure-math',
+      programId: 'pure-mathematics-bachelor-of-mathematics-honours',
     })
   })
 
@@ -412,17 +424,22 @@ describe('account auth API', () => {
       plan: samplePlan,
       profile: {
         displayName: 'Alex',
-        programId: 'pure-math',
+        programId: 'pure-mathematics-bachelor-of-mathematics-honours',
         academicSelections: {
           degreeId: 'bmath',
-          majorProgramId: 'pure-math',
+          majorProgramId: 'pure-mathematics-bachelor-of-mathematics-honours',
+          majorProgramIds: ['pure-mathematics-bachelor-of-mathematics-honours'],
+          specializationProgramIds: ['artificial-intelligence-specialization'],
         },
       },
     })
 
     assert.equal(saved.status, 200)
     assert.equal(saved.body.plan.completedCourses[0].courseCode, 'MATH135')
-    assert.equal(saved.body.profile.academicSelections.majorProgramId, 'pure-math')
+    assert.equal(saved.body.profile.academicSelections.majorProgramId, 'pure-mathematics-bachelor-of-mathematics-honours')
+    assert.deepEqual(saved.body.profile.academicSelections.specializationProgramIds, [
+      'artificial-intelligence-specialization',
+    ])
 
     await request(authApp).post('/api/auth/signout').set('Cookie', cookies)
 

@@ -277,6 +277,14 @@ cd frontend
 npm run validate:data
 ```
 
+To refresh the Faculty of Mathematics program catalog from the Waterloo 2026-2027
+undergraduate Kuali catalog, run:
+
+```bash
+cd frontend
+npm run import:math-programs
+```
+
 The validator checks:
 
 - Course codes are unique
@@ -290,8 +298,8 @@ The validator checks:
 
 ## Known Limitations
 
-- Course data is a small manually-written sample, not the full Waterloo calendar.
-- Program requirements are sample data, not official degree audits.
+- Course data is a local catalog focused on courses referenced by imported Math program requirements, not the full Waterloo calendar.
+- Program requirements are imported from Waterloo calendar checklist-style program rules where available, not an official degree audit.
 - No user accounts or cloud sync yet.
 - User profile and planner state are stored in browser localStorage unless explicitly saved online.
 - Online planner save/load uses unguessable share codes, not accounts or authenticated privacy.

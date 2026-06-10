@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
+    "import:math-programs": "tsx scripts/importWaterlooMathPrograms.ts",
     "validate:data": "tsx scripts/validateData.ts"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
+    "cheerio": "^1.2.0",
     "eslint": "^10.2.1",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",

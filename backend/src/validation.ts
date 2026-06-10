@@ -78,6 +78,10 @@ export function validateCatalog(courses: Course[], programs: Program[]): string[
     errors.push(`Duplicate course code: ${duplicateCode}.`)
   })
 
+  findDuplicateValues(programs.map((program) => program.id)).forEach((duplicateId) => {
+    errors.push(`Duplicate program id: ${duplicateId}.`)
+  })
+
   courses.forEach((course) => {
     course.termsOffered?.forEach((term) => {
       if (!validTerms.has(term)) {
