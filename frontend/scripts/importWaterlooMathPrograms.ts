@@ -27,6 +27,8 @@ type KualiProgramDetail = KualiProgramSummary & {
   undergraduateCredentialType?: {
     name?: string
   }
+  requirements?: string
+  specializationIsAvailableForStudentsInTheFollowingMajorsRules?: string
 }
 
 type KualiCourseDetail = {
@@ -212,8 +214,27 @@ function parseCourseLinksFromNode($: cheerio.CheerioAPI, node: cheerio.Element):
   return [...links.values()]
 }
 
+function parseProgramCodes(value: string | undefined): string[] | undefined {
+  if (!value) {
+    return undefined
+  }
+
+  const $ = cheerio.load(value)
+  const codes = new Set<string>()
+
+  $('a[href*="#/programs/view/"]').each((_, link) => {
+    const code = $(link).text().replace(/\s+/g, ' ').trim()
+
+    if (code) {
+      codes.add(code)
+    }
+  })
+
+  return codes.size > 0 ? [...codes] : undefined
+}
+
 function parseRequirements(program: KualiProgramDetail, courseLinksByCode: Map<string, CourseLink>): ProgramRequirement[] {
-  const html = program.courseRequirementsNoUnits
+  const html = program.courseRequirementsNoUnits ?? program.requirements
 
   if (!html) {
     return []
@@ -266,6 +287,7 @@ function buildProgram(
     sourcePid: program.pid,
     sourceId: program.id,
     sourceUrl,
+    parentProgramCodes: parseProgramCodes(program.specializationIsAvailableForStudentsInTheFollowingMajorsRules),
     requirements: parseRequirements(program, courseLinksByCode),
   }
 }

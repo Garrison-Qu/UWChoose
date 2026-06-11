@@ -13,6 +13,13 @@ import {
 import { getCourseAvailability } from './courseAvailability'
 import { buildFastestPathToCourse, buildPathExplanationToCourse } from './pathPlanner'
 import { getPlannedTermWarnings } from './plannerWarnings'
+import {
+  cleanUnavailableSelections,
+  getAvailableJointPrograms,
+  getAvailableMinorPrograms,
+  getAvailableSpecializationPrograms,
+  matchesProgramSearch,
+} from './programSelection'
 import { getProgramProgress } from './programs'
 import { getBlockedReasons, satisfiesPrerequisite } from './prerequisites'
 import { getEffectiveCompletedCourses } from './studentRecords'
@@ -86,6 +93,98 @@ describe('program catalog logic', () => {
     expect(programs.find((program) => program.id === 'bachelor-of-computer-science-degree-requirements')?.category).toBe('degree-requirement')
     expect(programs.find((program) => program.id === 'business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours')?.category).toBe('double-degree')
     expect(programs.find((program) => program.category === 'specialization')?.faculty).toBe('Faculty of Mathematics')
+  })
+
+  it('filters programs by typed words across name and code', () => {
+    const computerScience = programs.find(
+      (program) => program.id === 'computer-science-bachelor-of-mathematics-honours',
+    )
+    const actuarialScience = programs.find(
+      (program) => program.id === 'actuarial-science-bachelor-of-mathematics-honours',
+    )
+
+    expect(computerScience).toBeDefined()
+    expect(actuarialScience).toBeDefined()
+    expect(matchesProgramSearch(computerScience!, 'computer bmath')).toBe(true)
+    expect(matchesProgramSearch(computerScience!, 'H-Computer')).toBe(true)
+    expect(matchesProgramSearch(actuarialScience!, 'computer bmath')).toBe(false)
+  })
+
+  it('hides joint honours, minors, and specializations until a major is selected', () => {
+    expect(getAvailableJointPrograms(programs, [])).toEqual([])
+    expect(getAvailableMinorPrograms(programs, [])).toEqual([])
+    expect(getAvailableSpecializationPrograms(programs, [])).toEqual([])
+  })
+
+  it('shows compatible options after selecting a major', () => {
+    const selectedMajorIds = ['computer-science-bachelor-of-mathematics-honours']
+    const jointIds = getAvailableJointPrograms(programs, selectedMajorIds).map((program) => program.id)
+    const minorIds = getAvailableMinorPrograms(programs, selectedMajorIds).map((program) => program.id)
+    const specializationIds = getAvailableSpecializationPrograms(programs, selectedMajorIds).map(
+      (program) => program.id,
+    )
+
+    expect(jointIds).not.toContain('computer-science-bachelor-of-mathematics-joint-honours')
+    expect(minorIds).not.toContain('computer-science-minor')
+    expect(specializationIds).toContain('artificial-intelligence-specialization')
+    expect(specializationIds).toContain('software-engineering-specialization')
+    expect(specializationIds).not.toContain('biology-specialization')
+  })
+
+  it('removes unavailable selections after selected majors change', () => {
+    const cleanedSelections = cleanUnavailableSelections(
+      programs,
+      {
+        majorProgramIds: [
+          'applied-mathematics-bachelor-of-mathematics-honours',
+          'computer-science-bachelor-of-mathematics-honours',
+          'statistics-bachelor-of-mathematics-honours',
+        ],
+        jointProgramIds: ['applied-mathematics-joint-honours', 'statistics-joint-honours'],
+        minorProgramIds: ['applied-mathematics-minor', 'statistics-minor'],
+        specializationProgramIds: ['artificial-intelligence-specialization', 'biology-specialization'],
+      },
+      ['applied-mathematics-bachelor-of-mathematics-honours'],
+    )
+
+    expect(cleanedSelections.majorProgramId).toBe('applied-mathematics-bachelor-of-mathematics-honours')
+    expect(cleanedSelections.majorProgramIds).toEqual([
+      'applied-mathematics-bachelor-of-mathematics-honours',
+    ])
+    expect(cleanedSelections.jointProgramIds).toEqual(['statistics-joint-honours'])
+    expect(cleanedSelections.minorProgramIds).toEqual(['statistics-minor'])
+    expect(cleanedSelections.specializationProgramIds).toEqual(['biology-specialization'])
+  })
+
+  it('caps stale saved program selection arrays', () => {
+    const cleanedSelections = cleanUnavailableSelections(
+      programs,
+      {
+        majorProgramIds: [
+          'computer-science-bachelor-of-mathematics-honours',
+          'statistics-bachelor-of-mathematics-honours',
+          'pure-mathematics-bachelor-of-mathematics-honours',
+        ],
+        jointProgramIds: ['statistics-joint-honours', 'pure-mathematics-joint-honours'],
+        minorProgramIds: ['statistics-minor', 'pure-mathematics-minor'],
+        specializationProgramIds: [
+          'artificial-intelligence-specialization',
+          'software-engineering-specialization',
+        ],
+      },
+      [
+        'computer-science-bachelor-of-mathematics-honours',
+        'statistics-bachelor-of-mathematics-honours',
+        'pure-mathematics-bachelor-of-mathematics-honours',
+      ],
+    )
+
+    expect(cleanedSelections.majorProgramIds).toHaveLength(2)
+    expect(cleanedSelections.majorProgramIds?.[0]).toBe('computer-science-bachelor-of-mathematics-honours')
+    expect(cleanedSelections.majorProgramId).toBe('computer-science-bachelor-of-mathematics-honours')
+    expect(cleanedSelections.jointProgramIds).toHaveLength(1)
+    expect(cleanedSelections.minorProgramIds).toHaveLength(1)
+    expect(cleanedSelections.specializationProgramIds).toHaveLength(1)
   })
 
   it('tracks progress for multiple active program types independently', () => {

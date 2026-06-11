@@ -3,7 +3,7 @@ import { once } from 'node:events'
 import { mkdtemp, readFile } from 'node:fs/promises'
 import type { Server } from 'node:http'
 import { tmpdir } from 'node:os'
-import { join } from 'node:path'
+import { dirname, join } from 'node:path'
 import { after, describe, it } from 'node:test'
 import request from 'supertest'
 import { createApp, getAllowedOriginsFromEnvironment } from './app.ts'
@@ -58,7 +58,14 @@ async function createPlanTestApp() {
   const directory = await mkdtemp(join(tmpdir(), 'uwchoose-plans-'))
   const filePath = join(directory, 'plans.json')
 
-  const testServer = await startTestServer(createApp({ planStore: createFilePlanStore(filePath) }))
+  const testServer = await startTestServer(
+    createApp({
+      planStore: createFilePlanStore(filePath),
+      userStore: createFileUserStore(join(directory, 'users.json')),
+      verificationCodeGenerator: () => '123456',
+      verificationEmailSender: async () => undefined,
+    }),
+  )
 
   return {
     app: testServer,
@@ -66,11 +73,18 @@ async function createPlanTestApp() {
   }
 }
 
-async function createAuthTestApp() {
+async function createAuthTestApp(options: { now?: () => Date } = {}) {
   const directory = await mkdtemp(join(tmpdir(), 'uwchoose-users-'))
   const filePath = join(directory, 'users.json')
 
-  const testServer = await startTestServer(createApp({ userStore: createFileUserStore(filePath) }))
+  const testServer = await startTestServer(
+    createApp({
+      userStore: createFileUserStore(filePath),
+      verificationCodeGenerator: () => '123456',
+      verificationEmailSender: async () => undefined,
+      now: options.now,
+    }),
+  )
 
   return {
     app: testServer,
@@ -86,6 +100,20 @@ function getCookies(response: request.Response) {
   }
 
   return typeof header === 'string' ? [header] : []
+}
+
+async function signInWaterloo(app: Server, email = 'alex@uwaterloo.ca') {
+  const requested = await request(app).post('/api/auth/request-code').send({ email })
+
+  assert.equal(requested.status, 202)
+
+  const verified = await request(app)
+    .post('/api/auth/verify-code')
+    .send({ email, code: '123456' })
+
+  assert.equal(verified.status, 200)
+
+  return getCookies(verified)
 }
 
 describe('catalog validation', () => {
@@ -204,9 +232,22 @@ describe('read-only API', () => {
 })
 
 describe('shareable plan API', () => {
+  it('blocks share-code plan save, load, and update without a session', async () => {
+    const { app: planApp } = await createPlanTestApp()
+
+    const saveResponse = await request(planApp).post('/api/plans').send(samplePlan)
+    const loadResponse = await request(planApp).get('/api/plans/missing')
+    const updateResponse = await request(planApp).put('/api/plans/missing').send(samplePlan)
+
+    assert.equal(saveResponse.status, 401)
+    assert.equal(loadResponse.status, 401)
+    assert.equal(updateResponse.status, 401)
+  })
+
   it('saves a valid plan and returns a share code', async () => {
     const { app: planApp } = await createPlanTestApp()
-    const response = await request(planApp).post('/api/plans').send(samplePlan)
+    const cookies = await signInWaterloo(planApp)
+    const response = await request(planApp).post('/api/plans').set('Cookie', cookies).send(samplePlan)
 
     assert.equal(response.status, 201)
     assert.equal(typeof response.body.id, 'string')
@@ -217,6 +258,7 @@ describe('shareable plan API', () => {
 
   it('saves optional profile metadata with a plan', async () => {
     const { app: planApp } = await createPlanTestApp()
+    const cookies = await signInWaterloo(planApp)
     const response = await request(planApp).post('/api/plans').send({
       plan: samplePlan,
       profile: {
@@ -228,16 +270,27 @@ describe('shareable plan API', () => {
           majorProgramIds: [
             'pure-mathematics-bachelor-of-mathematics-honours',
             'combinatorics-and-optimization-bachelor-of-mathematics-honours',
+            'statistics-bachelor-of-mathematics-honours',
           ],
-          minorProgramIds: ['combinatorics-and-optimization-minor'],
-          specializationProgramIds: ['artificial-intelligence-specialization'],
+          jointProgramIds: [
+            'statistics-joint-honours',
+            'pure-mathematics-joint-honours',
+          ],
+          minorProgramIds: [
+            'combinatorics-and-optimization-minor',
+            'statistics-minor',
+          ],
+          specializationProgramIds: [
+            'artificial-intelligence-specialization',
+            'software-engineering-specialization',
+          ],
           optionProgramIds: ['quantum-information-option'],
         },
         startTerm: 'Fall',
         startYear: 2024,
         notes: 'Interested in analysis.',
       },
-    })
+    }).set('Cookie', cookies)
 
     assert.equal(response.status, 201)
     assert.deepEqual(response.body.profile, {
@@ -250,6 +303,7 @@ describe('shareable plan API', () => {
           'pure-mathematics-bachelor-of-mathematics-honours',
           'combinatorics-and-optimization-bachelor-of-mathematics-honours',
         ],
+        jointProgramIds: ['statistics-joint-honours'],
         minorProgramIds: ['combinatorics-and-optimization-minor'],
         specializationProgramIds: ['artificial-intelligence-specialization'],
         optionProgramIds: ['quantum-information-option'],
@@ -262,8 +316,9 @@ describe('shareable plan API', () => {
 
   it('loads a saved plan by share code', async () => {
     const { app: planApp } = await createPlanTestApp()
-    const saved = await request(planApp).post('/api/plans').send(samplePlan)
-    const loaded = await request(planApp).get(`/api/plans/${saved.body.id}`)
+    const cookies = await signInWaterloo(planApp)
+    const saved = await request(planApp).post('/api/plans').set('Cookie', cookies).send(samplePlan)
+    const loaded = await request(planApp).get(`/api/plans/${saved.body.id}`).set('Cookie', cookies)
 
     assert.equal(loaded.status, 200)
     assert.equal(loaded.body.id, saved.body.id)
@@ -272,12 +327,13 @@ describe('shareable plan API', () => {
 
   it('updates an existing saved plan', async () => {
     const { app: planApp } = await createPlanTestApp()
-    const saved = await request(planApp).post('/api/plans').send(samplePlan)
+    const cookies = await signInWaterloo(planApp)
+    const saved = await request(planApp).post('/api/plans').set('Cookie', cookies).send(samplePlan)
     const updatedPlan: StudentPlanBackup = {
       ...samplePlan,
       completedCourses: [{ courseCode: 'MATH136', termTaken: 'Winter 2025' }],
     }
-    const updated = await request(planApp).put(`/api/plans/${saved.body.id}`).send(updatedPlan)
+    const updated = await request(planApp).put(`/api/plans/${saved.body.id}`).set('Cookie', cookies).send(updatedPlan)
 
     assert.equal(updated.status, 200)
     assert.equal(updated.body.id, saved.body.id)
@@ -287,17 +343,18 @@ describe('shareable plan API', () => {
 
   it('preserves saved profile metadata when updating a plan without profile metadata', async () => {
     const { app: planApp } = await createPlanTestApp()
+    const cookies = await signInWaterloo(planApp)
     const saved = await request(planApp).post('/api/plans').send({
       plan: samplePlan,
       profile: {
         displayName: 'Alex',
         programId: 'pure-mathematics-bachelor-of-mathematics-honours',
       },
-    })
+    }).set('Cookie', cookies)
     const updated = await request(planApp).put(`/api/plans/${saved.body.id}`).send({
       ...samplePlan,
       plannedTerms: [],
-    })
+    }).set('Cookie', cookies)
 
     assert.equal(updated.status, 200)
     assert.deepEqual(updated.body.profile, {
@@ -309,8 +366,9 @@ describe('shareable plan API', () => {
 
   it('returns 404 for unknown saved plans', async () => {
     const { app: planApp } = await createPlanTestApp()
-    const getResponse = await request(planApp).get('/api/plans/missing')
-    const putResponse = await request(planApp).put('/api/plans/missing').send(samplePlan)
+    const cookies = await signInWaterloo(planApp)
+    const getResponse = await request(planApp).get('/api/plans/missing').set('Cookie', cookies)
+    const putResponse = await request(planApp).put('/api/plans/missing').set('Cookie', cookies).send(samplePlan)
 
     assert.equal(getResponse.status, 404)
     assert.equal(getResponse.body.error, 'Plan not found.')
@@ -320,12 +378,13 @@ describe('shareable plan API', () => {
 
   it('rejects malformed plan payloads', async () => {
     const { app: planApp } = await createPlanTestApp()
+    const cookies = await signInWaterloo(planApp)
     const response = await request(planApp).post('/api/plans').send({
       completedCourses: 'MATH135',
       plannedTerms: [],
       prerequisiteOverrides: [],
       currentTerm: { term: 'Autumn', year: 2026 },
-    })
+    }).set('Cookie', cookies)
 
     assert.equal(response.status, 400)
     assert.equal(response.body.error, 'Invalid plan.')
@@ -335,11 +394,12 @@ describe('shareable plan API', () => {
 
   it('rejects unknown course and program references', async () => {
     const { app: planApp } = await createPlanTestApp()
+    const cookies = await signInWaterloo(planApp)
     const response = await request(planApp).post('/api/plans').send({
       ...samplePlan,
       completedCourses: [{ courseCode: 'NOPE101' }],
       selectedProgramId: 'missing-program',
-    })
+    }).set('Cookie', cookies)
 
     assert.equal(response.status, 400)
     assert.match(response.body.details.join(' '), /NOPE101/)
@@ -348,12 +408,13 @@ describe('shareable plan API', () => {
 
   it('rejects unknown profile program references', async () => {
     const { app: planApp } = await createPlanTestApp()
+    const cookies = await signInWaterloo(planApp)
     const response = await request(planApp).post('/api/plans').send({
       plan: samplePlan,
       profile: {
         programId: 'missing-program',
       },
-    })
+    }).set('Cookie', cookies)
 
     assert.equal(response.status, 400)
     assert.match(response.body.details.join(' '), /profile\.programId missing-program/)
@@ -361,9 +422,16 @@ describe('shareable plan API', () => {
 
   it('persists plan data through a new store using the same file', async () => {
     const { app: planApp, filePath } = await createPlanTestApp()
-    const saved = await request(planApp).post('/api/plans').send(samplePlan)
-    const recreatedApp = await startTestServer(createApp({ planStore: createFilePlanStore(filePath) }))
-    const loaded = await request(recreatedApp).get(`/api/plans/${saved.body.id}`)
+    const cookies = await signInWaterloo(planApp)
+    const saved = await request(planApp).post('/api/plans').set('Cookie', cookies).send(samplePlan)
+    const recreatedApp = await startTestServer(createApp({
+      planStore: createFilePlanStore(filePath),
+      userStore: createFileUserStore(join(dirname(filePath), 'users-recreated.json')),
+      verificationCodeGenerator: () => '123456',
+      verificationEmailSender: async () => undefined,
+    }))
+    const recreatedCookies = await signInWaterloo(recreatedApp, 'casey@uwaterloo.ca')
+    const loaded = await request(recreatedApp).get(`/api/plans/${saved.body.id}`).set('Cookie', recreatedCookies)
 
     assert.equal(loaded.status, 200)
     assert.equal(loaded.body.id, saved.body.id)
@@ -390,21 +458,27 @@ describe('shareable plan API', () => {
 })
 
 describe('account auth API', () => {
-  it('signs up, returns the current user, and signs out', async () => {
+  it('sends a code, verifies a Waterloo email, returns the current user, and signs out', async () => {
     const { app: authApp } = await createAuthTestApp()
-    const signup = await request(authApp)
-      .post('/api/auth/signup')
-      .send({ email: 'alex@example.com', password: 'password123', displayName: 'Alex' })
-    const cookies = getCookies(signup)
+    const requested = await request(authApp)
+      .post('/api/auth/request-code')
+      .send({ email: ' Alex@UWaterloo.ca ' })
 
-    assert.equal(signup.status, 201)
-    assert.equal(signup.body.user.email, 'alex@example.com')
-    assert.equal(typeof signup.body.user.avatarUrl, 'string')
+    assert.equal(requested.status, 202)
+
+    const verified = await request(authApp)
+      .post('/api/auth/verify-code')
+      .send({ email: 'alex@uwaterloo.ca', code: '123456' })
+    const cookies = getCookies(verified)
+
+    assert.equal(verified.status, 200)
+    assert.equal(verified.body.user.email, 'alex@uwaterloo.ca')
+    assert.equal(typeof verified.body.user.avatarUrl, 'string')
 
     const me = await request(authApp).get('/api/auth/me').set('Cookie', cookies)
 
     assert.equal(me.status, 200)
-    assert.equal(me.body.user.email, 'alex@example.com')
+    assert.equal(me.body.user.email, 'alex@uwaterloo.ca')
 
     const signout = await request(authApp).post('/api/auth/signout').set('Cookie', cookies)
 
@@ -412,13 +486,45 @@ describe('account auth API', () => {
     assert.equal((await request(authApp).get('/api/auth/me').set('Cookie', cookies)).status, 401)
   })
 
-  it('signs in and persists account-owned plan data', async () => {
-    const { app: authApp, filePath } = await createAuthTestApp()
+  it('rejects non-Waterloo and malformed verification requests', async () => {
+    const { app: authApp } = await createAuthTestApp()
+    const gmail = await request(authApp)
+      .post('/api/auth/request-code')
+      .send({ email: 'alex@gmail.com' })
+    const malformed = await request(authApp)
+      .post('/api/auth/request-code')
+      .send({ email: 'alex' })
 
-    const signup = await request(authApp)
-      .post('/api/auth/signup')
-      .send({ email: 'alex@example.com', password: 'password123', displayName: 'Alex' })
-    const cookies = getCookies(signup)
+    assert.equal(gmail.status, 400)
+    assert.equal(malformed.status, 400)
+  })
+
+  it('rejects invalid and expired verification codes', async () => {
+    let now = new Date('2026-01-01T00:00:00.000Z')
+    const { app: authApp } = await createAuthTestApp({ now: () => now })
+
+    await request(authApp)
+      .post('/api/auth/request-code')
+      .send({ email: 'alex@uwaterloo.ca' })
+
+    const invalid = await request(authApp)
+      .post('/api/auth/verify-code')
+      .send({ email: 'alex@uwaterloo.ca', code: '000000' })
+
+    assert.equal(invalid.status, 401)
+
+    now = new Date('2026-01-01T00:11:00.000Z')
+
+    const expired = await request(authApp)
+      .post('/api/auth/verify-code')
+      .send({ email: 'alex@uwaterloo.ca', code: '123456' })
+
+    assert.equal(expired.status, 401)
+  })
+
+  it('verifies again and persists account-owned plan data', async () => {
+    const { app: authApp, filePath } = await createAuthTestApp()
+    const cookies = await signInWaterloo(authApp)
 
     const saved = await request(authApp).put('/api/me/plan').set('Cookie', cookies).send({
       plan: samplePlan,
@@ -443,13 +549,14 @@ describe('account auth API', () => {
 
     await request(authApp).post('/api/auth/signout').set('Cookie', cookies)
 
-    const recreatedApp = await startTestServer(createApp({ userStore: createFileUserStore(filePath) }))
-    const signin = await request(recreatedApp)
-      .post('/api/auth/signin')
-      .send({ email: 'alex@example.com', password: 'password123' })
-    const signinCookies = getCookies(signin)
-
-    assert.equal(signin.status, 200)
+    const recreatedApp = await startTestServer(
+      createApp({
+        userStore: createFileUserStore(filePath),
+        verificationCodeGenerator: () => '123456',
+        verificationEmailSender: async () => undefined,
+      }),
+    )
+    const signinCookies = await signInWaterloo(recreatedApp)
 
     const loaded = await request(recreatedApp).get('/api/me/plan').set('Cookie', signinCookies)
 

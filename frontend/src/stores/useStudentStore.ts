@@ -1,7 +1,5 @@
 import { create } from 'zustand'
-import { createJSONStorage, persist } from 'zustand/middleware'
 import { normalizeCourseCode } from '../lib/courseCodes'
-import { studentStorageKey } from '../lib/storage'
 import { getCurrentAcademicTerm } from '../lib/terms'
 import type {
   CompletedCourse,
@@ -150,9 +148,7 @@ type StudentState = {
   resetPlan: () => void
 }
 
-export const useStudentStore = create<StudentState>()(
-  persist(
-    (set, get) => ({
+export const useStudentStore = create<StudentState>()((set, get) => ({
       completedCourses: [] as CompletedCourse[],
       plannedTerms: [] as PlannedTerm[],
       prerequisiteOverrides: [] as string[],
@@ -418,22 +414,4 @@ export const useStudentStore = create<StudentState>()(
           selectedProgramId: undefined,
           currentTerm: { ...defaultCurrentTerm },
         }),
-    }),
-    {
-      name: studentStorageKey,
-      storage: createJSONStorage(() => localStorage),
-      partialize: (state) => ({
-        completedCourses: state.completedCourses,
-        plannedTerms: state.plannedTerms,
-        prerequisiteOverrides: state.prerequisiteOverrides,
-        selectedProgramId: state.selectedProgramId,
-        userProfile: state.userProfile,
-      }),
-      merge: (persistedState, currentState) => ({
-        ...currentState,
-        ...(persistedState as Partial<StudentState>),
-        currentTerm: getCurrentAcademicTerm(),
-      }),
-    },
-  ),
-)
+    }))

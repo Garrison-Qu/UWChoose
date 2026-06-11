@@ -662,6 +662,11 @@ export const programs: Program[] = [
     sourcePid: "H1vJJCCj3",
     sourceId: "67c9ba3a5d31977c88e4730c",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/H1vJJCCj3",
+    parentProgramCodes: [
+      "H-BBA & BCS Double Degree",
+      "H-Computer Science (BCS)",
+      "H-Computer Science (BMath)"
+    ],
     requirements: [
       {
         id: "artificial-intelligence-specialization-1-complete-all-the-following-cs486-introduction-to-artificial-intelligen",
@@ -762,6 +767,11 @@ export const programs: Program[] = [
     sourcePid: "r17wJ10As2",
     sourceId: "68ac696420d1e60538f3c303",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/r17wJ10As2",
+    parentProgramCodes: [
+      "H-BBA & BCS Double Degree",
+      "H-Computer Science (BCS)",
+      "H-Computer Science (BMath)"
+    ],
     requirements: [
       {
         id: "bioinformatics-specialization-1-complete-all-the-following-biol130-introductory-cell-biology-0-50-biol",
@@ -796,6 +806,9 @@ export const programs: Program[] = [
     sourcePid: "S1eBJkCRo3",
     sourceId: "69b1a17cb6dd38094e8eb761",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/S1eBJkCRo3",
+    parentProgramCodes: [
+      "H-Applied Mathematics"
+    ],
     requirements: [
       {
         id: "biology-specialization-1-choose-any-of-the-following-amath382-computational-modelling-of-cellul",
@@ -1179,6 +1192,9 @@ export const programs: Program[] = [
     sourcePid: "rJAkJA0s2",
     sourceId: "67ffece736ebf6dd81fc0703",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/rJAkJA0s2",
+    parentProgramCodes: [
+      "H-Mathematical Studies"
+    ],
     requirements: [
       {
         id: "business-specialization-1-complete-all-the-following-afm101-introduction-to-financial-accounting",
@@ -1312,6 +1328,10 @@ export const programs: Program[] = [
     sourcePid: "S1eD1J0Aj2",
     sourceId: "66e8688ffbd7ee3c7d8e1454",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/S1eD1J0Aj2",
+    parentProgramCodes: [
+      "H-Computer Science (BCS)",
+      "H-Computer Science (BMath)"
+    ],
     requirements: [
       {
         id: "business-specialization-1-complete-2-of-the-following-actsc447-numerical-computation-for-financi",
@@ -1338,7 +1358,64 @@ export const programs: Program[] = [
     sourcePid: "Sy3IKxJuA",
     sourceId: "69b1a1800cdb8bf7a716064e",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/Sy3IKxJuA",
-    requirements: []
+    parentProgramCodes: [
+      "H-Applied Mathematics"
+    ],
+    requirements: [
+      {
+        id: "climate-and-sustainability-specialization-1-complete-all-the-following-amath361-continuum-mechanics-0-50-amath362-",
+        name: "Complete all the following: AMATH361 - Continuum Mechanics (0.50)AMATH362 - Mathematics of Climate Change (0.50)",
+        category: "program",
+        courses: [
+          "AMATH361",
+          "AMATH362"
+        ],
+        type: "allOf"
+      },
+      {
+        id: "climate-and-sustainability-specialization-2-complete-1-of-the-following-amath442-computational-methods-for-partial",
+        name: "Complete 1 of the following: AMATH442 - Computational Methods for Partial Differential Equations (0.50)AMATH463 - Fluid Mechanics (0.50)",
+        category: "program",
+        courses: [
+          "AMATH442",
+          "AMATH463"
+        ],
+        type: "chooseN",
+        requiredCount: 1
+      },
+      {
+        id: "climate-and-sustainability-specialization-3-complete-3-of-the-following-amath462-introduction-to-mathematics-of-cl",
+        name: "Complete 3 of the following: AMATH462 - Introduction to Mathematics of Climate Modelling (0.50)GDS271 - Earth from Space Using Remote Sensing (0.50)GDS281 - Introduction to Geograp",
+        category: "program",
+        courses: [
+          "AMATH462",
+          "GDS271",
+          "GDS281",
+          "GEOG102",
+          "GEOG205",
+          "GEOG209",
+          "GEOG303",
+          "GEOG305",
+          "GEOG307",
+          "GEOG320",
+          "GEOG408",
+          "PLAN281"
+        ],
+        type: "chooseN",
+        requiredCount: 3
+      },
+      {
+        id: "climate-and-sustainability-specialization-4-complete-1-of-the-following-geog207-climate-change-fundamentals-0-50-s",
+        name: "Complete 1 of the following: GEOG207 - Climate Change Fundamentals (0.50)SCI205 - Climate Change Fundamentals (0.50)",
+        category: "program",
+        courses: [
+          "GEOG207",
+          "SCI205"
+        ],
+        type: "chooseN",
+        requiredCount: 1
+      }
+    ]
   },
   {
     id: "combinatorics-and-optimization-bachelor-of-mathematics-honours",
@@ -1701,7 +1778,110 @@ export const programs: Program[] = [
     sourcePid: "H1D1JR0s2",
     sourceId: "67129f24485892f8485d9927",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/H1D1JR0s2",
-    requirements: []
+    requirements: [
+      {
+        id: "combinatorics-and-optimization-minor-1-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
+        category: "program",
+        courses: [
+          "CO250",
+          "CO255"
+        ],
+        type: "chooseN",
+        requiredCount: 1
+      },
+      {
+        id: "combinatorics-and-optimization-minor-2-complete-3-of-the-following-co330-combinatorial-enumeration-0-50-co331",
+        name: "Complete 3 of the following: CO330 - Combinatorial Enumeration (0.50)CO331 - Coding Theory (0.50)CO342 - Introduction to Graph Theory (0.50)CO351 - Network Flow Theory (0.50)CO353 ",
+        category: "program",
+        courses: [
+          "CO330",
+          "CO331",
+          "CO342",
+          "CO351",
+          "CO353",
+          "CO367",
+          "CO370",
+          "CO372",
+          "CO430",
+          "CO431",
+          "CO432",
+          "CO434",
+          "CO439",
+          "CO440",
+          "CO442",
+          "CO444",
+          "CO446",
+          "CO450",
+          "CO452",
+          "CO454",
+          "CO456",
+          "CO459",
+          "CO463",
+          "CO466",
+          "CO471",
+          "CO481",
+          "CO485",
+          "CO486",
+          "CO487",
+          "CS467",
+          "PHYS467"
+        ],
+        type: "chooseN",
+        requiredCount: 3
+      },
+      {
+        id: "combinatorics-and-optimization-minor-3-complete-1-of-the-following-math106-applied-linear-algebra-1-0-50-math",
+        name: "Complete 1 of the following: MATH106 - Applied Linear Algebra 1 (0.50)MATH114 - Linear Algebra for Science (0.50)MATH115 - Linear Algebra for Engineering (0.50)MATH136 - Linear Alg",
+        category: "program",
+        courses: [
+          "MATH106",
+          "MATH114",
+          "MATH115",
+          "MATH136",
+          "MATH146"
+        ],
+        type: "chooseN",
+        requiredCount: 1
+      },
+      {
+        id: "combinatorics-and-optimization-minor-4-complete-1-of-the-following-math104-introductory-calculus-for-arts-and",
+        name: "Complete 1 of the following: MATH104 - Introductory Calculus for Arts and Social Science (0.50)MATH116 - Calculus 1 for Engineering (0.50)MATH117 - Calculus 1 for Engineering (0.50",
+        category: "program",
+        courses: [
+          "MATH104",
+          "MATH116",
+          "MATH117",
+          "MATH127",
+          "MATH137",
+          "MATH147"
+        ],
+        type: "chooseN",
+        requiredCount: 1
+      },
+      {
+        id: "combinatorics-and-optimization-minor-5-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
+        name: "Complete 1 of the following: MATH135 - Algebra for Honours Mathematics (0.50)MATH145 - Algebra (Advanced Level) (0.50)",
+        category: "program",
+        courses: [
+          "MATH135",
+          "MATH145"
+        ],
+        type: "chooseN",
+        requiredCount: 1
+      },
+      {
+        id: "combinatorics-and-optimization-minor-6-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
+        category: "program",
+        courses: [
+          "MATH239",
+          "MATH249"
+        ],
+        type: "chooseN",
+        requiredCount: 1
+      }
+    ]
   },
   {
     id: "computational-fine-art-specialization",
@@ -1713,6 +1893,11 @@ export const programs: Program[] = [
     sourcePid: "SkLD1kC0jh",
     sourceId: "678174c592ec46221922f2ad",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/SkLD1kC0jh",
+    parentProgramCodes: [
+      "H-BBA & BCS Double Degree",
+      "H-Computer Science (BCS)",
+      "H-Computer Science (BMath)"
+    ],
     requirements: [
       {
         id: "computational-fine-art-specialization-1-complete-all-the-following-cs349-user-interfaces-0-50-cs488-introducti",
@@ -2853,6 +3038,9 @@ export const programs: Program[] = [
     sourcePid: "S1-CkkAAih",
     sourceId: "64d14ee5173c99cef4fed4ec",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/S1-CkkAAih",
+    parentProgramCodes: [
+      "H-Mathematics/Chartered Professional Accountancy"
+    ],
     requirements: [
       {
         id: "data-analytics-specialization-1-complete-all-the-following-cs234-data-types-and-structures-0-50-cs338-",
@@ -3370,6 +3558,11 @@ export const programs: Program[] = [
     sourcePid: "H1Svy1R0jh",
     sourceId: "65f909d630e200406e55d799",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/H1Svy1R0jh",
+    parentProgramCodes: [
+      "H-BBA & BCS Double Degree",
+      "H-Computer Science (BCS)",
+      "H-Computer Science (BMath)"
+    ],
     requirements: [
       {
         id: "digital-hardware-specialization-1-complete-all-the-following-ece124-digital-circuits-and-systems-0-50-ec",
@@ -3441,6 +3634,9 @@ export const programs: Program[] = [
     sourcePid: "ByQH1y0Asn",
     sourceId: "69b1a185306256e3f13d535d",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/ByQH1y0Asn",
+    parentProgramCodes: [
+      "H-Applied Mathematics"
+    ],
     requirements: [
       {
         id: "economics-specialization-1-choose-any-of-the-following-co250-introduction-to-optimization-0-50-co",
@@ -3464,6 +3660,9 @@ export const programs: Program[] = [
     sourcePid: "HkzBkkCCoh",
     sourceId: "69b1a18a8197cc8370b6a13b",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/HkzBkkCCoh",
+    parentProgramCodes: [
+      "H-Applied Mathematics"
+    ],
     requirements: [
       {
         id: "engineering-specialization-1-complete-all-the-following-amath271-introduction-to-theoretical-mechan",
@@ -3610,6 +3809,9 @@ export const programs: Program[] = [
     sourcePid: "SJSk100i2",
     sourceId: "6a2064b248e654dda75797e6",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/SJSk100i2",
+    parentProgramCodes: [
+      "H-Actuarial Science"
+    ],
     requirements: [
       {
         id: "finance-specialization-1-complete-all-the-following-actsc445-quantitative-enterprise-risk-manag",
@@ -3668,6 +3870,9 @@ export const programs: Program[] = [
     sourcePid: "BkIAkyRRs3",
     sourceId: "64d14ee64fbac12e6f3b3f20",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/BkIAkyRRs3",
+    parentProgramCodes: [
+      "H-Mathematics/Chartered Professional Accountancy"
+    ],
     requirements: [
       {
         id: "finance-specialization-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
@@ -3707,6 +3912,11 @@ export const programs: Program[] = [
     sourcePid: "HkTtesszA",
     sourceId: "663e208416a004a757b58183",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/HkTtesszA",
+    parentProgramCodes: [
+      "H-Computer Science (BCS)",
+      "H-Computer Science (BMath)",
+      "H-BBA & BCS Double Degree"
+    ],
     requirements: [
       {
         id: "game-design-specialization-1-complete-all-the-following-dac204-introduction-to-game-design-0-50-dac",
@@ -3787,6 +3997,11 @@ export const programs: Program[] = [
     sourcePid: "rkP1y00ih",
     sourceId: "678174f412708a3fc23e7771",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/rkP1y00ih",
+    parentProgramCodes: [
+      "H-BBA & BCS Double Degree",
+      "H-Computer Science (BCS)",
+      "H-Computer Science (BMath)"
+    ],
     requirements: [
       {
         id: "human-computer-interaction-specialization-1-complete-all-the-following-cs349-user-interfaces-0-50-cs449-human-comp",
@@ -5753,6 +5968,9 @@ export const programs: Program[] = [
     sourcePid: "B1SkyR0j3",
     sourceId: "69b1a190306256e3f13d53fd",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/B1SkyR0j3",
+    parentProgramCodes: [
+      "H-Applied Mathematics"
+    ],
     requirements: [
       {
         id: "physics-specialization-1-choose-any-of-the-following-amath271-introduction-to-theoretical-mecha",
@@ -5782,6 +6000,9 @@ export const programs: Program[] = [
     sourcePid: "S1WH1yA0i3",
     sourceId: "68a49c2b5e3de158ebb2051d",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/S1WH1yA0i3",
+    parentProgramCodes: [
+      "H-Actuarial Science"
+    ],
     requirements: [
       {
         id: "predictive-analytics-specialization-1-complete-all-the-following-actsc456-statistical-learning-in-actuarial-",
@@ -6175,6 +6396,11 @@ export const programs: Program[] = [
     sourcePid: "S1v11A0sn",
     sourceId: "69973b335e731ab599536efb",
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/S1v11A0sn",
+    parentProgramCodes: [
+      "H-BBA & BCS Double Degree",
+      "H-Computer Science (BCS)",
+      "H-Computer Science (BMath)"
+    ],
     requirements: [
       {
         id: "software-engineering-specialization-1-complete-1-of-the-following-bet360-design-frameworks-for-social-ventur",

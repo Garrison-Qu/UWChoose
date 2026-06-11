@@ -36,6 +36,7 @@ describe('plan API client', () => {
 
     expect(result).toEqual(savedPlan)
     expect(fetcher).toHaveBeenCalledWith('http://api.test/api/plans', {
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',
       body: JSON.stringify(plan),
@@ -49,6 +50,7 @@ describe('plan API client', () => {
 
     expect(result).toEqual(savedPlan)
     expect(fetcher).toHaveBeenCalledWith('http://api.test/api/plans', {
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',
       body: JSON.stringify({ plan, profile }),
@@ -61,6 +63,7 @@ describe('plan API client', () => {
 
     expect(result).toEqual(savedPlan)
     expect(fetcher).toHaveBeenCalledWith('http://api.test/api/plans/share%20code', {
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       method: 'GET',
     })
@@ -72,6 +75,7 @@ describe('plan API client', () => {
 
     expect(result).toEqual(savedPlan)
     expect(fetcher).toHaveBeenCalledWith('http://api.test/api/plans/share-code', {
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       method: 'PUT',
       body: JSON.stringify(plan),

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { loadPlanOnline, savePlanOnline, updatePlanOnline } from '../lib/planApi'
+import { useAuthStore } from '../stores/useAuthStore'
 import { useStudentStore } from '../stores/useStudentStore'
 
 export function PlanBackupPanel() {
@@ -10,6 +11,7 @@ export function PlanBackupPanel() {
   const exportPlan = useStudentStore((state) => state.exportPlan)
   const importPlan = useStudentStore((state) => state.importPlan)
   const resetPlan = useStudentStore((state) => state.resetPlan)
+  const user = useAuthStore((state) => state.user)
 
   function handleExport() {
     setMessage('Use the print dialog to save this planner as a PDF.')
@@ -29,6 +31,11 @@ export function PlanBackupPanel() {
   }
 
   async function handleSaveOnline() {
+    if (!user) {
+      setMessage('Sign in with your Waterloo email to save plans online.')
+      return
+    }
+
     setIsSyncing(true)
     setMessage(undefined)
 
@@ -50,6 +57,11 @@ export function PlanBackupPanel() {
       return
     }
 
+    if (!user) {
+      setMessage('Sign in with your Waterloo email to update saved plans.')
+      return
+    }
+
     setIsSyncing(true)
     setMessage(undefined)
 
@@ -68,6 +80,11 @@ export function PlanBackupPanel() {
 
     if (!shareCode) {
       setMessage('Enter a share code to load a saved plan.')
+      return
+    }
+
+    if (!user) {
+      setMessage('Sign in with your Waterloo email to load saved plans.')
       return
     }
 
@@ -94,14 +111,14 @@ export function PlanBackupPanel() {
         <div>
           <h2 className="font-semibold">Planner export</h2>
           <p className="mt-1 text-sm text-slate-600">
-            Export the visible planner, save a share code, or reset your local browser plan.
+            Export the visible planner, save a share code, or reset your temporary plan.
           </p>
         </div>
 
         <div className="flex flex-wrap gap-2">
           <button
             className="rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-60"
-            disabled={isSyncing}
+            disabled={isSyncing || !user}
             type="button"
             onClick={handleSaveOnline}
           >
@@ -110,7 +127,7 @@ export function PlanBackupPanel() {
           {savedPlanId ? (
             <button
               className="rounded-xl border border-emerald-200 px-4 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50 disabled:cursor-not-allowed disabled:opacity-60"
-              disabled={isSyncing}
+              disabled={isSyncing || !user}
               type="button"
               onClick={handleUpdateOnline}
             >
@@ -153,12 +170,18 @@ export function PlanBackupPanel() {
         />
         <button
           className="h-11 rounded-xl border border-slate-300 px-4 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
-          disabled={isSyncing}
+          disabled={isSyncing || !user}
           type="submit"
         >
           Load code
         </button>
       </form>
+
+      {!user ? (
+        <p className="mt-3 text-sm text-slate-600">
+          Signed-out changes are temporary. Sign in with a Waterloo email to save or load plans online.
+        </p>
+      ) : null}
 
       {message ? (
         <p className="mt-3 text-sm text-slate-600" role="status">

@@ -4,6 +4,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 import logo from '../assets/uwchoose_logo.png'
 import { getAccountPlan, saveAccountPlan } from '../lib/authApi'
 import { useCatalog } from '../lib/catalogContext'
+import { clearLegacyStudentStorage } from '../lib/storage'
 import { useAuthStore } from '../stores/useAuthStore'
 import { useStudentStore } from '../stores/useStudentStore'
 
@@ -20,27 +21,30 @@ function AuthControls() {
   const user = useAuthStore((state) => state.user)
   const isHydrating = useAuthStore((state) => state.isHydrating)
   const message = useAuthStore((state) => state.message)
-  const signIn = useAuthStore((state) => state.signIn)
-  const signUp = useAuthStore((state) => state.signUp)
+  const requestVerificationCode = useAuthStore((state) => state.requestVerificationCode)
+  const verifyVerificationCode = useAuthStore((state) => state.verifyVerificationCode)
   const signOut = useAuthStore((state) => state.signOut)
   const clearMessage = useAuthStore((state) => state.clearMessage)
-  const [mode, setMode] = useState<'signin' | 'signup'>()
+  const resetPlan = useStudentStore((state) => state.resetPlan)
+  const resetUserProfile = useStudentStore((state) => state.resetUserProfile)
+  const [isOpen, setIsOpen] = useState(false)
+  const [hasRequestedCode, setHasRequestedCode] = useState(false)
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [displayName, setDisplayName] = useState('')
+  const [code, setCode] = useState('')
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
     try {
-      if (mode === 'signup') {
-        await signUp(email, password, displayName)
+      if (hasRequestedCode) {
+        await verifyVerificationCode(email, code)
+        setIsOpen(false)
+        setHasRequestedCode(false)
+        setCode('')
       } else {
-        await signIn(email, password)
+        await requestVerificationCode(email)
+        setHasRequestedCode(true)
       }
-
-      setMode(undefined)
-      setPassword('')
     } catch {
       // Message is stored in auth state for display.
     }
@@ -60,7 +64,10 @@ function AuthControls() {
           className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
           type="button"
           onClick={() => {
-            void signOut()
+            void signOut().finally(() => {
+              resetPlan()
+              resetUserProfile()
+            })
           }}
         >
           Sign out
@@ -76,58 +83,47 @@ function AuthControls() {
         type="button"
         onClick={() => {
           clearMessage()
-          setMode('signin')
+          setIsOpen(true)
         }}
       >
         Sign in
       </button>
-      <button
-        className="rounded-xl bg-slate-200 px-3 py-2 text-sm font-semibold text-slate-950 hover:bg-slate-300"
-        type="button"
-        onClick={() => {
-          clearMessage()
-          setMode('signup')
-        }}
-      >
-        Sign up
-      </button>
 
-      {mode ? (
+      {isOpen ? (
         <form
           className="absolute right-0 top-12 z-20 grid w-[min(20rem,calc(100vw-2rem))] gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-xl"
           onSubmit={(event) => {
             void handleSubmit(event)
           }}
         >
-          <h2 className="font-semibold">{mode === 'signup' ? 'Create account' : 'Sign in'}</h2>
-          {mode === 'signup' ? (
-            <input
-              className="h-10 rounded-xl border border-slate-300 px-3 text-sm"
-              placeholder="Display name"
-              value={displayName}
-              onChange={(event) => setDisplayName(event.target.value)}
-            />
-          ) : null}
+          <h2 className="font-semibold">Waterloo sign in</h2>
           <input
             className="h-10 rounded-xl border border-slate-300 px-3 text-sm"
-            placeholder="Email"
+            placeholder="username@uwaterloo.ca"
             type="email"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={(event) => {
+              setEmail(event.target.value)
+              setHasRequestedCode(false)
+              setCode('')
+            }}
           />
-          <input
-            className="h-10 rounded-xl border border-slate-300 px-3 text-sm"
-            minLength={8}
-            placeholder="Password"
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
+          {hasRequestedCode ? (
+            <input
+              className="h-10 rounded-xl border border-slate-300 px-3 text-sm"
+              inputMode="numeric"
+              maxLength={6}
+              pattern="[0-9]{6}"
+              placeholder="6-digit code"
+              value={code}
+              onChange={(event) => setCode(event.target.value.replace(/\D/g, '').slice(0, 6))}
+            />
+          ) : null}
           <div className="flex justify-end gap-2">
             <button
               className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
               type="button"
-              onClick={() => setMode(undefined)}
+              onClick={() => setIsOpen(false)}
             >
               Cancel
             </button>
@@ -135,7 +131,7 @@ function AuthControls() {
               className="rounded-xl bg-slate-200 px-3 py-2 text-sm font-semibold text-slate-950 hover:bg-slate-300 disabled:opacity-60"
               disabled={isHydrating}
             >
-              {mode === 'signup' ? 'Sign up' : 'Sign in'}
+              {hasRequestedCode ? 'Verify code' : 'Send code'}
             </button>
           </div>
           {message ? <p className="text-sm text-rose-700">{message}</p> : null}
@@ -157,15 +153,23 @@ function AccountPlanSync() {
   const exportPlan = useStudentStore((state) => state.exportPlan)
   const importPlan = useStudentStore((state) => state.importPlan)
   const updateUserProfile = useStudentStore((state) => state.updateUserProfile)
+  const resetPlan = useStudentStore((state) => state.resetPlan)
+  const resetUserProfile = useStudentStore((state) => state.resetUserProfile)
   const loadedUserIdRef = useRef<string | undefined>(undefined)
   const isLoadingPlanRef = useRef(false)
 
   useEffect(() => {
+    clearLegacyStudentStorage()
     void hydrate()
   }, [hydrate])
 
   useEffect(() => {
     if (!user) {
+      if (loadedUserIdRef.current) {
+        resetPlan()
+        resetUserProfile()
+      }
+
       loadedUserIdRef.current = undefined
       return
     }
@@ -186,7 +190,7 @@ function AccountPlanSync() {
         loadedUserIdRef.current = user.id
         isLoadingPlanRef.current = false
       })
-  }, [importPlan, updateUserProfile, user])
+  }, [importPlan, resetPlan, resetUserProfile, updateUserProfile, user])
 
   useEffect(() => {
     if (!user || loadedUserIdRef.current !== user.id || isLoadingPlanRef.current) {

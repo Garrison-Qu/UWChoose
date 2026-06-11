@@ -320,12 +320,12 @@ function normalizeAcademicSelections(value: unknown, errors: string[]) {
 
   return {
     degreeId,
-    majorProgramId,
-    majorProgramIds,
-    jointProgramIds,
-    minorProgramIds,
-    specializationProgramIds,
-    optionProgramIds,
+    majorProgramId: majorProgramIds?.[0] ?? majorProgramId,
+    majorProgramIds: majorProgramIds?.slice(0, 2),
+    jointProgramIds: jointProgramIds?.slice(0, 1),
+    minorProgramIds: minorProgramIds?.slice(0, 1),
+    specializationProgramIds: specializationProgramIds?.slice(0, 1),
+    optionProgramIds: optionProgramIds?.slice(0, 1),
   }
 }
 

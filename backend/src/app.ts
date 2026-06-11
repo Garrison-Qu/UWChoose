@@ -1,3 +1,4 @@
+import { randomInt } from 'node:crypto'
 import cors from 'cors'
 import express from 'express'
 import {
@@ -15,14 +16,22 @@ import {
 import { createFilePlanStore, type PlanStore } from './planStore.ts'
 import { createFileUserStore, type PublicUser, type UserStore } from './userStore.ts'
 import { validateCatalog } from './validation.ts'
+import { sendVerificationCodeEmail } from './email.ts'
 
 const localAllowedOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173']
 const sessionCookieName = 'uwchoose_session'
+const verificationCodeTtlMs = 10 * 60 * 1000
+const maxVerificationAttempts = 5
+
+export type VerificationEmailSender = (email: string, code: string) => Promise<void>
 
 type AppOptions = {
   allowedOrigins?: string[]
   planStore?: PlanStore
   userStore?: UserStore
+  verificationCodeGenerator?: () => string
+  verificationEmailSender?: VerificationEmailSender
+  now?: () => Date
 }
 
 export function getAllowedOriginsFromEnvironment() {
@@ -70,23 +79,48 @@ function clearSessionCookie(response: express.Response) {
   )
 }
 
-function getAuthFields(body: unknown) {
+export function normalizeWaterlooEmail(email: string) {
+  return email.trim().toLowerCase()
+}
+
+export function isWaterlooEmail(email: string) {
+  return /^[^\s@]+@uwaterloo\.ca$/.test(normalizeWaterlooEmail(email))
+}
+
+function getWaterlooEmailField(body: unknown) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) {
     return undefined
   }
 
   const value = body as Record<string, unknown>
-  const email = typeof value.email === 'string' ? value.email.trim().toLowerCase() : ''
-  const password = typeof value.password === 'string' ? value.password : ''
-  const displayName = typeof value.displayName === 'string' && value.displayName.trim()
-    ? value.displayName.trim()
-    : undefined
+  const email = typeof value.email === 'string' ? normalizeWaterlooEmail(value.email) : ''
 
-  if (!email || !email.includes('@') || password.length < 8) {
+  if (!isWaterlooEmail(email)) {
     return undefined
   }
 
-  return { email, password, displayName }
+  return email
+}
+
+function getVerificationFields(body: unknown) {
+  const email = getWaterlooEmailField(body)
+
+  if (!email || !body || typeof body !== 'object' || Array.isArray(body)) {
+    return undefined
+  }
+
+  const value = body as Record<string, unknown>
+  const code = typeof value.code === 'string' ? value.code.trim() : ''
+
+  if (!/^\d{6}$/.test(code)) {
+    return undefined
+  }
+
+  return { email, code }
+}
+
+function generateVerificationCode() {
+  return `${randomInt(0, 1_000_000)}`.padStart(6, '0')
 }
 
 async function getAuthenticatedUser(
@@ -103,6 +137,9 @@ export function createApp(options: AppOptions = {}) {
   const allowedOrigins = new Set(options.allowedOrigins ?? getAllowedOriginsFromEnvironment())
   const planStore = options.planStore ?? createFilePlanStore()
   const userStore = options.userStore ?? createFileUserStore()
+  const verificationCodeGenerator = options.verificationCodeGenerator ?? generateVerificationCode
+  const verificationEmailSender = options.verificationEmailSender ?? sendVerificationCodeEmail
+  const getNow = options.now ?? (() => new Date())
 
   app.use(
     cors({
@@ -175,6 +212,13 @@ export function createApp(options: AppOptions = {}) {
   })
 
   app.post('/api/plans', async (request, response) => {
+    const user = await getAuthenticatedUser(request, userStore)
+
+    if (!user) {
+      response.status(401).json({ error: 'Sign in with your Waterloo email to save plans online.' })
+      return
+    }
+
     try {
       const { plan, profile } = normalizeSavedPlanRequest(request.body)
       const savedPlan = await planStore.createPlan(plan, profile)
@@ -190,37 +234,46 @@ export function createApp(options: AppOptions = {}) {
     }
   })
 
-  app.post('/api/auth/signup', async (request, response) => {
-    const fields = getAuthFields(request.body)
+  app.post('/api/auth/request-code', async (request, response) => {
+    const email = getWaterlooEmailField(request.body)
 
-    if (!fields) {
-      response.status(400).json({ error: 'Enter a valid email and a password of at least 8 characters.' })
+    if (!email) {
+      response.status(400).json({ error: 'Enter a valid @uwaterloo.ca email address.' })
       return
     }
 
-    try {
-      const user = await userStore.createUser(fields.email, fields.password, fields.displayName)
-      const sessionId = await userStore.createSession(user.id)
+    const code = verificationCodeGenerator()
+    const expiresAt = new Date(getNow().getTime() + verificationCodeTtlMs)
 
-      setSessionCookie(response, sessionId)
-      response.status(201).json({ user })
+    try {
+      await userStore.requestVerificationCode(email, code, expiresAt)
+      await verificationEmailSender(email, code)
+
+      response.status(202).json({ message: 'Verification code sent.' })
     } catch (error) {
-      response.status(409).json({ error: error instanceof Error ? error.message : 'Could not create account.' })
+      response.status(502).json({
+        error: error instanceof Error ? error.message : 'Could not send verification code.',
+      })
     }
   })
 
-  app.post('/api/auth/signin', async (request, response) => {
-    const fields = getAuthFields(request.body)
+  app.post('/api/auth/verify-code', async (request, response) => {
+    const fields = getVerificationFields(request.body)
 
     if (!fields) {
-      response.status(400).json({ error: 'Enter a valid email and password.' })
+      response.status(400).json({ error: 'Enter your @uwaterloo.ca email and 6-digit code.' })
       return
     }
 
-    const user = await userStore.verifyUser(fields.email, fields.password)
+    const user = await userStore.verifyEmailCode(
+      fields.email,
+      fields.code,
+      getNow(),
+      maxVerificationAttempts,
+    )
 
     if (!user) {
-      response.status(401).json({ error: 'Invalid email or password.' })
+      response.status(401).json({ error: 'Invalid or expired verification code.' })
       return
     }
 
@@ -296,6 +349,13 @@ export function createApp(options: AppOptions = {}) {
   })
 
   app.get('/api/plans/:id', async (request, response) => {
+    const user = await getAuthenticatedUser(request, userStore)
+
+    if (!user) {
+      response.status(401).json({ error: 'Sign in with your Waterloo email to load saved plans.' })
+      return
+    }
+
     const savedPlan = await planStore.getPlan(request.params.id)
 
     if (!savedPlan) {
@@ -307,6 +367,13 @@ export function createApp(options: AppOptions = {}) {
   })
 
   app.put('/api/plans/:id', async (request, response) => {
+    const user = await getAuthenticatedUser(request, userStore)
+
+    if (!user) {
+      response.status(401).json({ error: 'Sign in with your Waterloo email to update saved plans.' })
+      return
+    }
+
     try {
       const { plan, profile } = normalizeSavedPlanRequest(request.body)
       const savedPlan = await planStore.updatePlan(request.params.id, plan, profile)

@@ -34,6 +34,7 @@ async function requestPlan(
   baseUrl: string,
 ): Promise<SavedPlanResponse> {
   const response = await fetcher(`${baseUrl}${path}`, {
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       ...options.headers,

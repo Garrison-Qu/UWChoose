@@ -2555,12 +2555,43 @@ export const courses: Course[] = [
     prerequisiteRawText: "Complete all of the followingMust have completed the following: CS105 - Introduction to Computer Programming 1 (0.50)CS106 - Introduction to Computer Programming 2 (0.50)Must have completed at least 1 of the following: CS100 - Introduction to Computing Through Applications (0.50)CS200 - Concepts for Advanced Computer Usage (0.50)CS230 - Introduction to Computers and Computer Systems (0.50)Must have completed at least 1 of the following: FINE228 - Design and Imaging (0.50)FINE247 - Expanded Media: Interaction (0.50)"
   },
   {
+    code: "GDS271",
+    name: "Earth from Space Using Remote Sensing",
+    subject: "GDS",
+    level: 200,
+    description: "Remote sensing of the Earth's systems (atmosphere, land, and oceans) is introduced. The course covers the principles, physics, sensor technology, processing, and applications of remote sensing in the electromagnetic spectrum.",
+    prerequisiteRawText: "Complete 1 of the followingMust have completed at least 1 of the following: GDS181 - Designing Effective Maps (0.50)GDS187 - Geospatial Data Science (0.50)Must have completed at least 1 of the following: GEOG181, GEOG187"
+  },
+  {
+    code: "GDS281",
+    name: "Introduction to Geographic Information Systems (GIS)",
+    subject: "GDS",
+    level: 200,
+    description: "Introduction to the fundamental concepts and use of Geographic Information Systems (GIS). Students learn about the nature of geographic information and how to store, manipulate and analyze spatial data in a range of application areas. Students will learn underlying theory in lectures and gain a working knowledge of GIS software in lab sessions.",
+    prerequisiteRawText: "Complete 1 of the followingMust have completed at least 1 of the following: GDS181 - Designing Effective Maps (0.50)GDS187 - Geospatial Data Science (0.50)Must have completed at least 1 of the following: GEOG181, GEOG187Enrolled in H-Planning"
+  },
+  {
     code: "GENE123",
     name: "Electrical Circuits and Instrumentation",
     subject: "GENE",
     level: 100,
     description: "Charge, current, and voltage. Voltage and current sources, resistors, capacitors, and inductors. Ohm's Law, Kirchhoff's Laws, nodal analysis, Thevenin and Norton models, instrumentation amplifier circuits, time response, impedance. Function and characteristics of basic electrical transducers. Resolution, precision, and accuracy. Basics of data acquisition.",
     prerequisiteRawText: "Complete all of the followingStudents must be in level 1B or higherEnrolled in H-Management Engineering"
+  },
+  {
+    code: "GEOG102",
+    name: "Changing Physical Environments",
+    subject: "GEOG",
+    level: 100,
+    description: "An introductory course examining the forces that drive and change Earth’s climate and its impacts on the physical environments of the planet. These factors are explored for systems including the atmosphere, biosphere, hydrosphere, and cryosphere, and the interconnections between them."
+  },
+  {
+    code: "GEOG205",
+    name: "Landscape Dynamics",
+    subject: "GEOG",
+    level: 200,
+    description: "This course provides an understanding of the foundational principles of geomorphology, and how climatological, hydrological, and ecological processes shape landscape evolution. The role of these processes in shaping the landscape and the influence of land use change will be explored.",
+    prerequisiteRawText: "Complete all of the followingMust have completed at least 1 of the following: EARTH121 - Introductory Earth Sciences (0.50)EARTH123 - Introductory Hydrology (0.50)GEOG102 - Changing Physical Environments (0.50)Obtained all of the following milestones: Workplace Hazardous Materials Information System Milestone"
   },
   {
     code: "GEOG207",
@@ -2570,12 +2601,60 @@ export const courses: Course[] = [
     description: "Climate change is one of the most profound environmental and social issues affecting communities, nations and individuals. This course is an introduction to this global challenge, including its scientific underpinnings, history, potential impacts on natural systems and human societies around the world, and two societal responses: adaptation and greenhouse gas mitigation. Opportunities to develop sustainable resilient communities, as well as Canadian climate change policy responses, will be highlighted."
   },
   {
+    code: "GEOG209",
+    name: "Hydroclimatology",
+    subject: "GEOG",
+    level: 200,
+    description: "An introduction to the fundamental processes governing climate and hydrological systems and the links between them. It starts with a discussion of basic atmospheric and hydrological processes and traces the flow of energy and water between the earth's surface and the atmosphere. The water cycle is examined including evapotranspiration, precipitation, runoff and water storage in the natural reservoirs (including soil and groundwater, lakes and wetlands).",
+    prerequisiteRawText: "Complete all of the followingMust have completed at least 1 of the following: EARTH121 - Introductory Earth Sciences (0.50)GEOG102 - Changing Physical Environments (0.50)Obtained all of the following milestones: Workplace Hazardous Materials Information System Milestone"
+  },
+  {
+    code: "GEOG303",
+    name: "Physical Hydrology",
+    subject: "GEOG",
+    level: 300,
+    description: "Fundamental processes in physical hydrology are addressed. Components of the water balance are examined to determine the nature of their variation in time and space. Precipitation, interception, infiltration, groundwater and soil water processes, evapotranspiration, runoff, and storage will be examined from a theoretical and practical viewpoint, and their linkages demonstrated by lab and fieldwork.",
+    prerequisiteRawText: "Must have completed the following: GEOG209 - Hydroclimatology (0.50)"
+  },
+  {
+    code: "GEOG305",
+    name: "Fluvial Geomorphology",
+    subject: "GEOG",
+    level: 300,
+    description: "Emphasis on concepts related to fluvial processes, river mechanics, the relationship between environmental change and river regime. Selected topics include fluvial processes and landscape formation, flow and sediment regimes, channel processes, form and behaviour, river response to natural and anthropogenic change, and river management.",
+    prerequisiteRawText: "Complete 1 of the followingMust have completed the following: GEOG205 - Landscape Dynamics (0.50)Complete all of the followingStudents must be in level 2A or higherEnrolled in H-Environmental Sciences - Water Science Specialization"
+  },
+  {
     code: "GEOG306",
     name: "Human Dimensions of Natural Hazards",
     subject: "GEOG",
     level: 300,
     description: "This course will investigate the human dimensions of the global experience with natural hazards and associated disasters. The physical nature of a wide range of geophysical and biophysical hazards will be explored, paying particular attention to the ways in which hazards become dangerous to humans, and the pathways by which humans can either increase or decrease their vulnerability in the face of natural hazards.",
     prerequisiteRawText: "Students must be in level 2A or higher"
+  },
+  {
+    code: "GEOG307",
+    name: "Societal Adaptation to Climate Change",
+    subject: "GEOG",
+    level: 300,
+    description: "Climate change is a pervasive factor affecting the future of society. Recognizing that dangerous climate change cannot be avoided through greenhouse gas emissions reductions alone, adaptation to climate change has emerged as a central component of global climate policy. An in depth understanding of the diverse impacts of climate change on communities, economic sectors and society will provide a foundation for examining adaptation strategies to build resilience to accelerated climate change. Examples will draw from multiple sectors in both developed and developing world contexts, with an emphasis on solutions and the limits to adaptation.",
+    prerequisiteRawText: "Must have completed at least 1 of the following: GEOG207 - Climate Change Fundamentals (0.50)SCI205 - Climate Change Fundamentals (0.50)"
+  },
+  {
+    code: "GEOG320",
+    name: "The Cryosphere",
+    subject: "GEOG",
+    level: 300,
+    description: "This course provides a comprehensive overview of the cryosphere and cryosphere-atmosphere interactions. Topics covered include the material and thermodynamic properties of snow and ice, the role of the cryosphere in weather and climate, and the response of the cryosphere to climate change (past, present, and future). Students will be introduced to, and experiment with, snow and ice process models.",
+    prerequisiteRawText: "Must have completed the following: GEOG209 - Hydroclimatology (0.50)"
+  },
+  {
+    code: "GEOG408",
+    name: "Earth's Future Climates",
+    subject: "GEOG",
+    level: 400,
+    description: "This course provides students with experience using numerical models to understand changes in Earth's climate. Building on their knowledge of the fundamental physical processes governing the climate system, students will construct, apply and evaluate a hierarchy of climate models (from simple energy balance models to full ocean-atmosphere General Circulation Models). The predictive ability of climate models, and their validation, will be considered. The different types of uncertainty inherent in climate projections will be explained and the implications assessed.",
+    prerequisiteRawText: "Must have completed at least 1 of the following: GEOG207 - Climate Change Fundamentals (0.50)SCI205 - Climate Change Fundamentals (0.50)"
   },
   {
     code: "GSJ205",
@@ -3351,6 +3430,14 @@ export const courses: Course[] = [
     level: 400,
     description: "Tensor analysis. Curved space-time and the Einstein field equations. The Schwarzschild solution and applications. The Friedmann-Robertson-Walker cosmological models.",
     prerequisiteRawText: "Complete all of the following Must have completed at least 1 of the following: AMATH231 - Calculus 4 (0.50) MATH227 - Calculus 3 for Honours Physics (0.50) Must have completed at least 1 of the following: AMATH271 - Introduction to Theoretical Mechanics (0.50) PHYS263 - Classical Mechanics and Special Relativity (0.50) Students must be in level 4A or higher Enrolled in a program offered by the Faculties of Mathematics or Science"
+  },
+  {
+    code: "PLAN281",
+    name: "Introduction to Geographic Information Systems (GIS)",
+    subject: "PLAN",
+    level: 200,
+    description: "Introduction to the fundamental concepts and use of Geographic Information Systems (GIS). Students learn about the nature of geographic information and how to store, manipulate and analyze spatial data in a range of application areas. Students will learn underlying theory in lectures and gain a working knowledge of GIS software in lab sessions.",
+    prerequisiteRawText: "Complete 1 of the followingMust have completed at least 1 of the following: GDS181 - Designing Effective Maps (0.50)GDS187 - Geospatial Data Science (0.50)Must have completed at least 1 of the following: GEOG181, GEOG187Enrolled in H-Planning"
   },
   {
     code: "PMATH320",

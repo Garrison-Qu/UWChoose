@@ -1,10 +1,22 @@
 import { useState } from 'react'
+import { ProgramMultiPicker } from '../components/ProgramMultiPicker'
 import { useCatalog } from '../lib/catalogContext'
 import { degrees } from '../data/programs'
 import { loadPlanOnline, savePlanOnline } from '../lib/planApi'
+import {
+  cleanUnavailableSelections,
+  getAvailableJointPrograms,
+  getAvailableMinorPrograms,
+  getAvailableOptionPrograms,
+  getAvailableSpecializationPrograms,
+  getMajorPrograms,
+  getSelectedMajorIds,
+  maxMajorSelections,
+  maxSingleProgramSelections,
+} from '../lib/programSelection'
 import { terms } from '../lib/terms'
+import { useAuthStore } from '../stores/useAuthStore'
 import { useStudentStore } from '../stores/useStudentStore'
-import type { Program } from '../types/program'
 import type { SavedPlanProfile } from '../types/student'
 
 function getOnlinePlanMessage(error: unknown, fallbackMessage: string) {
@@ -19,29 +31,11 @@ function getOnlinePlanMessage(error: unknown, fallbackMessage: string) {
   return error.message
 }
 
-function uniqueIds(ids: Array<string | undefined>): string[] {
-  return [...new Set(ids.filter((id): id is string => Boolean(id)))]
-}
-
-function getSelectedValues(select: HTMLSelectElement): string[] {
-  return [...select.selectedOptions].map((option) => option.value).filter(Boolean)
-}
-
-function getProgramTypeLabel(program: Program): string {
-  switch (program.category) {
-    case 'double-degree':
-      return 'Double degree'
-    case 'joint':
-      return 'Joint honours'
-    default:
-      return 'Major'
-  }
-}
-
 export function ProfilePage() {
   const { programs } = useCatalog()
   const [message, setMessage] = useState<string>()
   const [isSyncing, setIsSyncing] = useState(false)
+  const user = useAuthStore((state) => state.user)
   const completedCourses = useStudentStore((state) => state.completedCourses)
   const plannedTerms = useStudentStore((state) => state.plannedTerms)
   const selectedProgramId = useStudentStore((state) => state.selectedProgramId)
@@ -53,19 +47,19 @@ export function ProfilePage() {
   const resetUserProfile = useStudentStore((state) => state.resetUserProfile)
   const academicSelections = userProfile.academicSelections ?? {}
   const linkedPlanId = userProfile.linkedPlanId
-  const majorPrograms = programs.filter(
-    (program) => program.category === 'major' || program.category === 'double-degree',
+  const hasProfileMajorSelection =
+    (academicSelections.majorProgramIds?.length ?? 0) > 0 ||
+    Boolean(academicSelections.majorProgramId) ||
+    Boolean(userProfile.programId)
+  const majorPrograms = getMajorPrograms(programs)
+  const activeProgramIds = getSelectedMajorIds(
+    academicSelections,
+    userProfile.programId ?? (hasProfileMajorSelection ? undefined : selectedProgramId),
   )
-  const jointPrograms = programs.filter((program) => program.category === 'joint')
-  const minorPrograms = programs.filter((program) => program.category === 'minor')
-  const specializationPrograms = programs.filter((program) => program.category === 'specialization')
-  const optionPrograms = programs.filter((program) => program.category === 'option')
-  const activeProgramIds = uniqueIds([
-    ...(academicSelections.majorProgramIds ?? []),
-    academicSelections.majorProgramId,
-    userProfile.programId,
-    selectedProgramId,
-  ])
+  const availableJointPrograms = getAvailableJointPrograms(programs, activeProgramIds)
+  const availableMinorPrograms = getAvailableMinorPrograms(programs, activeProgramIds)
+  const availableSpecializationPrograms = getAvailableSpecializationPrograms(programs, activeProgramIds)
+  const availableOptionPrograms = getAvailableOptionPrograms(programs, activeProgramIds)
   const activeProgramId = activeProgramIds[0] ?? ''
 
   const savedPlanProfile: SavedPlanProfile = {
@@ -82,15 +76,48 @@ export function ProfilePage() {
   }
 
   function updateAcademicSelections(updates: NonNullable<SavedPlanProfile['academicSelections']>) {
-    updateUserProfile({
-      academicSelections: {
+    const nextSelections = cleanUnavailableSelections(
+      programs,
+      {
         ...academicSelections,
         ...updates,
       },
+      activeProgramIds,
+    )
+
+    updateUserProfile({
+      academicSelections: nextSelections,
     })
   }
 
+  function updateMajorPrograms(programIds: string[]) {
+    const primaryProgramId = programIds[0]
+    const nextSelections = cleanUnavailableSelections(
+      programs,
+      {
+        ...academicSelections,
+        majorProgramId: primaryProgramId,
+        majorProgramIds: programIds,
+      },
+      programIds,
+    )
+
+    updateUserProfile({
+      programId: primaryProgramId,
+      academicSelections: nextSelections,
+    })
+
+    if (primaryProgramId) {
+      setSelectedProgram(primaryProgramId)
+    }
+  }
+
   async function handleSaveProfilePlan() {
+    if (!user) {
+      setMessage('Sign in with your Waterloo email to save profile plans online.')
+      return
+    }
+
     setIsSyncing(true)
     setMessage(undefined)
 
@@ -109,6 +136,11 @@ export function ProfilePage() {
   async function handleLoadLinkedPlan() {
     if (!linkedPlanId) {
       setMessage('Link a saved plan before loading.')
+      return
+    }
+
+    if (!user) {
+      setMessage('Sign in with your Waterloo email to load profile plans.')
       return
     }
 
@@ -189,117 +221,51 @@ export function ProfilePage() {
             </select>
           </label>
 
-          <label className="text-sm font-medium text-slate-700">
-            Major and double major programs
-            <select
-              className="mt-1 min-h-32 w-full rounded-xl border border-slate-300 bg-white px-3 py-2"
-              multiple
-              value={activeProgramIds}
-              onChange={(event) => {
-                const programIds = getSelectedValues(event.currentTarget)
-                const primaryProgramId = programIds[0]
+          <ProgramMultiPicker
+            label="Major and double major programs"
+            maxSelections={maxMajorSelections}
+            options={majorPrograms}
+            selectedIds={activeProgramIds}
+            onChange={updateMajorPrograms}
+          />
 
-                updateUserProfile({
-                  programId: primaryProgramId,
-                  academicSelections: {
-                    ...academicSelections,
-                    majorProgramId: primaryProgramId,
-                    majorProgramIds: programIds,
-                  },
-                })
+          <ProgramMultiPicker
+            disabledMessage={activeProgramIds.length === 0 ? 'Choose a major first.' : undefined}
+            label="Joint honours programs"
+            maxSelections={maxSingleProgramSelections}
+            options={availableJointPrograms}
+            selectedIds={academicSelections.jointProgramIds ?? []}
+            onChange={(jointProgramIds) => updateAcademicSelections({ jointProgramIds })}
+          />
 
-                if (primaryProgramId) {
-                  setSelectedProgram(primaryProgramId)
-                }
-              }}
-            >
-              {majorPrograms.map((program) => (
-                <option key={program.id} value={program.id}>
-                  {program.name} ({getProgramTypeLabel(program)})
-                </option>
-              ))}
-            </select>
-          </label>
+          <ProgramMultiPicker
+            disabledMessage={activeProgramIds.length === 0 ? 'Choose a major first.' : undefined}
+            label="Minors"
+            maxSelections={maxSingleProgramSelections}
+            options={availableMinorPrograms}
+            selectedIds={academicSelections.minorProgramIds ?? []}
+            onChange={(minorProgramIds) => updateAcademicSelections({ minorProgramIds })}
+          />
 
-          <label className="text-sm font-medium text-slate-700">
-            Joint honours programs
-            <select
-              className="mt-1 min-h-32 w-full rounded-xl border border-slate-300 bg-white px-3 py-2"
-              multiple
-              value={academicSelections.jointProgramIds ?? []}
-              onChange={(event) =>
-                updateAcademicSelections({
-                  jointProgramIds: getSelectedValues(event.currentTarget),
-                })
-              }
-            >
-              {jointPrograms.map((program) => (
-                <option key={program.id} value={program.id}>
-                  {program.name}
-                </option>
-              ))}
-            </select>
-          </label>
+          <ProgramMultiPicker
+            disabledMessage={activeProgramIds.length === 0 ? 'Choose a major first.' : undefined}
+            label="Specializations"
+            maxSelections={maxSingleProgramSelections}
+            options={availableSpecializationPrograms}
+            selectedIds={academicSelections.specializationProgramIds ?? []}
+            onChange={(specializationProgramIds) =>
+              updateAcademicSelections({ specializationProgramIds })
+            }
+          />
 
-          <label className="text-sm font-medium text-slate-700">
-            Minors
-            <select
-              className="mt-1 min-h-32 w-full rounded-xl border border-slate-300 bg-white px-3 py-2"
-              multiple
-              value={academicSelections.minorProgramIds ?? []}
-              onChange={(event) =>
-                updateAcademicSelections({
-                  minorProgramIds: getSelectedValues(event.currentTarget),
-                })
-              }
-            >
-              {minorPrograms.map((program) => (
-                <option key={program.id} value={program.id}>
-                  {program.name}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label className="text-sm font-medium text-slate-700">
-            Specializations
-            <select
-              className="mt-1 min-h-32 w-full rounded-xl border border-slate-300 bg-white px-3 py-2"
-              multiple
-              value={academicSelections.specializationProgramIds ?? []}
-              onChange={(event) =>
-                updateAcademicSelections({
-                  specializationProgramIds: getSelectedValues(event.currentTarget),
-                })
-              }
-            >
-              {specializationPrograms.map((program) => (
-                <option key={program.id} value={program.id}>
-                  {program.name}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label className="text-sm font-medium text-slate-700">
-            Options
-            <select
-              className="mt-1 min-h-32 w-full rounded-xl border border-slate-300 bg-white px-3 py-2"
-              multiple
-              value={academicSelections.optionProgramIds ?? []}
-              onChange={(event) =>
-                updateAcademicSelections({
-                  optionProgramIds: getSelectedValues(event.currentTarget),
-                })
-              }
-            >
-              {optionPrograms.map((program) => (
-                <option key={program.id} value={program.id}>
-                  {program.name}
-                </option>
-              ))}
-            </select>
-          </label>
+          <ProgramMultiPicker
+            disabledMessage={activeProgramIds.length === 0 ? 'Choose a major first.' : undefined}
+            label="Options"
+            maxSelections={maxSingleProgramSelections}
+            options={availableOptionPrograms}
+            selectedIds={academicSelections.optionProgramIds ?? []}
+            onChange={(optionProgramIds) => updateAcademicSelections({ optionProgramIds })}
+          />
 
           <label className="text-sm font-medium text-slate-700">
             Start term
@@ -353,7 +319,7 @@ export function ProfilePage() {
         <div className="flex flex-wrap gap-2">
           <button
             className="rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-60"
-            disabled={isSyncing}
+            disabled={isSyncing || !user}
             type="button"
             onClick={handleSaveProfilePlan}
           >
@@ -361,7 +327,7 @@ export function ProfilePage() {
           </button>
           <button
             className="rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
-            disabled={isSyncing || !linkedPlanId}
+            disabled={isSyncing || !linkedPlanId || !user}
             type="button"
             onClick={handleLoadLinkedPlan}
           >
@@ -388,6 +354,12 @@ export function ProfilePage() {
             Reset profile
           </button>
         </div>
+
+        {!user ? (
+          <p className="mt-3 text-sm text-slate-600">
+            Profile edits are temporary while signed out. Sign in with a Waterloo email to save them online.
+          </p>
+        ) : null}
 
         {message ? (
           <p className="mt-3 text-sm text-slate-600" role="status">

@@ -1,6 +1,6 @@
 # UWChoose
 
-UWChoose is a course planning app for University of Waterloo Math students. It helps students search courses, understand prerequisites, record completed courses through the planner, check course eligibility, track a sample program, and plan future terms. The frontend still stores student plans in the browser, with optional backend share-code save/load for planner backups.
+UWChoose is a course planning app for University of Waterloo Math students. It helps students search courses, understand prerequisites, record completed courses through the planner, check course eligibility, track program progress, and plan future terms. Signed-out edits are temporary; verified `@uwaterloo.ca` users can save their planner and profile online.
 
 ## Contributions
 
@@ -34,12 +34,11 @@ Recommended deployment target: Vercel. Deploy the `frontend/` folder and use `di
 - TailwindCSS
 - React Router
 - Zustand
-- localStorage persistence
 - Vitest
 - Node.js + Express backend API
 - Docker + Nginx for production static serving
 
-The backend exposes course/program data and optional share-code planner save/load. It does not have accounts or automatic cloud sync yet.
+The backend exposes course/program data, Waterloo email verification, account plan sync, and authenticated share-code planner save/load.
 
 ## Environment Variables
 
@@ -55,22 +54,29 @@ Backend:
 PORT=3000
 CORS_ORIGINS=http://localhost:5173
 PLAN_STORE_PATH=./data/plans.json
+USER_STORE_PATH=./data/users.json
+SMTP_HOST=
+SMTP_PORT=587
+SMTP_USER=
+SMTP_PASS=
+SMTP_FROM=
 ```
 
-For production, set `VITE_API_BASE_URL` to the deployed backend URL, set `CORS_ORIGINS` to the deployed frontend URL, and set `PLAN_STORE_PATH` to a persistent storage path.
+For production, set `VITE_API_BASE_URL` to the deployed backend URL, set `CORS_ORIGINS` to the deployed frontend URL, set `PLAN_STORE_PATH` and `USER_STORE_PATH` to persistent storage paths, and configure SMTP so Waterloo verification codes can be emailed. In local development, if SMTP is not configured, the backend logs verification codes to the console.
 
 ## Main Features
 
 - Course search by code or name
 - Course detail pages with prerequisite trees
 - Recursive prerequisite evaluator using `allOf` / `anyOf` logic
-- Completed course tracking through planner terms with localStorage persistence
+- Completed course tracking through planner terms
 - Courses page showing available, blocked, planned, completed, overridden, and already-covered courses
 - Blocked reason explanations for missing prerequisites and antirequisites
 - Path-to-take guidance for blocked courses
 - Term planner with current term, future terms, completed tags, prerequisite overrides, PDF export, prerequisite status, and warnings
-- Program progress tracker for a sample Math program
-- Local profile page with display name, program interest, start term, notes, and linked saved plan
+- Program progress tracker for Faculty of Mathematics programs
+- Waterloo email verification for account-only plan/profile saving
+- Profile page with display name, program interest, start term, notes, and linked saved plan
 - Interactive prerequisite graph with a local prerequisite/proceeding-course tree
 - Data validation script for course and program data integrity
 - Backend API for courses, programs, and shareable planner backups
@@ -122,6 +128,7 @@ http://localhost:3000/health
 ```
 
 Saved planner backups are written under `backend/data/plans.json` during local backend use. This file is intentionally ignored by git.
+Verified account data is written under `backend/data/users.json` during local backend use. This file is intentionally ignored by git.
 
 ## Verification
 
@@ -180,7 +187,13 @@ Set backend environment variables:
 
 ```bash
 PLAN_STORE_PATH=/var/data/plans.json
+USER_STORE_PATH=/var/data/users.json
 CORS_ORIGINS=https://your-uwchoose-frontend.vercel.app
+SMTP_HOST=your-smtp-host
+SMTP_PORT=587
+SMTP_USER=your-smtp-user
+SMTP_PASS=your-smtp-password
+SMTP_FROM=no-reply@your-domain.example
 ```
 
 After deployment, open:
@@ -228,7 +241,8 @@ After both services are deployed:
 - Open the Render `/health` endpoint and confirm status is `ok`.
 - Open the deployed frontend and confirm no local-catalog fallback banner appears.
 - Search courses and open a course detail page.
-- Add a term in the planner and save online.
+- Add a term in the planner while signed out, refresh, and confirm the temporary edit is not restored.
+- Sign in with a `@uwaterloo.ca` verification code and save online.
 - Open Profile, set a display name and program interest, and save the current plan online.
 - Refresh the browser, load the returned share code, and confirm the planner restores.
 - Restart or redeploy the backend and confirm the same share code still loads.

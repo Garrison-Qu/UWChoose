@@ -1,9 +1,9 @@
 import { create } from 'zustand'
 import {
   getCurrentUser,
-  signIn as signInRequest,
+  requestVerificationCode as requestVerificationCodeRequest,
   signOut as signOutRequest,
-  signUp as signUpRequest,
+  verifyVerificationCode as verifyVerificationCodeRequest,
 } from '../lib/authApi'
 import type { AuthUser } from '../lib/authApi'
 
@@ -12,8 +12,8 @@ type AuthState = {
   isHydrating: boolean
   message?: string
   hydrate: () => Promise<void>
-  signIn: (email: string, password: string) => Promise<void>
-  signUp: (email: string, password: string, displayName?: string) => Promise<void>
+  requestVerificationCode: (email: string) => Promise<void>
+  verifyVerificationCode: (email: string, code: string) => Promise<void>
   signOut: () => Promise<void>
   clearMessage: () => void
 }
@@ -41,13 +41,12 @@ export const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
-  signIn: async (email, password) => {
+  requestVerificationCode: async (email) => {
     set({ isHydrating: true, message: undefined })
 
     try {
-      const response = await signInRequest(email, password)
-
-      set({ user: response.user, message: 'Signed in.' })
+      await requestVerificationCodeRequest(email)
+      set({ message: 'Verification code sent.' })
     } catch (error) {
       set({ message: getErrorMessage(error) })
       throw error
@@ -56,13 +55,13 @@ export const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
-  signUp: async (email, password, displayName) => {
+  verifyVerificationCode: async (email, code) => {
     set({ isHydrating: true, message: undefined })
 
     try {
-      const response = await signUpRequest(email, password, displayName)
+      const response = await verifyVerificationCodeRequest(email, code)
 
-      set({ user: response.user, message: 'Account created.' })
+      set({ user: response.user, message: 'Signed in.' })
     } catch (error) {
       set({ message: getErrorMessage(error) })
       throw error

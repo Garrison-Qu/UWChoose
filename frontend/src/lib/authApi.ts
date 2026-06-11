@@ -17,6 +17,10 @@ type AuthResponse = {
   user: AuthUser
 }
 
+type RequestCodeResponse = {
+  message: string
+}
+
 async function parseErrorResponse(response: Response): Promise<string> {
   try {
     const body = await response.json() as { error?: string; details?: string[] }
@@ -52,22 +56,37 @@ async function requestJson<T>(
   return response.json() as Promise<T>
 }
 
-export function signUp(
+export function requestVerificationCode(
   email: string,
-  password: string,
-  displayName?: string,
-): Promise<AuthResponse> {
-  return requestJson('/api/auth/signup', {
-    method: 'POST',
-    body: JSON.stringify({ email, password, displayName }),
-  })
+  fetcher: typeof fetch = globalThis.fetch,
+  baseUrl = getCatalogApiBaseUrl(),
+): Promise<RequestCodeResponse> {
+  return requestJson(
+    '/api/auth/request-code',
+    {
+      method: 'POST',
+      body: JSON.stringify({ email }),
+    },
+    fetcher,
+    baseUrl,
+  )
 }
 
-export function signIn(email: string, password: string): Promise<AuthResponse> {
-  return requestJson('/api/auth/signin', {
-    method: 'POST',
-    body: JSON.stringify({ email, password }),
-  })
+export function verifyVerificationCode(
+  email: string,
+  code: string,
+  fetcher: typeof fetch = globalThis.fetch,
+  baseUrl = getCatalogApiBaseUrl(),
+): Promise<AuthResponse> {
+  return requestJson(
+    '/api/auth/verify-code',
+    {
+      method: 'POST',
+      body: JSON.stringify({ email, code }),
+    },
+    fetcher,
+    baseUrl,
+  )
 }
 
 export async function signOut(): Promise<void> {

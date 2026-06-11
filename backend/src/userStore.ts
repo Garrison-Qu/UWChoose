@@ -12,8 +12,6 @@ export type PublicUser = {
 }
 
 type StoredUser = PublicUser & {
-  passwordSalt: string
-  passwordHash: string
   plan?: StudentPlanBackup
   profile?: SavedPlanProfile
   createdAt: string
@@ -26,9 +24,19 @@ type StoredSession = {
   createdAt: string
 }
 
+type StoredVerificationCode = {
+  email: string
+  codeSalt: string
+  codeHash: string
+  expiresAt: string
+  attempts: number
+  createdAt: string
+}
+
 type UserStoreFile = {
   users: Record<string, StoredUser>
   sessions: Record<string, StoredSession>
+  verificationCodes: Record<string, StoredVerificationCode>
 }
 
 export type AccountPlan = {
@@ -37,8 +45,17 @@ export type AccountPlan = {
 }
 
 export type UserStore = {
-  createUser: (email: string, password: string, displayName?: string) => Promise<PublicUser>
-  verifyUser: (email: string, password: string) => Promise<PublicUser | undefined>
+  requestVerificationCode: (
+    email: string,
+    code: string,
+    expiresAt: Date,
+  ) => Promise<void>
+  verifyEmailCode: (
+    email: string,
+    code: string,
+    now: Date,
+    maxAttempts: number,
+  ) => Promise<PublicUser | undefined>
   createSession: (userId: string) => Promise<string>
   deleteSession: (sessionId: string) => Promise<void>
   getUserBySession: (sessionId: string) => Promise<PublicUser | undefined>
@@ -56,7 +73,7 @@ function getDefaultUserFilePath() {
 }
 
 function createEmptyStoreFile(): UserStoreFile {
-  return { users: {}, sessions: {} }
+  return { users: {}, sessions: {}, verificationCodes: {} }
 }
 
 function normalizeEmail(email: string) {
@@ -78,8 +95,8 @@ function publicUser(user: StoredUser): PublicUser {
   }
 }
 
-function hashPassword(password: string, salt = randomBytes(16).toString('hex')) {
-  const derivedKey = scryptSync(password, salt, 64)
+function hashSecret(secret: string, salt = randomBytes(16).toString('hex')) {
+  const derivedKey = scryptSync(secret, salt, 64)
 
   return {
     salt,
@@ -87,12 +104,29 @@ function hashPassword(password: string, salt = randomBytes(16).toString('hex')) 
   }
 }
 
-function verifyPassword(password: string, salt: string, expectedHash: string) {
-  const { hash } = hashPassword(password, salt)
+function verifySecret(secret: string, salt: string, expectedHash: string) {
+  const { hash } = hashSecret(secret, salt)
   const expected = Buffer.from(expectedHash, 'hex')
   const actual = Buffer.from(hash, 'hex')
 
   return expected.length === actual.length && timingSafeEqual(expected, actual)
+}
+
+function findUserByEmail(storeFile: UserStoreFile, email: string) {
+  return Object.values(storeFile.users).find((user) => user.email === email)
+}
+
+function createVerifiedUser(email: string): StoredUser {
+  const now = new Date().toISOString()
+  const userId = randomUUID()
+
+  return {
+    id: userId,
+    email,
+    avatarUrl: getAvatarUrl(userId),
+    createdAt: now,
+    updatedAt: now,
+  }
 }
 
 async function readStoreFile(filePath: string): Promise<UserStoreFile> {
@@ -107,6 +141,10 @@ async function readStoreFile(filePath: string): Promise<UserStoreFile> {
     return {
       users: parsed.users,
       sessions: parsed.sessions && typeof parsed.sessions === 'object' ? parsed.sessions : {},
+      verificationCodes:
+        parsed.verificationCodes && typeof parsed.verificationCodes === 'object'
+          ? parsed.verificationCodes
+          : {},
     }
   } catch (error) {
     if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
@@ -124,43 +162,59 @@ async function writeStoreFile(filePath: string, storeFile: UserStoreFile) {
 
 export function createFileUserStore(filePath = getDefaultUserFilePath()): UserStore {
   return {
-    async createUser(email, password, displayName) {
+    async requestVerificationCode(email, code, expiresAt) {
       const normalizedEmail = normalizeEmail(email)
       const storeFile = await readStoreFile(filePath)
-      const existingUser = Object.values(storeFile.users).find((user) => user.email === normalizedEmail)
-
-      if (existingUser) {
-        throw new Error('Email is already registered.')
-      }
-
       const now = new Date().toISOString()
-      const userId = randomUUID()
-      const passwordResult = hashPassword(password)
-      const user: StoredUser = {
-        id: userId,
+      const codeResult = hashSecret(code)
+
+      storeFile.verificationCodes[normalizedEmail] = {
         email: normalizedEmail,
-        displayName,
-        avatarUrl: getAvatarUrl(userId),
-        passwordSalt: passwordResult.salt,
-        passwordHash: passwordResult.hash,
+        codeSalt: codeResult.salt,
+        codeHash: codeResult.hash,
+        expiresAt: expiresAt.toISOString(),
+        attempts: 0,
         createdAt: now,
-        updatedAt: now,
       }
+
+      await writeStoreFile(filePath, storeFile)
+    },
+
+    async verifyEmailCode(email, code, now, maxAttempts) {
+      const normalizedEmail = normalizeEmail(email)
+      const storeFile = await readStoreFile(filePath)
+      const verificationCode = storeFile.verificationCodes[normalizedEmail]
+
+      if (!verificationCode) {
+        return undefined
+      }
+
+      if (
+        new Date(verificationCode.expiresAt).getTime() <= now.getTime() ||
+        verificationCode.attempts >= maxAttempts
+      ) {
+        delete storeFile.verificationCodes[normalizedEmail]
+        await writeStoreFile(filePath, storeFile)
+        return undefined
+      }
+
+      if (!verifySecret(code, verificationCode.codeSalt, verificationCode.codeHash)) {
+        verificationCode.attempts += 1
+
+        if (verificationCode.attempts >= maxAttempts) {
+          delete storeFile.verificationCodes[normalizedEmail]
+        }
+
+        await writeStoreFile(filePath, storeFile)
+        return undefined
+      }
+
+      delete storeFile.verificationCodes[normalizedEmail]
+
+      const user = findUserByEmail(storeFile, normalizedEmail) ?? createVerifiedUser(normalizedEmail)
 
       storeFile.users[user.id] = user
       await writeStoreFile(filePath, storeFile)
-
-      return publicUser(user)
-    },
-
-    async verifyUser(email, password) {
-      const normalizedEmail = normalizeEmail(email)
-      const storeFile = await readStoreFile(filePath)
-      const user = Object.values(storeFile.users).find((item) => item.email === normalizedEmail)
-
-      if (!user || !verifyPassword(password, user.passwordSalt, user.passwordHash)) {
-        return undefined
-      }
 
       return publicUser(user)
     },
