@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Badge } from '../components/Badge'
+import { CourseSearchPicker, filterCourseOptions } from '../components/CourseSearchPicker'
 import { useCatalog } from '../lib/catalogContext'
 import { PlanBackupPanel } from '../components/PlanBackupPanel'
 import { getCourseAvailability } from '../lib/courseAvailability'
@@ -54,6 +55,26 @@ export function PlannerPage() {
     plannedTerms,
     currentTerm,
   ).map((course) => normalizeCourseCode(course.courseCode))
+  function addCourseFromPicker(plannedTermId: string, courseCode: string) {
+    addCourseToPlannedTerm(plannedTermId, courseCode)
+    setCourseInputs((current) => ({ ...current, [plannedTermId]: '' }))
+  }
+
+  function addBestMatchingCourse(plannedTermId: string) {
+    const input = courseInputs[plannedTermId] ?? ''
+
+    if (!input.trim()) {
+      return
+    }
+
+    const course = filterCourseOptions(courses, input)[0]
+
+    if (!course) {
+      return
+    }
+
+    addCourseFromPicker(plannedTermId, course.code)
+  }
 
   return (
     <div className="space-y-6">
@@ -192,26 +213,24 @@ export function PlannerPage() {
                   className="no-print mt-4 grid gap-3 sm:grid-cols-[1fr_auto]"
                   onSubmit={(event) => {
                     event.preventDefault()
-                    const input = courseInputs[plannedTerm.id] ?? ''
-
-                    if (!input.trim()) {
-                      return
-                    }
-
-                    addCourseToPlannedTerm(plannedTerm.id, input)
-                    setCourseInputs((current) => ({ ...current, [plannedTerm.id]: '' }))
+                    addBestMatchingCourse(plannedTerm.id)
                   }}
                 >
-                  <input
-                    className="h-11 rounded-xl border border-slate-300 px-3"
-                    placeholder="Add course, e.g. STAT 231"
-                    value={courseInputs[plannedTerm.id] ?? ''}
-                    onChange={(event) =>
+                  <CourseSearchPicker
+                    allowEmptyChoose={false}
+                    courses={courses}
+                    inputId={`planner-course-${plannedTerm.id}`}
+                    label="Add course"
+                    listboxId={`planner-course-options-${plannedTerm.id}`}
+                    onChange={(value) =>
                       setCourseInputs((current) => ({
                         ...current,
-                        [plannedTerm.id]: event.target.value,
+                        [plannedTerm.id]: value,
                       }))
                     }
+                    onChoose={(courseCode) => addCourseFromPicker(plannedTerm.id, courseCode)}
+                    placeholder="Search by code or name"
+                    value={courseInputs[plannedTerm.id] ?? ''}
                   />
                   <button className="h-11 rounded-xl bg-slate-200 px-5 font-semibold text-slate-950 hover:bg-slate-300">
                     Add course

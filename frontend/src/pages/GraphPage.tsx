@@ -1,7 +1,8 @@
 import cytoscape from 'cytoscape'
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { Badge } from '../components/Badge'
+import { CourseSearchPicker, getCoursePickerLabel } from '../components/CourseSearchPicker'
 import { useCatalog } from '../lib/catalogContext'
 import { buildPrerequisitePathGraph } from '../lib/courseGraph'
 import { getCourseAvailability } from '../lib/courseAvailability'
@@ -211,6 +212,7 @@ export function GraphPage() {
   const { courses } = useCatalog()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const graphRef = useRef<cytoscape.Core | null>(null)
+  const [courseSearch, setCourseSearch] = useState('')
   const [searchParams, setSearchParams] = useSearchParams()
   const courseFromUrl = normalizeCourseCode(searchParams.get('course') ?? '')
   const selectedCourseCode = courses.some((course) => course.code === courseFromUrl)
@@ -268,6 +270,20 @@ export function GraphPage() {
     pathGraph.nodes,
     prerequisiteOverrides,
   ])
+
+  useEffect(() => {
+    setCourseSearch(selectedCourse ? getCoursePickerLabel(selectedCourse) : '')
+  }, [selectedCourse])
+
+  function chooseCourse(courseCode: string) {
+    const course = courses.find((course) => course.code === courseCode)
+
+    if (course) {
+      setCourseSearch(getCoursePickerLabel(course))
+    }
+
+    setSearchParams({ course: courseCode })
+  }
 
   useEffect(() => {
     if (!containerRef.current) {
@@ -389,25 +405,17 @@ export function GraphPage() {
       </div>
 
       <section className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[1fr_auto]">
-        <div>
-          <label className="text-sm font-medium text-slate-600" htmlFor="graph-course">
-            Target course
-          </label>
-          <select
-            className="mt-1 h-11 w-full rounded-xl border border-slate-300 bg-white px-3"
-            id="graph-course"
-            value={selectedCourseCode}
-            onChange={(event) => {
-              setSearchParams({ course: event.target.value })
-            }}
-          >
-            {courses.map((course) => (
-              <option key={course.code} value={course.code}>
-                {formatCourseCode(course.code)} - {course.name}
-              </option>
-            ))}
-          </select>
-        </div>
+        <CourseSearchPicker
+          courses={courses}
+          inputId="graph-course"
+          label="Target course"
+          listboxId="graph-course-options"
+          onChange={setCourseSearch}
+          onChoose={chooseCourse}
+          placeholder="Search by code or name"
+          selectedCourseCode={selectedCourseCode}
+          value={courseSearch}
+        />
         <button
           className="self-end rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50"
           type="button"

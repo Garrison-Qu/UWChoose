@@ -19,7 +19,7 @@ export const degrees: Degree[] = [
 
 export const programs: Program[] = [
   {
-    id: "actuarial-science-bachelor-of-mathematics-honours",
+    id: "h-actuarial-science-actuarial-science-bachelor-of-mathematics-honours",
     name: "Actuarial Science (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -33,7 +33,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/HkeH1JRCjh",
     requirements: [
       {
-        id: "actuarial-science-bachelor-of-mathematics-honours-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
+        id: "h-actuarial-science-actuarial-science-bachelor-of-mathematics-honours-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
         name: "Complete all the following: ACTSC231 - Introductory Financial Mathematics (0.50)ACTSC232 - Life Contingencies 1 (0.50)ACTSC331 - Life Contingencies 2 (0.50)ACTSC363 - Casualty and ",
         category: "program",
         courses: [
@@ -57,7 +57,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "actuarial-science-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath250-introduction-to-differential-equa",
+        id: "h-actuarial-science-actuarial-science-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath250-introduction-to-differential-equa",
         name: "Complete 1 of the following: AMATH250 - Introduction to Differential Equations (0.50)AMATH251 - Introduction to Differential Equations (Advanced Level) (0.50)AMATH350 - Differentia",
         category: "program",
         courses: [
@@ -69,7 +69,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "actuarial-science-bachelor-of-mathematics-honours-3-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-actuarial-science-actuarial-science-bachelor-of-mathematics-honours-3-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -80,7 +80,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "actuarial-science-bachelor-of-mathematics-honours-4-choose-any-of-the-following-afm424-equity-investments-0-50-stat431-gen",
+        id: "h-actuarial-science-actuarial-science-bachelor-of-mathematics-honours-4-choose-any-of-the-following-afm424-equity-investments-0-50-stat431-gen",
         name: "Choose any of the following: AFM424 - Equity Investments (0.50)STAT431 - Generalized Linear Models and their Applications (0.50)STAT433 - Stochastic Processes 2 (0.50)STAT440 - Com",
         category: "program",
         courses: [
@@ -97,7 +97,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "actuarial-science-joint-honours",
+    id: "jh-actuarial-science-actuarial-science-joint-honours",
     name: "Actuarial Science (Joint Honours)",
     category: "joint",
     code: "JH-Actuarial Science",
@@ -108,7 +108,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/ryHykRAi3",
     requirements: [
       {
-        id: "actuarial-science-joint-honours-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
+        id: "jh-actuarial-science-actuarial-science-joint-honours-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
         name: "Complete all the following: ACTSC231 - Introductory Financial Mathematics (0.50)ACTSC232 - Life Contingencies 1 (0.50)ACTSC331 - Life Contingencies 2 (0.50)ACTSC363 - Casualty and ",
         category: "program",
         courses: [
@@ -128,7 +128,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "actuarial-science-joint-honours-2-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "jh-actuarial-science-actuarial-science-joint-honours-2-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -141,7 +141,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "actuarial-science-minor",
+    id: "actuarial-science-minor-actuarial-science-minor",
     name: "Actuarial Science Minor",
     category: "minor",
     code: "Actuarial Science Minor",
@@ -152,7 +152,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/SyxByJ00o3",
     requirements: [
       {
-        id: "actuarial-science-minor-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
+        id: "actuarial-science-minor-actuarial-science-minor-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
         name: "Complete all the following: ACTSC231 - Introductory Financial Mathematics (0.50)ACTSC232 - Life Contingencies 1 (0.50)AFM101 - Introduction to Financial Accounting (0.50)MTHEL131 -",
         category: "program",
         courses: [
@@ -166,7 +166,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "actuarial-science-minor-2-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "actuarial-science-minor-actuarial-science-minor-2-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -177,7 +177,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "actuarial-science-minor-3-complete-2-of-the-following-actsc331-life-contingencies-2-0-50-actsc36",
+        id: "actuarial-science-minor-actuarial-science-minor-3-complete-2-of-the-following-actsc331-life-contingencies-2-0-50-actsc36",
         name: "Complete 2 of the following: ACTSC331 - Life Contingencies 2 (0.50)ACTSC363 - Casualty and Health Insurance Mathematics 1 (0.50)ACTSC372 - Investment Science and Corporate Finance ",
         category: "program",
         courses: [
@@ -191,7 +191,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "applied-mathematics-bachelor-of-mathematics-honours",
+    id: "h-applied-mathematics-applied-mathematics-bachelor-of-mathematics-honours",
     name: "Applied Mathematics (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -205,7 +205,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/r1lByy00sh",
     requirements: [
       {
-        id: "applied-mathematics-bachelor-of-mathematics-honours-1-complete-all-the-following-amath231-calculus-4-0-50-amath342-computati",
+        id: "h-applied-mathematics-applied-mathematics-bachelor-of-mathematics-honours-1-complete-all-the-following-amath231-calculus-4-0-50-amath342-computati",
         name: "Complete all the following: AMATH231 - Calculus 4 (0.50)AMATH342 - Computational Methods for Differential Equations (0.50)AMATH353 - Partial Differential Equations 1 (0.50)",
         category: "program",
         courses: [
@@ -216,7 +216,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "applied-mathematics-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
+        id: "h-applied-mathematics-applied-mathematics-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
         name: "Complete 1 of the following: AMATH242 - Introduction to Computational Mathematics (0.50)CS371 - Introduction to Computational Mathematics (0.50)",
         category: "program",
         courses: [
@@ -227,7 +227,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-bachelor-of-mathematics-honours-3-complete-1-of-the-following-amath250-introduction-to-differential-equa",
+        id: "h-applied-mathematics-applied-mathematics-bachelor-of-mathematics-honours-3-complete-1-of-the-following-amath250-introduction-to-differential-equa",
         name: "Complete 1 of the following: AMATH250 - Introduction to Differential Equations (0.50)AMATH251 - Introduction to Differential Equations (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -238,7 +238,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-bachelor-of-mathematics-honours-4-complete-all-the-following-amath271-introduction-to-theoretical-mechan",
+        id: "h-applied-mathematics-applied-mathematics-bachelor-of-mathematics-honours-4-complete-all-the-following-amath271-introduction-to-theoretical-mechan",
         name: "Complete all the following: AMATH271 - Introduction to Theoretical Mechanics (0.50)",
         category: "program",
         courses: [
@@ -247,7 +247,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "applied-mathematics-bachelor-of-mathematics-honours-5-complete-1-of-the-following-amath333-calculus-on-manifolds-for-applied",
+        id: "h-applied-mathematics-applied-mathematics-bachelor-of-mathematics-honours-5-complete-1-of-the-following-amath333-calculus-on-manifolds-for-applied",
         name: "Complete 1 of the following: AMATH333 - Calculus on Manifolds for Applied Mathematics and Physics (0.50)AMATH343 - Discrete Models in Applied Mathematics (0.50)AMATH345 - Data-Driv",
         category: "program",
         courses: [
@@ -267,7 +267,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-bachelor-of-mathematics-honours-6-complete-1-of-the-following-amath331-applied-real-analysis-0-50-amath3",
+        id: "h-applied-mathematics-applied-mathematics-bachelor-of-mathematics-honours-6-complete-1-of-the-following-amath331-applied-real-analysis-0-50-amath3",
         name: "Complete 1 of the following: AMATH331 - Applied Real Analysis (0.50)AMATH332 - Applied Complex Analysis (0.50)PMATH331 - Applied Real Analysis (0.50)PMATH332 - Applied Complex Anal",
         category: "program",
         courses: [
@@ -283,7 +283,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-bachelor-of-mathematics-honours-7-complete-3-of-the-following-amath442-computational-methods-for-partial",
+        id: "h-applied-mathematics-applied-mathematics-bachelor-of-mathematics-honours-7-complete-3-of-the-following-amath442-computational-methods-for-partial",
         name: "Complete 3 of the following: AMATH442 - Computational Methods for Partial Differential Equations (0.50)AMATH445 - Scientific Machine Learning (0.50)AMATH446 - Introduction to Mathe",
         category: "program",
         courses: [
@@ -310,7 +310,7 @@ export const programs: Program[] = [
         requiredCount: 3
       },
       {
-        id: "applied-mathematics-bachelor-of-mathematics-honours-8-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-applied-mathematics-applied-mathematics-bachelor-of-mathematics-honours-8-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -323,7 +323,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "applied-mathematics-joint-honours",
+    id: "jh-applied-mathematics-applied-mathematics-joint-honours",
     name: "Applied Mathematics (Joint Honours)",
     category: "joint",
     code: "JH-Applied Mathematics",
@@ -334,7 +334,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/SJgSyJC0s2",
     requirements: [
       {
-        id: "applied-mathematics-joint-honours-1-complete-all-the-following-amath231-calculus-4-0-50-amath353-partial-d",
+        id: "jh-applied-mathematics-applied-mathematics-joint-honours-1-complete-all-the-following-amath231-calculus-4-0-50-amath353-partial-d",
         name: "Complete all the following: AMATH231 - Calculus 4 (0.50)AMATH353 - Partial Differential Equations 1 (0.50)",
         category: "program",
         courses: [
@@ -344,7 +344,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "applied-mathematics-joint-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
+        id: "jh-applied-mathematics-applied-mathematics-joint-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
         name: "Complete 1 of the following: AMATH242 - Introduction to Computational Mathematics (0.50)CS371 - Introduction to Computational Mathematics (0.50)",
         category: "program",
         courses: [
@@ -355,7 +355,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-joint-honours-3-complete-1-of-the-following-amath250-introduction-to-differential-equa",
+        id: "jh-applied-mathematics-applied-mathematics-joint-honours-3-complete-1-of-the-following-amath250-introduction-to-differential-equa",
         name: "Complete 1 of the following: AMATH250 - Introduction to Differential Equations (0.50)AMATH251 - Introduction to Differential Equations (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -366,7 +366,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-joint-honours-4-complete-all-the-following-amath271-introduction-to-theoretical-mechan",
+        id: "jh-applied-mathematics-applied-mathematics-joint-honours-4-complete-all-the-following-amath271-introduction-to-theoretical-mechan",
         name: "Complete all the following: AMATH271 - Introduction to Theoretical Mechanics (0.50)",
         category: "program",
         courses: [
@@ -375,7 +375,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "applied-mathematics-joint-honours-5-complete-1-of-the-following-amath333-calculus-on-manifolds-for-applied",
+        id: "jh-applied-mathematics-applied-mathematics-joint-honours-5-complete-1-of-the-following-amath333-calculus-on-manifolds-for-applied",
         name: "Complete 1 of the following: AMATH333 - Calculus on Manifolds for Applied Mathematics and Physics (0.50)AMATH343 - Discrete Models in Applied Mathematics (0.50)AMATH345 - Data-Driv",
         category: "program",
         courses: [
@@ -395,7 +395,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-joint-honours-6-complete-1-of-the-following-amath331-applied-real-analysis-0-50-amath3",
+        id: "jh-applied-mathematics-applied-mathematics-joint-honours-6-complete-1-of-the-following-amath331-applied-real-analysis-0-50-amath3",
         name: "Complete 1 of the following: AMATH331 - Applied Real Analysis (0.50)AMATH332 - Applied Complex Analysis (0.50)PMATH331 - Applied Real Analysis (0.50)PMATH332 - Applied Complex Anal",
         category: "program",
         courses: [
@@ -411,7 +411,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-joint-honours-7-complete-3-of-the-following-amath442-computational-methods-for-partial",
+        id: "jh-applied-mathematics-applied-mathematics-joint-honours-7-complete-3-of-the-following-amath442-computational-methods-for-partial",
         name: "Complete 3 of the following: AMATH442 - Computational Methods for Partial Differential Equations (0.50)AMATH445 - Scientific Machine Learning (0.50)AMATH446 - Introduction to Mathe",
         category: "program",
         courses: [
@@ -438,7 +438,7 @@ export const programs: Program[] = [
         requiredCount: 3
       },
       {
-        id: "applied-mathematics-joint-honours-8-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "jh-applied-mathematics-applied-mathematics-joint-honours-8-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -451,7 +451,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "applied-mathematics-minor",
+    id: "applied-mathematics-minor-applied-mathematics-minor",
     name: "Applied Mathematics Minor",
     category: "minor",
     code: "Applied Mathematics Minor",
@@ -462,7 +462,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/rkGHJk0Ci2",
     requirements: [
       {
-        id: "applied-mathematics-minor-1-complete-1-of-the-following-math103-introductory-algebra-for-arts-and-",
+        id: "applied-mathematics-minor-applied-mathematics-minor-1-complete-1-of-the-following-math103-introductory-algebra-for-arts-and-",
         name: "Complete 1 of the following: MATH103 - Introductory Algebra for Arts and Social Science (0.50)MATH106 - Applied Linear Algebra 1 (0.50)MATH114 - Linear Algebra for Science (0.50)MA",
         category: "program",
         courses: [
@@ -478,7 +478,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-minor-2-complete-1-of-the-following-math104-introductory-calculus-for-arts-and",
+        id: "applied-mathematics-minor-applied-mathematics-minor-2-complete-1-of-the-following-math104-introductory-calculus-for-arts-and",
         name: "Complete 1 of the following: MATH104 - Introductory Calculus for Arts and Social Science (0.50)MATH116 - Calculus 1 for Engineering (0.50)MATH117 - Calculus 1 for Engineering (0.50",
         category: "program",
         courses: [
@@ -493,7 +493,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-minor-3-complete-1-of-the-following-math118-calculus-2-for-engineering-0-50-ma",
+        id: "applied-mathematics-minor-applied-mathematics-minor-3-complete-1-of-the-following-math118-calculus-2-for-engineering-0-50-ma",
         name: "Complete 1 of the following: MATH118 - Calculus 2 for Engineering (0.50)MATH119 - Calculus 2 for Engineering (0.50)MATH128 - Calculus 2 for the Sciences (0.50)MATH138 - Calculus 2 ",
         category: "program",
         courses: [
@@ -507,7 +507,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-minor-4-complete-1-of-the-following-ece206-advanced-calculus-2-for-electrical-",
+        id: "applied-mathematics-minor-applied-mathematics-minor-4-complete-1-of-the-following-ece206-advanced-calculus-2-for-electrical-",
         name: "Complete 1 of the following: ECE206 - Advanced Calculus 2 for Electrical Engineers (0.50)MATH212 - Advanced Calculus 2 for Electrical Engineers (0.50)MATH217 - Calculus 3 for Chemi",
         category: "program",
         courses: [
@@ -522,7 +522,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-minor-5-complete-1-of-the-following-amath250-introduction-to-differential-equa",
+        id: "applied-mathematics-minor-applied-mathematics-minor-5-complete-1-of-the-following-amath250-introduction-to-differential-equa",
         name: "Complete 1 of the following: AMATH250 - Introduction to Differential Equations (0.50)AMATH251 - Introduction to Differential Equations (Advanced Level) (0.50)ECE205 - Advanced Calc",
         category: "program",
         courses: [
@@ -540,7 +540,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours",
+    id: "h-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours",
     name: "Applied Mathematics with Scientific Computing and Scientific Machine Learning (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -554,7 +554,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/ByBkJCRs2",
     requirements: [
       {
-        id: "applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours-1-complete-all-the-following-amath231-calculus-4-0-50-amath445-scientifi",
+        id: "h-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours-1-complete-all-the-following-amath231-calculus-4-0-50-amath445-scientifi",
         name: "Complete all the following: AMATH231 - Calculus 4 (0.50)AMATH445 - Scientific Machine Learning (0.50)CS234 - Data Types and Structures (0.50)",
         category: "program",
         courses: [
@@ -565,7 +565,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
+        id: "h-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
         name: "Complete 1 of the following: AMATH242 - Introduction to Computational Mathematics (0.50)CS371 - Introduction to Computational Mathematics (0.50)",
         category: "program",
         courses: [
@@ -576,7 +576,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours-3-complete-1-of-the-following-amath250-introduction-to-differential-equa",
+        id: "h-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours-3-complete-1-of-the-following-amath250-introduction-to-differential-equa",
         name: "Complete 1 of the following: AMATH250 - Introduction to Differential Equations (0.50)AMATH251 - Introduction to Differential Equations (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -587,7 +587,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours-4-complete-1-of-the-following-amath342-computational-methods-for-differe",
+        id: "h-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours-4-complete-1-of-the-following-amath342-computational-methods-for-differe",
         name: "Complete 1 of the following: AMATH342 - Computational Methods for Differential Equations (0.50)AMATH345 - Data-Driven Mathematical Models (0.50)AMATH449 - Neural Networks (0.50)CS4",
         category: "program",
         courses: [
@@ -600,7 +600,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours-5-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "h-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours-5-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -611,7 +611,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -622,7 +622,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours-7-complete-4-of-the-following-amath342-computational-methods-for-differe",
+        id: "h-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-applied-mathematics-with-scientific-computing-and-scientific-machine-learning-bachelor-of-mathematics-honours-7-complete-4-of-the-following-amath342-computational-methods-for-differe",
         name: "Complete 4 of the following: AMATH342 - Computational Methods for Differential Equations (0.50)AMATH345 - Data-Driven Mathematical Models (0.50)AMATH391 - Data Analysis with Fourie",
         category: "program",
         courses: [
@@ -653,7 +653,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "artificial-intelligence-specialization",
+    id: "cs-artificial-intelligence-specialization-artificial-intelligence-specialization",
     name: "Artificial Intelligence Specialization",
     category: "specialization",
     code: "CS-Artificial Intelligence Specialization",
@@ -669,7 +669,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "artificial-intelligence-specialization-1-complete-all-the-following-cs486-introduction-to-artificial-intelligen",
+        id: "cs-artificial-intelligence-specialization-artificial-intelligence-specialization-1-complete-all-the-following-cs486-introduction-to-artificial-intelligen",
         name: "Complete all the following: CS486 - Introduction to Artificial Intelligence (0.50)CS492 - The Social Implications of Computing (0.50)",
         category: "program",
         courses: [
@@ -679,7 +679,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "artificial-intelligence-specialization-2-complete-1-of-the-following-cs480-introduction-to-machine-learning-0-5",
+        id: "cs-artificial-intelligence-specialization-artificial-intelligence-specialization-2-complete-1-of-the-following-cs480-introduction-to-machine-learning-0-5",
         name: "Complete 1 of the following: CS480 - Introduction to Machine Learning (0.50)CS485 - Statistical and Computational Foundations of Machine Learning (0.50)",
         category: "program",
         courses: [
@@ -690,7 +690,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "artificial-intelligence-specialization-3-complete-4-of-the-following-amath449-neural-networks-0-50-biol487-comp",
+        id: "cs-artificial-intelligence-specialization-artificial-intelligence-specialization-3-complete-4-of-the-following-amath449-neural-networks-0-50-biol487-comp",
         name: "Complete 4 of the following: AMATH449 - Neural Networks (0.50)BIOL487 - Computational Neuroscience (0.50)CO367 - Nonlinear Optimization (0.50)CO456 - Introduction to Game Theory (0",
         category: "program",
         courses: [
@@ -728,7 +728,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "bachelor-of-computer-science-degree-requirements",
+    id: "degree-reqs-bcs-bachelor-of-computer-science-degree-requirements",
     name: "Bachelor of Computer Science Degree Requirements",
     degreeIds: [
       "bcs"
@@ -743,7 +743,7 @@ export const programs: Program[] = [
     requirements: []
   },
   {
-    id: "bachelor-of-mathematics-degree-requirements",
+    id: "degree-reqs-bmath-bachelor-of-mathematics-degree-requirements",
     name: "Bachelor of Mathematics Degree Requirements",
     degreeIds: [
       "bmath"
@@ -758,7 +758,7 @@ export const programs: Program[] = [
     requirements: []
   },
   {
-    id: "bioinformatics-specialization",
+    id: "cs-bioinformatics-specialization-bioinformatics-specialization",
     name: "Bioinformatics Specialization",
     category: "specialization",
     code: "CS-Bioinformatics Specialization",
@@ -774,7 +774,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "bioinformatics-specialization-1-complete-all-the-following-biol130-introductory-cell-biology-0-50-biol",
+        id: "cs-bioinformatics-specialization-bioinformatics-specialization-1-complete-all-the-following-biol130-introductory-cell-biology-0-50-biol",
         name: "Complete all the following: BIOL130 - Introductory Cell Biology (0.50)BIOL130L - Cell Biology Laboratory (0.25)BIOL239 - Genetics (0.50)BIOL240 - Fundamentals of Microbiology (0.50",
         category: "program",
         courses: [
@@ -797,7 +797,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "biology-specialization",
+    id: "amath-biology-specialization-biology-specialization",
     name: "Biology Specialization",
     category: "specialization",
     code: "AMATH-Biology Specialization",
@@ -811,7 +811,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "biology-specialization-1-choose-any-of-the-following-amath382-computational-modelling-of-cellul",
+        id: "amath-biology-specialization-biology-specialization-1-choose-any-of-the-following-amath382-computational-modelling-of-cellul",
         name: "Choose any of the following: AMATH382 - Computational Modelling of Cellular Systems (0.50)AMATH383 - Introduction to Mathematical Biology (0.50)BIOL382 - Computational Modelling of",
         category: "program",
         courses: [
@@ -824,7 +824,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "biostatistics-bachelor-of-mathematics-honours",
+    id: "h-biostatistics-biostatistics-bachelor-of-mathematics-honours",
     name: "Biostatistics (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -838,7 +838,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/SkUkJR0oh",
     requirements: [
       {
-        id: "biostatistics-bachelor-of-mathematics-honours-1-complete-all-the-following-engl378-professional-communications-in-stat",
+        id: "h-biostatistics-biostatistics-bachelor-of-mathematics-honours-1-complete-all-the-following-engl378-professional-communications-in-stat",
         name: "Complete all the following: ENGL378 - Professional Communications in Statistics and Actuarial Science (0.50)STAT330 - Mathematical Statistics (0.50)STAT331 - Applied Linear Models ",
         category: "program",
         courses: [
@@ -855,7 +855,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "biostatistics-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath231-calculus-4-0-50-amath242-introduc",
+        id: "h-biostatistics-biostatistics-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath231-calculus-4-0-50-amath242-introduc",
         name: "Complete 1 of the following: AMATH231 - Calculus 4 (0.50)AMATH242 - Introduction to Computational Mathematics (0.50)AMATH250 - Introduction to Differential Equations (0.50)AMATH251",
         category: "program",
         courses: [
@@ -872,7 +872,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "biostatistics-bachelor-of-mathematics-honours-3-complete-1-of-the-following-biol239-genetics-0-50-hlth101-introduction",
+        id: "h-biostatistics-biostatistics-bachelor-of-mathematics-honours-3-complete-1-of-the-following-biol239-genetics-0-50-hlth101-introduction",
         name: "Complete 1 of the following: BIOL239 - Genetics (0.50)HLTH101 - Introduction to Health 1 (0.50)",
         category: "program",
         courses: [
@@ -883,7 +883,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "biostatistics-bachelor-of-mathematics-honours-4-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-biostatistics-biostatistics-bachelor-of-mathematics-honours-4-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -896,7 +896,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours",
+    id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours",
     name: "Business Administration and Computer Science Double Degree (Bachelor of Business Administration and Bachelor of Computer Science - Honours)",
     degreeIds: [
       "bcs"
@@ -910,7 +910,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/r17w1JR0sh",
     requirements: [
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-1-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-1-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
         name: "Complete all the following: CS136L - Tools and Techniques for Software Development (0.25)CS341 - Algorithms (0.50)CS350 - Operating Systems (0.50)CS490 - Information Systems Manage",
         category: "program",
         courses: [
@@ -923,7 +923,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-2-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-2-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -934,7 +934,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-3-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-3-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
         name: "Complete 1 of the following: CS115 - Introduction to Computer Science 1 (0.50)CS135 - Designing Functional Programs (0.50)CS145 - Designing Functional Programs (Advanced Level) (0.",
         category: "program",
         courses: [
@@ -946,7 +946,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-4-complete-1-of-the-following-cs136-elementary-algorithm-design-and-data",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-4-complete-1-of-the-following-cs136-elementary-algorithm-design-and-data",
         name: "Complete 1 of the following: CS136 - Elementary Algorithm Design and Data Abstraction (0.50)CS146 - Elementary Algorithm Design and Data Abstraction (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -957,7 +957,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-5-complete-1-of-the-following-cs240-data-structures-and-data-management-",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-5-complete-1-of-the-following-cs240-data-structures-and-data-management-",
         name: "Complete 1 of the following: CS240 - Data Structures and Data Management (0.50)CS240E - Data Structures and Data Management (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -968,7 +968,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-6-complete-1-of-the-following-cs241-foundations-of-sequential-programs-0",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-6-complete-1-of-the-following-cs241-foundations-of-sequential-programs-0",
         name: "Complete 1 of the following: CS241 - Foundations of Sequential Programs (0.50)CS241E - Foundations of Sequential Programs (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -979,7 +979,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-7-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-7-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
         name: "Complete 1 of the following: CS245 - Logic and Computation (0.50)CS245E - Logic and Computation (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -990,7 +990,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-8-complete-1-of-the-following-cs246-object-oriented-software-development",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-8-complete-1-of-the-following-cs246-object-oriented-software-development",
         name: "Complete 1 of the following: CS246 - Object-Oriented Software Development (0.50)CS246E - Object-Oriented Software Development (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -1001,7 +1001,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-9-complete-1-of-the-following-cs251-computer-organization-and-design-0-5",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-9-complete-1-of-the-following-cs251-computer-organization-and-design-0-5",
         name: "Complete 1 of the following: CS251 - Computer Organization and Design (0.50)CS251E - Computer Organization and Design (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -1012,7 +1012,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-10-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-10-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH127 - Calculus 1 for the Sciences (0.50)MATH137 - Calculus 1 for Honours Mathematics (0.50)MATH147 - Calculus 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1024,7 +1024,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-11-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-11-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH128 - Calculus 2 for the Sciences (0.50)MATH138 - Calculus 2 for Honours Mathematics (0.50)MATH148 - Calculus 2 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1036,7 +1036,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-12-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-12-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
         name: "Complete 1 of the following: MATH135 - Algebra for Honours Mathematics (0.50)MATH145 - Algebra (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1047,7 +1047,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-13-complete-1-of-the-following-math136-linear-algebra-1-for-honours-mathe",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-13-complete-1-of-the-following-math136-linear-algebra-1-for-honours-mathe",
         name: "Complete 1 of the following: MATH136 - Linear Algebra 1 for Honours Mathematics (0.50)MATH146 - Linear Algebra 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1058,7 +1058,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-14-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-14-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1069,7 +1069,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-15-complete-1-of-the-following-stat230-probability-0-50-stat240-probabili",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-15-complete-1-of-the-following-stat230-probability-0-50-stat240-probabili",
         name: "Complete 1 of the following: STAT230 - Probability (0.50)STAT240 - Probability (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1080,7 +1080,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-16-complete-1-of-the-following-stat231-statistics-0-50-stat241-statistics",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-16-complete-1-of-the-following-stat231-statistics-0-50-stat241-statistics",
         name: "Complete 1 of the following: STAT231 - Statistics (0.50)STAT241 - Statistics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1091,7 +1091,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-17-complete-all-the-following-bus111w-understanding-the-business-environm",
+        id: "h-bba-and-bcs-double-degree-business-administration-and-computer-science-double-degree-bachelor-of-business-administration-and-bachelor-of-computer-science-honours-17-complete-all-the-following-bus111w-understanding-the-business-environm",
         name: "Complete all the following: BUS111W - Understanding the Business Environment (WLU) (0.50)BUS121W - Critical Thinking and Communication Skills (WLU) (0.50)BUS127W - Introduction to ",
         category: "program",
         courses: [
@@ -1118,7 +1118,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "business-administration-and-mathematics-double-degree-bachelor-of-business-administration-and-bachelor-of-mathematics-honours",
+    id: "h-bba-and-bmath-double-degree-business-administration-and-mathematics-double-degree-bachelor-of-business-administration-and-bachelor-of-mathematics-honours",
     name: "Business Administration and Mathematics Double Degree (Bachelor of Business Administration and Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -1132,7 +1132,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/HJbRkyC0j3",
     requirements: [
       {
-        id: "business-administration-and-mathematics-double-degree-bachelor-of-business-administration-and-bachelor-of-mathematics-honours-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
+        id: "h-bba-and-bmath-double-degree-business-administration-and-mathematics-double-degree-bachelor-of-business-administration-and-bachelor-of-mathematics-honours-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
         name: "Complete all the following: ACTSC231 - Introductory Financial Mathematics (0.50)CO370 - Deterministic OR Models (0.50)CS330 - Management Information Systems (0.50)STAT371 - Applied",
         category: "program",
         courses: [
@@ -1145,7 +1145,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "business-administration-and-mathematics-double-degree-bachelor-of-business-administration-and-bachelor-of-mathematics-honours-2-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "h-bba-and-bmath-double-degree-business-administration-and-mathematics-double-degree-bachelor-of-business-administration-and-bachelor-of-mathematics-honours-2-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1156,7 +1156,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-administration-and-mathematics-double-degree-bachelor-of-business-administration-and-bachelor-of-mathematics-honours-3-complete-all-the-following-bus111w-understanding-the-business-environm",
+        id: "h-bba-and-bmath-double-degree-business-administration-and-mathematics-double-degree-bachelor-of-business-administration-and-bachelor-of-mathematics-honours-3-complete-all-the-following-bus111w-understanding-the-business-environm",
         name: "Complete all the following: BUS111W - Understanding the Business Environment (WLU) (0.50)BUS121W - Critical Thinking and Communication Skills (WLU) (0.50)BUS127W - Introduction to ",
         category: "program",
         courses: [
@@ -1197,7 +1197,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "business-specialization-1-complete-all-the-following-afm101-introduction-to-financial-accounting",
+        id: "ms-business-specialization-business-specialization-1-complete-all-the-following-afm101-introduction-to-financial-accounting",
         name: "Complete all the following: AFM101 - Introduction to Financial Accounting (0.50)AFM102 - Introduction to Managerial Accounting (0.50)BUS121W - Critical Thinking and Communication S",
         category: "program",
         courses: [
@@ -1211,7 +1211,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "business-specialization-2-complete-1-of-the-following-actsc221-introductory-financial-mathematic",
+        id: "ms-business-specialization-business-specialization-2-complete-1-of-the-following-actsc221-introductory-financial-mathematic",
         name: "Complete 1 of the following: ACTSC221 - Introductory Financial Mathematics (Non-Specialist Level) (0.50)ACTSC231 - Introductory Financial Mathematics (0.50)ACTSC291 - Global Capita",
         category: "program",
         courses: [
@@ -1224,7 +1224,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-specialization-3-complete-1-of-the-following-afm131-introduction-to-business-in-north-a",
+        id: "ms-business-specialization-business-specialization-3-complete-1-of-the-following-afm131-introduction-to-business-in-north-a",
         name: "Complete 1 of the following: AFM131 - Introduction to Business in North America (0.50)ARBUS101 - Introduction to Business in North America (0.50)BUS111W - Understanding the Busines",
         category: "program",
         courses: [
@@ -1236,7 +1236,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-specialization-4-complete-1-of-the-following-arbus302-principles-of-marketing-0-50-bus2",
+        id: "ms-business-specialization-business-specialization-4-complete-1-of-the-following-arbus302-principles-of-marketing-0-50-bus2",
         name: "Complete 1 of the following: ARBUS302 - Principles of Marketing (0.50)BUS252W - Introduction to Marketing Management (WLU) (0.50)MGMT244 - Principles of Marketing (0.50)",
         category: "program",
         courses: [
@@ -1248,7 +1248,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-specialization-5-complete-1-of-the-following-co227-introduction-to-optimization-non-spe",
+        id: "ms-business-specialization-business-specialization-5-complete-1-of-the-following-co227-introduction-to-optimization-non-spe",
         name: "Complete 1 of the following: CO227 - Introduction to Optimization (Non-Specialist Level) (0.50)CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Adva",
         category: "program",
         courses: [
@@ -1260,7 +1260,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-specialization-6-complete-1-of-the-following-co327-deterministic-or-models-non-speciali",
+        id: "ms-business-specialization-business-specialization-6-complete-1-of-the-following-co327-deterministic-or-models-non-speciali",
         name: "Complete 1 of the following: CO327 - Deterministic OR Models (Non-Specialist Level) (0.50)CO370 - Deterministic OR Models (0.50)",
         category: "program",
         courses: [
@@ -1271,7 +1271,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-specialization-7-complete-2-of-the-following-cs200-concepts-for-advanced-computer-usage",
+        id: "ms-business-specialization-business-specialization-7-complete-2-of-the-following-cs200-concepts-for-advanced-computer-usage",
         name: "Complete 2 of the following: CS200 - Concepts for Advanced Computer Usage (0.50)CS338 - Computer Applications in Business: Databases (0.50)CS430 - Applications Software Engineering",
         category: "program",
         courses: [
@@ -1284,7 +1284,7 @@ export const programs: Program[] = [
         requiredCount: 2
       },
       {
-        id: "business-specialization-8-complete-1-of-the-following-stat321-regression-and-forecasting-non-spe",
+        id: "ms-business-specialization-business-specialization-8-complete-1-of-the-following-stat321-regression-and-forecasting-non-spe",
         name: "Complete 1 of the following: STAT321 - Regression and Forecasting (Non-Specialist Level) (0.50)STAT322 - Sampling and Experimental Design (Non-Specialist Level) (0.50)STAT331 - App",
         category: "program",
         courses: [
@@ -1297,7 +1297,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "business-specialization-9-complete-no-more-than-1-from-the-following-ls271-conflict-resolution-0",
+        id: "ms-business-specialization-business-specialization-9-complete-no-more-than-1-from-the-following-ls271-conflict-resolution-0",
         name: "Complete no more than 1 from the following: LS271 - Conflict Resolution (0.50)PACS202 - Conflict Resolution (0.50)",
         category: "program",
         courses: [
@@ -1307,7 +1307,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "business-specialization-10-complete-no-more-than-1-from-the-following-ls319-negotiation-theories-",
+        id: "ms-business-specialization-business-specialization-10-complete-no-more-than-1-from-the-following-ls319-negotiation-theories-",
         name: "Complete no more than 1 from the following: LS319 - Negotiation: Theories and Strategies (0.50)PACS323 - Negotiation: Theories and Strategies (0.50)",
         category: "program",
         courses: [
@@ -1334,7 +1334,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "business-specialization-1-complete-2-of-the-following-actsc447-numerical-computation-for-financi",
+        id: "cs-business-specialization-business-specialization-1-complete-2-of-the-following-actsc447-numerical-computation-for-financi",
         name: "Complete 2 of the following: ACTSC447 - Numerical Computation for Financial Modelling (0.50)CS348 - Introduction to Database Management (0.50)CS476 - Numerical Computation for Fina",
         category: "program",
         courses: [
@@ -1349,7 +1349,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "climate-and-sustainability-specialization",
+    id: "amath-climate-and-sustainability-specialization-climate-and-sustainability-specialization",
     name: "Climate and Sustainability Specialization",
     category: "specialization",
     code: "AMATH-Climate & Sustainability Specialization",
@@ -1363,7 +1363,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "climate-and-sustainability-specialization-1-complete-all-the-following-amath361-continuum-mechanics-0-50-amath362-",
+        id: "amath-climate-and-sustainability-specialization-climate-and-sustainability-specialization-1-complete-all-the-following-amath361-continuum-mechanics-0-50-amath362-",
         name: "Complete all the following: AMATH361 - Continuum Mechanics (0.50)AMATH362 - Mathematics of Climate Change (0.50)",
         category: "program",
         courses: [
@@ -1373,7 +1373,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "climate-and-sustainability-specialization-2-complete-1-of-the-following-amath442-computational-methods-for-partial",
+        id: "amath-climate-and-sustainability-specialization-climate-and-sustainability-specialization-2-complete-1-of-the-following-amath442-computational-methods-for-partial",
         name: "Complete 1 of the following: AMATH442 - Computational Methods for Partial Differential Equations (0.50)AMATH463 - Fluid Mechanics (0.50)",
         category: "program",
         courses: [
@@ -1384,7 +1384,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "climate-and-sustainability-specialization-3-complete-3-of-the-following-amath462-introduction-to-mathematics-of-cl",
+        id: "amath-climate-and-sustainability-specialization-climate-and-sustainability-specialization-3-complete-3-of-the-following-amath462-introduction-to-mathematics-of-cl",
         name: "Complete 3 of the following: AMATH462 - Introduction to Mathematics of Climate Modelling (0.50)GDS271 - Earth from Space Using Remote Sensing (0.50)GDS281 - Introduction to Geograp",
         category: "program",
         courses: [
@@ -1405,7 +1405,7 @@ export const programs: Program[] = [
         requiredCount: 3
       },
       {
-        id: "climate-and-sustainability-specialization-4-complete-1-of-the-following-geog207-climate-change-fundamentals-0-50-s",
+        id: "amath-climate-and-sustainability-specialization-climate-and-sustainability-specialization-4-complete-1-of-the-following-geog207-climate-change-fundamentals-0-50-s",
         name: "Complete 1 of the following: GEOG207 - Climate Change Fundamentals (0.50)SCI205 - Climate Change Fundamentals (0.50)",
         category: "program",
         courses: [
@@ -1418,7 +1418,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "combinatorics-and-optimization-bachelor-of-mathematics-honours",
+    id: "h-combinatorics-and-optimization-combinatorics-and-optimization-bachelor-of-mathematics-honours",
     name: "Combinatorics and Optimization (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -1432,7 +1432,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/SyeD110Co2",
     requirements: [
       {
-        id: "combinatorics-and-optimization-bachelor-of-mathematics-honours-1-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "h-combinatorics-and-optimization-combinatorics-and-optimization-bachelor-of-mathematics-honours-1-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1443,7 +1443,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "combinatorics-and-optimization-bachelor-of-mathematics-honours-2-complete-1-of-the-following-co330-combinatorial-enumeration-0-50-co342",
+        id: "h-combinatorics-and-optimization-combinatorics-and-optimization-bachelor-of-mathematics-honours-2-complete-1-of-the-following-co330-combinatorial-enumeration-0-50-co342",
         name: "Complete 1 of the following: CO330 - Combinatorial Enumeration (0.50)CO342 - Introduction to Graph Theory (0.50)",
         category: "program",
         courses: [
@@ -1454,7 +1454,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "combinatorics-and-optimization-bachelor-of-mathematics-honours-3-complete-1-of-the-following-co351-network-flow-theory-0-50-co353-compu",
+        id: "h-combinatorics-and-optimization-combinatorics-and-optimization-bachelor-of-mathematics-honours-3-complete-1-of-the-following-co351-network-flow-theory-0-50-co353-compu",
         name: "Complete 1 of the following: CO351 - Network Flow Theory (0.50)CO353 - Computational Discrete Optimization (0.50)CO367 - Nonlinear Optimization (0.50)",
         category: "program",
         courses: [
@@ -1466,7 +1466,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "combinatorics-and-optimization-bachelor-of-mathematics-honours-4-complete-1-of-the-following-co450-combinatorial-optimization-0-50-co45",
+        id: "h-combinatorics-and-optimization-combinatorics-and-optimization-bachelor-of-mathematics-honours-4-complete-1-of-the-following-co450-combinatorial-optimization-0-50-co45",
         name: "Complete 1 of the following: CO450 - Combinatorial Optimization (0.50)CO452 - Integer Programming (0.50)CO454 - Scheduling (0.50)CO456 - Introduction to Game Theory (0.50)CO459 - T",
         category: "program",
         courses: [
@@ -1483,7 +1483,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "combinatorics-and-optimization-bachelor-of-mathematics-honours-5-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "h-combinatorics-and-optimization-combinatorics-and-optimization-bachelor-of-mathematics-honours-5-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1494,7 +1494,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "combinatorics-and-optimization-bachelor-of-mathematics-honours-6-complete-1-of-the-following-pmath336-introduction-to-group-theory-with",
+        id: "h-combinatorics-and-optimization-combinatorics-and-optimization-bachelor-of-mathematics-honours-6-complete-1-of-the-following-pmath336-introduction-to-group-theory-with",
         name: "Complete 1 of the following: PMATH336 - Introduction to Group Theory with Applications (0.50)PMATH347 - Groups and Rings (0.50)",
         category: "program",
         courses: [
@@ -1505,7 +1505,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "combinatorics-and-optimization-bachelor-of-mathematics-honours-7-complete-3-of-the-following-co330-combinatorial-enumeration-0-50-co331",
+        id: "h-combinatorics-and-optimization-combinatorics-and-optimization-bachelor-of-mathematics-honours-7-complete-3-of-the-following-co330-combinatorial-enumeration-0-50-co331",
         name: "Complete 3 of the following: CO330 - Combinatorial Enumeration (0.50)CO331 - Coding Theory (0.50)CO342 - Introduction to Graph Theory (0.50)CO351 - Network Flow Theory (0.50)CO353 ",
         category: "program",
         courses: [
@@ -1543,7 +1543,7 @@ export const programs: Program[] = [
         requiredCount: 3
       },
       {
-        id: "combinatorics-and-optimization-bachelor-of-mathematics-honours-8-choose-any-of-the-following-cs462-formal-languages-and-parsing-0-50-cs",
+        id: "h-combinatorics-and-optimization-combinatorics-and-optimization-bachelor-of-mathematics-honours-8-choose-any-of-the-following-cs462-formal-languages-and-parsing-0-50-cs",
         name: "Choose any of the following: CS462 - Formal Languages and Parsing (0.50)CS466 - Algorithm Design and Analysis (0.50)CS487 - Introduction to Symbolic Computation (0.50)",
         category: "program",
         courses: [
@@ -1554,7 +1554,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "combinatorics-and-optimization-bachelor-of-mathematics-honours-9-complete-no-more-than-1-from-the-following-amath331-applied-real-analy",
+        id: "h-combinatorics-and-optimization-combinatorics-and-optimization-bachelor-of-mathematics-honours-9-complete-no-more-than-1-from-the-following-amath331-applied-real-analy",
         name: "Complete no more than 1 from the following: AMATH331 - Applied Real Analysis (0.50)PMATH331 - Applied Real Analysis (0.50)PMATH333 - Introduction to Real Analysis (0.50)PMATH351 - ",
         category: "program",
         courses: [
@@ -1566,7 +1566,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "combinatorics-and-optimization-bachelor-of-mathematics-honours-10-complete-no-more-than-1-from-the-following-amath332-applied-complex-an",
+        id: "h-combinatorics-and-optimization-combinatorics-and-optimization-bachelor-of-mathematics-honours-10-complete-no-more-than-1-from-the-following-amath332-applied-complex-an",
         name: "Complete no more than 1 from the following: AMATH332 - Applied Complex Analysis (0.50)PMATH332 - Applied Complex Analysis (0.50)PMATH352 - Complex Analysis (0.50)",
         category: "program",
         courses: [
@@ -1577,7 +1577,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "combinatorics-and-optimization-bachelor-of-mathematics-honours-11-complete-no-more-than-1-from-the-following-math237-calculus-3-for-hono",
+        id: "h-combinatorics-and-optimization-combinatorics-and-optimization-bachelor-of-mathematics-honours-11-complete-no-more-than-1-from-the-following-math237-calculus-3-for-hono",
         name: "Complete no more than 1 from the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1587,7 +1587,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "combinatorics-and-optimization-bachelor-of-mathematics-honours-12-complete-no-more-than-1-from-the-following-pmath334-introduction-to-ri",
+        id: "h-combinatorics-and-optimization-combinatorics-and-optimization-bachelor-of-mathematics-honours-12-complete-no-more-than-1-from-the-following-pmath334-introduction-to-ri",
         name: "Complete no more than 1 from the following: PMATH334 - Introduction to Rings and Fields with Applications (0.50)PMATH348 - Fields and Galois Theory (0.50)",
         category: "program",
         courses: [
@@ -1597,7 +1597,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "combinatorics-and-optimization-bachelor-of-mathematics-honours-13-complete-no-more-than-1-from-the-following-pmath340-elementary-number-",
+        id: "h-combinatorics-and-optimization-combinatorics-and-optimization-bachelor-of-mathematics-honours-13-complete-no-more-than-1-from-the-following-pmath340-elementary-number-",
         name: "Complete no more than 1 from the following: PMATH340 - Elementary Number Theory (0.50)PMATH440 - Analytic Number Theory (0.50)PMATH441 - Algebraic Number Theory (0.50)",
         category: "program",
         courses: [
@@ -1610,7 +1610,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "combinatorics-and-optimization-joint-honours",
+    id: "jh-combinatorics-and-optimization-combinatorics-and-optimization-joint-honours",
     name: "Combinatorics and Optimization (Joint Honours)",
     category: "joint",
     code: "JH-Combinatorics & Optimization",
@@ -1621,7 +1621,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/HJmwyyA0o2",
     requirements: [
       {
-        id: "combinatorics-and-optimization-joint-honours-1-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "jh-combinatorics-and-optimization-combinatorics-and-optimization-joint-honours-1-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1632,7 +1632,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "combinatorics-and-optimization-joint-honours-2-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "jh-combinatorics-and-optimization-combinatorics-and-optimization-joint-honours-2-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1643,7 +1643,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "combinatorics-and-optimization-joint-honours-3-complete-1-of-the-following-pmath336-introduction-to-group-theory-with",
+        id: "jh-combinatorics-and-optimization-combinatorics-and-optimization-joint-honours-3-complete-1-of-the-following-pmath336-introduction-to-group-theory-with",
         name: "Complete 1 of the following: PMATH336 - Introduction to Group Theory with Applications (0.50)PMATH347 - Groups and Rings (0.50)",
         category: "program",
         courses: [
@@ -1654,7 +1654,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "combinatorics-and-optimization-joint-honours-4-complete-4-of-the-following-co330-combinatorial-enumeration-0-50-co331",
+        id: "jh-combinatorics-and-optimization-combinatorics-and-optimization-joint-honours-4-complete-4-of-the-following-co330-combinatorial-enumeration-0-50-co331",
         name: "Complete 4 of the following: CO330 - Combinatorial Enumeration (0.50)CO331 - Coding Theory (0.50)CO342 - Introduction to Graph Theory (0.50)CO351 - Network Flow Theory (0.50)CO353 ",
         category: "program",
         courses: [
@@ -1692,7 +1692,7 @@ export const programs: Program[] = [
         requiredCount: 4
       },
       {
-        id: "combinatorics-and-optimization-joint-honours-5-choose-any-of-the-following-cs341-algorithms-0-50-cs466-algorithm-desi",
+        id: "jh-combinatorics-and-optimization-combinatorics-and-optimization-joint-honours-5-choose-any-of-the-following-cs341-algorithms-0-50-cs466-algorithm-desi",
         name: "Choose any of the following: CS341 - Algorithms (0.50)CS466 - Algorithm Design and Analysis (0.50)CS487 - Introduction to Symbolic Computation (0.50)",
         category: "program",
         courses: [
@@ -1703,7 +1703,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "combinatorics-and-optimization-joint-honours-6-complete-no-more-than-1-from-the-following-amath331-applied-real-analy",
+        id: "jh-combinatorics-and-optimization-combinatorics-and-optimization-joint-honours-6-complete-no-more-than-1-from-the-following-amath331-applied-real-analy",
         name: "Complete no more than 1 from the following: AMATH331 - Applied Real Analysis (0.50)PMATH331 - Applied Real Analysis (0.50)PMATH333 - Introduction to Real Analysis (0.50)PMATH351 - ",
         category: "program",
         courses: [
@@ -1715,7 +1715,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "combinatorics-and-optimization-joint-honours-7-complete-no-more-than-1-from-the-following-amath332-applied-complex-an",
+        id: "jh-combinatorics-and-optimization-combinatorics-and-optimization-joint-honours-7-complete-no-more-than-1-from-the-following-amath332-applied-complex-an",
         name: "Complete no more than 1 from the following: AMATH332 - Applied Complex Analysis (0.50)PMATH332 - Applied Complex Analysis (0.50)PMATH352 - Complex Analysis (0.50)",
         category: "program",
         courses: [
@@ -1726,7 +1726,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "combinatorics-and-optimization-joint-honours-8-complete-no-more-than-1-from-the-following-cs360-introduction-to-the-t",
+        id: "jh-combinatorics-and-optimization-combinatorics-and-optimization-joint-honours-8-complete-no-more-than-1-from-the-following-cs360-introduction-to-the-t",
         name: "Complete no more than 1 from the following: CS360 - Introduction to the Theory of Computing (0.50)CS365 - Models of Computation (0.50)",
         category: "program",
         courses: [
@@ -1736,7 +1736,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "combinatorics-and-optimization-joint-honours-9-complete-no-more-than-1-from-the-following-math237-calculus-3-for-hono",
+        id: "jh-combinatorics-and-optimization-combinatorics-and-optimization-joint-honours-9-complete-no-more-than-1-from-the-following-math237-calculus-3-for-hono",
         name: "Complete no more than 1 from the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1746,7 +1746,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "combinatorics-and-optimization-joint-honours-10-complete-no-more-than-1-from-the-following-pmath334-introduction-to-ri",
+        id: "jh-combinatorics-and-optimization-combinatorics-and-optimization-joint-honours-10-complete-no-more-than-1-from-the-following-pmath334-introduction-to-ri",
         name: "Complete no more than 1 from the following: PMATH334 - Introduction to Rings and Fields with Applications (0.50)PMATH348 - Fields and Galois Theory (0.50)",
         category: "program",
         courses: [
@@ -1756,7 +1756,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "combinatorics-and-optimization-joint-honours-11-complete-no-more-than-1-from-the-following-pmath340-elementary-number-",
+        id: "jh-combinatorics-and-optimization-combinatorics-and-optimization-joint-honours-11-complete-no-more-than-1-from-the-following-pmath340-elementary-number-",
         name: "Complete no more than 1 from the following: PMATH340 - Elementary Number Theory (0.50)PMATH440 - Analytic Number Theory (0.50)PMATH441 - Algebraic Number Theory (0.50)",
         category: "program",
         courses: [
@@ -1769,7 +1769,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "combinatorics-and-optimization-minor",
+    id: "combinatorics-and-optimization-minor-combinatorics-and-optimization-minor",
     name: "Combinatorics and Optimization Minor",
     category: "minor",
     code: "Combinatorics & Optimization Minor",
@@ -1780,7 +1780,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/H1D1JR0s2",
     requirements: [
       {
-        id: "combinatorics-and-optimization-minor-1-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "combinatorics-and-optimization-minor-combinatorics-and-optimization-minor-1-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1791,7 +1791,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "combinatorics-and-optimization-minor-2-complete-3-of-the-following-co330-combinatorial-enumeration-0-50-co331",
+        id: "combinatorics-and-optimization-minor-combinatorics-and-optimization-minor-2-complete-3-of-the-following-co330-combinatorial-enumeration-0-50-co331",
         name: "Complete 3 of the following: CO330 - Combinatorial Enumeration (0.50)CO331 - Coding Theory (0.50)CO342 - Introduction to Graph Theory (0.50)CO351 - Network Flow Theory (0.50)CO353 ",
         category: "program",
         courses: [
@@ -1831,7 +1831,7 @@ export const programs: Program[] = [
         requiredCount: 3
       },
       {
-        id: "combinatorics-and-optimization-minor-3-complete-1-of-the-following-math106-applied-linear-algebra-1-0-50-math",
+        id: "combinatorics-and-optimization-minor-combinatorics-and-optimization-minor-3-complete-1-of-the-following-math106-applied-linear-algebra-1-0-50-math",
         name: "Complete 1 of the following: MATH106 - Applied Linear Algebra 1 (0.50)MATH114 - Linear Algebra for Science (0.50)MATH115 - Linear Algebra for Engineering (0.50)MATH136 - Linear Alg",
         category: "program",
         courses: [
@@ -1845,7 +1845,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "combinatorics-and-optimization-minor-4-complete-1-of-the-following-math104-introductory-calculus-for-arts-and",
+        id: "combinatorics-and-optimization-minor-combinatorics-and-optimization-minor-4-complete-1-of-the-following-math104-introductory-calculus-for-arts-and",
         name: "Complete 1 of the following: MATH104 - Introductory Calculus for Arts and Social Science (0.50)MATH116 - Calculus 1 for Engineering (0.50)MATH117 - Calculus 1 for Engineering (0.50",
         category: "program",
         courses: [
@@ -1860,7 +1860,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "combinatorics-and-optimization-minor-5-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
+        id: "combinatorics-and-optimization-minor-combinatorics-and-optimization-minor-5-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
         name: "Complete 1 of the following: MATH135 - Algebra for Honours Mathematics (0.50)MATH145 - Algebra (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1871,7 +1871,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "combinatorics-and-optimization-minor-6-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "combinatorics-and-optimization-minor-combinatorics-and-optimization-minor-6-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -1884,7 +1884,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "computational-fine-art-specialization",
+    id: "cs-computational-fine-art-specialization-computational-fine-art-specialization",
     name: "Computational Fine Art Specialization",
     category: "specialization",
     code: "CS-Computational Fine Art Specialization",
@@ -1900,7 +1900,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "computational-fine-art-specialization-1-complete-all-the-following-cs349-user-interfaces-0-50-cs488-introducti",
+        id: "cs-computational-fine-art-specialization-computational-fine-art-specialization-1-complete-all-the-following-cs349-user-interfaces-0-50-cs488-introducti",
         name: "Complete all the following: CS349 - User Interfaces (0.50)CS488 - Introduction to Computer Graphics (0.50)",
         category: "program",
         courses: [
@@ -1910,7 +1910,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computational-fine-art-specialization-2-complete-1-of-the-following-cs383-computational-digital-art-studio-0-5",
+        id: "cs-computational-fine-art-specialization-computational-fine-art-specialization-2-complete-1-of-the-following-cs383-computational-digital-art-studio-0-5",
         name: "Complete 1 of the following: CS383 - Computational Digital Art Studio (0.50)FINE383 - Computational Digital Art Studio (0.50)",
         category: "program",
         courses: [
@@ -1921,7 +1921,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computational-fine-art-specialization-3-complete-1-of-the-following-fine100-studio-fundamentals-0-50-fine130-i",
+        id: "cs-computational-fine-art-specialization-computational-fine-art-specialization-3-complete-1-of-the-following-fine100-studio-fundamentals-0-50-fine130-i",
         name: "Complete 1 of the following: FINE100 - Studio Fundamentals (0.50)FINE130 - Introduction to Digital Imaging (0.50)",
         category: "program",
         courses: [
@@ -1932,7 +1932,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computational-fine-art-specialization-4-complete-1-of-the-following-fine228-design-and-imaging-0-50-fine247-ex",
+        id: "cs-computational-fine-art-specialization-computational-fine-art-specialization-4-complete-1-of-the-following-fine228-design-and-imaging-0-50-fine247-ex",
         name: "Complete 1 of the following: FINE228 - Design and Imaging (0.50)FINE247 - Expanded Media: Interaction (0.50)",
         category: "program",
         courses: [
@@ -1943,7 +1943,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computational-fine-art-specialization-5-complete-1-of-the-following-vcult200-visual-studies-across-the-discipl",
+        id: "cs-computational-fine-art-specialization-computational-fine-art-specialization-5-complete-1-of-the-following-vcult200-visual-studies-across-the-discipl",
         name: "Complete 1 of the following: VCULT200 - Visual Studies Across the Discipline (0.50)VCULT257 - Video, New Media and the Digital Turn (0.50)",
         category: "program",
         courses: [
@@ -1956,7 +1956,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "computational-mathematics-bachelor-of-mathematics-honours",
+    id: "h-computational-mathematics-computational-mathematics-bachelor-of-mathematics-honours",
     name: "Computational Mathematics (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -1970,7 +1970,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/rkDkJCAj2",
     requirements: [
       {
-        id: "computational-mathematics-bachelor-of-mathematics-honours-1-complete-all-the-following-cs230-introduction-to-computers-and-compute",
+        id: "h-computational-mathematics-computational-mathematics-bachelor-of-mathematics-honours-1-complete-all-the-following-cs230-introduction-to-computers-and-compute",
         name: "Complete all the following: CS230 - Introduction to Computers and Computer Systems (0.50)CS234 - Data Types and Structures (0.50)",
         category: "program",
         courses: [
@@ -1980,7 +1980,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computational-mathematics-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
+        id: "h-computational-mathematics-computational-mathematics-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
         name: "Complete 1 of the following: AMATH242 - Introduction to Computational Mathematics (0.50)CS371 - Introduction to Computational Mathematics (0.50)",
         category: "program",
         courses: [
@@ -1991,7 +1991,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computational-mathematics-bachelor-of-mathematics-honours-3-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-computational-mathematics-computational-mathematics-bachelor-of-mathematics-honours-3-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2002,7 +2002,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computational-mathematics-bachelor-of-mathematics-honours-4-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "h-computational-mathematics-computational-mathematics-bachelor-of-mathematics-honours-4-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2013,7 +2013,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computational-mathematics-bachelor-of-mathematics-honours-5-complete-1-of-the-following-amath250-introduction-to-differential-equa",
+        id: "h-computational-mathematics-computational-mathematics-bachelor-of-mathematics-honours-5-complete-1-of-the-following-amath250-introduction-to-differential-equa",
         name: "Complete 1 of the following: AMATH250 - Introduction to Differential Equations (0.50)AMATH251 - Introduction to Differential Equations (Advanced Level) (0.50)AMATH350 - Differentia",
         category: "program",
         courses: [
@@ -2025,7 +2025,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computational-mathematics-bachelor-of-mathematics-honours-6-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "h-computational-mathematics-computational-mathematics-bachelor-of-mathematics-honours-6-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2036,7 +2036,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computational-mathematics-bachelor-of-mathematics-honours-7-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
+        id: "h-computational-mathematics-computational-mathematics-bachelor-of-mathematics-honours-7-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
         name: "Complete 1 of the following: CS245 - Logic and Computation (0.50)CS245E - Logic and Computation (Enriched) (0.50)PMATH330 - Introduction to Mathematical Logic (0.50)PMATH432 - Math",
         category: "program",
         courses: [
@@ -2049,7 +2049,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computational-mathematics-bachelor-of-mathematics-honours-8-complete-1-of-the-following-cs246-object-oriented-software-development",
+        id: "h-computational-mathematics-computational-mathematics-bachelor-of-mathematics-honours-8-complete-1-of-the-following-cs246-object-oriented-software-development",
         name: "Complete 1 of the following: CS246 - Object-Oriented Software Development (0.50)CS246E - Object-Oriented Software Development (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2060,7 +2060,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computational-mathematics-bachelor-of-mathematics-honours-9-choose-any-of-the-following-amath342-computational-methods-for-differe",
+        id: "h-computational-mathematics-computational-mathematics-bachelor-of-mathematics-honours-9-choose-any-of-the-following-amath342-computational-methods-for-differe",
         name: "Choose any of the following: AMATH342 - Computational Methods for Differential Equations (0.50)CS475 - Computational Linear Algebra (0.50)PMATH370 - Chaos and Fractals (0.50)",
         category: "program",
         courses: [
@@ -2071,7 +2071,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computational-mathematics-bachelor-of-mathematics-honours-10-complete-no-more-than-1-from-the-following-co353-computational-discret",
+        id: "h-computational-mathematics-computational-mathematics-bachelor-of-mathematics-honours-10-complete-no-more-than-1-from-the-following-co353-computational-discret",
         name: "Complete no more than 1 from the following: CO353 - Computational Discrete Optimization (0.50)CO367 - Nonlinear Optimization (0.50)",
         category: "program",
         courses: [
@@ -2081,7 +2081,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computational-mathematics-bachelor-of-mathematics-honours-11-complete-no-more-than-1-from-the-following-stat340-stochastic-simulati",
+        id: "h-computational-mathematics-computational-mathematics-bachelor-of-mathematics-honours-11-complete-no-more-than-1-from-the-following-stat340-stochastic-simulati",
         name: "Complete no more than 1 from the following: STAT340 - Stochastic Simulation Methods (0.50)STAT341 - Computational Statistics and Data Analysis (0.50)",
         category: "program",
         courses: [
@@ -2091,7 +2091,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computational-mathematics-bachelor-of-mathematics-honours-12-choose-any-of-the-following-actsc447-numerical-computation-for-financi",
+        id: "h-computational-mathematics-computational-mathematics-bachelor-of-mathematics-honours-12-choose-any-of-the-following-actsc447-numerical-computation-for-financi",
         name: "Choose any of the following: ACTSC447 - Numerical Computation for Financial Modelling (0.50)AMATH343 - Discrete Models in Applied Mathematics (0.50)AMATH382 - Computational Modelli",
         category: "program",
         courses: [
@@ -2137,7 +2137,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "computational-mathematics-minor",
+    id: "computational-mathematics-minor-computational-mathematics-minor",
     name: "Computational Mathematics Minor",
     category: "minor",
     code: "Computational Mathematics Minor",
@@ -2148,7 +2148,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/SkZPkyCAjh",
     requirements: [
       {
-        id: "computational-mathematics-minor-1-complete-1-of-the-following-amath242-introduction-to-computational-mat",
+        id: "computational-mathematics-minor-computational-mathematics-minor-1-complete-1-of-the-following-amath242-introduction-to-computational-mat",
         name: "Complete 1 of the following: AMATH242 - Introduction to Computational Mathematics (0.50)CS370 - Numerical Computation (0.50)CS371 - Introduction to Computational Mathematics (0.50)",
         category: "program",
         courses: [
@@ -2160,7 +2160,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computational-mathematics-minor-2-choose-any-of-the-following-amath342-computational-methods-for-differe",
+        id: "computational-mathematics-minor-computational-mathematics-minor-2-choose-any-of-the-following-amath342-computational-methods-for-differe",
         name: "Choose any of the following: AMATH342 - Computational Methods for Differential Equations (0.50)CS475 - Computational Linear Algebra (0.50)",
         category: "program",
         courses: [
@@ -2170,7 +2170,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computational-mathematics-minor-3-complete-no-more-than-1-from-the-following-co250-introduction-to-optim",
+        id: "computational-mathematics-minor-computational-mathematics-minor-3-complete-no-more-than-1-from-the-following-co250-introduction-to-optim",
         name: "Complete no more than 1 from the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2180,7 +2180,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computational-mathematics-minor-4-complete-no-more-than-1-from-the-following-cs245-logic-and-computation",
+        id: "computational-mathematics-minor-computational-mathematics-minor-4-complete-no-more-than-1-from-the-following-cs245-logic-and-computation",
         name: "Complete no more than 1 from the following: CS245 - Logic and Computation (0.50)CS245E - Logic and Computation (Enriched) (0.50)PMATH330 - Introduction to Mathematical Logic (0.50)",
         category: "program",
         courses: [
@@ -2193,7 +2193,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computational-mathematics-minor-5-complete-no-more-than-1-from-the-following-cs246-object-oriented-softw",
+        id: "computational-mathematics-minor-computational-mathematics-minor-5-complete-no-more-than-1-from-the-following-cs246-object-oriented-softw",
         name: "Complete no more than 1 from the following: CS246 - Object-Oriented Software Development (0.50)CS246E - Object-Oriented Software Development (Enriched) (0.50)CS247 - Software Engin",
         category: "program",
         courses: [
@@ -2204,7 +2204,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computational-mathematics-minor-6-complete-no-more-than-1-from-the-following-stat340-stochastic-simulati",
+        id: "computational-mathematics-minor-computational-mathematics-minor-6-complete-no-more-than-1-from-the-following-stat340-stochastic-simulati",
         name: "Complete no more than 1 from the following: STAT340 - Stochastic Simulation Methods (0.50)STAT341 - Computational Statistics and Data Analysis (0.50)",
         category: "program",
         courses: [
@@ -2214,7 +2214,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computational-mathematics-minor-7-complete-3-of-the-following-actsc447-numerical-computation-for-financi",
+        id: "computational-mathematics-minor-computational-mathematics-minor-7-complete-3-of-the-following-actsc447-numerical-computation-for-financi",
         name: "Complete 3 of the following: ACTSC447 - Numerical Computation for Financial Modelling (0.50)AMATH343 - Discrete Models in Applied Mathematics (0.50)AMATH382 - Computational Modelli",
         category: "program",
         courses: [
@@ -2263,7 +2263,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "computer-science-bachelor-of-computer-science-honours",
+    id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours",
     name: "Computer Science (Bachelor of Computer Science - Honours)",
     degreeIds: [
       "bcs"
@@ -2277,7 +2277,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/SJPJkCAih",
     requirements: [
       {
-        id: "computer-science-bachelor-of-computer-science-honours-1-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-1-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
         name: "Complete all the following: CS136L - Tools and Techniques for Software Development (0.25)CS341 - Algorithms (0.50)CS350 - Operating Systems (0.50)",
         category: "program",
         courses: [
@@ -2288,7 +2288,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computer-science-bachelor-of-computer-science-honours-2-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-2-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
         name: "Complete 1 of the following: CS115 - Introduction to Computer Science 1 (0.50)CS135 - Designing Functional Programs (0.50)CS145 - Designing Functional Programs (Advanced Level) (0.",
         category: "program",
         courses: [
@@ -2300,7 +2300,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-honours-3-complete-1-of-the-following-cs136-elementary-algorithm-design-and-data",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-3-complete-1-of-the-following-cs136-elementary-algorithm-design-and-data",
         name: "Complete 1 of the following: CS136 - Elementary Algorithm Design and Data Abstraction (0.50)CS146 - Elementary Algorithm Design and Data Abstraction (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2311,7 +2311,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-honours-4-complete-1-of-the-following-cs240-data-structures-and-data-management-",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-4-complete-1-of-the-following-cs240-data-structures-and-data-management-",
         name: "Complete 1 of the following: CS240 - Data Structures and Data Management (0.50)CS240E - Data Structures and Data Management (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2322,7 +2322,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-honours-5-complete-1-of-the-following-cs241-foundations-of-sequential-programs-0",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-5-complete-1-of-the-following-cs241-foundations-of-sequential-programs-0",
         name: "Complete 1 of the following: CS241 - Foundations of Sequential Programs (0.50)CS241E - Foundations of Sequential Programs (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2333,7 +2333,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-honours-6-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-6-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
         name: "Complete 1 of the following: CS245 - Logic and Computation (0.50)CS245E - Logic and Computation (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2344,7 +2344,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-honours-7-complete-1-of-the-following-cs246-object-oriented-software-development",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-7-complete-1-of-the-following-cs246-object-oriented-software-development",
         name: "Complete 1 of the following: CS246 - Object-Oriented Software Development (0.50)CS246E - Object-Oriented Software Development (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2355,7 +2355,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-honours-8-complete-1-of-the-following-cs251-computer-organization-and-design-0-5",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-8-complete-1-of-the-following-cs251-computer-organization-and-design-0-5",
         name: "Complete 1 of the following: CS251 - Computer Organization and Design (0.50)CS251E - Computer Organization and Design (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2366,7 +2366,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-honours-9-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-9-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH127 - Calculus 1 for the Sciences (0.50)MATH137 - Calculus 1 for Honours Mathematics (0.50)MATH147 - Calculus 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2378,7 +2378,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-honours-10-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-10-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH128 - Calculus 2 for the Sciences (0.50)MATH138 - Calculus 2 for Honours Mathematics (0.50)MATH148 - Calculus 2 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2390,7 +2390,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-honours-11-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-11-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
         name: "Complete 1 of the following: MATH135 - Algebra for Honours Mathematics (0.50)MATH145 - Algebra (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2401,7 +2401,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-honours-12-complete-1-of-the-following-math136-linear-algebra-1-for-honours-mathe",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-12-complete-1-of-the-following-math136-linear-algebra-1-for-honours-mathe",
         name: "Complete 1 of the following: MATH136 - Linear Algebra 1 for Honours Mathematics (0.50)MATH146 - Linear Algebra 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2412,7 +2412,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-honours-13-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-13-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2423,7 +2423,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-honours-14-complete-1-of-the-following-stat230-probability-0-50-stat240-probabili",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-14-complete-1-of-the-following-stat230-probability-0-50-stat240-probabili",
         name: "Complete 1 of the following: STAT230 - Probability (0.50)STAT240 - Probability (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2434,7 +2434,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-honours-15-complete-1-of-the-following-stat231-statistics-0-50-stat241-statistics",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-15-complete-1-of-the-following-stat231-statistics-0-50-stat241-statistics",
         name: "Complete 1 of the following: STAT231 - Statistics (0.50)STAT241 - Statistics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2445,7 +2445,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-honours-16-complete-1-of-the-following-co487-applied-cryptography-0-50-cs499t-hon",
+        id: "h-computer-science-bcs-computer-science-bachelor-of-computer-science-honours-16-complete-1-of-the-following-co487-applied-cryptography-0-50-cs499t-hon",
         name: "Complete 1 of the following: CO487 - Applied Cryptography (0.50)CS499T - Honours Thesis (0.50)STAT440 - Computational Inference (0.50)",
         category: "program",
         courses: [
@@ -2459,7 +2459,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "computer-science-bachelor-of-computer-science-joint-honours",
+    id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours",
     name: "Computer Science (Bachelor of Computer Science - Joint Honours)",
     degreeIds: [
       "bcs"
@@ -2473,7 +2473,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/Sk7D1yRAs3",
     requirements: [
       {
-        id: "computer-science-bachelor-of-computer-science-joint-honours-1-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
+        id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours-1-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
         name: "Complete all the following: CS136L - Tools and Techniques for Software Development (0.25)CS341 - Algorithms (0.50)CS350 - Operating Systems (0.50)",
         category: "program",
         courses: [
@@ -2484,7 +2484,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computer-science-bachelor-of-computer-science-joint-honours-2-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
+        id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours-2-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
         name: "Complete 1 of the following: CS115 - Introduction to Computer Science 1 (0.50)CS135 - Designing Functional Programs (0.50)CS145 - Designing Functional Programs (Advanced Level) (0.",
         category: "program",
         courses: [
@@ -2496,7 +2496,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-joint-honours-3-complete-1-of-the-following-cs136-elementary-algorithm-design-and-data",
+        id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours-3-complete-1-of-the-following-cs136-elementary-algorithm-design-and-data",
         name: "Complete 1 of the following: CS136 - Elementary Algorithm Design and Data Abstraction (0.50)CS146 - Elementary Algorithm Design and Data Abstraction (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2507,7 +2507,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-joint-honours-4-complete-1-of-the-following-cs240-data-structures-and-data-management-",
+        id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours-4-complete-1-of-the-following-cs240-data-structures-and-data-management-",
         name: "Complete 1 of the following: CS240 - Data Structures and Data Management (0.50)CS240E - Data Structures and Data Management (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2518,7 +2518,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-joint-honours-5-complete-1-of-the-following-cs241-foundations-of-sequential-programs-0",
+        id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours-5-complete-1-of-the-following-cs241-foundations-of-sequential-programs-0",
         name: "Complete 1 of the following: CS241 - Foundations of Sequential Programs (0.50)CS241E - Foundations of Sequential Programs (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2529,7 +2529,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-joint-honours-6-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
+        id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours-6-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
         name: "Complete 1 of the following: CS245 - Logic and Computation (0.50)CS245E - Logic and Computation (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2540,7 +2540,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-joint-honours-7-complete-1-of-the-following-cs246-object-oriented-software-development",
+        id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours-7-complete-1-of-the-following-cs246-object-oriented-software-development",
         name: "Complete 1 of the following: CS246 - Object-Oriented Software Development (0.50)CS246E - Object-Oriented Software Development (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2551,7 +2551,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-joint-honours-8-complete-1-of-the-following-cs251-computer-organization-and-design-0-5",
+        id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours-8-complete-1-of-the-following-cs251-computer-organization-and-design-0-5",
         name: "Complete 1 of the following: CS251 - Computer Organization and Design (0.50)CS251E - Computer Organization and Design (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2562,7 +2562,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-joint-honours-9-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
+        id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours-9-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH127 - Calculus 1 for the Sciences (0.50)MATH137 - Calculus 1 for Honours Mathematics (0.50)MATH147 - Calculus 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2574,7 +2574,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-joint-honours-10-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
+        id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours-10-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH128 - Calculus 2 for the Sciences (0.50)MATH138 - Calculus 2 for Honours Mathematics (0.50)MATH148 - Calculus 2 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2586,7 +2586,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-joint-honours-11-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
+        id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours-11-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
         name: "Complete 1 of the following: MATH135 - Algebra for Honours Mathematics (0.50)MATH145 - Algebra (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2597,7 +2597,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-joint-honours-12-complete-1-of-the-following-math136-linear-algebra-1-for-honours-mathe",
+        id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours-12-complete-1-of-the-following-math136-linear-algebra-1-for-honours-mathe",
         name: "Complete 1 of the following: MATH136 - Linear Algebra 1 for Honours Mathematics (0.50)MATH146 - Linear Algebra 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2608,7 +2608,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-joint-honours-13-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours-13-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2619,7 +2619,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-joint-honours-14-complete-1-of-the-following-stat230-probability-0-50-stat240-probabili",
+        id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours-14-complete-1-of-the-following-stat230-probability-0-50-stat240-probabili",
         name: "Complete 1 of the following: STAT230 - Probability (0.50)STAT240 - Probability (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2630,7 +2630,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-computer-science-joint-honours-15-complete-1-of-the-following-stat231-statistics-0-50-stat241-statistics",
+        id: "jh-computer-science-bcs-computer-science-bachelor-of-computer-science-joint-honours-15-complete-1-of-the-following-stat231-statistics-0-50-stat241-statistics",
         name: "Complete 1 of the following: STAT231 - Statistics (0.50)STAT241 - Statistics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2643,7 +2643,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "computer-science-bachelor-of-mathematics-honours",
+    id: "h-computer-science-bmath-computer-science-bachelor-of-mathematics-honours",
     name: "Computer Science (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -2657,7 +2657,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/HkxPJk0Cj3",
     requirements: [
       {
-        id: "computer-science-bachelor-of-mathematics-honours-1-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
+        id: "h-computer-science-bmath-computer-science-bachelor-of-mathematics-honours-1-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
         name: "Complete all the following: CS136L - Tools and Techniques for Software Development (0.25)CS341 - Algorithms (0.50)CS350 - Operating Systems (0.50)",
         category: "program",
         courses: [
@@ -2668,7 +2668,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computer-science-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
+        id: "h-computer-science-bmath-computer-science-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
         name: "Complete 1 of the following: AMATH242 - Introduction to Computational Mathematics (0.50)CS370 - Numerical Computation (0.50)CS371 - Introduction to Computational Mathematics (0.50)",
         category: "program",
         courses: [
@@ -2680,7 +2680,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-mathematics-honours-3-complete-1-of-the-following-cs240-data-structures-and-data-management-",
+        id: "h-computer-science-bmath-computer-science-bachelor-of-mathematics-honours-3-complete-1-of-the-following-cs240-data-structures-and-data-management-",
         name: "Complete 1 of the following: CS240 - Data Structures and Data Management (0.50)CS240E - Data Structures and Data Management (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2691,7 +2691,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-mathematics-honours-4-complete-1-of-the-following-cs241-foundations-of-sequential-programs-0",
+        id: "h-computer-science-bmath-computer-science-bachelor-of-mathematics-honours-4-complete-1-of-the-following-cs241-foundations-of-sequential-programs-0",
         name: "Complete 1 of the following: CS241 - Foundations of Sequential Programs (0.50)CS241E - Foundations of Sequential Programs (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2702,7 +2702,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-mathematics-honours-5-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
+        id: "h-computer-science-bmath-computer-science-bachelor-of-mathematics-honours-5-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
         name: "Complete 1 of the following: CS245 - Logic and Computation (0.50)CS245E - Logic and Computation (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2713,7 +2713,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-mathematics-honours-6-complete-1-of-the-following-cs246-object-oriented-software-development",
+        id: "h-computer-science-bmath-computer-science-bachelor-of-mathematics-honours-6-complete-1-of-the-following-cs246-object-oriented-software-development",
         name: "Complete 1 of the following: CS246 - Object-Oriented Software Development (0.50)CS246E - Object-Oriented Software Development (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2724,7 +2724,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-mathematics-honours-7-complete-1-of-the-following-cs251-computer-organization-and-design-0-5",
+        id: "h-computer-science-bmath-computer-science-bachelor-of-mathematics-honours-7-complete-1-of-the-following-cs251-computer-organization-and-design-0-5",
         name: "Complete 1 of the following: CS251 - Computer Organization and Design (0.50)CS251E - Computer Organization and Design (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2735,7 +2735,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-mathematics-honours-8-complete-1-of-the-following-cs360-introduction-to-the-theory-of-comput",
+        id: "h-computer-science-bmath-computer-science-bachelor-of-mathematics-honours-8-complete-1-of-the-following-cs360-introduction-to-the-theory-of-comput",
         name: "Complete 1 of the following: CS360 - Introduction to the Theory of Computing (0.50)CS365 - Models of Computation (0.50)",
         category: "program",
         courses: [
@@ -2746,7 +2746,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-mathematics-honours-9-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-computer-science-bmath-computer-science-bachelor-of-mathematics-honours-9-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2757,7 +2757,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-mathematics-honours-10-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "h-computer-science-bmath-computer-science-bachelor-of-mathematics-honours-10-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2768,7 +2768,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-mathematics-honours-11-the-following-cannot-be-used-towards-this-academic-plan-actsc221-intro",
+        id: "h-computer-science-bmath-computer-science-bachelor-of-mathematics-honours-11-the-following-cannot-be-used-towards-this-academic-plan-actsc221-intro",
         name: "The following cannot be used towards this academic plan: ACTSC221 - Introductory Financial Mathematics (Non-Specialist Level) (0.50)CO353 - Computational Discrete Optimization (0.5",
         category: "program",
         courses: [
@@ -2780,7 +2780,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computer-science-bachelor-of-mathematics-honours-12-choose-any-of-the-following-co487-applied-cryptography-0-50-cs499t-hon",
+        id: "h-computer-science-bmath-computer-science-bachelor-of-mathematics-honours-12-choose-any-of-the-following-co487-applied-cryptography-0-50-cs499t-hon",
         name: "Choose any of the following: CO487 - Applied Cryptography (0.50)CS499T - Honours Thesis (0.50)STAT440 - Computational Inference (0.50)",
         category: "program",
         courses: [
@@ -2793,7 +2793,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "computer-science-bachelor-of-mathematics-joint-honours",
+    id: "jh-computer-science-bmath-computer-science-bachelor-of-mathematics-joint-honours",
     name: "Computer Science (Bachelor of Mathematics - Joint Honours)",
     degreeIds: [
       "bmath"
@@ -2807,7 +2807,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/HyZwkJ0Ajh",
     requirements: [
       {
-        id: "computer-science-bachelor-of-mathematics-joint-honours-1-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
+        id: "jh-computer-science-bmath-computer-science-bachelor-of-mathematics-joint-honours-1-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
         name: "Complete all the following: CS136L - Tools and Techniques for Software Development (0.25)CS341 - Algorithms (0.50)CS350 - Operating Systems (0.50)",
         category: "program",
         courses: [
@@ -2818,7 +2818,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computer-science-bachelor-of-mathematics-joint-honours-2-complete-1-of-the-following-cs136-elementary-algorithm-design-and-data",
+        id: "jh-computer-science-bmath-computer-science-bachelor-of-mathematics-joint-honours-2-complete-1-of-the-following-cs136-elementary-algorithm-design-and-data",
         name: "Complete 1 of the following: CS136 - Elementary Algorithm Design and Data Abstraction (0.50)CS146 - Elementary Algorithm Design and Data Abstraction (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2829,7 +2829,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-mathematics-joint-honours-3-complete-1-of-the-following-cs240-data-structures-and-data-management-",
+        id: "jh-computer-science-bmath-computer-science-bachelor-of-mathematics-joint-honours-3-complete-1-of-the-following-cs240-data-structures-and-data-management-",
         name: "Complete 1 of the following: CS240 - Data Structures and Data Management (0.50)CS240E - Data Structures and Data Management (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2840,7 +2840,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-mathematics-joint-honours-4-complete-1-of-the-following-cs241-foundations-of-sequential-programs-0",
+        id: "jh-computer-science-bmath-computer-science-bachelor-of-mathematics-joint-honours-4-complete-1-of-the-following-cs241-foundations-of-sequential-programs-0",
         name: "Complete 1 of the following: CS241 - Foundations of Sequential Programs (0.50)CS241E - Foundations of Sequential Programs (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2851,7 +2851,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-mathematics-joint-honours-5-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
+        id: "jh-computer-science-bmath-computer-science-bachelor-of-mathematics-joint-honours-5-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
         name: "Complete 1 of the following: CS245 - Logic and Computation (0.50)CS245E - Logic and Computation (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2862,7 +2862,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-mathematics-joint-honours-6-complete-1-of-the-following-cs246-object-oriented-software-development",
+        id: "jh-computer-science-bmath-computer-science-bachelor-of-mathematics-joint-honours-6-complete-1-of-the-following-cs246-object-oriented-software-development",
         name: "Complete 1 of the following: CS246 - Object-Oriented Software Development (0.50)CS246E - Object-Oriented Software Development (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2873,7 +2873,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-mathematics-joint-honours-7-complete-1-of-the-following-cs251-computer-organization-and-design-0-5",
+        id: "jh-computer-science-bmath-computer-science-bachelor-of-mathematics-joint-honours-7-complete-1-of-the-following-cs251-computer-organization-and-design-0-5",
         name: "Complete 1 of the following: CS251 - Computer Organization and Design (0.50)CS251E - Computer Organization and Design (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -2884,7 +2884,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-bachelor-of-mathematics-joint-honours-8-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "jh-computer-science-bmath-computer-science-bachelor-of-mathematics-joint-honours-8-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2897,7 +2897,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "computer-science-minor",
+    id: "computer-science-minor-computer-science-minor",
     name: "Computer Science Minor",
     category: "minor",
     code: "Computer Science Minor",
@@ -2908,7 +2908,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/SyPykARoh",
     requirements: [
       {
-        id: "computer-science-minor-1-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
+        id: "computer-science-minor-computer-science-minor-1-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
         name: "Complete 1 of the following: CS115 - Introduction to Computer Science 1 (0.50)CS135 - Designing Functional Programs (0.50)CS145 - Designing Functional Programs (Advanced Level) (0.",
         category: "program",
         courses: [
@@ -2920,7 +2920,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computer-science-minor-2-complete-all-the-following-cs136-elementary-algorithm-design-and-data-",
+        id: "computer-science-minor-computer-science-minor-2-complete-all-the-following-cs136-elementary-algorithm-design-and-data-",
         name: "Complete all the following: CS136 - Elementary Algorithm Design and Data Abstraction (0.50)CS136L - Tools and Techniques for Software Development (0.25)",
         category: "program",
         courses: [
@@ -2930,7 +2930,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computer-science-minor-3-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
+        id: "computer-science-minor-computer-science-minor-3-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
         name: "Complete all the following: CS136L - Tools and Techniques for Software Development (0.25)CS146 - Elementary Algorithm Design and Data Abstraction (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2940,7 +2940,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computer-science-minor-4-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "computer-science-minor-computer-science-minor-4-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -2953,7 +2953,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "computing-minor",
+    id: "computing-minor-computing-minor",
     name: "Computing Minor",
     category: "minor",
     code: "Computing Minor",
@@ -2964,7 +2964,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/rkVv1kACjn",
     requirements: [
       {
-        id: "computing-minor-1-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
+        id: "computing-minor-computing-minor-1-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
         name: "Complete 1 of the following: CS115 - Introduction to Computer Science 1 (0.50)CS135 - Designing Functional Programs (0.50)CS145 - Designing Functional Programs (Advanced Level) (0.",
         category: "program",
         courses: [
@@ -2976,7 +2976,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computing-minor-2-complete-1-of-the-following-cs114-principles-of-computing-for-science-",
+        id: "computing-minor-computing-minor-2-complete-1-of-the-following-cs114-principles-of-computing-for-science-",
         name: "Complete 1 of the following: CS114 - Principles of Computing for Science (0.50)CS116 - Introduction to Computer Science 2 (0.50)",
         category: "program",
         courses: [
@@ -2987,7 +2987,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "computing-minor-3-complete-all-the-following-cs136-elementary-algorithm-design-and-data-",
+        id: "computing-minor-computing-minor-3-complete-all-the-following-cs136-elementary-algorithm-design-and-data-",
         name: "Complete all the following: CS136 - Elementary Algorithm Design and Data Abstraction (0.50)CS136L - Tools and Techniques for Software Development (0.25)",
         category: "program",
         courses: [
@@ -2997,7 +2997,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computing-minor-4-complete-all-the-following-cs146-elementary-algorithm-design-and-data-",
+        id: "computing-minor-computing-minor-4-complete-all-the-following-cs146-elementary-algorithm-design-and-data-",
         name: "Complete all the following: CS146 - Elementary Algorithm Design and Data Abstraction (Advanced Level) (0.50)CS136L - Tools and Techniques for Software Development (0.25)",
         category: "program",
         courses: [
@@ -3007,7 +3007,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computing-minor-5-complete-all-the-following-comm432-electronic-business-0-50",
+        id: "computing-minor-computing-minor-5-complete-all-the-following-comm432-electronic-business-0-50",
         name: "Complete all the following: COMM432 - Electronic Business (0.50)",
         category: "program",
         courses: [
@@ -3016,7 +3016,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "computing-minor-6-the-following-cannot-be-used-towards-this-academic-plan-cs399-readings",
+        id: "computing-minor-computing-minor-6-the-following-cannot-be-used-towards-this-academic-plan-cs399-readings",
         name: "The following cannot be used towards this academic plan: CS399 - Readings in Computer Science (0.50)CS499R - Readings in Computer Science (0.50)CS499T - Honours Thesis (0.50)",
         category: "program",
         courses: [
@@ -3029,7 +3029,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "data-analytics-specialization",
+    id: "cpa-data-analytics-specialization-data-analytics-specialization",
     name: "Data Analytics Specialization",
     category: "specialization",
     code: "CPA-Data Analytics Specialization",
@@ -3043,7 +3043,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "data-analytics-specialization-1-complete-all-the-following-cs234-data-types-and-structures-0-50-cs338-",
+        id: "cpa-data-analytics-specialization-data-analytics-specialization-1-complete-all-the-following-cs234-data-types-and-structures-0-50-cs338-",
         name: "Complete all the following: CS234 - Data Types and Structures (0.50)CS338 - Computer Applications in Business: Databases (0.50)STAT341 - Computational Statistics and Data Analysis ",
         category: "program",
         courses: [
@@ -3055,7 +3055,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "data-analytics-specialization-2-complete-3-of-the-following-stat441-statistical-learning-classificatio",
+        id: "cpa-data-analytics-specialization-data-analytics-specialization-2-complete-3-of-the-following-stat441-statistical-learning-classificatio",
         name: "Complete 3 of the following: STAT441 - Statistical Learning - Classification (0.50)STAT442 - Data Visualization (0.50)STAT443 - Forecasting (0.50)STAT444 - Statistical Learning - A",
         category: "program",
         courses: [
@@ -3070,7 +3070,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "data-science-bachelor-of-computer-science-honours",
+    id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours",
     name: "Data Science (Bachelor of Computer Science - Honours)",
     degreeIds: [
       "bcs"
@@ -3084,7 +3084,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/rkgPyyC0o2",
     requirements: [
       {
-        id: "data-science-bachelor-of-computer-science-honours-1-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-1-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
         name: "Complete all the following: CS136L - Tools and Techniques for Software Development (0.25)CS341 - Algorithms (0.50)CS348 - Introduction to Database Management (0.50)CS350 - Operatin",
         category: "program",
         courses: [
@@ -3100,7 +3100,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-2-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-2-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
         name: "Complete 1 of the following: CS115 - Introduction to Computer Science 1 (0.50)CS135 - Designing Functional Programs (0.50)CS145 - Designing Functional Programs (Advanced Level) (0.",
         category: "program",
         courses: [
@@ -3112,7 +3112,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-3-complete-1-of-the-following-cs136-elementary-algorithm-design-and-data",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-3-complete-1-of-the-following-cs136-elementary-algorithm-design-and-data",
         name: "Complete 1 of the following: CS136 - Elementary Algorithm Design and Data Abstraction (0.50)CS146 - Elementary Algorithm Design and Data Abstraction (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -3123,7 +3123,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-4-complete-1-of-the-following-cs240-data-structures-and-data-management-",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-4-complete-1-of-the-following-cs240-data-structures-and-data-management-",
         name: "Complete 1 of the following: CS240 - Data Structures and Data Management (0.50)CS240E - Data Structures and Data Management (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -3134,7 +3134,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-5-complete-1-of-the-following-cs241-foundations-of-sequential-programs-0",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-5-complete-1-of-the-following-cs241-foundations-of-sequential-programs-0",
         name: "Complete 1 of the following: CS241 - Foundations of Sequential Programs (0.50)CS241E - Foundations of Sequential Programs (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -3145,7 +3145,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-6-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-6-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
         name: "Complete 1 of the following: CS245 - Logic and Computation (0.50)CS245E - Logic and Computation (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -3156,7 +3156,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-7-complete-1-of-the-following-cs246-object-oriented-software-development",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-7-complete-1-of-the-following-cs246-object-oriented-software-development",
         name: "Complete 1 of the following: CS246 - Object-Oriented Software Development (0.50)CS246E - Object-Oriented Software Development (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -3167,7 +3167,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-8-complete-1-of-the-following-cs251-computer-organization-and-design-0-5",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-8-complete-1-of-the-following-cs251-computer-organization-and-design-0-5",
         name: "Complete 1 of the following: CS251 - Computer Organization and Design (0.50)CS251E - Computer Organization and Design (Enriched) (0.50)",
         category: "program",
         courses: [
@@ -3178,7 +3178,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-9-complete-all-the-following-cs480-introduction-to-machine-learning-0-50",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-9-complete-all-the-following-cs480-introduction-to-machine-learning-0-50",
         name: "Complete all the following: CS480 - Introduction to Machine Learning (0.50)",
         category: "program",
         courses: [
@@ -3187,7 +3187,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-10-complete-1-of-the-following-cs448-database-systems-implementation-0-50",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-10-complete-1-of-the-following-cs448-database-systems-implementation-0-50",
         name: "Complete 1 of the following: CS448 - Database Systems Implementation (0.50)CS454 - Distributed Systems (0.50)CS484 - Computational Vision (0.50)CS485 - Statistical and Computationa",
         category: "program",
         courses: [
@@ -3201,7 +3201,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-11-complete-all-the-following-cs485-statistical-and-computational-foundat",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-11-complete-all-the-following-cs485-statistical-and-computational-foundat",
         name: "Complete all the following: CS485 - Statistical and Computational Foundations of Machine Learning (0.50)",
         category: "program",
         courses: [
@@ -3210,7 +3210,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-12-complete-1-of-the-following-cs448-database-systems-implementation-0-50",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-12-complete-1-of-the-following-cs448-database-systems-implementation-0-50",
         name: "Complete 1 of the following: CS448 - Database Systems Implementation (0.50)CS454 - Distributed Systems (0.50)CS480 - Introduction to Machine Learning (0.50)CS484 - Computational Vi",
         category: "program",
         courses: [
@@ -3224,7 +3224,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-13-complete-all-the-following-cs486-introduction-to-artificial-intelligen",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-13-complete-all-the-following-cs486-introduction-to-artificial-intelligen",
         name: "Complete all the following: CS486 - Introduction to Artificial Intelligence (0.50)",
         category: "program",
         courses: [
@@ -3233,7 +3233,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-14-complete-1-of-the-following-cs448-database-systems-implementation-0-50",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-14-complete-1-of-the-following-cs448-database-systems-implementation-0-50",
         name: "Complete 1 of the following: CS448 - Database Systems Implementation (0.50)CS454 - Distributed Systems (0.50)CS480 - Introduction to Machine Learning (0.50)CS484 - Computational Vi",
         category: "program",
         courses: [
@@ -3247,7 +3247,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-15-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-15-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH127 - Calculus 1 for the Sciences (0.50)MATH137 - Calculus 1 for Honours Mathematics (0.50)MATH147 - Calculus 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -3259,7 +3259,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-16-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-16-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH128 - Calculus 2 for the Sciences (0.50)MATH138 - Calculus 2 for Honours Mathematics (0.50)MATH148 - Calculus 2 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -3271,7 +3271,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-17-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-17-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
         name: "Complete 1 of the following: MATH135 - Algebra for Honours Mathematics (0.50)MATH145 - Algebra (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -3282,7 +3282,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-18-complete-1-of-the-following-math136-linear-algebra-1-for-honours-mathe",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-18-complete-1-of-the-following-math136-linear-algebra-1-for-honours-mathe",
         name: "Complete 1 of the following: MATH136 - Linear Algebra 1 for Honours Mathematics (0.50)MATH146 - Linear Algebra 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -3293,7 +3293,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-19-complete-1-of-the-following-math235-linear-algebra-2-for-honours-mathe",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-19-complete-1-of-the-following-math235-linear-algebra-2-for-honours-mathe",
         name: "Complete 1 of the following: MATH235 - Linear Algebra 2 for Honours Mathematics (0.50)MATH245 - Linear Algebra 2 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -3304,7 +3304,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-20-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-20-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -3315,7 +3315,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-21-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-21-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -3326,7 +3326,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-22-complete-1-of-the-following-stat230-probability-0-50-stat240-probabili",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-22-complete-1-of-the-following-stat230-probability-0-50-stat240-probabili",
         name: "Complete 1 of the following: STAT230 - Probability (0.50)STAT240 - Probability (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -3337,7 +3337,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-23-complete-1-of-the-following-stat231-statistics-0-50-stat241-statistics",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-23-complete-1-of-the-following-stat231-statistics-0-50-stat241-statistics",
         name: "Complete 1 of the following: STAT231 - Statistics (0.50)STAT241 - Statistics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -3348,7 +3348,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-24-complete-2-of-the-following-stat431-generalized-linear-models-and-thei",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-24-complete-2-of-the-following-stat431-generalized-linear-models-and-thei",
         name: "Complete 2 of the following: STAT431 - Generalized Linear Models and their Applications (0.50)STAT440 - Computational Inference (0.50)STAT441 - Statistical Learning - Classificatio",
         category: "program",
         courses: [
@@ -3363,7 +3363,7 @@ export const programs: Program[] = [
         requiredCount: 2
       },
       {
-        id: "data-science-bachelor-of-computer-science-honours-25-choose-any-of-the-following-co487-applied-cryptography-0-50-cs499t-hon",
+        id: "h-data-science-bcs-data-science-bachelor-of-computer-science-honours-25-choose-any-of-the-following-co487-applied-cryptography-0-50-cs499t-hon",
         name: "Choose any of the following: CO487 - Applied Cryptography (0.50)CS499T - Honours Thesis (0.50)STAT440 - Computational Inference (0.50)",
         category: "program",
         courses: [
@@ -3376,7 +3376,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "data-science-bachelor-of-mathematics-honours",
+    id: "h-data-science-bmath-data-science-bachelor-of-mathematics-honours",
     name: "Data Science (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -3390,7 +3390,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/HymD11R0j3",
     requirements: [
       {
-        id: "data-science-bachelor-of-mathematics-honours-1-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
+        id: "h-data-science-bmath-data-science-bachelor-of-mathematics-honours-1-complete-all-the-following-cs136l-tools-and-techniques-for-software-de",
         name: "Complete all the following: CS136L - Tools and Techniques for Software Development (0.25)CS230 - Introduction to Computers and Computer Systems (0.50)CS231 - Algorithmic Problem So",
         category: "program",
         courses: [
@@ -3410,7 +3410,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "data-science-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath231-calculus-4-0-50-amath250-introduc",
+        id: "h-data-science-bmath-data-science-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath231-calculus-4-0-50-amath250-introduc",
         name: "Complete 1 of the following: AMATH231 - Calculus 4 (0.50)AMATH250 - Introduction to Differential Equations (0.50)AMATH251 - Introduction to Differential Equations (Advanced Level) ",
         category: "program",
         courses: [
@@ -3422,7 +3422,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-mathematics-honours-3-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "h-data-science-bmath-data-science-bachelor-of-mathematics-honours-3-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -3433,7 +3433,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-mathematics-honours-4-complete-1-of-the-following-cs136-elementary-algorithm-design-and-data",
+        id: "h-data-science-bmath-data-science-bachelor-of-mathematics-honours-4-complete-1-of-the-following-cs136-elementary-algorithm-design-and-data",
         name: "Complete 1 of the following: CS136 - Elementary Algorithm Design and Data Abstraction (0.50)CS146 - Elementary Algorithm Design and Data Abstraction (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -3444,7 +3444,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-mathematics-honours-5-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-data-science-bmath-data-science-bachelor-of-mathematics-honours-5-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -3455,7 +3455,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-mathematics-honours-6-complete-2-of-the-following-amath345-data-driven-mathematical-models-0",
+        id: "h-data-science-bmath-data-science-bachelor-of-mathematics-honours-6-complete-2-of-the-following-amath345-data-driven-mathematical-models-0",
         name: "Complete 2 of the following: AMATH345 - Data-Driven Mathematical Models (0.50)AMATH391 - Data Analysis with Fourier and Wavelet Methods (0.50)CO353 - Computational Discrete Optimiz",
         category: "program",
         courses: [
@@ -3470,7 +3470,7 @@ export const programs: Program[] = [
         requiredCount: 2
       },
       {
-        id: "data-science-bachelor-of-mathematics-honours-7-complete-2-of-the-following-amath445-scientific-machine-learning-0-50-",
+        id: "h-data-science-bmath-data-science-bachelor-of-mathematics-honours-7-complete-2-of-the-following-amath445-scientific-machine-learning-0-50-",
         name: "Complete 2 of the following: AMATH445 - Scientific Machine Learning (0.50)STAT441 - Statistical Learning - Classification (0.50)STAT443 - Forecasting (0.50)STAT444 - Statistical Le",
         category: "program",
         courses: [
@@ -3483,7 +3483,7 @@ export const programs: Program[] = [
         requiredCount: 2
       },
       {
-        id: "data-science-bachelor-of-mathematics-honours-8-complete-1-of-the-following-amath242-introduction-to-computational-mat",
+        id: "h-data-science-bmath-data-science-bachelor-of-mathematics-honours-8-complete-1-of-the-following-amath242-introduction-to-computational-mat",
         name: "Complete 1 of the following: AMATH242 - Introduction to Computational Mathematics (0.50)CS335 - Computational Methods in Business and Finance (0.50)CS370 - Numerical Computation (0",
         category: "program",
         courses: [
@@ -3496,7 +3496,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-mathematics-honours-9-complete-1-of-the-following-amath449-neural-networks-0-50-cs479-neural",
+        id: "h-data-science-bmath-data-science-bachelor-of-mathematics-honours-9-complete-1-of-the-following-amath449-neural-networks-0-50-cs479-neural",
         name: "Complete 1 of the following: AMATH449 - Neural Networks (0.50)CS479 - Neural Networks (0.50)",
         category: "program",
         courses: [
@@ -3507,7 +3507,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-mathematics-honours-10-complete-all-the-following-stat330-mathematical-statistics-0-50",
+        id: "h-data-science-bmath-data-science-bachelor-of-mathematics-honours-10-complete-all-the-following-stat330-mathematical-statistics-0-50",
         name: "Complete all the following: STAT330 - Mathematical Statistics (0.50)",
         category: "program",
         courses: [
@@ -3516,7 +3516,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "data-science-bachelor-of-mathematics-honours-11-complete-1-of-the-following-stat431-generalized-linear-models-and-thei",
+        id: "h-data-science-bmath-data-science-bachelor-of-mathematics-honours-11-complete-1-of-the-following-stat431-generalized-linear-models-and-thei",
         name: "Complete 1 of the following: STAT431 - Generalized Linear Models and their Applications (0.50)STAT440 - Computational Inference (0.50)",
         category: "program",
         courses: [
@@ -3527,7 +3527,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "data-science-bachelor-of-mathematics-honours-12-complete-all-the-following-stat332-sampling-and-experimental-design-0-",
+        id: "h-data-science-bmath-data-science-bachelor-of-mathematics-honours-12-complete-all-the-following-stat332-sampling-and-experimental-design-0-",
         name: "Complete all the following: STAT332 - Sampling and Experimental Design (0.50)",
         category: "program",
         courses: [
@@ -3536,7 +3536,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "data-science-bachelor-of-mathematics-honours-13-complete-1-of-the-following-stat430-experimental-design-0-50-stat454-s",
+        id: "h-data-science-bmath-data-science-bachelor-of-mathematics-honours-13-complete-1-of-the-following-stat430-experimental-design-0-50-stat454-s",
         name: "Complete 1 of the following: STAT430 - Experimental Design (0.50)STAT454 - Sampling Theory and Practice (0.50)",
         category: "program",
         courses: [
@@ -3549,7 +3549,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "digital-hardware-specialization",
+    id: "cs-digital-hardware-specialization-digital-hardware-specialization",
     name: "Digital Hardware Specialization",
     category: "specialization",
     code: "CS-Digital Hardware Specialization",
@@ -3565,7 +3565,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "digital-hardware-specialization-1-complete-all-the-following-ece124-digital-circuits-and-systems-0-50-ec",
+        id: "cs-digital-hardware-specialization-digital-hardware-specialization-1-complete-all-the-following-ece124-digital-circuits-and-systems-0-50-ec",
         name: "Complete all the following: ECE124 - Digital Circuits and Systems (0.50)ECE222 - Digital Computers (0.50)ECE327 - Digital Hardware Systems (0.50)ECE423 - Embedded Computer Systems ",
         category: "program",
         courses: [
@@ -3577,7 +3577,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "digital-hardware-specialization-2-complete-1-of-the-following-cs450-computer-architecture-0-50-ece320-co",
+        id: "cs-digital-hardware-specialization-digital-hardware-specialization-2-complete-1-of-the-following-cs450-computer-architecture-0-50-ece320-co",
         name: "Complete 1 of the following: CS450 - Computer Architecture (0.50)ECE320 - Computer Architecture (0.50)",
         category: "program",
         courses: [
@@ -3588,7 +3588,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "digital-hardware-specialization-3-complete-2-of-the-following-cs452-real-time-programming-0-50-cs454-dis",
+        id: "cs-digital-hardware-specialization-digital-hardware-specialization-3-complete-2-of-the-following-cs452-real-time-programming-0-50-cs454-dis",
         name: "Complete 2 of the following: CS452 - Real-Time Programming (0.50)CS454 - Distributed Systems (0.50)CS456 - Computer Networks (0.50)CS457 - System Performance Evaluation (0.50)",
         category: "program",
         courses: [
@@ -3601,7 +3601,7 @@ export const programs: Program[] = [
         requiredCount: 2
       },
       {
-        id: "digital-hardware-specialization-4-complete-1-of-the-following-ece224-embedded-microprocessor-systems-0-5",
+        id: "cs-digital-hardware-specialization-digital-hardware-specialization-4-complete-1-of-the-following-ece224-embedded-microprocessor-systems-0-5",
         name: "Complete 1 of the following: ECE224 - Embedded Microprocessor Systems (0.50)MTE325 - Microprocessor Systems and Interfacing for Mechatronics Engineering (0.50)",
         category: "program",
         courses: [
@@ -3612,7 +3612,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "digital-hardware-specialization-5-complete-1-of-the-following-gene123-electrical-circuits-and-instrument",
+        id: "cs-digital-hardware-specialization-digital-hardware-specialization-5-complete-1-of-the-following-gene123-electrical-circuits-and-instrument",
         name: "Complete 1 of the following: GENE123 - Electrical Circuits and Instrumentation (0.50)MTE120 - Circuits (0.75)",
         category: "program",
         courses: [
@@ -3625,7 +3625,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "economics-specialization",
+    id: "amath-economics-specialization-economics-specialization",
     name: "Economics Specialization",
     category: "specialization",
     code: "AMATH-Economics Specialization",
@@ -3639,7 +3639,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "economics-specialization-1-choose-any-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "amath-economics-specialization-economics-specialization-1-choose-any-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Choose any of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -3651,7 +3651,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "engineering-specialization",
+    id: "amath-engineering-specialization-engineering-specialization",
     name: "Engineering Specialization",
     category: "specialization",
     code: "AMATH-Engineering Specialization",
@@ -3665,7 +3665,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "engineering-specialization-1-complete-all-the-following-amath271-introduction-to-theoretical-mechan",
+        id: "amath-engineering-specialization-engineering-specialization-1-complete-all-the-following-amath271-introduction-to-theoretical-mechan",
         name: "Complete all the following: AMATH271 - Introduction to Theoretical Mechanics (0.50)AMATH361 - Continuum Mechanics (0.50)AMATH463 - Fluid Mechanics (0.50)ME219 - Mechanics of Deform",
         category: "program",
         courses: [
@@ -3681,7 +3681,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "engineering-specialization-2-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "amath-engineering-specialization-engineering-specialization-2-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)STAT331 - Applied Linear Models (0.50)STAT340 - ",
         category: "program",
         courses: [
@@ -3694,7 +3694,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "engineering-specialization-3-complete-1-of-the-following-ece140-linear-circuits-0-50-gene123-electr",
+        id: "amath-engineering-specialization-engineering-specialization-3-complete-1-of-the-following-ece140-linear-circuits-0-50-gene123-electr",
         name: "Complete 1 of the following: ECE140 - Linear Circuits (0.50)GENE123 - Electrical Circuits and Instrumentation (0.50)",
         category: "program",
         courses: [
@@ -3705,7 +3705,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "engineering-specialization-4-complete-1-of-the-following-me557-combustion-1-0-50-me564-aerodynamics",
+        id: "amath-engineering-specialization-engineering-specialization-4-complete-1-of-the-following-me557-combustion-1-0-50-me564-aerodynamics",
         name: "Complete 1 of the following: ME557 - Combustion 1 (0.50)ME564 - Aerodynamics (0.50)ME571 - Clean Air Technologies (0.50)",
         category: "program",
         courses: [
@@ -3717,7 +3717,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "engineering-specialization-5-complete-all-the-following-amath455-control-theory-0-50-ece207-signals",
+        id: "amath-engineering-specialization-engineering-specialization-5-complete-all-the-following-amath455-control-theory-0-50-ece207-signals",
         name: "Complete all the following: AMATH455 - Control Theory (0.50)ECE207 - Signals and Systems (0.50)ECE240 - Electronic Circuits 1 (0.50)ECE318 - Communication Systems (0.50)ECE380 - An",
         category: "program",
         courses: [
@@ -3730,7 +3730,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "engineering-specialization-6-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "amath-engineering-specialization-engineering-specialization-6-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)CS475 - Computational Linear Algebra (0.50)STAT3",
         category: "program",
         courses: [
@@ -3744,7 +3744,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "engineering-specialization-7-complete-1-of-the-following-ece140-linear-circuits-0-50-gene123-electr",
+        id: "amath-engineering-specialization-engineering-specialization-7-complete-1-of-the-following-ece140-linear-circuits-0-50-gene123-electr",
         name: "Complete 1 of the following: ECE140 - Linear Circuits (0.50)GENE123 - Electrical Circuits and Instrumentation (0.50)",
         category: "program",
         courses: [
@@ -3755,7 +3755,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "engineering-specialization-8-complete-2-of-the-following-ece313-digital-signal-processing-0-50-ece4",
+        id: "amath-engineering-specialization-engineering-specialization-8-complete-2-of-the-following-ece313-digital-signal-processing-0-50-ece4",
         name: "Complete 2 of the following: ECE313 - Digital Signal Processing (0.50)ECE484 - Digital Control Applications (0.50)ECE486 - Robot Dynamics and Control (0.50)SYDE544 - Biomedical Mea",
         category: "program",
         courses: [
@@ -3769,7 +3769,7 @@ export const programs: Program[] = [
         requiredCount: 2
       },
       {
-        id: "engineering-specialization-9-complete-all-the-following-amath361-continuum-mechanics-0-50-amath463-",
+        id: "amath-engineering-specialization-engineering-specialization-9-complete-all-the-following-amath361-continuum-mechanics-0-50-amath463-",
         name: "Complete all the following: AMATH361 - Continuum Mechanics (0.50)AMATH463 - Fluid Mechanics (0.50)CHE230 - Physical Chemistry 1 (0.50)CHE231 - Physical Chemistry 2 (0.50)CHE312 - M",
         category: "program",
         courses: [
@@ -3784,7 +3784,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "engineering-specialization-10-complete-2-of-the-following-che314-chemical-reaction-engineering-0-50-",
+        id: "amath-engineering-specialization-engineering-specialization-10-complete-2-of-the-following-che314-chemical-reaction-engineering-0-50-",
         name: "Complete 2 of the following: CHE314 - Chemical Reaction Engineering (0.50)CHE331 - Electrochemical Engineering (0.50)CHE341 - Introduction to Process Control (0.50)CHE361 - Bioproc",
         category: "program",
         courses: [
@@ -3814,7 +3814,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "finance-specialization-1-complete-all-the-following-actsc445-quantitative-enterprise-risk-manag",
+        id: "actsc-finance-specialization-finance-specialization-1-complete-all-the-following-actsc445-quantitative-enterprise-risk-manag",
         name: "Complete all the following: ACTSC445 - Quantitative Enterprise Risk Management (0.50)STAT340 - Stochastic Simulation Methods (0.50)",
         category: "program",
         courses: [
@@ -3824,7 +3824,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "finance-specialization-2-complete-1-of-the-following-actsc423-topics-in-financial-econometrics-",
+        id: "actsc-finance-specialization-finance-specialization-2-complete-1-of-the-following-actsc423-topics-in-financial-econometrics-",
         name: "Complete 1 of the following: ACTSC423 - Topics in Financial Econometrics (0.50)AFM423 - Topics in Financial Econometrics (0.50)AFM424 - Equity Investments (0.50)",
         category: "program",
         courses: [
@@ -3836,7 +3836,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "finance-specialization-3-complete-1-of-the-following-actsc447-numerical-computation-for-financi",
+        id: "actsc-finance-specialization-finance-specialization-3-complete-1-of-the-following-actsc447-numerical-computation-for-financi",
         name: "Complete 1 of the following: ACTSC447 - Numerical Computation for Financial Modelling (0.50)CS476 - Numerical Computation for Financial Modelling (0.50)",
         category: "program",
         courses: [
@@ -3847,7 +3847,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "finance-specialization-4-complete-1-of-the-following-amath242-introduction-to-computational-mat",
+        id: "actsc-finance-specialization-finance-specialization-4-complete-1-of-the-following-amath242-introduction-to-computational-mat",
         name: "Complete 1 of the following: AMATH242 - Introduction to Computational Mathematics (0.50)CS370 - Numerical Computation (0.50)CS371 - Introduction to Computational Mathematics (0.50)",
         category: "program",
         courses: [
@@ -3875,7 +3875,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "finance-specialization-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
+        id: "cpa-finance-specialization-finance-specialization-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
         name: "Complete all the following: ACTSC231 - Introductory Financial Mathematics (0.50)",
         category: "program",
         courses: [
@@ -3884,7 +3884,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "finance-specialization-2-complete-3-of-the-following-amath350-differential-equations-for-busine",
+        id: "cpa-finance-specialization-finance-specialization-2-complete-3-of-the-following-amath350-differential-equations-for-busine",
         name: "Complete 3 of the following: AMATH350 - Differential Equations for Business and Economics (0.50)CO372 - Portfolio Optimization Models (0.50)CS335 - Computational Methods in Busines",
         category: "program",
         courses: [
@@ -3903,7 +3903,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "game-design-specialization",
+    id: "cs-game-design-specialization-game-design-specialization",
     name: "Game Design Specialization",
     category: "specialization",
     code: "CS-Game Design Specialization",
@@ -3919,7 +3919,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "game-design-specialization-1-complete-all-the-following-dac204-introduction-to-game-design-0-50-dac",
+        id: "cs-game-design-specialization-game-design-specialization-1-complete-all-the-following-dac204-introduction-to-game-design-0-50-dac",
         name: "Complete all the following: DAC204 - Introduction to Game Design (0.50)DAC305 - Designing and Evaluating Digital Games (0.50)",
         category: "program",
         courses: [
@@ -3929,7 +3929,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "game-design-specialization-2-complete-1-of-the-following-commst149-introduction-to-critical-design-",
+        id: "cs-game-design-specialization-game-design-specialization-2-complete-1-of-the-following-commst149-introduction-to-critical-design-",
         name: "Complete 1 of the following: COMMST149 - Introduction to Critical Design Practices (0.50)DAC209 - Introduction to Critical Design Practices (0.50)DAC302 - Digital Storytelling Desi",
         category: "program",
         courses: [
@@ -3947,7 +3947,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "game-design-specialization-3-complete-1-of-the-following-commst210-key-concepts-in-media-and-cultur",
+        id: "cs-game-design-specialization-game-design-specialization-3-complete-1-of-the-following-commst210-key-concepts-in-media-and-cultur",
         name: "Complete 1 of the following: COMMST210 - Key Concepts in Media and Culture (0.50)COMMST339 - Media, Images, and Communication (0.50)COMMST430 - Communication and Social Justice (0.",
         category: "program",
         courses: [
@@ -3963,7 +3963,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "game-design-specialization-4-complete-1-of-the-following-commst235-games-and-society-0-50-engl294-i",
+        id: "cs-game-design-specialization-game-design-specialization-4-complete-1-of-the-following-commst235-games-and-society-0-50-engl294-i",
         name: "Complete 1 of the following: COMMST235 - Games and Society (0.50)ENGL294 - Introduction to Critical Game Studies (0.50)",
         category: "program",
         courses: [
@@ -3974,7 +3974,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "game-design-specialization-5-complete-2-of-the-following-cs449-human-computer-interaction-0-50-cs45",
+        id: "cs-game-design-specialization-game-design-specialization-5-complete-2-of-the-following-cs449-human-computer-interaction-0-50-cs45",
         name: "Complete 2 of the following: CS449 - Human-Computer Interaction (0.50)CS454 - Distributed Systems (0.50)CS488 - Introduction to Computer Graphics (0.50)",
         category: "program",
         courses: [
@@ -3988,7 +3988,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "human-computer-interaction-specialization",
+    id: "cs-human-computer-interaction-specialization-human-computer-interaction-specialization",
     name: "Human-Computer Interaction Specialization",
     category: "specialization",
     code: "CS-Human-Computer Interaction Specialization",
@@ -4004,7 +4004,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "human-computer-interaction-specialization-1-complete-all-the-following-cs349-user-interfaces-0-50-cs449-human-comp",
+        id: "cs-human-computer-interaction-specialization-human-computer-interaction-specialization-1-complete-all-the-following-cs349-user-interfaces-0-50-cs449-human-comp",
         name: "Complete all the following: CS349 - User Interfaces (0.50)CS449 - Human-Computer Interaction (0.50)",
         category: "program",
         courses: [
@@ -4014,7 +4014,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "human-computer-interaction-specialization-2-complete-1-of-the-following-bet360-design-frameworks-for-social-ventur",
+        id: "cs-human-computer-interaction-specialization-human-computer-interaction-specialization-2-complete-1-of-the-following-bet360-design-frameworks-for-social-ventur",
         name: "Complete 1 of the following: BET360 - Design Frameworks for Social Ventures (0.50)CS492 - The Social Implications of Computing (0.50)GSJ205 - Technology, Gender, and Social Justice",
         category: "program",
         courses: [
@@ -4037,7 +4037,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "human-computer-interaction-specialization-3-complete-2-of-the-following-engl108d-digital-lives-0-50-engl293-introd",
+        id: "cs-human-computer-interaction-specialization-human-computer-interaction-specialization-3-complete-2-of-the-following-engl108d-digital-lives-0-50-engl293-introd",
         name: "Complete 2 of the following: ENGL108D - Digital Lives (0.50)ENGL293 - Introduction to Digital Media Studies (0.50)ENGL295 - Social Media (0.50)FINE100 - Studio Fundamentals (0.50)F",
         category: "program",
         courses: [
@@ -4059,7 +4059,7 @@ export const programs: Program[] = [
         requiredCount: 2
       },
       {
-        id: "human-computer-interaction-specialization-4-choose-any-of-the-following-cs454-distributed-systems-0-50-cs480-intro",
+        id: "cs-human-computer-interaction-specialization-human-computer-interaction-specialization-4-choose-any-of-the-following-cs454-distributed-systems-0-50-cs480-intro",
         name: "Choose any of the following: CS454 - Distributed Systems (0.50)CS480 - Introduction to Machine Learning (0.50)CS484 - Computational Vision (0.50)CS486 - Introduction to Artificial ",
         category: "program",
         courses: [
@@ -4072,7 +4072,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "human-computer-interaction-specialization-5-complete-no-more-than-1-from-the-following-cs445-software-requirements",
+        id: "cs-human-computer-interaction-specialization-human-computer-interaction-specialization-5-complete-no-more-than-1-from-the-following-cs445-software-requirements",
         name: "Complete no more than 1 from the following: CS445 - Software Requirements Specification and Analysis (0.50)ECE451 - Software Requirements Specification and Analysis (0.50)SE463 - S",
         category: "program",
         courses: [
@@ -4083,7 +4083,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "human-computer-interaction-specialization-6-complete-no-more-than-1-from-the-following-cs446-software-design-and-a",
+        id: "cs-human-computer-interaction-specialization-human-computer-interaction-specialization-6-complete-no-more-than-1-from-the-following-cs446-software-design-and-a",
         name: "Complete no more than 1 from the following: CS446 - Software Design and Architectures (0.50)ECE452 - Software Design and Architectures (0.50)SE464 - Software Design and Architectur",
         category: "program",
         courses: [
@@ -4094,7 +4094,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "human-computer-interaction-specialization-7-complete-no-more-than-1-from-the-following-cs447-software-testing-qual",
+        id: "cs-human-computer-interaction-specialization-human-computer-interaction-specialization-7-complete-no-more-than-1-from-the-following-cs447-software-testing-qual",
         name: "Complete no more than 1 from the following: CS447 - Software Testing, Quality Assurance, and Maintenance (0.50)ECE453 - Software Testing, Quality Assurance, and Maintenance (0.50)S",
         category: "program",
         courses: [
@@ -4105,7 +4105,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "human-computer-interaction-specialization-8-complete-no-more-than-1-from-the-following-cs453-software-and-systems-",
+        id: "cs-human-computer-interaction-specialization-human-computer-interaction-specialization-8-complete-no-more-than-1-from-the-following-cs453-software-and-systems-",
         name: "Complete no more than 1 from the following: CS453 - Software and Systems Security (0.50)CS459 - Privacy, Cryptography, Network and Data Security (0.50)",
         category: "program",
         courses: [
@@ -4117,7 +4117,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "information-technology-management-bachelor-of-mathematics-honours",
+    id: "h-information-technology-management-information-technology-management-bachelor-of-mathematics-honours",
     name: "Information Technology Management (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -4131,7 +4131,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/BJx01yRCin",
     requirements: [
       {
-        id: "information-technology-management-bachelor-of-mathematics-honours-1-complete-all-the-following-afm101-introduction-to-financial-accounting",
+        id: "h-information-technology-management-information-technology-management-bachelor-of-mathematics-honours-1-complete-all-the-following-afm101-introduction-to-financial-accounting",
         name: "Complete all the following: AFM101 - Introduction to Financial Accounting (0.50)AFM102 - Introduction to Managerial Accounting (0.50)BUS111W - Understanding the Business Environmen",
         category: "program",
         courses: [
@@ -4158,7 +4158,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "information-technology-management-bachelor-of-mathematics-honours-2-complete-1-of-the-following-actsc221-introductory-financial-mathematic",
+        id: "h-information-technology-management-information-technology-management-bachelor-of-mathematics-honours-2-complete-1-of-the-following-actsc221-introductory-financial-mathematic",
         name: "Complete 1 of the following: ACTSC221 - Introductory Financial Mathematics (Non-Specialist Level) (0.50)ACTSC231 - Introductory Financial Mathematics (0.50)",
         category: "program",
         courses: [
@@ -4169,7 +4169,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "information-technology-management-bachelor-of-mathematics-honours-3-complete-1-of-the-following-afm231-business-law-0-50-ls283-business-la",
+        id: "h-information-technology-management-information-technology-management-bachelor-of-mathematics-honours-3-complete-1-of-the-following-afm231-business-law-0-50-ls283-business-la",
         name: "Complete 1 of the following: AFM231 - Business Law (0.50)LS283 - Business Law (0.50)",
         category: "program",
         courses: [
@@ -4180,7 +4180,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "information-technology-management-bachelor-of-mathematics-honours-4-complete-1-of-the-following-arbus302-principles-of-marketing-0-50-bus2",
+        id: "h-information-technology-management-information-technology-management-bachelor-of-mathematics-honours-4-complete-1-of-the-following-arbus302-principles-of-marketing-0-50-bus2",
         name: "Complete 1 of the following: ARBUS302 - Principles of Marketing (0.50)BUS252W - Introduction to Marketing Management (WLU) (0.50)MGMT244 - Principles of Marketing (0.50)",
         category: "program",
         courses: [
@@ -4192,7 +4192,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "information-technology-management-bachelor-of-mathematics-honours-5-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "h-information-technology-management-information-technology-management-bachelor-of-mathematics-honours-5-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4203,7 +4203,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "information-technology-management-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "h-information-technology-management-information-technology-management-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4214,7 +4214,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "information-technology-management-bachelor-of-mathematics-honours-7-complete-1-of-the-following-stv302-information-technology-and-society-",
+        id: "h-information-technology-management-information-technology-management-bachelor-of-mathematics-honours-7-complete-1-of-the-following-stv302-information-technology-and-society-",
         name: "Complete 1 of the following: STV302 - Information Technology and Society (0.50)STV304 - Technology in Canadian Society (0.50)STV305 - Technology, Society and the Modern City (0.50)",
         category: "program",
         courses: [
@@ -4231,7 +4231,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "mathematical-finance-bachelor-of-mathematics-honours",
+    id: "h-mathematical-finance-mathematical-finance-bachelor-of-mathematics-honours",
     name: "Mathematical Finance (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -4245,7 +4245,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/ryAkJARjn",
     requirements: [
       {
-        id: "mathematical-finance-bachelor-of-mathematics-honours-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
+        id: "h-mathematical-finance-mathematical-finance-bachelor-of-mathematics-honours-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
         name: "Complete all the following: ACTSC231 - Introductory Financial Mathematics (0.50)ACTSC372 - Investment Science and Corporate Finance (0.50)ACTSC445 - Quantitative Enterprise Risk Ma",
         category: "program",
         courses: [
@@ -4263,7 +4263,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematical-finance-bachelor-of-mathematics-honours-2-complete-all-the-following-afm101-introduction-to-financial-accounting",
+        id: "h-mathematical-finance-mathematical-finance-bachelor-of-mathematics-honours-2-complete-all-the-following-afm101-introduction-to-financial-accounting",
         name: "Complete all the following: AFM101 - Introduction to Financial Accounting (0.50)",
         category: "program",
         courses: [
@@ -4272,7 +4272,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematical-finance-bachelor-of-mathematics-honours-3-complete-all-the-following-afm102-introduction-to-managerial-accountin",
+        id: "h-mathematical-finance-mathematical-finance-bachelor-of-mathematics-honours-3-complete-all-the-following-afm102-introduction-to-managerial-accountin",
         name: "Complete all the following: AFM102 - Introduction to Managerial Accounting (0.50)",
         category: "program",
         courses: [
@@ -4281,7 +4281,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematical-finance-bachelor-of-mathematics-honours-4-complete-1-of-the-following-afm131-introduction-to-business-in-north-a",
+        id: "h-mathematical-finance-mathematical-finance-bachelor-of-mathematics-honours-4-complete-1-of-the-following-afm131-introduction-to-business-in-north-a",
         name: "Complete 1 of the following: AFM131 - Introduction to Business in North America (0.50)ARBUS101 - Introduction to Business in North America (0.50)",
         category: "program",
         courses: [
@@ -4292,7 +4292,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-finance-bachelor-of-mathematics-honours-5-complete-1-of-the-following-amath242-introduction-to-computational-mat",
+        id: "h-mathematical-finance-mathematical-finance-bachelor-of-mathematics-honours-5-complete-1-of-the-following-amath242-introduction-to-computational-mat",
         name: "Complete 1 of the following: AMATH242 - Introduction to Computational Mathematics (0.50)CS335 - Computational Methods in Business and Finance (0.50)CS371 - Introduction to Computat",
         category: "program",
         courses: [
@@ -4304,7 +4304,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-finance-bachelor-of-mathematics-honours-6-complete-1-of-the-following-amath250-introduction-to-differential-equa",
+        id: "h-mathematical-finance-mathematical-finance-bachelor-of-mathematics-honours-6-complete-1-of-the-following-amath250-introduction-to-differential-equa",
         name: "Complete 1 of the following: AMATH250 - Introduction to Differential Equations (0.50)AMATH251 - Introduction to Differential Equations (Advanced Level) (0.50)AMATH350 - Differentia",
         category: "program",
         courses: [
@@ -4316,7 +4316,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-finance-bachelor-of-mathematics-honours-7-complete-1-of-the-following-amath351-ordinary-differential-equations-0",
+        id: "h-mathematical-finance-mathematical-finance-bachelor-of-mathematics-honours-7-complete-1-of-the-following-amath351-ordinary-differential-equations-0",
         name: "Complete 1 of the following: AMATH351 - Ordinary Differential Equations (0.50)CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50",
         category: "program",
         courses: [
@@ -4329,7 +4329,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-finance-bachelor-of-mathematics-honours-8-complete-1-of-the-following-actsc447-numerical-computation-for-financi",
+        id: "h-mathematical-finance-mathematical-finance-bachelor-of-mathematics-honours-8-complete-1-of-the-following-actsc447-numerical-computation-for-financi",
         name: "Complete 1 of the following: ACTSC447 - Numerical Computation for Financial Modelling (0.50)AMATH353 - Partial Differential Equations 1 (0.50)CO372 - Portfolio Optimization Models ",
         category: "program",
         courses: [
@@ -4343,7 +4343,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-finance-bachelor-of-mathematics-honours-9-complete-all-the-following-econ101-introduction-to-microeconomics-0-50",
+        id: "h-mathematical-finance-mathematical-finance-bachelor-of-mathematics-honours-9-complete-all-the-following-econ101-introduction-to-microeconomics-0-50",
         name: "Complete all the following: ECON101 - Introduction to Microeconomics (0.50)",
         category: "program",
         courses: [
@@ -4352,7 +4352,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematical-finance-bachelor-of-mathematics-honours-10-complete-all-the-following-econ102-introduction-to-macroeconomics-0-50",
+        id: "h-mathematical-finance-mathematical-finance-bachelor-of-mathematics-honours-10-complete-all-the-following-econ102-introduction-to-macroeconomics-0-50",
         name: "Complete all the following: ECON102 - Introduction to Macroeconomics (0.50)",
         category: "program",
         courses: [
@@ -4361,7 +4361,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematical-finance-bachelor-of-mathematics-honours-11-complete-all-the-following-econ201-microeconomic-theory-for-business-a",
+        id: "h-mathematical-finance-mathematical-finance-bachelor-of-mathematics-honours-11-complete-all-the-following-econ201-microeconomic-theory-for-business-a",
         name: "Complete all the following: ECON201 - Microeconomic Theory for Business and Policy (0.50)",
         category: "program",
         courses: [
@@ -4370,7 +4370,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematical-finance-bachelor-of-mathematics-honours-12-complete-all-the-following-math247-calculus-3-advanced-level-0-50",
+        id: "h-mathematical-finance-mathematical-finance-bachelor-of-mathematics-honours-12-complete-all-the-following-math247-calculus-3-advanced-level-0-50",
         name: "Complete all the following: MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4379,7 +4379,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematical-finance-bachelor-of-mathematics-honours-13-complete-all-the-following-math237-calculus-3-for-honours-mathematics-",
+        id: "h-mathematical-finance-mathematical-finance-bachelor-of-mathematics-honours-13-complete-all-the-following-math237-calculus-3-for-honours-mathematics-",
         name: "Complete all the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)PMATH333 - Introduction to Real Analysis (0.50)",
         category: "program",
         courses: [
@@ -4391,7 +4391,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "mathematical-optimization-business-specialization-bachelor-of-mathematics-honours",
+    id: "h-mathematical-optimization-business-specialization-mathematical-optimization-business-specialization-bachelor-of-mathematics-honours",
     name: "Mathematical Optimization - Business Specialization (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -4405,7 +4405,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/H1gRk1ARih",
     requirements: [
       {
-        id: "mathematical-optimization-business-specialization-bachelor-of-mathematics-honours-1-complete-all-the-following-afm101-introduction-to-financial-accounting",
+        id: "h-mathematical-optimization-business-specialization-mathematical-optimization-business-specialization-bachelor-of-mathematics-honours-1-complete-all-the-following-afm101-introduction-to-financial-accounting",
         name: "Complete all the following: AFM101 - Introduction to Financial Accounting (0.50)CO370 - Deterministic OR Models (0.50)ECON101 - Introduction to Microeconomics (0.50)MSE211 - Organi",
         category: "program",
         courses: [
@@ -4418,7 +4418,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematical-optimization-business-specialization-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
+        id: "h-mathematical-optimization-business-specialization-mathematical-optimization-business-specialization-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
         name: "Complete 1 of the following: AMATH242 - Introduction to Computational Mathematics (0.50)CS370 - Numerical Computation (0.50)CS371 - Introduction to Computational Mathematics (0.50)",
         category: "program",
         courses: [
@@ -4430,7 +4430,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-optimization-business-specialization-bachelor-of-mathematics-honours-3-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "h-mathematical-optimization-business-specialization-mathematical-optimization-business-specialization-bachelor-of-mathematics-honours-3-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4441,7 +4441,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-optimization-business-specialization-bachelor-of-mathematics-honours-4-complete-3-of-the-following-co342-introduction-to-graph-theory-0-50-co",
+        id: "h-mathematical-optimization-business-specialization-mathematical-optimization-business-specialization-bachelor-of-mathematics-honours-4-complete-3-of-the-following-co342-introduction-to-graph-theory-0-50-co",
         name: "Complete 3 of the following: CO342 - Introduction to Graph Theory (0.50)CO351 - Network Flow Theory (0.50)CO353 - Computational Discrete Optimization (0.50)CO367 - Nonlinear Optimi",
         category: "program",
         courses: [
@@ -4462,7 +4462,7 @@ export const programs: Program[] = [
         requiredCount: 3
       },
       {
-        id: "mathematical-optimization-business-specialization-bachelor-of-mathematics-honours-5-complete-1-of-the-following-cs330-management-information-systems-0-50-",
+        id: "h-mathematical-optimization-business-specialization-mathematical-optimization-business-specialization-bachelor-of-mathematics-honours-5-complete-1-of-the-following-cs330-management-information-systems-0-50-",
         name: "Complete 1 of the following: CS330 - Management Information Systems (0.50)CS490 - Information Systems Management (0.50)",
         category: "program",
         courses: [
@@ -4473,7 +4473,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-optimization-business-specialization-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-mathematical-optimization-business-specialization-mathematical-optimization-business-specialization-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4484,7 +4484,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-optimization-business-specialization-bachelor-of-mathematics-honours-7-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "h-mathematical-optimization-business-specialization-mathematical-optimization-business-specialization-bachelor-of-mathematics-honours-7-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4497,7 +4497,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours",
+    id: "h-mathematical-optimization-operations-research-specialization-mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours",
     name: "Mathematical Optimization - Operations Research Specialization (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -4511,7 +4511,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/Sy0ky0Rsn",
     requirements: [
       {
-        id: "mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours-1-complete-all-the-following-afm101-introduction-to-financial-accounting",
+        id: "h-mathematical-optimization-operations-research-specialization-mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours-1-complete-all-the-following-afm101-introduction-to-financial-accounting",
         name: "Complete all the following: AFM101 - Introduction to Financial Accounting (0.50)CO370 - Deterministic OR Models (0.50)ECON101 - Introduction to Microeconomics (0.50)MSE211 - Organi",
         category: "program",
         courses: [
@@ -4524,7 +4524,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
+        id: "h-mathematical-optimization-operations-research-specialization-mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
         name: "Complete 1 of the following: AMATH242 - Introduction to Computational Mathematics (0.50)CS370 - Numerical Computation (0.50)CS371 - Introduction to Computational Mathematics (0.50)",
         category: "program",
         courses: [
@@ -4536,7 +4536,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours-3-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "h-mathematical-optimization-operations-research-specialization-mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours-3-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4547,7 +4547,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours-4-complete-3-of-the-following-co342-introduction-to-graph-theory-0-50-co",
+        id: "h-mathematical-optimization-operations-research-specialization-mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours-4-complete-3-of-the-following-co342-introduction-to-graph-theory-0-50-co",
         name: "Complete 3 of the following: CO342 - Introduction to Graph Theory (0.50)CO351 - Network Flow Theory (0.50)CO353 - Computational Discrete Optimization (0.50)CO367 - Nonlinear Optimi",
         category: "program",
         courses: [
@@ -4568,7 +4568,7 @@ export const programs: Program[] = [
         requiredCount: 3
       },
       {
-        id: "mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours-5-complete-1-of-the-following-cs330-management-information-systems-0-50-",
+        id: "h-mathematical-optimization-operations-research-specialization-mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours-5-complete-1-of-the-following-cs330-management-information-systems-0-50-",
         name: "Complete 1 of the following: CS330 - Management Information Systems (0.50)CS490 - Information Systems Management (0.50)",
         category: "program",
         courses: [
@@ -4579,7 +4579,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-mathematical-optimization-operations-research-specialization-mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4590,7 +4590,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours-7-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "h-mathematical-optimization-operations-research-specialization-mathematical-optimization-operations-research-specialization-bachelor-of-mathematics-honours-7-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4603,7 +4603,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "mathematical-physics-bachelor-of-mathematics-honours",
+    id: "h-mathematical-physics-bmath-mathematical-physics-bachelor-of-mathematics-honours",
     name: "Mathematical Physics (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -4617,7 +4617,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/ByzRyy0Rj2",
     requirements: [
       {
-        id: "mathematical-physics-bachelor-of-mathematics-honours-1-complete-all-the-following-amath231-calculus-4-0-50-amath271-introduct",
+        id: "h-mathematical-physics-bmath-mathematical-physics-bachelor-of-mathematics-honours-1-complete-all-the-following-amath231-calculus-4-0-50-amath271-introduct",
         name: "Complete all the following: AMATH231 - Calculus 4 (0.50)AMATH271 - Introduction to Theoretical Mechanics (0.50)AMATH353 - Partial Differential Equations 1 (0.50)AMATH361 - Continuu",
         category: "program",
         courses: [
@@ -4634,7 +4634,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematical-physics-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
+        id: "h-mathematical-physics-bmath-mathematical-physics-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath242-introduction-to-computational-mat",
         name: "Complete 1 of the following: AMATH242 - Introduction to Computational Mathematics (0.50)AMATH345 - Data-Driven Mathematical Models (0.50)AMATH391 - Data Analysis with Fourier and W",
         category: "program",
         courses: [
@@ -4648,7 +4648,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-physics-bachelor-of-mathematics-honours-3-complete-1-of-the-following-amath250-introduction-to-differential-equa",
+        id: "h-mathematical-physics-bmath-mathematical-physics-bachelor-of-mathematics-honours-3-complete-1-of-the-following-amath250-introduction-to-differential-equa",
         name: "Complete 1 of the following: AMATH250 - Introduction to Differential Equations (0.50)AMATH251 - Introduction to Differential Equations (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4659,7 +4659,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-physics-bachelor-of-mathematics-honours-4-complete-1-of-the-following-amath331-applied-real-analysis-0-50-pmath3",
+        id: "h-mathematical-physics-bmath-mathematical-physics-bachelor-of-mathematics-honours-4-complete-1-of-the-following-amath331-applied-real-analysis-0-50-pmath3",
         name: "Complete 1 of the following: AMATH331 - Applied Real Analysis (0.50)PMATH331 - Applied Real Analysis (0.50)PMATH333 - Introduction to Real Analysis (0.50)PMATH351 - Real Analysis (",
         category: "program",
         courses: [
@@ -4672,7 +4672,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-physics-bachelor-of-mathematics-honours-5-complete-1-of-the-following-amath332-applied-complex-analysis-0-50-pma",
+        id: "h-mathematical-physics-bmath-mathematical-physics-bachelor-of-mathematics-honours-5-complete-1-of-the-following-amath332-applied-complex-analysis-0-50-pma",
         name: "Complete 1 of the following: AMATH332 - Applied Complex Analysis (0.50)PMATH332 - Applied Complex Analysis (0.50)PMATH352 - Complex Analysis (0.50)",
         category: "program",
         courses: [
@@ -4684,7 +4684,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-physics-bachelor-of-mathematics-honours-6-complete-4-of-the-following-amath333-calculus-on-manifolds-for-applied",
+        id: "h-mathematical-physics-bmath-mathematical-physics-bachelor-of-mathematics-honours-6-complete-4-of-the-following-amath333-calculus-on-manifolds-for-applied",
         name: "Complete 4 of the following: AMATH333 - Calculus on Manifolds for Applied Mathematics and Physics (0.50)AMATH474 - Advanced Quantum Theory: Quantum Information and Foundations (0.5",
         category: "program",
         courses: [
@@ -4698,7 +4698,7 @@ export const programs: Program[] = [
         requiredCount: 4
       },
       {
-        id: "mathematical-physics-bachelor-of-mathematics-honours-7-complete-1-of-the-following-amath475-introduction-to-general-relativit",
+        id: "h-mathematical-physics-bmath-mathematical-physics-bachelor-of-mathematics-honours-7-complete-1-of-the-following-amath475-introduction-to-general-relativit",
         name: "Complete 1 of the following: AMATH475 - Introduction to General Relativity (0.50)PHYS476 - Introduction to General Relativity (0.50)",
         category: "program",
         courses: [
@@ -4709,7 +4709,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-physics-bachelor-of-mathematics-honours-8-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-mathematical-physics-bmath-mathematical-physics-bachelor-of-mathematics-honours-8-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4722,7 +4722,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "mathematical-studies-bachelor-of-mathematics-honours",
+    id: "h-mathematical-studies-mathematical-studies-bachelor-of-mathematics-honours",
     name: "Mathematical Studies (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -4736,7 +4736,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/H1z0kJR0in",
     requirements: [
       {
-        id: "mathematical-studies-bachelor-of-mathematics-honours-1-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
+        id: "h-mathematical-studies-mathematical-studies-bachelor-of-mathematics-honours-1-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
         name: "Complete 1 of the following: CS115 - Introduction to Computer Science 1 (0.50)CS135 - Designing Functional Programs (0.50)CS145 - Designing Functional Programs (Advanced Level) (0.",
         category: "program",
         courses: [
@@ -4748,7 +4748,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-studies-bachelor-of-mathematics-honours-2-complete-1-of-the-following-cs116-introduction-to-computer-science-2-0",
+        id: "h-mathematical-studies-mathematical-studies-bachelor-of-mathematics-honours-2-complete-1-of-the-following-cs116-introduction-to-computer-science-2-0",
         name: "Complete 1 of the following: CS116 - Introduction to Computer Science 2 (0.50)CS136 - Elementary Algorithm Design and Data Abstraction (0.50)CS146 - Elementary Algorithm Design and",
         category: "program",
         courses: [
@@ -4760,7 +4760,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-studies-bachelor-of-mathematics-honours-3-complete-1-of-the-following-math106-applied-linear-algebra-1-0-50-math",
+        id: "h-mathematical-studies-mathematical-studies-bachelor-of-mathematics-honours-3-complete-1-of-the-following-math106-applied-linear-algebra-1-0-50-math",
         name: "Complete 1 of the following: MATH106 - Applied Linear Algebra 1 (0.50)MATH136 - Linear Algebra 1 for Honours Mathematics (0.50)MATH146 - Linear Algebra 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4772,7 +4772,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-studies-bachelor-of-mathematics-honours-4-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
+        id: "h-mathematical-studies-mathematical-studies-bachelor-of-mathematics-honours-4-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH127 - Calculus 1 for the Sciences (0.50)MATH137 - Calculus 1 for Honours Mathematics (0.50)MATH147 - Calculus 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4784,7 +4784,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-studies-bachelor-of-mathematics-honours-5-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
+        id: "h-mathematical-studies-mathematical-studies-bachelor-of-mathematics-honours-5-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH128 - Calculus 2 for the Sciences (0.50)MATH138 - Calculus 2 for Honours Mathematics (0.50)MATH148 - Calculus 2 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4796,7 +4796,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-studies-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
+        id: "h-mathematical-studies-mathematical-studies-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
         name: "Complete 1 of the following: MATH135 - Algebra for Honours Mathematics (0.50)MATH145 - Algebra (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4807,7 +4807,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-studies-bachelor-of-mathematics-honours-7-complete-1-of-the-following-math207-calculus-3-non-specialist-level-0-",
+        id: "h-mathematical-studies-mathematical-studies-bachelor-of-mathematics-honours-7-complete-1-of-the-following-math207-calculus-3-non-specialist-level-0-",
         name: "Complete 1 of the following: MATH207 - Calculus 3 (Non-Specialist Level) (0.50)MATH229 - Introduction to Combinatorics (Non-Specialist Level) (0.50)MATH237 - Calculus 3 for Honours",
         category: "program",
         courses: [
@@ -4822,7 +4822,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-studies-bachelor-of-mathematics-honours-8-complete-1-of-the-following-math225-applied-linear-algebra-2-0-50-math",
+        id: "h-mathematical-studies-mathematical-studies-bachelor-of-mathematics-honours-8-complete-1-of-the-following-math225-applied-linear-algebra-2-0-50-math",
         name: "Complete 1 of the following: MATH225 - Applied Linear Algebra 2 (0.50)MATH235 - Linear Algebra 2 for Honours Mathematics (0.50)MATH245 - Linear Algebra 2 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4834,7 +4834,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-studies-bachelor-of-mathematics-honours-9-complete-1-of-the-following-stat220-probability-non-specialist-level-0",
+        id: "h-mathematical-studies-mathematical-studies-bachelor-of-mathematics-honours-9-complete-1-of-the-following-stat220-probability-non-specialist-level-0",
         name: "Complete 1 of the following: STAT220 - Probability (Non-Specialist Level) (0.50)STAT230 - Probability (0.50)STAT240 - Probability (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4846,7 +4846,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematical-studies-bachelor-of-mathematics-honours-10-complete-1-of-the-following-stat221-statistics-non-specialist-level-0-",
+        id: "h-mathematical-studies-mathematical-studies-bachelor-of-mathematics-honours-10-complete-1-of-the-following-stat221-statistics-non-specialist-level-0-",
         name: "Complete 1 of the following: STAT221 - Statistics (Non-Specialist Level) (0.50)STAT231 - Statistics (0.50)STAT241 - Statistics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4860,7 +4860,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "mathematics-bachelor-of-mathematics-three-year-general",
+    id: "3g-mathematics-mathematics-bachelor-of-mathematics-three-year-general",
     name: "Mathematics (Bachelor of Mathematics, Three-Year General)",
     degreeIds: [
       "bmath"
@@ -4874,7 +4874,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/B17AJkCCi2",
     requirements: [
       {
-        id: "mathematics-bachelor-of-mathematics-three-year-general-1-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
+        id: "3g-mathematics-mathematics-bachelor-of-mathematics-three-year-general-1-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
         name: "Complete 1 of the following: CS115 - Introduction to Computer Science 1 (0.50)CS135 - Designing Functional Programs (0.50)CS145 - Designing Functional Programs (Advanced Level) (0.",
         category: "program",
         courses: [
@@ -4886,7 +4886,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-bachelor-of-mathematics-three-year-general-2-complete-1-of-the-following-cs116-introduction-to-computer-science-2-0",
+        id: "3g-mathematics-mathematics-bachelor-of-mathematics-three-year-general-2-complete-1-of-the-following-cs116-introduction-to-computer-science-2-0",
         name: "Complete 1 of the following: CS116 - Introduction to Computer Science 2 (0.50)CS136 - Elementary Algorithm Design and Data Abstraction (0.50)CS146 - Elementary Algorithm Design and",
         category: "program",
         courses: [
@@ -4898,7 +4898,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-bachelor-of-mathematics-three-year-general-3-complete-1-of-the-following-math106-applied-linear-algebra-1-0-50-math",
+        id: "3g-mathematics-mathematics-bachelor-of-mathematics-three-year-general-3-complete-1-of-the-following-math106-applied-linear-algebra-1-0-50-math",
         name: "Complete 1 of the following: MATH106 - Applied Linear Algebra 1 (0.50)MATH136 - Linear Algebra 1 for Honours Mathematics (0.50)MATH146 - Linear Algebra 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4910,7 +4910,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-bachelor-of-mathematics-three-year-general-4-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
+        id: "3g-mathematics-mathematics-bachelor-of-mathematics-three-year-general-4-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH127 - Calculus 1 for the Sciences (0.50)MATH137 - Calculus 1 for Honours Mathematics (0.50)MATH147 - Calculus 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4922,7 +4922,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-bachelor-of-mathematics-three-year-general-5-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
+        id: "3g-mathematics-mathematics-bachelor-of-mathematics-three-year-general-5-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH128 - Calculus 2 for the Sciences (0.50)MATH138 - Calculus 2 for Honours Mathematics (0.50)MATH148 - Calculus 2 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4934,7 +4934,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-bachelor-of-mathematics-three-year-general-6-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
+        id: "3g-mathematics-mathematics-bachelor-of-mathematics-three-year-general-6-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
         name: "Complete 1 of the following: MATH135 - Algebra for Honours Mathematics (0.50)MATH145 - Algebra (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4945,7 +4945,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-bachelor-of-mathematics-three-year-general-7-complete-1-of-the-following-math207-calculus-3-non-specialist-level-0-",
+        id: "3g-mathematics-mathematics-bachelor-of-mathematics-three-year-general-7-complete-1-of-the-following-math207-calculus-3-non-specialist-level-0-",
         name: "Complete 1 of the following: MATH207 - Calculus 3 (Non-Specialist Level) (0.50)MATH229 - Introduction to Combinatorics (Non-Specialist Level) (0.50)MATH237 - Calculus 3 for Honours",
         category: "program",
         courses: [
@@ -4960,7 +4960,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-bachelor-of-mathematics-three-year-general-8-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
+        id: "3g-mathematics-mathematics-bachelor-of-mathematics-three-year-general-8-complete-1-of-the-following-cs245-logic-and-computation-0-50-cs245e-lo",
         name: "Complete 1 of the following: CS245 - Logic and Computation (0.50)CS245E - Logic and Computation (Enriched) (0.50)MATH225 - Applied Linear Algebra 2 (0.50)MATH235 - Linear Algebra 2",
         category: "program",
         courses: [
@@ -4974,7 +4974,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-bachelor-of-mathematics-three-year-general-9-complete-1-of-the-following-stat220-probability-non-specialist-level-0",
+        id: "3g-mathematics-mathematics-bachelor-of-mathematics-three-year-general-9-complete-1-of-the-following-stat220-probability-non-specialist-level-0",
         name: "Complete 1 of the following: STAT220 - Probability (Non-Specialist Level) (0.50)STAT230 - Probability (0.50)STAT240 - Probability (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -4986,7 +4986,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-bachelor-of-mathematics-three-year-general-10-complete-1-of-the-following-stat221-statistics-non-specialist-level-0-",
+        id: "3g-mathematics-mathematics-bachelor-of-mathematics-three-year-general-10-complete-1-of-the-following-stat221-statistics-non-specialist-level-0-",
         name: "Complete 1 of the following: STAT221 - Statistics (Non-Specialist Level) (0.50)STAT231 - Statistics (0.50)STAT241 - Statistics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5000,7 +5000,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "mathematics-joint-honours",
+    id: "jh-mathematics-mathematics-joint-honours",
     name: "Mathematics (Joint Honours)",
     category: "joint",
     code: "JH-Mathematics",
@@ -5011,7 +5011,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/HyzRyy0Rih",
     requirements: [
       {
-        id: "mathematics-joint-honours-1-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
+        id: "jh-mathematics-mathematics-joint-honours-1-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
         name: "Complete 1 of the following: CS115 - Introduction to Computer Science 1 (0.50)CS135 - Designing Functional Programs (0.50)CS145 - Designing Functional Programs (Advanced Level) (0.",
         category: "program",
         courses: [
@@ -5023,7 +5023,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-joint-honours-2-complete-1-of-the-following-cs116-introduction-to-computer-science-2-0",
+        id: "jh-mathematics-mathematics-joint-honours-2-complete-1-of-the-following-cs116-introduction-to-computer-science-2-0",
         name: "Complete 1 of the following: CS116 - Introduction to Computer Science 2 (0.50)CS136 - Elementary Algorithm Design and Data Abstraction (0.50)CS146 - Elementary Algorithm Design and",
         category: "program",
         courses: [
@@ -5035,7 +5035,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-joint-honours-3-complete-1-of-the-following-math106-applied-linear-algebra-1-0-50-math",
+        id: "jh-mathematics-mathematics-joint-honours-3-complete-1-of-the-following-math106-applied-linear-algebra-1-0-50-math",
         name: "Complete 1 of the following: MATH106 - Applied Linear Algebra 1 (0.50)MATH136 - Linear Algebra 1 for Honours Mathematics (0.50)MATH146 - Linear Algebra 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5047,7 +5047,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-joint-honours-4-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
+        id: "jh-mathematics-mathematics-joint-honours-4-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH127 - Calculus 1 for the Sciences (0.50)MATH137 - Calculus 1 for Honours Mathematics (0.50)MATH147 - Calculus 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5059,7 +5059,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-joint-honours-5-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
+        id: "jh-mathematics-mathematics-joint-honours-5-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH128 - Calculus 2 for the Sciences (0.50)MATH138 - Calculus 2 for Honours Mathematics (0.50)MATH148 - Calculus 2 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5071,7 +5071,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-joint-honours-6-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
+        id: "jh-mathematics-mathematics-joint-honours-6-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
         name: "Complete 1 of the following: MATH135 - Algebra for Honours Mathematics (0.50)MATH145 - Algebra (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5082,7 +5082,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-joint-honours-7-complete-1-of-the-following-math207-calculus-3-non-specialist-level-0-",
+        id: "jh-mathematics-mathematics-joint-honours-7-complete-1-of-the-following-math207-calculus-3-non-specialist-level-0-",
         name: "Complete 1 of the following: MATH207 - Calculus 3 (Non-Specialist Level) (0.50)MATH229 - Introduction to Combinatorics (Non-Specialist Level) (0.50)MATH237 - Calculus 3 for Honours",
         category: "program",
         courses: [
@@ -5097,7 +5097,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-joint-honours-8-complete-1-of-the-following-math225-applied-linear-algebra-2-0-50-math",
+        id: "jh-mathematics-mathematics-joint-honours-8-complete-1-of-the-following-math225-applied-linear-algebra-2-0-50-math",
         name: "Complete 1 of the following: MATH225 - Applied Linear Algebra 2 (0.50)MATH235 - Linear Algebra 2 for Honours Mathematics (0.50)MATH245 - Linear Algebra 2 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5109,7 +5109,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-joint-honours-9-complete-1-of-the-following-stat220-probability-non-specialist-level-0",
+        id: "jh-mathematics-mathematics-joint-honours-9-complete-1-of-the-following-stat220-probability-non-specialist-level-0",
         name: "Complete 1 of the following: STAT220 - Probability (Non-Specialist Level) (0.50)STAT230 - Probability (0.50)STAT240 - Probability (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5121,7 +5121,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-joint-honours-10-complete-1-of-the-following-stat221-statistics-non-specialist-level-0-",
+        id: "jh-mathematics-mathematics-joint-honours-10-complete-1-of-the-following-stat221-statistics-non-specialist-level-0-",
         name: "Complete 1 of the following: STAT221 - Statistics (Non-Specialist Level) (0.50)STAT231 - Statistics (0.50)STAT241 - Statistics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5135,7 +5135,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "mathematics-minor",
+    id: "mathematics-minor-mathematics-minor",
     name: "Mathematics Minor",
     category: "minor",
     code: "Mathematics Minor",
@@ -5146,7 +5146,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/rk7AJJ0Ain",
     requirements: [
       {
-        id: "mathematics-minor-1-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
+        id: "mathematics-minor-mathematics-minor-1-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
         name: "Complete 1 of the following: CS115 - Introduction to Computer Science 1 (0.50)CS135 - Designing Functional Programs (0.50)CS145 - Designing Functional Programs (Advanced Level) (0.",
         category: "program",
         courses: [
@@ -5158,7 +5158,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-minor-2-complete-1-of-the-following-cs114-principles-of-computing-for-science-",
+        id: "mathematics-minor-mathematics-minor-2-complete-1-of-the-following-cs114-principles-of-computing-for-science-",
         name: "Complete 1 of the following: CS114 - Principles of Computing for Science (0.50)CS116 - Introduction to Computer Science 2 (0.50)CS136 - Elementary Algorithm Design and Data Abstrac",
         category: "program",
         courses: [
@@ -5171,7 +5171,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-minor-3-complete-1-of-the-following-math106-applied-linear-algebra-1-0-50-math",
+        id: "mathematics-minor-mathematics-minor-3-complete-1-of-the-following-math106-applied-linear-algebra-1-0-50-math",
         name: "Complete 1 of the following: MATH106 - Applied Linear Algebra 1 (0.50)MATH114 - Linear Algebra for Science (0.50)MATH115 - Linear Algebra for Engineering (0.50)",
         category: "program",
         courses: [
@@ -5183,7 +5183,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-minor-4-complete-1-of-the-following-math116-calculus-1-for-engineering-0-50-ma",
+        id: "mathematics-minor-mathematics-minor-4-complete-1-of-the-following-math116-calculus-1-for-engineering-0-50-ma",
         name: "Complete 1 of the following: MATH116 - Calculus 1 for Engineering (0.50)MATH117 - Calculus 1 for Engineering (0.50)MATH127 - Calculus 1 for the Sciences (0.50)",
         category: "program",
         courses: [
@@ -5195,7 +5195,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-minor-5-complete-1-of-the-following-math118-calculus-2-for-engineering-0-50-ma",
+        id: "mathematics-minor-mathematics-minor-5-complete-1-of-the-following-math118-calculus-2-for-engineering-0-50-ma",
         name: "Complete 1 of the following: MATH118 - Calculus 2 for Engineering (0.50)MATH119 - Calculus 2 for Engineering (0.50)MATH128 - Calculus 2 for the Sciences (0.50)",
         category: "program",
         courses: [
@@ -5207,7 +5207,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-minor-6-complete-2-of-the-following-stat220-probability-non-specialist-level-0",
+        id: "mathematics-minor-mathematics-minor-6-complete-2-of-the-following-stat220-probability-non-specialist-level-0",
         name: "Complete 2 of the following: STAT220 - Probability (Non-Specialist Level) (0.50)STAT221 - Statistics (Non-Specialist Level) (0.50)STAT321 - Regression and Forecasting (Non-Speciali",
         category: "program",
         courses: [
@@ -5222,7 +5222,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "mathematics-business-administration-bachelor-of-mathematics-honours",
+    id: "h-mathematics-business-administration-mathematics-business-administration-bachelor-of-mathematics-honours",
     name: "Mathematics/Business Administration (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -5236,7 +5236,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/BJ4CkJ0Cs3",
     requirements: [
       {
-        id: "mathematics-business-administration-bachelor-of-mathematics-honours-1-complete-all-the-following-afm101-introduction-to-financial-accounting",
+        id: "h-mathematics-business-administration-mathematics-business-administration-bachelor-of-mathematics-honours-1-complete-all-the-following-afm101-introduction-to-financial-accounting",
         name: "Complete all the following: AFM101 - Introduction to Financial Accounting (0.50)AFM102 - Introduction to Managerial Accounting (0.50)BUS111W - Understanding the Business Environmen",
         category: "program",
         courses: [
@@ -5258,7 +5258,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematics-business-administration-bachelor-of-mathematics-honours-2-complete-1-of-the-following-actsc221-introductory-financial-mathematic",
+        id: "h-mathematics-business-administration-mathematics-business-administration-bachelor-of-mathematics-honours-2-complete-1-of-the-following-actsc221-introductory-financial-mathematic",
         name: "Complete 1 of the following: ACTSC221 - Introductory Financial Mathematics (Non-Specialist Level) (0.50)ACTSC231 - Introductory Financial Mathematics (0.50)",
         category: "program",
         courses: [
@@ -5269,7 +5269,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-business-administration-bachelor-of-mathematics-honours-3-complete-1-of-the-following-afm231-business-law-0-50-ls283-business-la",
+        id: "h-mathematics-business-administration-mathematics-business-administration-bachelor-of-mathematics-honours-3-complete-1-of-the-following-afm231-business-law-0-50-ls283-business-la",
         name: "Complete 1 of the following: AFM231 - Business Law (0.50)LS283 - Business Law (0.50)",
         category: "program",
         courses: [
@@ -5280,7 +5280,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-business-administration-bachelor-of-mathematics-honours-4-complete-1-of-the-following-arbus302-principles-of-marketing-0-50-bus2",
+        id: "h-mathematics-business-administration-mathematics-business-administration-bachelor-of-mathematics-honours-4-complete-1-of-the-following-arbus302-principles-of-marketing-0-50-bus2",
         name: "Complete 1 of the following: ARBUS302 - Principles of Marketing (0.50)BUS252W - Introduction to Marketing Management (WLU) (0.50)MGMT244 - Principles of Marketing (0.50)",
         category: "program",
         courses: [
@@ -5292,7 +5292,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-business-administration-bachelor-of-mathematics-honours-5-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "h-mathematics-business-administration-mathematics-business-administration-bachelor-of-mathematics-honours-5-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5303,7 +5303,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-business-administration-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-mathematics-business-administration-mathematics-business-administration-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5314,7 +5314,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-business-administration-bachelor-of-mathematics-honours-7-complete-1-of-the-following-mse211-organizational-behaviour-0-50-psych",
+        id: "h-mathematics-business-administration-mathematics-business-administration-bachelor-of-mathematics-honours-7-complete-1-of-the-following-mse211-organizational-behaviour-0-50-psych",
         name: "Complete 1 of the following: MSE211 - Organizational Behaviour (0.50)PSYCH238 - Organizational Psychology (0.50)",
         category: "program",
         courses: [
@@ -5325,7 +5325,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-business-administration-bachelor-of-mathematics-honours-8-complete-1-of-the-following-arbus202-professional-and-business-ethics-",
+        id: "h-mathematics-business-administration-mathematics-business-administration-bachelor-of-mathematics-honours-8-complete-1-of-the-following-arbus202-professional-and-business-ethics-",
         name: "Complete 1 of the following: ARBUS202 - Professional and Business Ethics (0.50)COMM400 - Entrepreneurship, Technology and the Emerging Information Economy (0.50)LS271 - Conflict Re",
         category: "program",
         courses: [
@@ -5344,7 +5344,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours",
+    id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours",
     name: "Mathematics/Chartered Professional Accountancy (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -5358,7 +5358,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/BybCJk0Ri2",
     requirements: [
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-1-complete-all-the-following-afm111-professional-pathways-and-problem-so",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-1-complete-all-the-following-afm111-professional-pathways-and-problem-so",
         name: "Complete all the following: AFM111 - Professional Pathways and Problem-Solving (0.50)AFM182 - Introduction to Financial Reporting and Managerial Decision Making 2 (0.50)AFM191 - In",
         category: "program",
         courses: [
@@ -5388,7 +5388,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-2-complete-1-of-the-following-actsc127-introduction-to-global-capital-ma",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-2-complete-1-of-the-following-actsc127-introduction-to-global-capital-ma",
         name: "Complete 1 of the following: ACTSC127 - Introduction to Global Capital Markets and Financial Analytics (0.50)AFM127 - Introduction to Global Capital Markets and Financial Analytics",
         category: "program",
         courses: [
@@ -5399,7 +5399,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-3-complete-1-of-the-following-actsc291-global-capital-markets-and-financ",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-3-complete-1-of-the-following-actsc291-global-capital-markets-and-financ",
         name: "Complete 1 of the following: ACTSC291 - Global Capital Markets and Financial Analytics (0.50)AFM272 - Global Capital Markets and Financial Analytics (0.50)",
         category: "program",
         courses: [
@@ -5410,7 +5410,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-4-complete-1-of-the-following-actsc423-topics-in-financial-econometrics-",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-4-complete-1-of-the-following-actsc423-topics-in-financial-econometrics-",
         name: "Complete 1 of the following: ACTSC423 - Topics in Financial Econometrics (0.50)AFM423 - Topics in Financial Econometrics (0.50)",
         category: "program",
         courses: [
@@ -5421,7 +5421,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-5-complete-1-of-the-following-afm323-quantitative-foundations-for-financ",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-5-complete-1-of-the-following-afm323-quantitative-foundations-for-financ",
         name: "Complete 1 of the following: AFM323 - Quantitative Foundations for Finance (0.50)STAT371 - Applied Linear Models and Process Improvement for Business (0.50)STAT374 - Quantitative F",
         category: "program",
         courses: [
@@ -5433,7 +5433,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-6-complete-1-of-the-following-comm103-principles-of-economics-0-50-econ1",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-6-complete-1-of-the-following-comm103-principles-of-economics-0-50-econ1",
         name: "Complete 1 of the following: COMM103 - Principles of Economics (0.50)ECON100 - Principles of Economics (0.50)",
         category: "program",
         courses: [
@@ -5444,7 +5444,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-7-complete-all-the-following-econ101-introduction-to-microeconomics-0-50",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-7-complete-all-the-following-econ101-introduction-to-microeconomics-0-50",
         name: "Complete all the following: ECON101 - Introduction to Microeconomics (0.50)ECON102 - Introduction to Macroeconomics (0.50)",
         category: "program",
         courses: [
@@ -5454,7 +5454,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-8-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-8-complete-1-of-the-following-cs115-introduction-to-computer-science-1-0",
         name: "Complete 1 of the following: CS115 - Introduction to Computer Science 1 (0.50)CS135 - Designing Functional Programs (0.50)CS145 - Designing Functional Programs (Advanced Level) (0.",
         category: "program",
         courses: [
@@ -5466,7 +5466,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-9-complete-1-of-the-following-cs116-introduction-to-computer-science-2-0",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-9-complete-1-of-the-following-cs116-introduction-to-computer-science-2-0",
         name: "Complete 1 of the following: CS116 - Introduction to Computer Science 2 (0.50)CS136 - Elementary Algorithm Design and Data Abstraction (0.50)CS146 - Elementary Algorithm Design and",
         category: "program",
         courses: [
@@ -5478,7 +5478,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-10-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-10-complete-1-of-the-following-math127-calculus-1-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH127 - Calculus 1 for the Sciences (0.50)MATH137 - Calculus 1 for Honours Mathematics (0.50)MATH147 - Calculus 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5490,7 +5490,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-11-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-11-complete-1-of-the-following-math128-calculus-2-for-the-sciences-0-50-m",
         name: "Complete 1 of the following: MATH128 - Calculus 2 for the Sciences (0.50)MATH138 - Calculus 2 for Honours Mathematics (0.50)MATH148 - Calculus 2 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5502,7 +5502,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-12-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-12-complete-1-of-the-following-math135-algebra-for-honours-mathematics-0-",
         name: "Complete 1 of the following: MATH135 - Algebra for Honours Mathematics (0.50)MATH145 - Algebra (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5513,7 +5513,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-13-complete-1-of-the-following-math136-linear-algebra-1-for-honours-mathe",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-13-complete-1-of-the-following-math136-linear-algebra-1-for-honours-mathe",
         name: "Complete 1 of the following: MATH136 - Linear Algebra 1 for Honours Mathematics (0.50)MATH146 - Linear Algebra 1 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5524,7 +5524,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-14-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-14-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5535,7 +5535,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-15-complete-1-of-the-following-stat230-probability-0-50-stat240-probabili",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-15-complete-1-of-the-following-stat230-probability-0-50-stat240-probabili",
         name: "Complete 1 of the following: STAT230 - Probability (0.50)STAT240 - Probability (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5546,7 +5546,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-16-complete-1-of-the-following-stat231-statistics-0-50-stat241-statistics",
+        id: "h-mathematics-chartered-professional-accountancy-mathematics-chartered-professional-accountancy-bachelor-of-mathematics-honours-16-complete-1-of-the-following-stat231-statistics-0-50-stat241-statistics",
         name: "Complete 1 of the following: STAT231 - Statistics (0.50)STAT241 - Statistics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5559,7 +5559,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours",
+    id: "h-math-farm-chartered-financial-analyst-spec-mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours",
     name: "Mathematics/Financial Analysis and Risk Management - Chartered Financial Analyst Specialization (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -5573,7 +5573,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/SkgAy1R0jh",
     requirements: [
       {
-        id: "mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
+        id: "h-math-farm-chartered-financial-analyst-spec-mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
         name: "Complete all the following: ACTSC231 - Introductory Financial Mathematics (0.50)ACTSC372 - Investment Science and Corporate Finance (0.50)AFM101 - Introduction to Financial Account",
         category: "program",
         courses: [
@@ -5594,7 +5594,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-2-complete-1-of-the-following-actsc446-mathematics-of-financial-markets-",
+        id: "h-math-farm-chartered-financial-analyst-spec-mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-2-complete-1-of-the-following-actsc446-mathematics-of-financial-markets-",
         name: "Complete 1 of the following: ACTSC446 - Mathematics of Financial Markets (0.50)MATBUS470 - Derivatives (0.50)",
         category: "program",
         courses: [
@@ -5605,7 +5605,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-3-complete-1-of-the-following-afm231-business-law-0-50-ls283-business-la",
+        id: "h-math-farm-chartered-financial-analyst-spec-mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-3-complete-1-of-the-following-afm231-business-law-0-50-ls283-business-la",
         name: "Complete 1 of the following: AFM231 - Business Law (0.50)LS283 - Business Law (0.50)",
         category: "program",
         courses: [
@@ -5616,7 +5616,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-4-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "h-math-farm-chartered-financial-analyst-spec-mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-4-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5627,7 +5627,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-5-complete-1-of-the-following-cs335-computational-methods-in-business-an",
+        id: "h-math-farm-chartered-financial-analyst-spec-mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-5-complete-1-of-the-following-cs335-computational-methods-in-business-an",
         name: "Complete 1 of the following: CS335 - Computational Methods in Business and Finance (0.50)CS476 - Numerical Computation for Financial Modelling (0.50)",
         category: "program",
         courses: [
@@ -5638,7 +5638,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-math-farm-chartered-financial-analyst-spec-mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5649,7 +5649,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-7-complete-all-the-following-stat330-mathematical-statistics-0-50-stat33",
+        id: "h-math-farm-chartered-financial-analyst-spec-mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-7-complete-all-the-following-stat330-mathematical-statistics-0-50-stat33",
         name: "Complete all the following: STAT330 - Mathematical Statistics (0.50)STAT333 - Stochastic Processes 1 (0.50)",
         category: "program",
         courses: [
@@ -5659,7 +5659,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-8-complete-all-the-following-stat334-probability-models-for-business-and",
+        id: "h-math-farm-chartered-financial-analyst-spec-mathematics-financial-analysis-and-risk-management-chartered-financial-analyst-specialization-bachelor-of-mathematics-honours-8-complete-all-the-following-stat334-probability-models-for-business-and",
         name: "Complete all the following: STAT334 - Probability Models for Business and Accounting (0.50)",
         category: "program",
         courses: [
@@ -5670,7 +5670,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours",
+    id: "h-math-farm-professional-risk-management-spec-mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours",
     name: "Mathematics/Financial Analysis and Risk Management - Professional Risk Management Specialization (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -5684,7 +5684,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/S1QRJ1C0i2",
     requirements: [
       {
-        id: "mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
+        id: "h-math-farm-professional-risk-management-spec-mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-1-complete-all-the-following-actsc231-introductory-financial-mathematics",
         name: "Complete all the following: ACTSC231 - Introductory Financial Mathematics (0.50)ACTSC372 - Investment Science and Corporate Finance (0.50)AFM101 - Introduction to Financial Account",
         category: "program",
         courses: [
@@ -5705,7 +5705,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-2-complete-1-of-the-following-actsc446-mathematics-of-financial-markets-",
+        id: "h-math-farm-professional-risk-management-spec-mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-2-complete-1-of-the-following-actsc446-mathematics-of-financial-markets-",
         name: "Complete 1 of the following: ACTSC446 - Mathematics of Financial Markets (0.50)MATBUS470 - Derivatives (0.50)",
         category: "program",
         courses: [
@@ -5716,7 +5716,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-3-complete-1-of-the-following-afm231-business-law-0-50-ls283-business-la",
+        id: "h-math-farm-professional-risk-management-spec-mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-3-complete-1-of-the-following-afm231-business-law-0-50-ls283-business-la",
         name: "Complete 1 of the following: AFM231 - Business Law (0.50)LS283 - Business Law (0.50)",
         category: "program",
         courses: [
@@ -5727,7 +5727,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-4-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "h-math-farm-professional-risk-management-spec-mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-4-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5738,7 +5738,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-5-complete-1-of-the-following-cs335-computational-methods-in-business-an",
+        id: "h-math-farm-professional-risk-management-spec-mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-5-complete-1-of-the-following-cs335-computational-methods-in-business-an",
         name: "Complete 1 of the following: CS335 - Computational Methods in Business and Finance (0.50)CS476 - Numerical Computation for Financial Modelling (0.50)",
         category: "program",
         courses: [
@@ -5749,7 +5749,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-math-farm-professional-risk-management-spec-mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-6-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5760,7 +5760,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-7-complete-all-the-following-stat330-mathematical-statistics-0-50-stat33",
+        id: "h-math-farm-professional-risk-management-spec-mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-7-complete-all-the-following-stat330-mathematical-statistics-0-50-stat33",
         name: "Complete all the following: STAT330 - Mathematical Statistics (0.50)STAT333 - Stochastic Processes 1 (0.50)",
         category: "program",
         courses: [
@@ -5770,7 +5770,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-8-complete-all-the-following-stat334-probability-models-for-business-and",
+        id: "h-math-farm-professional-risk-management-spec-mathematics-financial-analysis-and-risk-management-professional-risk-management-specialization-bachelor-of-mathematics-honours-8-complete-all-the-following-stat334-probability-models-for-business-and",
         name: "Complete all the following: STAT334 - Probability Models for Business and Accounting (0.50)",
         category: "program",
         courses: [
@@ -5781,7 +5781,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "mathematics-teaching-bachelor-of-mathematics-honours",
+    id: "h-mathematics-teaching-mathematics-teaching-bachelor-of-mathematics-honours",
     name: "Mathematics/Teaching (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -5795,7 +5795,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/Byl0k1ACin",
     requirements: [
       {
-        id: "mathematics-teaching-bachelor-of-mathematics-honours-1-complete-all-the-following-actsc221-introductory-financial-mathematics",
+        id: "h-mathematics-teaching-mathematics-teaching-bachelor-of-mathematics-honours-1-complete-all-the-following-actsc221-introductory-financial-mathematics",
         name: "Complete all the following: ACTSC221 - Introductory Financial Mathematics (Non-Specialist Level) (0.50)CS234 - Data Types and Structures (0.50)MTHEL206 - Introduction to Mathematic",
         category: "program",
         courses: [
@@ -5806,7 +5806,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "mathematics-teaching-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath250-introduction-to-differential-equa",
+        id: "h-mathematics-teaching-mathematics-teaching-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath250-introduction-to-differential-equa",
         name: "Complete 1 of the following: AMATH250 - Introduction to Differential Equations (0.50)AMATH251 - Introduction to Differential Equations (Advanced Level) (0.50)AMATH343 - Discrete Mo",
         category: "program",
         courses: [
@@ -5818,7 +5818,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-teaching-bachelor-of-mathematics-honours-3-complete-1-of-the-following-amath331-applied-real-analysis-0-50-amath3",
+        id: "h-mathematics-teaching-mathematics-teaching-bachelor-of-mathematics-honours-3-complete-1-of-the-following-amath331-applied-real-analysis-0-50-amath3",
         name: "Complete 1 of the following: AMATH331 - Applied Real Analysis (0.50)AMATH332 - Applied Complex Analysis (0.50)PMATH331 - Applied Real Analysis (0.50)PMATH332 - Applied Complex Anal",
         category: "program",
         courses: [
@@ -5834,7 +5834,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-teaching-bachelor-of-mathematics-honours-4-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
+        id: "h-mathematics-teaching-mathematics-teaching-bachelor-of-mathematics-honours-4-complete-1-of-the-following-co250-introduction-to-optimization-0-50-co",
         name: "Complete 1 of the following: CO250 - Introduction to Optimization (0.50)CO255 - Introduction to Optimization (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5845,7 +5845,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-teaching-bachelor-of-mathematics-honours-5-complete-1-of-the-following-co380-mathematical-discovery-and-invention",
+        id: "h-mathematics-teaching-mathematics-teaching-bachelor-of-mathematics-honours-5-complete-1-of-the-following-co380-mathematical-discovery-and-invention",
         name: "Complete 1 of the following: CO380 - Mathematical Discovery and Invention (0.50)CO480 - History of Mathematics (0.50)",
         category: "program",
         courses: [
@@ -5856,7 +5856,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-teaching-bachelor-of-mathematics-honours-6-complete-1-of-the-following-cs230-introduction-to-computers-and-comput",
+        id: "h-mathematics-teaching-mathematics-teaching-bachelor-of-mathematics-honours-6-complete-1-of-the-following-cs230-introduction-to-computers-and-comput",
         name: "Complete 1 of the following: CS230 - Introduction to Computers and Computer Systems (0.50)CS330 - Management Information Systems (0.50)CS338 - Computer Applications in Business: Da",
         category: "program",
         courses: [
@@ -5872,7 +5872,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-teaching-bachelor-of-mathematics-honours-7-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-mathematics-teaching-mathematics-teaching-bachelor-of-mathematics-honours-7-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5883,7 +5883,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-teaching-bachelor-of-mathematics-honours-8-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "h-mathematics-teaching-mathematics-teaching-bachelor-of-mathematics-honours-8-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -5894,7 +5894,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-teaching-bachelor-of-mathematics-honours-9-complete-1-of-the-following-pmath320-euclidean-geometry-0-50-pmath321-",
+        id: "h-mathematics-teaching-mathematics-teaching-bachelor-of-mathematics-honours-9-complete-1-of-the-following-pmath320-euclidean-geometry-0-50-pmath321-",
         name: "Complete 1 of the following: PMATH320 - Euclidean Geometry (0.50)PMATH321 - Non-Euclidean Geometry (0.50)PMATH330 - Introduction to Mathematical Logic (0.50)PMATH340 - Elementary N",
         category: "program",
         courses: [
@@ -5909,7 +5909,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-teaching-bachelor-of-mathematics-honours-10-complete-1-of-the-following-pmath334-introduction-to-rings-and-fields-",
+        id: "h-mathematics-teaching-mathematics-teaching-bachelor-of-mathematics-honours-10-complete-1-of-the-following-pmath334-introduction-to-rings-and-fields-",
         name: "Complete 1 of the following: PMATH334 - Introduction to Rings and Fields with Applications (0.50)PMATH336 - Introduction to Group Theory with Applications (0.50)PMATH347 - Groups a",
         category: "program",
         courses: [
@@ -5922,7 +5922,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-teaching-bachelor-of-mathematics-honours-11-complete-1-of-the-following-psych101-introductory-psychology-0-50-psyc",
+        id: "h-mathematics-teaching-mathematics-teaching-bachelor-of-mathematics-honours-11-complete-1-of-the-following-psych101-introductory-psychology-0-50-psyc",
         name: "Complete 1 of the following: PSYCH101 - Introductory Psychology (0.50)PSYCH101R - Introductory Psychology (0.50)",
         category: "program",
         courses: [
@@ -5933,7 +5933,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-teaching-bachelor-of-mathematics-honours-12-complete-1-of-the-following-psych211-developmental-psychology-0-50-psy",
+        id: "h-mathematics-teaching-mathematics-teaching-bachelor-of-mathematics-honours-12-complete-1-of-the-following-psych211-developmental-psychology-0-50-psy",
         name: "Complete 1 of the following: PSYCH211 - Developmental Psychology (0.50)PSYCH212 - Educational Psychology (0.50)PSYCH212R - Educational Psychology (0.50)",
         category: "program",
         courses: [
@@ -5945,7 +5945,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "mathematics-teaching-bachelor-of-mathematics-honours-13-complete-1-of-the-following-stat331-applied-linear-models-0-50-stat332",
+        id: "h-mathematics-teaching-mathematics-teaching-bachelor-of-mathematics-honours-13-complete-1-of-the-following-stat331-applied-linear-models-0-50-stat332",
         name: "Complete 1 of the following: STAT331 - Applied Linear Models (0.50)STAT332 - Sampling and Experimental Design (0.50)STAT333 - Stochastic Processes 1 (0.50)",
         category: "program",
         courses: [
@@ -5959,7 +5959,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "physics-specialization",
+    id: "amath-physics-specialization-physics-specialization",
     name: "Physics Specialization",
     category: "specialization",
     code: "AMATH-Physics Specialization",
@@ -5973,7 +5973,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "physics-specialization-1-choose-any-of-the-following-amath271-introduction-to-theoretical-mecha",
+        id: "amath-physics-specialization-physics-specialization-1-choose-any-of-the-following-amath271-introduction-to-theoretical-mecha",
         name: "Choose any of the following: AMATH271 - Introduction to Theoretical Mechanics (0.50)AMATH361 - Continuum Mechanics (0.50)AMATH373 - Quantum Theory 1 (0.50)AMATH463 - Fluid Mechanic",
         category: "program",
         courses: [
@@ -5991,7 +5991,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "predictive-analytics-specialization",
+    id: "actsc-predictive-analytics-specialization-predictive-analytics-specialization",
     name: "Predictive Analytics Specialization",
     category: "specialization",
     code: "ACTSC-Predictive Analytics Specialization",
@@ -6005,7 +6005,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "predictive-analytics-specialization-1-complete-all-the-following-actsc456-statistical-learning-in-actuarial-",
+        id: "actsc-predictive-analytics-specialization-predictive-analytics-specialization-1-complete-all-the-following-actsc456-statistical-learning-in-actuarial-",
         name: "Complete all the following: ACTSC456 - Statistical Learning in Actuarial Science (0.50)STAT431 - Generalized Linear Models and their Applications (0.50)STAT440 - Computational Infe",
         category: "program",
         courses: [
@@ -6016,7 +6016,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "predictive-analytics-specialization-2-complete-1-of-the-following-actsc454-longevity-and-mortality-using-pre",
+        id: "actsc-predictive-analytics-specialization-predictive-analytics-specialization-2-complete-1-of-the-following-actsc454-longevity-and-mortality-using-pre",
         name: "Complete 1 of the following: ACTSC454 - Longevity and Mortality Using Predictive Analytics (0.50)ACTSC457 - Predictive Modelling in Property and Casualty Insurance (0.50)",
         category: "program",
         courses: [
@@ -6027,7 +6027,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "predictive-analytics-specialization-3-complete-1-of-the-following-stat442-data-visualization-0-50-stat443-fo",
+        id: "actsc-predictive-analytics-specialization-predictive-analytics-specialization-3-complete-1-of-the-following-stat442-data-visualization-0-50-stat443-fo",
         name: "Complete 1 of the following: STAT442 - Data Visualization (0.50)STAT443 - Forecasting (0.50)STAT444 - Statistical Learning - Advanced Regression (0.50)",
         category: "program",
         courses: [
@@ -6041,7 +6041,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "pure-mathematics-bachelor-of-mathematics-honours",
+    id: "h-pure-mathematics-pure-mathematics-bachelor-of-mathematics-honours",
     name: "Pure Mathematics (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -6055,7 +6055,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/S1eexkCAo2",
     requirements: [
       {
-        id: "pure-mathematics-bachelor-of-mathematics-honours-1-complete-all-the-following-pmath347-groups-and-rings-0-50-pmath348-fie",
+        id: "h-pure-mathematics-pure-mathematics-bachelor-of-mathematics-honours-1-complete-all-the-following-pmath347-groups-and-rings-0-50-pmath348-fie",
         name: "Complete all the following: PMATH347 - Groups and Rings (0.50)PMATH348 - Fields and Galois Theory (0.50)PMATH351 - Real Analysis (0.50)PMATH352 - Complex Analysis (0.50)PMATH450 - ",
         category: "program",
         courses: [
@@ -6068,7 +6068,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "pure-mathematics-bachelor-of-mathematics-honours-2-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-pure-mathematics-pure-mathematics-bachelor-of-mathematics-honours-2-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -6079,7 +6079,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "pure-mathematics-bachelor-of-mathematics-honours-3-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "h-pure-mathematics-pure-mathematics-bachelor-of-mathematics-honours-3-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -6090,7 +6090,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "pure-mathematics-bachelor-of-mathematics-honours-4-complete-1-of-the-following-pmath365-differential-geometry-0-50-pmath3",
+        id: "h-pure-mathematics-pure-mathematics-bachelor-of-mathematics-honours-4-complete-1-of-the-following-pmath365-differential-geometry-0-50-pmath3",
         name: "Complete 1 of the following: PMATH365 - Differential Geometry (0.50)PMATH367 - Topology (0.50)",
         category: "program",
         courses: [
@@ -6103,7 +6103,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "pure-mathematics-joint-honours",
+    id: "jh-pure-mathematics-pure-mathematics-joint-honours",
     name: "Pure Mathematics (Joint Honours)",
     category: "joint",
     code: "JH-Pure Mathematics",
@@ -6114,7 +6114,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/S1fxe1ACi2",
     requirements: [
       {
-        id: "pure-mathematics-joint-honours-1-complete-1-of-the-following-amath331-applied-real-analysis-0-50-pmath3",
+        id: "jh-pure-mathematics-pure-mathematics-joint-honours-1-complete-1-of-the-following-amath331-applied-real-analysis-0-50-pmath3",
         name: "Complete 1 of the following: AMATH331 - Applied Real Analysis (0.50)PMATH331 - Applied Real Analysis (0.50)PMATH333 - Introduction to Real Analysis (0.50)PMATH351 - Real Analysis (",
         category: "program",
         courses: [
@@ -6127,7 +6127,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "pure-mathematics-joint-honours-2-complete-1-of-the-following-amath332-applied-complex-analysis-0-50-pma",
+        id: "jh-pure-mathematics-pure-mathematics-joint-honours-2-complete-1-of-the-following-amath332-applied-complex-analysis-0-50-pma",
         name: "Complete 1 of the following: AMATH332 - Applied Complex Analysis (0.50)PMATH332 - Applied Complex Analysis (0.50)PMATH352 - Complex Analysis (0.50)",
         category: "program",
         courses: [
@@ -6139,7 +6139,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "pure-mathematics-joint-honours-3-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "jh-pure-mathematics-pure-mathematics-joint-honours-3-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -6150,7 +6150,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "pure-mathematics-joint-honours-4-complete-1-of-the-following-pmath334-introduction-to-rings-and-fields-",
+        id: "jh-pure-mathematics-pure-mathematics-joint-honours-4-complete-1-of-the-following-pmath334-introduction-to-rings-and-fields-",
         name: "Complete 1 of the following: PMATH334 - Introduction to Rings and Fields with Applications (0.50)PMATH348 - Fields and Galois Theory (0.50)",
         category: "program",
         courses: [
@@ -6161,7 +6161,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "pure-mathematics-joint-honours-5-complete-1-of-the-following-pmath336-introduction-to-group-theory-with",
+        id: "jh-pure-mathematics-pure-mathematics-joint-honours-5-complete-1-of-the-following-pmath336-introduction-to-group-theory-with",
         name: "Complete 1 of the following: PMATH336 - Introduction to Group Theory with Applications (0.50)PMATH347 - Groups and Rings (0.50)",
         category: "program",
         courses: [
@@ -6172,7 +6172,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "pure-mathematics-joint-honours-6-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
+        id: "jh-pure-mathematics-pure-mathematics-joint-honours-6-complete-1-of-the-following-math239-introduction-to-combinatorics-0-50",
         name: "Complete 1 of the following: MATH239 - Introduction to Combinatorics (0.50)MATH249 - Introduction to Combinatorics (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -6185,7 +6185,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "pure-mathematics-minor",
+    id: "pure-mathematics-minor-pure-mathematics-minor",
     name: "Pure Mathematics Minor",
     category: "minor",
     code: "Pure Mathematics Minor",
@@ -6196,7 +6196,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/SJlxk0Ci2",
     requirements: [
       {
-        id: "pure-mathematics-minor-1-complete-1-of-the-following-math103-introductory-algebra-for-arts-and-",
+        id: "pure-mathematics-minor-pure-mathematics-minor-1-complete-1-of-the-following-math103-introductory-algebra-for-arts-and-",
         name: "Complete 1 of the following: MATH103 - Introductory Algebra for Arts and Social Science (0.50)MATH106 - Applied Linear Algebra 1 (0.50)MATH114 - Linear Algebra for Science (0.50)MA",
         category: "program",
         courses: [
@@ -6211,7 +6211,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "pure-mathematics-minor-2-complete-1-of-the-following-math104-introductory-calculus-for-arts-and",
+        id: "pure-mathematics-minor-pure-mathematics-minor-2-complete-1-of-the-following-math104-introductory-calculus-for-arts-and",
         name: "Complete 1 of the following: MATH104 - Introductory Calculus for Arts and Social Science (0.50)MATH116 - Calculus 1 for Engineering (0.50)MATH117 - Calculus 1 for Engineering (0.50",
         category: "program",
         courses: [
@@ -6226,7 +6226,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "pure-mathematics-minor-3-complete-1-of-the-following-math118-calculus-2-for-engineering-0-50-ma",
+        id: "pure-mathematics-minor-pure-mathematics-minor-3-complete-1-of-the-following-math118-calculus-2-for-engineering-0-50-ma",
         name: "Complete 1 of the following: MATH118 - Calculus 2 for Engineering (0.50)MATH119 - Calculus 2 for Engineering (0.50)MATH128 - Calculus 2 for the Sciences (0.50)MATH138 - Calculus 2 ",
         category: "program",
         courses: [
@@ -6240,7 +6240,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "pure-mathematics-minor-4-complete-1-of-the-following-ece206-advanced-calculus-2-for-electrical-",
+        id: "pure-mathematics-minor-pure-mathematics-minor-4-complete-1-of-the-following-ece206-advanced-calculus-2-for-electrical-",
         name: "Complete 1 of the following: ECE206 - Advanced Calculus 2 for Electrical Engineers (0.50)MATH212 - Advanced Calculus 2 for Electrical Engineers (0.50)MATH217 - Calculus 3 for Chemi",
         category: "program",
         courses: [
@@ -6257,7 +6257,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "quantum-information-option",
+    id: "quantum-information-option-quantum-information-option",
     name: "Quantum Information Option",
     category: "option",
     code: "Quantum Information Option",
@@ -6268,7 +6268,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/S1q-FG8A6",
     requirements: [
       {
-        id: "quantum-information-option-1-complete-all-the-following-pmath343-introduction-to-the-mathematics-of",
+        id: "quantum-information-option-quantum-information-option-1-complete-all-the-following-pmath343-introduction-to-the-mathematics-of",
         name: "Complete all the following: PMATH343 - Introduction to the Mathematics of Quantum Information (0.50)",
         category: "program",
         courses: [
@@ -6277,7 +6277,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "quantum-information-option-2-complete-1-of-the-following-amath473-quantum-theory-0-50-co432-informa",
+        id: "quantum-information-option-quantum-information-option-2-complete-1-of-the-following-amath473-quantum-theory-0-50-co432-informa",
         name: "Complete 1 of the following: AMATH473 - Quantum Theory (0.50)CO432 - Information Theory and Applications (0.50)",
         category: "program",
         courses: [
@@ -6288,7 +6288,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "quantum-information-option-3-complete-1-of-the-following-co481-introduction-to-quantum-information-",
+        id: "quantum-information-option-quantum-information-option-3-complete-1-of-the-following-co481-introduction-to-quantum-information-",
         name: "Complete 1 of the following: CO481 - Introduction to Quantum Information Processing (0.50)CS467 - Introduction to Quantum Information Processing (0.50)PHYS467 - Introduction to Qua",
         category: "program",
         courses: [
@@ -6300,7 +6300,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "quantum-information-option-4-complete-1-of-the-following-cs231-algorithmic-problem-solving-0-50-cs3",
+        id: "quantum-information-option-quantum-information-option-4-complete-1-of-the-following-cs231-algorithmic-problem-solving-0-50-cs3",
         name: "Complete 1 of the following: CS231 - Algorithmic Problem Solving (0.50)CS341 - Algorithms (0.50)",
         category: "program",
         courses: [
@@ -6311,7 +6311,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "quantum-information-option-5-choose-any-of-the-following-amath242-introduction-to-computational-mat",
+        id: "quantum-information-option-quantum-information-option-5-choose-any-of-the-following-amath242-introduction-to-computational-mat",
         name: "Choose any of the following: AMATH242 - Introduction to Computational Mathematics (0.50)AMATH474 - Advanced Quantum Theory: Quantum Information and Foundations (0.50)AMATH477 - Sto",
         category: "program",
         courses: [
@@ -6332,7 +6332,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "quantum-information-option-6-complete-no-more-than-1-from-the-following-amath373-quantum-theory-1-0",
+        id: "quantum-information-option-quantum-information-option-6-complete-no-more-than-1-from-the-following-amath373-quantum-theory-1-0",
         name: "Complete no more than 1 from the following: AMATH373 - Quantum Theory 1 (0.50)PHYS334 - Quantum Physics 2 (0.50)",
         category: "program",
         courses: [
@@ -6342,7 +6342,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "quantum-information-option-7-complete-no-more-than-1-from-the-following-chem356-introductory-quantu",
+        id: "quantum-information-option-quantum-information-option-7-complete-no-more-than-1-from-the-following-chem356-introductory-quantu",
         name: "Complete no more than 1 from the following: CHEM356 - Introductory Quantum Mechanics (0.50)ECE305 - Introduction to Quantum Mechanics (0.50)PHYS233 - Introduction to Quantum Mechan",
         category: "program",
         courses: [
@@ -6354,7 +6354,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "quantum-information-option-8-complete-no-more-than-1-from-the-following-cs360-introduction-to-the-t",
+        id: "quantum-information-option-quantum-information-option-8-complete-no-more-than-1-from-the-following-cs360-introduction-to-the-t",
         name: "Complete no more than 1 from the following: CS360 - Introduction to the Theory of Computing (0.50)CS365 - Models of Computation (0.50)PMATH432 - Mathematical Logic (0.50)",
         category: "program",
         courses: [
@@ -6365,7 +6365,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "quantum-information-option-9-complete-no-more-than-1-from-the-following-pmath336-introduction-to-gr",
+        id: "quantum-information-option-quantum-information-option-9-complete-no-more-than-1-from-the-following-pmath336-introduction-to-gr",
         name: "Complete no more than 1 from the following: PMATH336 - Introduction to Group Theory with Applications (0.50)PMATH347 - Groups and Rings (0.50)",
         category: "program",
         courses: [
@@ -6375,7 +6375,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "quantum-information-option-10-complete-no-more-than-1-from-the-following-ece405a-quantum-information",
+        id: "quantum-information-option-quantum-information-option-10-complete-no-more-than-1-from-the-following-ece405a-quantum-information",
         name: "Complete no more than 1 from the following: ECE405A - Quantum Information Processing Devices (0.50)PHYS468 - Physics of Quantum Computing (0.50)",
         category: "program",
         courses: [
@@ -6387,7 +6387,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "software-engineering-specialization",
+    id: "cs-software-engineering-specialization-software-engineering-specialization",
     name: "Software Engineering Specialization",
     category: "specialization",
     code: "CS-Software Engineering Specialization",
@@ -6403,7 +6403,7 @@ export const programs: Program[] = [
     ],
     requirements: [
       {
-        id: "software-engineering-specialization-1-complete-1-of-the-following-bet360-design-frameworks-for-social-ventur",
+        id: "cs-software-engineering-specialization-software-engineering-specialization-1-complete-1-of-the-following-bet360-design-frameworks-for-social-ventur",
         name: "Complete 1 of the following: BET360 - Design Frameworks for Social Ventures (0.50)BET420 - Entrepreneurship for Social Impact (0.50)CS492 - The Social Implications of Computing (0.",
         category: "program",
         courses: [
@@ -6428,7 +6428,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "software-engineering-specialization-2-complete-2-of-the-following-cs343-concurrent-and-parallel-programming-",
+        id: "cs-software-engineering-specialization-software-engineering-specialization-2-complete-2-of-the-following-cs343-concurrent-and-parallel-programming-",
         name: "Complete 2 of the following: CS343 - Concurrent and Parallel Programming (0.50)CS346 - Application Development (0.50)CS348 - Introduction to Database Management (0.50)CS349 - User ",
         category: "program",
         courses: [
@@ -6441,7 +6441,7 @@ export const programs: Program[] = [
         requiredCount: 2
       },
       {
-        id: "software-engineering-specialization-3-complete-2-of-the-following-cs442-principles-of-programming-languages-",
+        id: "cs-software-engineering-specialization-software-engineering-specialization-3-complete-2-of-the-following-cs442-principles-of-programming-languages-",
         name: "Complete 2 of the following: CS442 - Principles of Programming Languages (0.50)CS444 - Compiler Construction (0.50)CS448 - Database Systems Implementation (0.50)CS449 - Human-Compu",
         category: "program",
         courses: [
@@ -6466,7 +6466,7 @@ export const programs: Program[] = [
         requiredCount: 2
       },
       {
-        id: "software-engineering-specialization-4-complete-1-of-the-following-cs445-software-requirements-specification-",
+        id: "cs-software-engineering-specialization-software-engineering-specialization-4-complete-1-of-the-following-cs445-software-requirements-specification-",
         name: "Complete 1 of the following: CS445 - Software Requirements Specification and Analysis (0.50)ECE451 - Software Requirements Specification and Analysis (0.50)",
         category: "program",
         courses: [
@@ -6477,7 +6477,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "software-engineering-specialization-5-complete-1-of-the-following-cs446-software-design-and-architectures-0-",
+        id: "cs-software-engineering-specialization-software-engineering-specialization-5-complete-1-of-the-following-cs446-software-design-and-architectures-0-",
         name: "Complete 1 of the following: CS446 - Software Design and Architectures (0.50)ECE452 - Software Design and Architectures (0.50)",
         category: "program",
         courses: [
@@ -6488,7 +6488,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "software-engineering-specialization-6-complete-1-of-the-following-cs447-software-testing-quality-assurance-a",
+        id: "cs-software-engineering-specialization-software-engineering-specialization-6-complete-1-of-the-following-cs447-software-testing-quality-assurance-a",
         name: "Complete 1 of the following: CS447 - Software Testing, Quality Assurance, and Maintenance (0.50)ECE453 - Software Testing, Quality Assurance, and Maintenance (0.50)",
         category: "program",
         courses: [
@@ -6501,7 +6501,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "statistics-bachelor-of-mathematics-honours",
+    id: "h-statistics-statistics-bachelor-of-mathematics-honours",
     name: "Statistics (Bachelor of Mathematics - Honours)",
     degreeIds: [
       "bmath"
@@ -6515,7 +6515,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/H1XegyCAin",
     requirements: [
       {
-        id: "statistics-bachelor-of-mathematics-honours-1-complete-all-the-following-engl378-professional-communications-in-stat",
+        id: "h-statistics-statistics-bachelor-of-mathematics-honours-1-complete-all-the-following-engl378-professional-communications-in-stat",
         name: "Complete all the following: ENGL378 - Professional Communications in Statistics and Actuarial Science (0.50)STAT330 - Mathematical Statistics (0.50)STAT331 - Applied Linear Models ",
         category: "program",
         courses: [
@@ -6528,7 +6528,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "statistics-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath231-calculus-4-0-50-amath242-introduc",
+        id: "h-statistics-statistics-bachelor-of-mathematics-honours-2-complete-1-of-the-following-amath231-calculus-4-0-50-amath242-introduc",
         name: "Complete 1 of the following: AMATH231 - Calculus 4 (0.50)AMATH242 - Introduction to Computational Mathematics (0.50)AMATH250 - Introduction to Differential Equations (0.50)AMATH251",
         category: "program",
         courses: [
@@ -6545,7 +6545,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "statistics-bachelor-of-mathematics-honours-3-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "h-statistics-statistics-bachelor-of-mathematics-honours-3-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -6556,7 +6556,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "statistics-bachelor-of-mathematics-honours-4-complete-1-of-the-following-cs457-system-performance-evaluation-0-50-c",
+        id: "h-statistics-statistics-bachelor-of-mathematics-honours-4-complete-1-of-the-following-cs457-system-performance-evaluation-0-50-c",
         name: "Complete 1 of the following: CS457 - System Performance Evaluation (0.50)CS485 - Statistical and Computational Foundations of Machine Learning (0.50)CS486 - Introduction to Artific",
         category: "program",
         courses: [
@@ -6570,7 +6570,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "statistics-joint-honours",
+    id: "jh-statistics-statistics-joint-honours",
     name: "Statistics (Joint Honours)",
     category: "joint",
     code: "JH-Statistics",
@@ -6581,7 +6581,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/BybggJARoh",
     requirements: [
       {
-        id: "statistics-joint-honours-1-complete-all-the-following-engl378-professional-communications-in-stat",
+        id: "jh-statistics-statistics-joint-honours-1-complete-all-the-following-engl378-professional-communications-in-stat",
         name: "Complete all the following: ENGL378 - Professional Communications in Statistics and Actuarial Science (0.50)STAT330 - Mathematical Statistics (0.50)STAT331 - Applied Linear Models ",
         category: "program",
         courses: [
@@ -6593,7 +6593,7 @@ export const programs: Program[] = [
         type: "allOf"
       },
       {
-        id: "statistics-joint-honours-2-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "jh-statistics-statistics-joint-honours-2-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -6606,7 +6606,7 @@ export const programs: Program[] = [
     ]
   },
   {
-    id: "statistics-minor",
+    id: "statistics-minor-statistics-minor",
     name: "Statistics Minor",
     category: "minor",
     code: "Statistics Minor",
@@ -6617,7 +6617,7 @@ export const programs: Program[] = [
     sourceUrl: "https://uwaterloo.ca/academic-calendar/undergraduate-studies/catalog#/programs/rJbgx1RAs3",
     requirements: [
       {
-        id: "statistics-minor-1-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
+        id: "statistics-minor-statistics-minor-1-complete-1-of-the-following-math237-calculus-3-for-honours-mathematics",
         name: "Complete 1 of the following: MATH237 - Calculus 3 for Honours Mathematics (0.50)MATH247 - Calculus 3 (Advanced Level) (0.50)",
         category: "program",
         courses: [
@@ -6628,7 +6628,7 @@ export const programs: Program[] = [
         requiredCount: 1
       },
       {
-        id: "statistics-minor-2-complete-3-of-the-following-stat330-mathematical-statistics-0-50-stat3",
+        id: "statistics-minor-statistics-minor-2-complete-3-of-the-following-stat330-mathematical-statistics-0-50-stat3",
         name: "Complete 3 of the following: STAT330 - Mathematical Statistics (0.50)STAT331 - Applied Linear Models (0.50)STAT332 - Sampling and Experimental Design (0.50)STAT333 - Stochastic Pro",
         category: "program",
         courses: [

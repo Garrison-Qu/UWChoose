@@ -67,6 +67,12 @@ findDuplicateValues(programs.map((program) => program.id)).forEach((duplicateId)
   addError(`Duplicate program id: ${duplicateId}.`)
 })
 
+findDuplicateValues(programs.flatMap((program) => program.requirements.map((requirement) => requirement.id))).forEach(
+  (duplicateId) => {
+    addError(`Duplicate program requirement id: ${duplicateId}.`)
+  },
+)
+
 courses.forEach((course) => {
   course.termsOffered?.forEach((term) => {
     if (!validTerms.has(term)) {

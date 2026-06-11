@@ -1,7 +1,6 @@
 import { writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import * as cheerio from 'cheerio'
-import { courses as existingCourses } from '../src/data/courses'
 import { degrees } from '../src/data/programs'
 import type { Course } from '../src/types/course'
 import type { Program, ProgramCategory, ProgramRequirement } from '../src/types/program'
@@ -100,6 +99,21 @@ function slugify(value: string): string {
     .replace(/&/g, ' and ')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
+}
+
+function getUniqueId(baseId: string, usedIds: Set<string>): string {
+  const normalizedBaseId = baseId || 'item'
+  let id = normalizedBaseId
+  let suffix = 2
+
+  while (usedIds.has(id)) {
+    id = `${normalizedBaseId}-${suffix}`
+    suffix += 1
+  }
+
+  usedIds.add(id)
+
+  return id
 }
 
 function normalizeCourseCode(value: string): string {
@@ -233,7 +247,11 @@ function parseProgramCodes(value: string | undefined): string[] | undefined {
   return codes.size > 0 ? [...codes] : undefined
 }
 
-function parseRequirements(program: KualiProgramDetail, courseLinksByCode: Map<string, CourseLink>): ProgramRequirement[] {
+function parseRequirements(
+  program: KualiProgramDetail,
+  courseLinksByCode: Map<string, CourseLink>,
+  programId: string,
+): ProgramRequirement[] {
   const html = program.courseRequirementsNoUnits ?? program.requirements
 
   if (!html) {
@@ -242,6 +260,7 @@ function parseRequirements(program: KualiProgramDetail, courseLinksByCode: Map<s
 
   const $ = cheerio.load(html)
   const requirements: ProgramRequirement[] = []
+  const requirementIds = new Set<string>()
 
   $('li[data-test^="ruleView-"]').each((_, node) => {
     const courses = parseCourseLinksFromNode($, node)
@@ -255,7 +274,8 @@ function parseRequirements(program: KualiProgramDetail, courseLinksByCode: Map<s
     const result = $(node).children('div[data-test$="-result"]').first()
     const rawName = result.text().replace(/\s+/g, ' ').trim()
     const requirementShape = getRequirementType(rawName)
-    const id = `${slugify(program.title)}-${requirements.length + 1}-${slugify(rawName).slice(0, 70)}`
+    const baseId = `${programId}-${requirements.length + 1}-${slugify(rawName).slice(0, 70)}`
+    const id = getUniqueId(baseId, requirementIds)
 
     requirements.push({
       id,
@@ -288,7 +308,7 @@ function buildProgram(
     sourceId: program.id,
     sourceUrl,
     parentProgramCodes: parseProgramCodes(program.specializationIsAvailableForStudentsInTheFollowingMajorsRules),
-    requirements: parseRequirements(program, courseLinksByCode),
+    requirements: parseRequirements(program, courseLinksByCode, id),
   }
 }
 
@@ -320,26 +340,19 @@ async function main() {
     .filter((program) => program.facultyCalendarDisplay?.name === mathFacultyName)
     .sort((left, right) => left.title.localeCompare(right.title))
   const courseLinksByCode = new Map<string, CourseLink>()
-  const baseIdCounts = mathPrograms.reduce<Record<string, number>>((counts, program) => {
-    const id = slugify(program.title)
-
-    counts[id] = (counts[id] ?? 0) + 1
-
-    return counts
-  }, {})
+  const programIds = new Set<string>()
   const programs = mathPrograms.map((program) => {
     const baseId = slugify(program.title)
-    const id = baseIdCounts[baseId] > 1 ? slugify(`${program.code} ${program.title}`) : baseId
+    const id = getUniqueId(program.code ? slugify(`${program.code} ${program.title}`) : baseId, programIds)
 
     return buildProgram(program, courseLinksByCode, id)
   })
-  const existingCourseByCode = new Map(existingCourses.map((course) => [course.code, course]))
-  const missingCourseLinks = [...courseLinksByCode.values()].filter(
-    (course) => !existingCourseByCode.has(course.code),
+  const requiredCourseLinks = [...courseLinksByCode.values()].sort((left, right) =>
+    left.code.localeCompare(right.code),
   )
   const courseDetails = new Map<string, KualiCourseDetail>()
 
-  await mapWithConcurrency(missingCourseLinks, 12, async (link) => {
+  await mapWithConcurrency(requiredCourseLinks, 12, async (link) => {
     try {
       courseDetails.set(
         link.code,
@@ -350,10 +363,7 @@ async function main() {
     }
   })
 
-  const courses = [
-    ...existingCourses,
-    ...missingCourseLinks.map((link) => buildCourseFromLink(link, courseDetails.get(link.code))),
-  ].sort((left, right) => left.code.localeCompare(right.code))
+  const courses = requiredCourseLinks.map((link) => buildCourseFromLink(link, courseDetails.get(link.code)))
 
   const programsSource = `import type { Degree, Program } from "../types/program";
 
@@ -371,7 +381,7 @@ export const courses: Course[] = ${formatTsValue(courses)};
   await writeFile(resolve('src/data/courses.ts'), coursesSource)
 
   console.log(`Imported ${programs.length} Faculty of Mathematics programs.`)
-  console.log(`Added ${missingCourseLinks.length} courses; catalog now has ${courses.length} courses.`)
+  console.log(`Imported ${courses.length} explicitly required courses.`)
 }
 
 await main()
