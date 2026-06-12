@@ -1,24 +1,7 @@
-import { useEffect, useMemo, useState } from 'react'
-import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
+import { useMemo, useState } from 'react'
+import { formatCourseCode } from '../lib/courseCodes'
+import { filterCourseOptions } from '../lib/courseSearch'
 import type { Course } from '../types/course'
-
-export function getCoursePickerLabel(course: Pick<Course, 'code' | 'name'>) {
-  return `${formatCourseCode(course.code)} - ${course.name}`
-}
-
-export function filterCourseOptions(courses: Course[], query: string, limit = 8) {
-  const normalizedQuery = normalizeCourseCode(query)
-
-  return courses
-    .filter((course) => {
-      const courseText = normalizeCourseCode(
-        `${course.code} ${formatCourseCode(course.code)} ${course.name} ${getCoursePickerLabel(course)}`,
-      )
-
-      return normalizedQuery === '' || courseText.includes(normalizedQuery)
-    })
-    .slice(0, limit)
-}
 
 type CourseSearchPickerProps = {
   allowEmptyChoose?: boolean
@@ -51,14 +34,10 @@ export function CourseSearchPicker({
     () => filterCourseOptions(courses, value),
     [courses, value],
   )
-
-  useEffect(() => {
-    setHighlightedIndex((currentIndex) =>
-      filteredCourseOptions.length === 0
-        ? 0
-        : Math.min(currentIndex, filteredCourseOptions.length - 1),
-    )
-  }, [filteredCourseOptions.length])
+  const activeHighlightedIndex =
+    filteredCourseOptions.length === 0
+      ? 0
+      : Math.min(highlightedIndex, filteredCourseOptions.length - 1)
 
   function chooseCourse(courseCode: string) {
     if (!allowEmptyChoose && !value.trim()) {
@@ -119,7 +98,8 @@ export function CourseSearchPicker({
 
           if (event.key === 'Enter') {
             event.preventDefault()
-            const course = filteredCourseOptions[highlightedIndex] ?? filteredCourseOptions[0]
+            const course =
+              filteredCourseOptions[activeHighlightedIndex] ?? filteredCourseOptions[0]
 
             if (course) {
               chooseCourse(course.code)
@@ -150,7 +130,7 @@ export function CourseSearchPicker({
             filteredCourseOptions.map((course, index) => (
               <button
                 className={`flex w-full items-start gap-3 px-3 py-2 text-left transition ${
-                  index === highlightedIndex
+                  index === activeHighlightedIndex
                     ? 'bg-emerald-50 text-emerald-950'
                     : 'text-slate-700 hover:bg-slate-50'
                 }`}

@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
+    "audit:calendar": "tsx scripts/auditAcademicCalendarGraph.ts",
     "import:math-programs": "tsx scripts/importWaterlooMathPrograms.ts",
     "validate:data": "tsx scripts/validateData.ts"
   },

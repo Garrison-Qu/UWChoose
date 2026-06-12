@@ -2,17 +2,28 @@ import cytoscape from 'cytoscape'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { Badge } from '../components/Badge'
-import { CourseSearchPicker, getCoursePickerLabel } from '../components/CourseSearchPicker'
+import { CourseSearchPicker } from '../components/CourseSearchPicker'
 import { useCatalog } from '../lib/catalogContext'
-import { buildPrerequisitePathGraph } from '../lib/courseGraph'
+import {
+  buildPrerequisitePathGraph,
+  getCourseFlowPositions,
+  getGroupBoxPositions,
+} from '../lib/courseGraph'
 import { getCourseAvailability } from '../lib/courseAvailability'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
+import { getCoursePickerLabel } from '../lib/courseSearch'
 import { getEffectiveCompletedCourses } from '../lib/studentRecords'
 import { isFinishedByDate } from '../lib/terms'
 import { useStudentStore } from '../stores/useStudentStore'
 import type { CurrentTerm, PlannedTerm } from '../types/student'
 
 type GraphCourseStatus = 'completed' | 'finished' | 'available' | 'blocked'
+
+const courseNodeWidth = 152
+const courseNodeHeight = 74
+const groupPaddingX = 34
+const groupPaddingY = 32
+const groupLabelOffsetY = -8
 
 const statusStyles: Record<
   GraphCourseStatus,
@@ -54,6 +65,17 @@ const statusStyles: Record<
   },
 }
 
+const groupStyles = {
+  required: {
+    border: '#86efac',
+    text: '#166534',
+  },
+  choice: {
+    border: '#93c5fd',
+    text: '#1d4ed8',
+  },
+}
+
 function getFinishedCourseCodes(plannedTerms: PlannedTerm[], currentTerm: CurrentTerm) {
   return new Set(
     plannedTerms
@@ -62,157 +84,11 @@ function getFinishedCourseCodes(plannedTerms: PlannedTerm[], currentTerm: Curren
   )
 }
 
-function getAverageNeighborIndex(
-  courseCode: string,
-  neighborCodes: string[],
-  direction: 'incoming' | 'outgoing',
-  graph: ReturnType<typeof buildPrerequisitePathGraph>,
-) {
-  const neighborIndexes = new Map(neighborCodes.map((neighborCode, index) => [neighborCode, index]))
-  const connectedIndexes = graph.edges
-    .filter((edge) =>
-      direction === 'incoming'
-        ? edge.target === courseCode && neighborIndexes.has(edge.source)
-        : edge.source === courseCode && neighborIndexes.has(edge.target),
-    )
-    .map((edge) =>
-      direction === 'incoming'
-        ? (neighborIndexes.get(edge.source) ?? 0)
-        : (neighborIndexes.get(edge.target) ?? 0),
-    )
-
-  if (connectedIndexes.length === 0) {
-    return undefined
-  }
-
-  return connectedIndexes.reduce((total, index) => total + index, 0) / connectedIndexes.length
-}
-
-function sortRankByNeighbors(
-  courseCodes: string[],
-  neighborCodes: string[] | undefined,
-  direction: 'incoming' | 'outgoing',
-  graph: ReturnType<typeof buildPrerequisitePathGraph>,
-) {
-  if (!neighborCodes) {
-    return [...courseCodes].sort()
-  }
-
-  const originalIndexes = new Map(courseCodes.map((courseCode, index) => [courseCode, index]))
-
-  return [...courseCodes].sort((left, right) => {
-    const leftAverage = getAverageNeighborIndex(left, neighborCodes, direction, graph)
-    const rightAverage = getAverageNeighborIndex(right, neighborCodes, direction, graph)
-
-    if (leftAverage !== undefined && rightAverage !== undefined && leftAverage !== rightAverage) {
-      return leftAverage - rightAverage
-    }
-
-    if (leftAverage !== undefined && rightAverage === undefined) {
-      return -1
-    }
-
-    if (leftAverage === undefined && rightAverage !== undefined) {
-      return 1
-    }
-
-    return (originalIndexes.get(left) ?? 0) - (originalIndexes.get(right) ?? 0)
-  })
-}
-
-function orderGraphRanks(
-  nodesByRank: Map<number, string[]>,
-  graph: ReturnType<typeof buildPrerequisitePathGraph>,
-) {
-  const orderedRanks = [...nodesByRank.keys()].sort((left, right) => left - right)
-  const orderedNodesByRank = new Map<number, string[]>(
-    orderedRanks.map((rank) => [rank, [...(nodesByRank.get(rank) ?? [])].sort()]),
-  )
-
-  for (let sweep = 0; sweep < 4; sweep += 1) {
-    orderedRanks.slice(1).forEach((rank) => {
-      orderedNodesByRank.set(
-        rank,
-        sortRankByNeighbors(
-          orderedNodesByRank.get(rank) ?? [],
-          orderedNodesByRank.get(rank - 1),
-          'incoming',
-          graph,
-        ),
-      )
-    })
-
-    orderedRanks
-      .slice(0, -1)
-      .reverse()
-      .forEach((rank) => {
-        orderedNodesByRank.set(
-          rank,
-          sortRankByNeighbors(
-            orderedNodesByRank.get(rank) ?? [],
-            orderedNodesByRank.get(rank + 1),
-            'outgoing',
-            graph,
-          ),
-        )
-      })
-  }
-
-  return orderedNodesByRank
-}
-
-function getCourseFlowPositions(
-  graph: ReturnType<typeof buildPrerequisitePathGraph>,
-  targetCourseCode: string,
-) {
-  const ranks = new Map<string, number>([[targetCourseCode, 0]])
-
-  function visitPrerequisites(courseCode: string, depth: number) {
-    graph.edges
-      .filter((edge) => edge.target === courseCode)
-      .forEach((edge) => {
-        const rank = -depth
-        const currentRank = ranks.get(edge.source)
-
-        if (currentRank === undefined || rank < currentRank) {
-          ranks.set(edge.source, rank)
-          visitPrerequisites(edge.source, depth + 1)
-        }
-      })
-  }
-
-  visitPrerequisites(targetCourseCode, 1)
-
-  const nodesByRank = new Map<number, string[]>()
-
-  graph.nodes.forEach((node) => {
-    const rank = ranks.get(node.code) ?? 0
-    const nodes = nodesByRank.get(rank) ?? []
-
-    nodes.push(node.code)
-    nodesByRank.set(rank, nodes)
-  })
-
-  const orderedNodesByRank = orderGraphRanks(nodesByRank, graph)
-  const positions = new Map<string, { x: number; y: number }>()
-
-  orderedNodesByRank.forEach((nodeCodes, rank) => {
-    nodeCodes.forEach((courseCode, index) => {
-      positions.set(courseCode, {
-        x: rank * 280,
-        y: (index - (nodeCodes.length - 1) / 2) * 126,
-      })
-    })
-  })
-
-  return positions
-}
-
 export function GraphPage() {
   const { courses } = useCatalog()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const graphRef = useRef<cytoscape.Core | null>(null)
-  const [courseSearch, setCourseSearch] = useState('')
+  const [courseSearch, setCourseSearch] = useState({ courseCode: '', value: '' })
   const [searchParams, setSearchParams] = useSearchParams()
   const courseFromUrl = normalizeCourseCode(searchParams.get('course') ?? '')
   const selectedCourseCode = courses.some((course) => course.code === courseFromUrl)
@@ -244,6 +120,17 @@ export function GraphPage() {
     () => getCourseFlowPositions(pathGraph, selectedCourseCode),
     [pathGraph, selectedCourseCode],
   )
+  const groupBoxes = useMemo(
+    () =>
+      getGroupBoxPositions(pathGraph, nodePositions, {
+        courseNodeHeight,
+        courseNodeWidth,
+        groupLabelOffsetY,
+        groupPaddingX,
+        groupPaddingY,
+      }),
+    [nodePositions, pathGraph],
+  )
   const nodeStatusByCode = useMemo(() => {
     return new Map(
       pathGraph.nodes.map((node) => {
@@ -270,16 +157,18 @@ export function GraphPage() {
     pathGraph.nodes,
     prerequisiteOverrides,
   ])
-
-  useEffect(() => {
-    setCourseSearch(selectedCourse ? getCoursePickerLabel(selectedCourse) : '')
-  }, [selectedCourse])
+  const courseSearchValue =
+    courseSearch.courseCode === selectedCourseCode
+      ? courseSearch.value
+      : selectedCourse
+        ? getCoursePickerLabel(selectedCourse)
+        : ''
 
   function chooseCourse(courseCode: string) {
     const course = courses.find((course) => course.code === courseCode)
 
     if (course) {
-      setCourseSearch(getCoursePickerLabel(course))
+      setCourseSearch({ courseCode: course.code, value: getCoursePickerLabel(course) })
     }
 
     setSearchParams({ course: courseCode })
@@ -295,6 +184,22 @@ export function GraphPage() {
     const graph = cytoscape({
       container: containerRef.current,
       elements: [
+        ...groupBoxes.map(({ group, position, size }) => {
+          const style = groupStyles[group.type]
+
+          return {
+            data: {
+              id: group.id,
+              label: group.label,
+              borderColor: style.border,
+              height: size.height,
+              isGroup: 'yes',
+              textColor: style.text,
+              width: size.width,
+            },
+            position,
+          }
+        }),
         ...pathGraph.nodes.map((node) => {
           const status = nodeStatusByCode.get(node.code) ?? 'blocked'
           const style = statusStyles[status]
@@ -306,15 +211,18 @@ export function GraphPage() {
               label: formatCourseCode(node.code),
               backgroundColor: style.color,
               borderColor: style.border,
+              isCourse: 'yes',
+              isPlaceholder: node.isPlaceholder ? 'yes' : undefined,
               textColor: style.text,
               isTarget: node.code === selectedCourseCode ? 'yes' : undefined,
             },
             position,
           }
         }),
-        ...pathGraph.edges.map((edge) => ({
+        ...pathGraph.displayEdges.map((edge) => ({
           data: {
             id: edge.id,
+            isGroupEdge: edge.source.startsWith('group-') ? 'yes' : undefined,
             source: edge.source,
             target: edge.target,
           },
@@ -344,6 +252,29 @@ export function GraphPage() {
             'text-halign': 'center',
             'text-valign': 'center',
             width: 132,
+            'z-index': 2,
+          },
+        },
+        {
+          selector: 'node[isGroup]',
+          style: {
+            'background-opacity': 0,
+            'border-color': 'data(borderColor)',
+            'border-style': 'dashed',
+            'border-width': 3,
+            color: 'data(textColor)',
+            events: 'no',
+            'font-size': 12,
+            'font-weight': 800,
+            height: 'data(height)',
+            label: 'data(label)',
+            'overlay-opacity': 0,
+            shape: 'round-rectangle',
+            'text-halign': 'center',
+            'text-margin-y': groupLabelOffsetY,
+            'text-valign': 'top',
+            width: 'data(width)',
+            'z-index': 0,
           },
         },
         {
@@ -358,24 +289,56 @@ export function GraphPage() {
           },
         },
         {
+          selector: 'node[isPlaceholder]',
+          style: {
+            'background-color': '#f8fafc',
+            'border-color': '#94a3b8',
+            'border-style': 'dashed',
+            color: '#64748b',
+          },
+        },
+        {
           selector: 'edge',
           style: {
-            'curve-style': 'straight',
+            'curve-style': 'bezier',
             'line-color': '#cbd5e1',
+            'line-opacity': 0.9,
             'target-arrow-color': '#64748b',
             'target-arrow-shape': 'triangle',
             width: 2,
+            'z-index': 1,
+          },
+        },
+        {
+          selector: 'edge[isGroupEdge]',
+          style: {
+            'line-color': '#64748b',
+            'line-opacity': 1,
+            'target-arrow-color': '#475569',
+            width: 3,
+            'z-index': 1,
           },
         },
       ],
     })
 
+    graph.nodes().ungrabify()
+    graph.nodes().lock()
+
     graph.on('tap', 'node', (event) => {
+      if (event.target.data('isGroup') || event.target.data('isPlaceholder')) {
+        return
+      }
+
       const courseCode = event.target.id()
 
       setSearchParams({ course: courseCode })
     })
-    graph.on('mouseover', 'node', () => {
+    graph.on('mouseover', 'node', (event) => {
+      if (event.target.data('isGroup') || event.target.data('isPlaceholder')) {
+        return
+      }
+
       if (containerRef.current) {
         containerRef.current.style.cursor = 'pointer'
       }
@@ -393,14 +356,21 @@ export function GraphPage() {
       graph.destroy()
       graphRef.current = null
     }
-  }, [nodePositions, nodeStatusByCode, pathGraph, selectedCourseCode, setSearchParams])
+  }, [
+    groupBoxes,
+    nodePositions,
+    nodeStatusByCode,
+    pathGraph,
+    selectedCourseCode,
+    setSearchParams,
+  ])
 
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Course graph</h1>
         <p className="mt-2 text-slate-600">
-          Shows the prerequisite path from foundational courses up to the target course.
+          Shows the prerequisite path to the target course and the courses it directly unlocks.
         </p>
       </div>
 
@@ -410,11 +380,11 @@ export function GraphPage() {
           inputId="graph-course"
           label="Target course"
           listboxId="graph-course-options"
-          onChange={setCourseSearch}
+          onChange={(value) => setCourseSearch({ courseCode: selectedCourseCode, value })}
           onChoose={chooseCourse}
           placeholder="Search by code or name"
           selectedCourseCode={selectedCourseCode}
-          value={courseSearch}
+          value={courseSearchValue}
         />
         <button
           className="self-end rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50"
