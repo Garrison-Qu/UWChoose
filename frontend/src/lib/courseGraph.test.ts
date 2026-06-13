@@ -784,6 +784,94 @@ describe('course graph direct dependents', () => {
     expect(new Set(threeCourseGroup.map((position) => position.y)).size).toBe(2)
   })
 
+  it('keeps connected prerequisites close inside grouped prerequisite boxes', () => {
+    const mathCourses: Course[] = [
+      {
+        code: 'MATH104',
+        name: 'Introductory Calculus',
+        subject: 'MATH',
+        level: 100,
+      },
+      {
+        code: 'MATH116',
+        name: 'Calculus 1 for Engineering',
+        subject: 'MATH',
+        level: 100,
+      },
+      {
+        code: 'MATH117',
+        name: 'Calculus 1 for Engineering',
+        subject: 'MATH',
+        level: 100,
+      },
+      {
+        code: 'MATH127',
+        name: 'Calculus 1 for the Sciences',
+        subject: 'MATH',
+        level: 100,
+        prerequisite: {
+          type: 'course',
+          courseCode: 'MATH104',
+        },
+      },
+      {
+        code: 'MATH137',
+        name: 'Calculus 1 for Honours Mathematics',
+        subject: 'MATH',
+        level: 100,
+      },
+      {
+        code: 'MATH147',
+        name: 'Calculus 1',
+        subject: 'MATH',
+        level: 100,
+      },
+      {
+        code: 'MATH118',
+        name: 'Calculus 2 for Engineering',
+        subject: 'MATH',
+        level: 100,
+        prerequisite: {
+          type: 'anyOf',
+          requirements: [
+            {
+              type: 'course',
+              courseCode: 'MATH116',
+            },
+            {
+              type: 'course',
+              courseCode: 'MATH117',
+            },
+            {
+              type: 'course',
+              courseCode: 'MATH127',
+            },
+            {
+              type: 'course',
+              courseCode: 'MATH137',
+            },
+            {
+              type: 'course',
+              courseCode: 'MATH147',
+            },
+          ],
+        },
+      },
+    ]
+    const graph = buildPrerequisitePathGraph('MATH118', mathCourses)
+    const positions = getCourseFlowPositions(graph, 'MATH118')
+    const group = graph.groups.find((item) => item.target === 'MATH118')
+    const math127Position = positions.get('MATH127')
+    const groupedPrerequisitePositions = ['MATH116', 'MATH117', 'MATH127', 'MATH137', 'MATH147']
+      .map((courseCode) => positions.get(courseCode))
+      .filter((position): position is { x: number; y: number } => Boolean(position))
+
+    expect(group?.courseCodes).toContain('MATH127')
+    expect(math127Position?.x).toBe(
+      Math.min(...groupedPrerequisitePositions.map((position) => position.x)),
+    )
+  })
+
   it('sizes group boxes from compact rectangle positions', () => {
     const graph = buildPrerequisitePathGraph('EXACT338', graphCourses)
     const positions = getCourseFlowPositions(graph, 'EXACT338')

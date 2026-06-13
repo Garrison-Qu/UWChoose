@@ -524,8 +524,10 @@ function createRankLayoutUnits(courseCodes: string[], graph: CourseGraph) {
     }
 
     const group = primaryGroupByCourseCode.get(courseCode)
-    const groupCourseCodes = group?.courseCodes.filter((groupCourseCode) =>
-      rankCourseCodes.has(groupCourseCode),
+    const groupCourseCodeSet = new Set(group?.courseCodes ?? [])
+    const groupCourseCodes = courseCodes.filter(
+      (rankCourseCode) =>
+        rankCourseCodes.has(rankCourseCode) && groupCourseCodeSet.has(rankCourseCode),
     )
 
     if (groupCourseCodes && groupCourseCodes.length > 1) {
