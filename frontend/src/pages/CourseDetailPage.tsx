@@ -4,6 +4,7 @@ import { Badge } from '../components/Badge'
 import { useCatalog } from '../lib/catalogContext'
 import { PathToTake } from '../components/PathToTake'
 import { PrerequisiteTree } from '../components/PrerequisiteTree'
+import { formatCalendarRequirementNotes } from '../lib/calendarNotes'
 import { getCourseAvailability } from '../lib/courseAvailability'
 import { formatCourseCode, normalizeCourseCode } from '../lib/courseCodes'
 import { buildPathExplanationToCourse } from '../lib/pathPlanner'
@@ -60,6 +61,25 @@ export function CourseDetailPage() {
   const hasPrerequisiteOverride = prerequisiteOverrides
     .map(normalizeCourseCode)
     .includes(course.code)
+  const prerequisiteNotes = formatCalendarRequirementNotes(course.prerequisiteRawText)
+  const antirequisiteNotes = formatCalendarRequirementNotes(course.antirequisiteRawText)
+
+  function CalendarNotes({ notes }: { notes: string[] }) {
+    if (notes.length === 0) {
+      return null
+    }
+
+    return (
+      <div className="mt-5 rounded-xl bg-slate-50 p-4">
+        <h3 className="text-sm font-semibold text-slate-900">Calendar notes</h3>
+        <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-600">
+          {notes.map((note, index) => (
+            <li key={`${note}-${index}`}>{note}</li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
 
   return (
     <div className="space-y-6">
@@ -176,11 +196,7 @@ export function CourseDetailPage() {
           <div className="mt-4">
             <PrerequisiteTree prerequisite={course.prerequisite} />
           </div>
-          {course.prerequisiteRawText ? (
-            <p className="mt-5 rounded-xl bg-slate-50 p-4 text-sm text-slate-600">
-              Raw text: {course.prerequisiteRawText}
-            </p>
-          ) : null}
+          <CalendarNotes notes={prerequisiteNotes} />
         </div>
 
         <div className="space-y-4">
@@ -193,11 +209,7 @@ export function CourseDetailPage() {
                 <p className="text-slate-600">None listed.</p>
               )}
             </div>
-            {course.antirequisiteRawText ? (
-              <p className="mt-5 rounded-xl bg-slate-50 p-4 text-sm text-slate-600">
-                Raw text: {course.antirequisiteRawText}
-              </p>
-            ) : null}
+            <CalendarNotes notes={antirequisiteNotes} />
           </div>
 
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
